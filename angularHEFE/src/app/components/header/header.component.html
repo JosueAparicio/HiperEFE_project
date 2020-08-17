@@ -1,0 +1,69 @@
+
+
+<div class="nav-container" *ngIf="!status" >
+    <div class="wapper-nav">
+      <nav id="header1">
+        <div class="logo">
+          <h1>HIPER <p>EFE</p></h1>
+        </div>
+  
+        <ul class="nav-items" >
+  
+          <li>
+              <a [routerLink]="['/inicio']" [routerLinkActive]="['active']" >Inicio</a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/login']" [routerLinkActive]="['active']">Login</a>
+          </li>
+
+          <li>
+          <a [routerLink]="['/register']" [routerLinkActive]="['active']">Registrate</a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/inicio']" [routerLinkActive]="['active']">Sobre nosotros</a>
+          </li>
+        </ul>
+
+      </nav>
+    </div>
+  </div>
+
+  <header id="header" *ngIf="status == 'false'">
+      <!-- 
+
+    <div class="center">
+
+        <div id="logo">
+            <img src="../../../assets/images/Angular.svg" class="app-logo" alt="Logotipo">
+            <span id="brand">
+                <strong>HiperEFE</strong>Project
+            </span>
+        </div>
+      -->
+        <nav id="menu">
+            <ul>
+                <li>
+                    <a  [routerLink]="['/home']" [routerLinkActive]="['active']">Home</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/home']" [routerLinkActive]="['active']">Mis salas</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/home']" [routerLinkActive]="['active']">Perfil</a>
+                </li>
+                <li >
+                    <a (click)="signOut()" >Cerrar sesion</a>
+                </li>
+
+
+
+            </ul>
+        </nav>
+
+ <!-- 
+        <div class="clearfix"></div>
+    </div>
+</header>
+-->

@@ -1,0 +1,48 @@
+<div class="body">
+  <app-header></app-header>
+
+  <div class="header-container">
+    <div class="wrapper">
+      <header class="conetendor-forms">
+        <div class="hero-container">
+          <div class="verification-box" >
+
+            <div *ngIf="user$ | async as user; else loading" >
+              <h1>Verifica tu cuenta</h1>
+              <p>Se ha enviado un correo de verificación a <strong>{{user?.email}}</strong>, </p>
+              <p>acceda al enlace y verifique su cuenta. </p>
+
+              <p>Si el correo no llegó, dele click al botón reenviar</p>
+
+              <button class="btn btn-lg btn-primary verification-button" (click)="onSendVE()" >Reenviar</button>
+
+
+            </div>
+
+            <ng-template  #loading>
+              <h1>Cargando...</h1>
+            </ng-template>
+          </div>
+        </div>
+
+
+      </header>
+
+    </div>
+  </div>
+
+  <div class="smokes">
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+
+    </ul>
+  </div>
+</div>

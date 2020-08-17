@@ -1,0 +1,49 @@
+<div class="login-page">
+  <div class="general-validations">
+
+      <!-- 
+        
+-->
+    <div *ngIf="status == 'resetPassword'"  class="resetPassword">
+      <form class="box" (ngSubmit)="onSaveNewPassword()" [formGroup]="resetForm">
+        <h1>Password Recover</h1>
+
+        <span  class="invalid" *ngIf="resetForm.get('password').touched &&  resetForm.get('password').errors?.validPASS  " >
+          Prueba agregando, mayusculas, minusculas, numeros y caracteres raros *
+        </span>
+        <div class="order">
+          <div>
+          <i *ngIf="resetForm.get('password').touched  &&  resetForm.get('password').errors?.validPASS " class="fa fa-unlock i fail" aria-hidden="true"></i>
+          <i *ngIf="resetForm.get('password').value.length > 1 && resetForm.get('password').touched  && !resetForm.get('password').errors?.required  && !resetForm.get('password').errors?.validPASS" class="fa fa-lock nice i" aria-hidden="true"></i>
+        </div>
+          <input type="password" name="" placeholder="New password" name="password" 
+          formControlName="password">
+        </div>
+
+
+        <span  class="invalid" *ngIf="resetForm.get('password2').touched &&  resetForm.get('password2').value != resetForm.get('password').value  " >
+          Las contraseñas no coiciden *
+        </span>
+        <div class="order">
+          <div >
+            <a ><i *ngIf="resetForm.get('password2').value.length > 1 && resetForm.get('password2').touched && !resetForm.get('password').errors?.required  && !resetForm.get('password2').errors?.iguality" class="fa fa-check nice i"aria-hidden="true"></i></a>
+           <a > <i *ngIf=" resetForm.get('password2').touched  && resetForm.get('password2').errors?.iguality " class="fa fa-times fail i" aria-hidden="true"></i></a>
+          </div>
+          <input type="password" name="" placeholder="Repeat password" name="password2" 
+          formControlName="password2">
+        </div>
+
+        <input type="submit" name="" value="Guardar" [disabled]="resetForm.invalid">
+      </form>
+
+    </div>
+
+    <div *ngIf="status == 'recoverEmail'" class="recoverEmail">
+      <h1>ESTAS CAMBIANDO TU EMAIL</h1>
+    </div>
+
+    <div *ngIf="status == 'verifyEmail'" class="verifyEmail">
+      <h1>ESTAS VERIFICANDO TU EMAIL</h1>
+    </div>
+  </div>
+</div>

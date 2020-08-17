@@ -1,0 +1,88 @@
+<div class="login-page">
+
+  <app-header></app-header>
+  <!-- 
+-->
+  <div class="login-page-2">
+
+    <div class="login-box">
+      <div class="img">
+        <img src="../../assets/images/gafitas.png" alt="login Image">
+      </div>
+      <div class="login-form">
+        <div class="form-heading">
+          <h3>Registrate</h3>
+        </div>
+        <form (ngSubmit)="onRegister()" [formGroup]="registerForm">
+
+          <span  class="invalid" *ngIf="registerForm.get('email').touched &&  registerForm.get('email').errors?.pattern "  >
+            El email es invalido *
+          </span>
+          <div class="group-input">
+            <i *ngIf=" registerForm.get('email').touched && !registerForm.get('email').errors?.required  && !registerForm.get('email').errors?.pattern  "
+              class="fa fa-check i nice" aria-hidden="true"></i>
+            <i *ngIf=" registerForm.get('email').touched &&  registerForm.get('email').errors?.pattern "
+              class="fa fa-times i fail" aria-hidden="true"></i>
+            <input type="email" class="form-control field one" placeholder="Ingresa tu email*" name="email"
+              formControlName="email">
+          </div>
+
+          <span  class="invalid" *ngIf="registerForm.get('displayName').touched &&  registerForm.get('displayName').errors?.required" >
+            El nombre de uuario es invalido *
+          </span>
+          <div class="group-input">
+            <i *ngIf=" registerForm.get('displayName').touched && !registerForm.get('displayName').errors?.required  "
+              class="fa fa-check i nice" aria-hidden="true"></i>
+            <i *ngIf=" registerForm.get('displayName').touched &&  registerForm.get('displayName').errors?.required "
+              class="fa fa-times i fail" aria-hidden="true"></i>
+            <input type="text" class="form-control field one" placeholder="Ingresa tu Nombre de Usuario*" name="displayName"
+              formControlName="displayName">
+          </div>
+
+          <span  class="invalid" *ngIf="registerForm.get('password').touched &&  registerForm.get('password').errors?.validPASS  " >
+            Prueba agregando, mayusculas, minusculas, numeros y caracteres raros *
+          </span>
+          <div class="group-input">
+            <i *ngIf="registerForm.get('password').value.length > 1 && registerForm.get('password').touched  && !registerForm.get('password').errors?.required  && !registerForm.get('password').errors?.validPASS "
+              class="fa fa-lock nice i" aria-hidden="true"></i>
+            <i *ngIf="registerForm.get('password').touched &&  registerForm.get('password').errors?.validPASS "
+              class="fa fa-unlock fail i" aria-hidden="true"></i>
+            <input type="password" class="form-control field" placeholder="Contraseña*" name="password"
+              formControlName="password">
+          </div>
+
+          <span  class="invalid" *ngIf="registerForm.get('password2').touched &&  registerForm.get('password2').value != registerForm.get('password').value  " >
+            Las contraseñas no coiciden *
+          </span>
+          <div class="group-input">
+            <i *ngIf="registerForm.get('password2').value.length > 1 && registerForm.get('password2').touched && !registerForm.get('password').errors?.required  && registerForm.get('password2').value ==registerForm.get('password').value  "
+              class="fa fa-check nice i" aria-hidden="true"></i>
+            <i *ngIf="registerForm.get('password2').touched &&  registerForm.get('password2').value != registerForm.get('password').value  "
+              class="fa fa-times fail i" aria-hidden="true"></i>
+            <input type="password" class="form-control field" placeholder="Repetir contraseña*" name="password2"
+              formControlName="password2">
+          </div>
+
+          <span  class="invalid" *ngIf="registerForm.get('date').touched && registerForm.get('date').errors?.required" >
+            La fecha es invalida *
+          </span>
+          <div class="group-input">
+            <input type="date" class="form-control field" name="date" id="inputDate" formControlName="date"
+              min="1970-01-01" max="2013-01-01">
+          </div>
+
+
+          <div class="sign-in-remember field">
+
+            <label>
+              <input type="checkbox" name="" checked>
+              <a href="">Terminos y condiciones</a>
+            </label>
+          </div>
+          <input type="submit" class="btn" value="Registrar" [disabled]="registerForm.invalid">
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
