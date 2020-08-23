@@ -20,9 +20,6 @@ export class RegisterComponent implements OnInit {
 
   constructor(public _userService: UserService, public _router: Router, private fb: FormBuilder) {
 
-
-
-
   }
 
   ngOnInit(): void {
@@ -31,29 +28,53 @@ export class RegisterComponent implements OnInit {
       password: ['', [Validators.required, Global.validPassword]],
       password2: ['', Validators.required],
       date: ['', Validators.required],
-      displayName: ['', [Validators.required, Validators.min(5)]]
+      displayName: ['', [Validators.required, Validators.minLength(5)]]
 
     });
 
   }
-
   async onRegister() {
 
-    Swal.fire({
-      title: 'Por favor espere...',
-      allowOutsideClick: false,
-      onBeforeOpen: () => {
-        Swal.showLoading()
-      },
-    });
+    console.log(this.getDateInput());
 
-    const create = this._userService.createAccount(this.registerForm.value);
-    console.log(this.registerForm.value);
+    console.log('onRegister');
+
+    if (this.registerForm.value.password === this.registerForm.value.password2 && this.getDateInput()) {
+      Swal.fire({
+        title: 'Por favor espere...',
+        allowOutsideClick: false,
+        onBeforeOpen: () => {
+          Swal.showLoading()
+        },
+      });
+
+      const create = this._userService.createAccount(this.registerForm.value);
+      console.log(this.registerForm.value);
+    }
 
   }
+  getDateInput(): boolean {
 
+    const _date = new Date(this.registerForm.value.date).getFullYear();
+    const date = new Date(Date.now()).getFullYear();
+    //console.log(date, _date);
 
+    if (((date - 6) >= _date) && ((date - 60) <= _date)) {
+      return true;
+    }
+    return false;
+  }
+  singInGoogle() {
+    //this._userService.sinInGoogle() pendiente
+    console.log('Google');
+    try {
+      this._userService.signInGoogle();
+    } catch (error) {
+      console.log(error);
 
+    }
+
+  }
 
 
 }

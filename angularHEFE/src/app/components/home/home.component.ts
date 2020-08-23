@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import  {MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DialogExampleComponent } from '../dialogs/dialog-example/dialog-example.component';
 
 @Component({
   selector: 'app-home',
@@ -13,11 +15,14 @@ export class HomeComponent implements OnInit {
 
   constructor(
     public _userService: UserService,
-    public _router: Router) { }
+    public _router: Router,
+    public dialog: MatDialog) { }
 
   async ngOnInit(){
     
     const user = await this._userService.getCurrentUser();
+    console.log(user);
+    
     if (user && user.emailVerified){
       console.log(user);
       Swal.fire({
@@ -61,6 +66,14 @@ export class HomeComponent implements OnInit {
 
       }
     })
+  }
+
+  openDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '60%';
+    this.dialog.open(DialogExampleComponent, dialogConfig);
   }
 
 }

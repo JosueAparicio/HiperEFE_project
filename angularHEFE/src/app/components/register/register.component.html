@@ -6,8 +6,8 @@
   <div class="login-page-2">
 
     <div class="login-box">
-      <div class="img">
-        <img src="../../assets/images/gafitas.png" alt="login Image">
+      <div class="img img2">
+        <img src="../../assets/images/female2.svg" alt="login Image">
       </div>
       <div class="login-form">
         <div class="form-heading">
@@ -27,23 +27,23 @@
               formControlName="email">
           </div>
 
-          <span  class="invalid" *ngIf="registerForm.get('displayName').touched &&  registerForm.get('displayName').errors?.required" >
-            El nombre de uuario es invalido *
+          <span  class="invalid" *ngIf="registerForm.get('displayName').touched &&  registerForm.get('displayName').errors?.required || registerForm.get('displayName').errors?.minlength" >
+            Nombre de Usuario invalido*
           </span>
           <div class="group-input">
-            <i *ngIf=" registerForm.get('displayName').touched && !registerForm.get('displayName').errors?.required  "
+            <i *ngIf=" registerForm.get('displayName').touched && !registerForm.get('displayName').errors?.required && !registerForm.get('displayName').errors?.minlength  "
               class="fa fa-check i nice" aria-hidden="true"></i>
-            <i *ngIf=" registerForm.get('displayName').touched &&  registerForm.get('displayName').errors?.required "
+            <i *ngIf=" registerForm.get('displayName').touched &&  registerForm.get('displayName').errors?.required || registerForm.get('displayName').errors?.minlength "
               class="fa fa-times i fail" aria-hidden="true"></i>
             <input type="text" class="form-control field one" placeholder="Ingresa tu Nombre de Usuario*" name="displayName"
-              formControlName="displayName">
+              formControlName="displayName" >
           </div>
 
           <span  class="invalid" *ngIf="registerForm.get('password').touched &&  registerForm.get('password').errors?.validPASS  " >
-            Prueba agregando, mayusculas, minusculas, numeros y caracteres raros *
+            Prueba agregando mayusculas, minusculas, numeros y caracteres raros *
           </span>
           <div class="group-input">
-            <i *ngIf="registerForm.get('password').value.length > 1 && registerForm.get('password').touched  && !registerForm.get('password').errors?.required  && !registerForm.get('password').errors?.validPASS "
+            <i *ngIf="registerForm.get('password').value.length > 1 && registerForm.get('password').touched  && !registerForm.get('password').errors?.required  && !registerForm.get('password').errors?.validPASS"
               class="fa fa-lock nice i" aria-hidden="true"></i>
             <i *ngIf="registerForm.get('password').touched &&  registerForm.get('password').errors?.validPASS "
               class="fa fa-unlock fail i" aria-hidden="true"></i>
@@ -63,8 +63,8 @@
               formControlName="password2">
           </div>
 
-          <span  class="invalid" *ngIf="registerForm.get('date').touched && registerForm.get('date').errors?.required" >
-            La fecha es invalida *
+          <span  class="invalid" *ngIf=" !getDateInput() && registerForm.get('date').touched ">
+            La fecha es invalida, debes de tener entre 6 y 60 años! *
           </span>
           <div class="group-input">
             <input type="date" class="form-control field" name="date" id="inputDate" formControlName="date"
@@ -72,15 +72,16 @@
           </div>
 
 
-          <div class="sign-in-remember field">
 
-            <label>
-              <input type="checkbox" name="" checked>
-              <a href="">Terminos y condiciones</a>
-            </label>
-          </div>
-          <input type="submit" class="btn" value="Registrar" [disabled]="registerForm.invalid">
+          <button type="submit"   class="btn btn-login" value="" [disabled]="registerForm.invalid">Registrar</button>
         </form>
+        <button  (click)="singInGoogle()" class="btn btn-google" value="" >Registrar con Google</button>
+
+        <div class="sign-in-remember field">
+          <label>
+          Al Registrate aceptas nuestros  <strong><a [routerLink]="['/terms-and-conditions']" [routerLinkActive]="['active']">Terminos y condiciones</a> </strong>
+          </label>
+        </div>
       </div>
     </div>
 

@@ -26,8 +26,8 @@
         </span>
         <div class="order">
           <div >
-            <a ><i *ngIf="resetForm.get('password2').value.length > 1 && resetForm.get('password2').touched && !resetForm.get('password').errors?.required  && !resetForm.get('password2').errors?.iguality" class="fa fa-check nice i"aria-hidden="true"></i></a>
-           <a > <i *ngIf=" resetForm.get('password2').touched  && resetForm.get('password2').errors?.iguality " class="fa fa-times fail i" aria-hidden="true"></i></a>
+            <a ><i *ngIf="resetForm.get('password2').value.length > 1 && resetForm.get('password2').touched && !resetForm.get('password').errors?.required && resetForm.get('password2').value == resetForm.get('password').value  " class="fa fa-check nice i"aria-hidden="true"></i></a>
+           <a > <i *ngIf=" resetForm.get('password2').touched &&  resetForm.get('password2').value != resetForm.get('password').value  " class="fa fa-times fail i" aria-hidden="true"></i></a>
           </div>
           <input type="password" name="" placeholder="Repeat password" name="password2" 
           formControlName="password2">

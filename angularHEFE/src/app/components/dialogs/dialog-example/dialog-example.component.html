@@ -1,0 +1,61 @@
+
+
+<mat-toolbar>
+  <span>Edita tu perfil</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button  (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+  <form  class="normal-form" >
+    <mat-grid-list cols="2" rowHeight="300px" >
+      <mat-grid-tile>
+        <div class="controles-container">
+          <input type="hidden" >
+          <mat-form-field>
+            <input  matInput placeholder="Full Name*">
+          </mat-form-field>
+          <mat-form-field>
+            <input  matInput placeholder="Email">
+          </mat-form-field>
+          <mat-form-field>
+            <input  matInput placeholder="Mobile*">
+          </mat-form-field>
+          <mat-form-field>
+            <input  matInput placeholder="City">
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div class="controles-container">
+          <div class="add-bottom-padding">
+            <mat-radio-group >
+              <mat-radio-button value="1">Male</mat-radio-button>
+              <mat-radio-button value="2">Female</mat-radio-button>
+              <mat-radio-button value="3">Other</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <mat-form-field>
+            <mat-select placeholder="Department">
+              <mat-option>None</mat-option>
+              <ng-container >
+                <mat-option value="">Department Code</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <input  matInput [matDatepicker]="picker" placeholder="Hire Date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <div class="add-bottom-padding">
+            <mat-checkbox >Permanent Employee</mat-checkbox>
+          </div>
+          <div class="button-row">
+            <button mat-raised-button color="primary" type="submit"  >Submit</button>
+            <button mat-raised-button color="warn" >Clear</button>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+
+

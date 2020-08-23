@@ -1,28 +1,21 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 
-}
 
-body {
-  text-align: center;
-
-  font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
-  /* FUENTES*/
-  -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: antialiased;
-}
 
 .body {
 
-  background: url(../images/image-principal.png), radial-gradient(circle at 85.4% 50.8%, rgb(14, 72, 222) 0%, rgb(3, 22, 65) 74.2%);
+  background: url(../images/d.svg), radial-gradient(circle at 85.4% 50.8%, rgb(14, 72, 222) 0%, rgb(3, 22, 65) 74.2%);
   background-repeat: no-repeat;
   background-position: right;
   background-size: contain;
-  height: 100vh;
+  min-height: 100vh;
+}
+
+.termsconditions-page {
+  background: url(../images/resource2.svg), radial-gradient(circle at 85.4% 50.8%, rgb(14, 72, 222) 0%, rgb(3, 22, 65) 74.2%);
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: contain;
+  min-height: 100vh;
 }
 
 .login-page {
@@ -31,10 +24,8 @@ body {
   background-position: right;
   background-size: contain;
   min-height: 100vh;
+  text-align: center;
 }
-
-
-
 .nav-container {
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1);
   height: 60px;
@@ -64,8 +55,25 @@ body {
 .wapper-nav nav .logo {
   font-family: Poppins;
   font-style: normal;
-  margin-top: 15px;
+  margin-top: 5px;
   align-items: center;
+  /* border: 2px solid white; */
+  height: 60px;
+  display: flex !important;
+}
+
+.wapper-nav nav .logo small {
+  color: white;
+  margin-top: 30px;
+  margin-left: -42px;
+  font-size: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.wapper-nav nav .logo img {
+  width: 45px;
+  margin-top: -25px;
+  margin-left: 10px;
 }
 
 .wapper-nav nav .logo h1 {
@@ -80,9 +88,6 @@ body {
 .wapper-nav nav .logo p {
   display: inline-block;
 }
-
-
-
 
 .nav-items li {
   list-style: none;
@@ -107,14 +112,13 @@ body {
 }
 
 
-
 .nav-items li a:hover {
   color: #1ff4ff;
 }
 
 .header-container {
 
-  align-items: center;
+  text-align: center;
 }
 
 .header-container p {
@@ -605,16 +609,6 @@ header .text-and-button-init p {
   width: 90px;
   border-radius: 50%;
   border: 2.5px solid white;
-
-  /*
-  width: 90px;
-  float: right;
-  border-radius: 50%;
-  border: 2.5px solid white;
-  margin: 10px;
-  margin-right: 20px;
-  margin-top: 5px;
-  */
 }
 
 
@@ -943,9 +937,18 @@ ul li a:hover {
   border: 1px solid #1ff4ff;
 }
 
-.login-page-2 .login-box .img img {
+.login-page-2 .login-box .img1 img {
   display: block;
   width: 100%;
+  margin-top: 10px;
+
+}
+
+
+.login-page-2 .login-box .img2 img {
+  display: block;
+  width: 100%;
+  margin-top: 65px;
 }
 
 .login-page-2 .login-box .login-form {
@@ -958,6 +961,7 @@ ul li a:hover {
 .login-page-2 .login-box .login-form a {
   text-decoration: none;
   color: white;
+  font-size: 12px;
 }
 
 .login-page-2 .login-box .login-form a:hover {
@@ -973,15 +977,19 @@ ul li a:hover {
 .login-page-2 .login-box .login-form form i {
 
   cursor: help !important;
-  position:  absolute;
+  position: absolute;
   top: 0;
   left: 92%;
   font-size: 16px;
   pointer-events: none;
   transition: .5s;
+
 }
 
+.input-login i {
 
+  margin: 15px 0;
+}
 
 .login-page-2 .login-box .login-form form span {
   color: red;
@@ -1027,9 +1035,8 @@ ul li a:hover {
 
 
 
-.login-page-2 .login-box .login-form form .field {
-  width: 100%;
-  margin-bottom: 20px;
+.login-page-2 .field {
+  margin-bottom: 15px;
 }
 
 .login-page-2 .login-box .login-form form .form-control {
@@ -1041,34 +1048,57 @@ ul li a:hover {
   z-index: -1;
 }
 
-.login-page-2 .login-box .login-form form .sign-in-remember {
-
-  float: left !important;
+.login-page-2 .sign-in-remember {
+  float: left;
+  margin: 0;
+  margin-bottom: 10px;
 }
 
-.login-page-2 .login-box .login-form form .sign-in-remember label {
+.login-page-2 .sign-in-remember label {
   color: white;
   cursor: pointer;
-  font-size: 16px;
-  float: left !important;
+  font-size: 11px;
 }
 
-.login-page-2 .login-box .login-form form .btn {
-
-  height: 45px;
-  background-color: #ff5722;
-  padding: 0 40px;
+.login-page-2 button {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
   text-transform: uppercase;
-  font-size: 16px;
-  color: #ffffff;
   cursor: pointer;
   border: none;
   transition: background-color .5s ease;
-  margin-bottom: 20px;
+  font-size: 11px;
+  width: 100%;
+  color: #fff;
+  padding: 8px;
 }
 
-.login-page-2 .login-box .login-form form .btn:hover {
-  background-color: #e13c08;
+.btn-google:hover {
+  background: rgb(187, 20, 20);
+  opacity: 100;
+  color: #fff;
+
+}
+
+.btn-google {
+  background: #DB4437;
+  color: #fff;
+  margin-top: 10px;
+
+}
+
+.btn-login:hover {
+  background: rgb(2, 212, 37);
+  opacity: 100;
+  color: #fff;
+
+}
+
+.btn-login {
+  background: #0F9D58;
+  color: #fff;
+  margin-top: 30px;
+
+
 }
 
 /*Responsive*/
@@ -1164,3 +1194,14 @@ ul li a:hover {
   transition: .5s;
 
 }
+
+.termsconditions {
+  color: white;
+  max-width: 50%;
+  text-align: left !important;
+  padding: 30px;
+  margin-left: 50%;
+  overflow-y: scroll;
+  max-height: 90vh;
+}
+

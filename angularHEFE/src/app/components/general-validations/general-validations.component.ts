@@ -36,7 +36,7 @@ export class GeneralValidationsComponent implements OnInit {
 
     this.resetForm = this.fb.group({
       password: ['', [Validators.required, Global.validPassword]],
-      password2: ['', [Validators.required, Global.igualdad]]
+      password2: ['', Validators.required]
 
     });
 
@@ -64,42 +64,47 @@ export class GeneralValidationsComponent implements OnInit {
           Swal.fire('Oh no!', 'Ha ocurrido un error, intentalo de nuevo mas tarde', 'error');
 
         }
-
         break;
+      case '':
+        this._router.navigate(['/inicio']);
+
       default:
     }
   }
 
   async onSaveNewPassword() {
     /*
-    try {
-      await this._userService.recoverPassword(this.action, this.resetForm.value.password).then(async resp => {
-        try {
-          const resp = await this._userService.getAuth().confirmPasswordReset(this.action, this.resetForm.value.password)
-            .then(async resp => {
-              Swal.fire('Listo!', 'Se ha actualizado su contraseña, Inicie sesion nuevamente !!!', 'success');
-              this._router.navigate(['/login']);
-            }).catch(error => {
-              console.log(error);
-              Swal.fire('Caducado!', 'El enlace solo es valido para una cambio de contraseña', 'error');
-            });;
-        }
-        catch (error) {
+  */
+    if (this.resetForm.value.password === this.resetForm.value.password2) {
+      //console.log(this.resetForm.value);
+      try {
+        await this._userService.recoverPassword(this.action, this.resetForm.value.password).then(async resp => {
+          try {
+            const resp = await this._userService.getAuth().confirmPasswordReset(this.action, this.resetForm.value.password)
+              .then(async resp => {
+                Swal.fire('Listo!', 'Se ha actualizado su contraseña, Inicie sesion nuevamente !!!', 'success');
+                this._router.navigate(['/login']);
+              }).catch(error => {
+                console.log(error);
+                Swal.fire('Caducado!', 'El enlace solo es valido para una cambio de contraseña', 'error');
+              });;
+          }
+          catch (error) {
+            console.log(error);
+            Swal.fire('Oh no!', 'Ha ocurrido un error, intentalo de nuevo mas tarde', 'error');
+          }
+        }).catch(error => {
           console.log(error);
           Swal.fire('Oh no!', 'Ha ocurrido un error, intentalo de nuevo mas tarde', 'error');
-        }
-      }).catch(error => {
-        console.log(error);
+        });
+
+
+      } catch (error) {
         Swal.fire('Oh no!', 'Ha ocurrido un error, intentalo de nuevo mas tarde', 'error');
-      });
+      }
 
-
-    } catch (error) {
-      Swal.fire('Oh no!', 'Ha ocurrido un error, intentalo de nuevo mas tarde', 'error');
     }
-  */
-   console.log(this.resetForm.value);
- 
+
   }
 
   alert() {

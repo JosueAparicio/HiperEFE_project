@@ -25,13 +25,16 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
-
-
-  signInwithGoogle() {
+  singInGoogle() {
     //this._userService.sinInGoogle() pendiente
+    console.log('Google');
+    try{
+      this._userService.signInGoogle();
+    }catch(error){
+      console.log(error);
+      
+    }
   }
-
   async SignIn() {
     Swal.fire({
       title: 'Iniciando Sesion...',
@@ -45,18 +48,9 @@ export class LoginComponent implements OnInit {
       this.obtenerVerificacion();
     }
     else {
-      Swal.close();
-      Swal.fire({
-        position: 'top-end',
-        icon: 'error',
-        title: 'Usuario o contraseña invalidos',
-        showConfirmButton: false,
-        timer: 1500
-      });
+      
     }
   }
-
-
   async obtenerVerificacion() {
     try {
       const user = await this._userService.getCurrentUser();
@@ -66,7 +60,7 @@ export class LoginComponent implements OnInit {
 
         if (!user.emailVerified) {
           console.log('No verificado');
-          this._router.navigate(['/verificar-cuenta/' + user.uid]);
+          this._router.navigate(['/verify-account/' + user.uid]);
           Swal.close();
 
         }
@@ -81,10 +75,7 @@ export class LoginComponent implements OnInit {
       console.log(error);
 
     }
-
-
   }
-
   async alertChangePassword(){
     const { value: email } = await Swal.fire({
       title: 'Ingresa tu correo electrónico registrado!',
@@ -107,6 +98,5 @@ export class LoginComponent implements OnInit {
     
     }
   }
-
 
 }

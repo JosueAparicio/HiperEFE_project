@@ -8,8 +8,11 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-
-
+import { HttpClientModule } from '@angular/common/http';
+import { MaterialModule } from './material/material.module';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -23,6 +26,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { VerificarEmailComponent } from './components/verificar-email/verificar-email.component';
 import { GeneralValidationsComponent } from './components/general-validations/general-validations.component';
+import { TermsconditionsComponent } from './components/termsconditions/termsconditions.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogExampleComponent } from './components/dialogs/dialog-example/dialog-example.component';
 
 @NgModule({
   declarations: [
@@ -37,21 +43,28 @@ import { GeneralValidationsComponent } from './components/general-validations/ge
     SidebarComponent,
     InicioComponent,
     VerificarEmailComponent,
-    GeneralValidationsComponent
+    GeneralValidationsComponent,
+    TermsconditionsComponent,
+    DialogExampleComponent,
   ],
   imports: [
     BrowserModule,
     routing,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
-    SweetAlert2Module
+    SweetAlert2Module, BrowserAnimationsModule,
+    MaterialModule,
+    MatNativeDateModule
 
   ],
-  providers: [appRoutingProviders],
+  entryComponents: [DialogExampleComponent],
+  providers: [appRoutingProviders, { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

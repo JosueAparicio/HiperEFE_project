@@ -11,6 +11,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { VerificarEmailComponent } from './components/verificar-email/verificar-email.component';
 import { GeneralValidationsComponent } from './components/general-validations/general-validations.component';
+import { TermsconditionsComponent } from './components/termsconditions/termsconditions.component';
 
 
 const appRoutes: Routes =[
@@ -19,8 +20,9 @@ const appRoutes: Routes =[
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent},
     { path: 'home', component: HomeComponent},
-    { path: 'verificar-cuenta/:uid', component: VerificarEmailComponent},
+    { path: 'verify-account/:uid', component: VerificarEmailComponent},
     { path: 'user/general-validations', component:GeneralValidationsComponent},
+    { path: 'terms-and-conditions', component: TermsconditionsComponent},
     { path: '**', component: ErrorComponent}
 
 ];
