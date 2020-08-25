@@ -25,11 +25,13 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  singInGoogle() {
+  async singInGoogle() {
     //this._userService.sinInGoogle() pendiente
     console.log('Google');
     try{
-      this._userService.signInGoogle();
+      await this._userService.signInGoogle();
+      this._router.navigate(['home']);
+
     }catch(error){
       console.log(error);
       
