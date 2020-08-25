@@ -1,5 +1,4 @@
 import { Component, Input, Output } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable, from } from 'rxjs';
 
 
@@ -12,7 +11,7 @@ import { Observable, from } from 'rxjs';
 export class AppComponent {
 
   
-  constructor(db: AngularFirestore) {
+  constructor() {
   }
 
   ngOnInit(): void{

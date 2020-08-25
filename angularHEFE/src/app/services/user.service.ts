@@ -71,8 +71,7 @@ export class UserService {
     async signInGoogle() {
 
         try {
-            return this._afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(resp => {
-                this._router.navigate(['/home'])
+            return await this._afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(resp => {
                 //console.log(resp.user);
                 /*   const {uid, displayName, email, photoURL} = resp.user;
                    const dataUser= { 
@@ -102,6 +101,7 @@ export class UserService {
         } catch (error) {
             console.log(error);
         }
+
     }
     async createAccount(data) { //crear una cuenta nueva
         try {
