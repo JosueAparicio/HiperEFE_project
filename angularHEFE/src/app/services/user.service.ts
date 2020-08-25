@@ -84,7 +84,7 @@ export class UserService {
                        conocimiento:null
                    }
                    this.createNewUser(dataUser);
-                   */
+                  
    
 
                 this.sendWelcomeEmail(resp.user.email).subscribe(
@@ -97,7 +97,7 @@ export class UserService {
 
                     }
                 );
-
+ */
             });
         } catch (error) {
             console.log(error);
