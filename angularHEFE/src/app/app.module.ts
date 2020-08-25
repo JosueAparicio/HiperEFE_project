@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { routing, appRoutingProviders } from './app.routing';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
@@ -29,6 +29,9 @@ import { GeneralValidationsComponent } from './components/general-validations/ge
 import { TermsconditionsComponent } from './components/termsconditions/termsconditions.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogExampleComponent } from './components/dialogs/dialog-example/dialog-example.component';
+import { SceneComponent } from './components/vr/lobby/scene/scene.component';
+import { AssetsComponent } from './components/vr/lobby/assets/assets.component';
+import { CardOptionComponent } from './components/vr/lobby/card-option/card-option.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,9 @@ import { DialogExampleComponent } from './components/dialogs/dialog-example/dial
     GeneralValidationsComponent,
     TermsconditionsComponent,
     DialogExampleComponent,
+    SceneComponent,
+    AssetsComponent,
+    CardOptionComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +70,8 @@ import { DialogExampleComponent } from './components/dialogs/dialog-example/dial
   ],
   entryComponents: [DialogExampleComponent],
   providers: [appRoutingProviders, { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
 

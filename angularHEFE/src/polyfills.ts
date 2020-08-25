@@ -52,6 +52,9 @@
  *
  */
 
+import 'aframe';
+import 'aframe-proxy-event-component';
+import 'aframe-layout-component';
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
