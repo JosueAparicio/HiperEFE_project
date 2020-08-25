@@ -1,0 +1,252 @@
+<a-scene id="sceneVR" device-orientation-permission-ui="enabled: true" renderer="colorManagement: true;"
+  (loaded)="sceneLoad()">
+
+  <a-assets>
+    <app-assets></app-assets>
+  </a-assets>
+
+  <a-entity id="cameraUser" camera look-controls wasd-controls="acceleration:50" position="0 0 0">
+    <a-entity id="mouseCursor" cursor="rayOrigin:mouse;">
+    </a-entity>
+  </a-entity>
+
+  <a-entity id="containerPortals" position="0 0 0"></a-entity>
+
+  <a-entity position="0 0 -3">
+    <a-gltf-model src="#engine" rotation="90 0 0" scale="18 18 18"></a-gltf-model>
+  </a-entity>
+
+  <a-entity text__lblbanner="align: center; value: Bienvenido a EFE World; width: 3" id="lblbanner" position="0 4 -12"
+    scale="5 5 1">
+  </a-entity>
+
+  <a-entity id="panelPrincipal" position="0 -0.5 -12" geometry="primitive: plane; height: 8; width: 12"
+    material="src:#city">
+    
+    <a-entity id="conteinerbtn" position="0 0 0.1" visible="true"
+      animation__back="dur: 1000; from: 0 0 0; property: position; startEvents: topic;
+            pauseEvents: ; resumeEvents: ; to: 0 0 -8; easing: easeInOutCubic" 
+      animation__up="dur: 800; property: position; startEvents: back;
+            pauseEvents: ; resumeEvents: ; to: 0 0 0.1; easing: easeInOutCubic; delay: 100"
+      animation__visibleup="property: visible; dur: 100; startEvents: back; pauseEvents:
+      ; resumeEvents: ; to: true"
+      animation__visible="dur: 100; property: visible; startEvents: topic; pauseEvents:
+      ; resumeEvents: ; to: false; delay: 1000" 
+      (topic)= "loadTopicCardOption()">
+
+      <a-entity id="btnWorld" position="0 2 0.1" geometry="primitive: plane; width: 3; height: 1.3" 
+                material="color: blue" visible="true" scale="1 1 1" 
+        animation__mouseleave="dur: 80; from: 1.04 1.04 1.04; property: scale; startEvents: mouseleave;
+              pauseEvents: mouseenter; resumeEvents: ; to: 1 1 1" 
+        animation__scaledown="property: scale; from: 1.2 1.2 1.2; to: 1 1 1; dur: 100; autoplay: false; easing:
+              easeInOutCubic; startEvents: ; pauseEvents: ; resumeEvents: " 
+        animation__scaleup="property: scale; from: 1 1 1; to: 1.2 1.2 1.2; dur: 800; autoplay: false; easing:
+              easeInOutElastic; startEvents: ; pauseEvents: ; resumeEvents: " 
+        animation__mouseenter="dur: 80; from: 1 1 1; property: scale; startEvents: mouseenter; pauseEvents:
+              mouseleave; resumeEvents: ; to: 1.04 1.04 1.04">
+        <a-image src="#world" position="0 -0.25 0.1" scale="0.5 0.5 1" material="" geometry=""></a-image>
+        <a-text value="Ir al mundo Virtual" position="0 0.3 0.1" scale="1.5 1.5 1" text="align: center"></a-text>
+      </a-entity>
+
+      <a-entity id="btnTopic" position="0 0 0.1" geometry="primitive: plane; width: 3; height: 1.3;" scale="1 1 1"
+        material="color: blue" 
+        animation__mouseleave="dur: 80; from: 1.04 1.04 1.04; property:scale; startEvents: mouseleave;
+              pauseEvents: mouseenter; resumeEvents: ; to: 1 1 1" 
+        animation__scaledown="property: scale; from: 1.2 1.2 1.2; to: 1 1 1; dur: 100; autoplay: false; easing:
+              easeInOutCubic; startEvents: ; pauseEvents: ; resumeEvents: " 
+        animation__scaleup="property: scale; from: 1 1 1; to: 1.2 1.2 1.2; dur: 800; autoplay: false; easing:
+              easeInOutElastic; startEvents: ; pauseEvents: ; resumeEvents: " 
+        animation__mouseenter1="dur: 80; from: 1 1 1; property: scale; startEvents: mouseenter; pauseEvents:
+              mouseleave; resumeEvents: ; to: 1.04 1.04 1.04"
+        proxy-event="event: click; to: a-scene, #contentMenu, #conteinerbtn, #containerDetails; as: topic">
+        <a-image src="#chooseCity" position="0 -0.25 0.01" scale="0.6 0.6 1" material="" geometry=""
+          proxy-event="event: click; to: a-scene, #btnTopic, #contentMenu, #conteinerbtn, #containerDetails; as: topic">
+        </a-image>
+        <a-text value="Elegir Edificio" position="0 0.3 0.01" scale="1.5 1.5 1.5" text="align: center"
+          proxy-event="event: click; to: a-scene, #btnTopic, #contentMenu, #conteinerbtn, #containerDetails; as: topic">
+        </a-text>
+      </a-entity>
+
+      <a-entity id="btnExit" position="0 -2 0.1" geometry="primitive: plane; width: 3; height: 1.3;" scale="1 1 1"
+                material="color: blue" 
+        animation__mouseleave="dur: 80; from: 1.04 1.04 1.04; property: scale; startEvents: mouseleave;
+              pauseEvents: mouseenter; resumeEvents: ; to: 1 1 1" 
+        animation__scaledown="property: scale; from: 1.2 1.2 1.2; to: 1 1 1; dur: 100; autoplay: false; easing:
+              easeInOutCubic; startEvents: ; pauseEvents: ; resumeEvents: " 
+        animation__scaleup="property: scale; from: 1 1 1; to: 1.2 1.2 1.2; dur: 800; autoplay: false; easing:
+              easeInOutElastic; startEvents: ; pauseEvents: ; resumeEvents: " 
+        animation__mouseenter1="dur: 80; from: 1 1 1; property: scale; startEvents: mouseenter; pauseEvents:
+              mouseleave; resumeEvents: ; to: 1.04 1.04 1.04"
+        proxy-event="event: click; to: a-scene, #contentMenu, #conteinerbtn, #containerDetails; as: exit">
+        <a-image src="#exit" position="0 -0.25 0.01" scale="0.6 0.6 1" material="" geometry=""></a-image>
+        <a-text value="Salir" position="0 0.3 0.1" scale="1.5 1.5 1.5" text="align: center"></a-text>
+      </a-entity>
+
+    </a-entity>
+
+    <a-entity id="contentMenu" position="0 0 -1" visible="true" 
+        animation__move="dur: 1000; property: position; startEvents: topic;
+            pauseEvents: ; resumeEvents: ; to: 0 0 0; easing: easeInOutCubic" 
+        animation__back="dur: 1000; property: position; startEvents: back; 
+        pauseEvents: ; resumeEvents: ; from: 0 0 0; to: 0 0 -1; easing: easeInOutCubic"
+        animation__visibleback="dur: 100; property: visible; startEvents: back; pauseEvents:;
+        resumeEvents: ; to: false; delay: 1000"
+        animation__visible="dur: 100; property: visible; startEvents: topic; pauseEvents:
+        mouseleave; resumeEvents: ; to: true">
+      <a-text value="A donde quieres ir?" text="align: center" id="lblTitulo" scale="2 2 1" position="0 3.5 0.1"></a-text>
+      <a-entity position="-5.3 3.4 0.1"  
+        proxy-event="event: click; to: a-scene, #panelPrincipal, #conteinerbtn, #contentMenu, #containerDetails,
+        #containerCardOption; as: back">
+        <a-image id="btnBackTopic" src="#back"  material="" geometry="" scale="0.8 0.8 0.8"
+          animation__mouseleave="dur: 80; from: 1 1 1; property: scale; startEvents: mouseleave;
+          pauseEvents: mouseenter; resumeEvents: ; to: 0.8 0.8 0.8" 
+          animation__mouseenter1="dur: 80; from: 0.8 0.8 0.8; property: scale; startEvents: mouseenter; pauseEvents: mouseleave; resumeEvents: ; to: 1 1 1" 
+          proxy-event="event: click; to: a-scene, #panelPrincipal, #conteinerbtn, #contentMenu, #containerDetails,
+          #containerCardOption; as: back">
+        </a-image>
+      </a-entity>
+      
+      <a-entity id="containerCardOption" position=" 0 -0.2 0.01"
+        layout="type:  box;  margin:  1.2;  align:  center; reverse: true"
+        animation__aligleft="dur: 2000; property: position; startEvents: itemselect;
+              pauseEvents: ; resumeEvents: ; to: -2.5 0 0.01; easing: easeInOutCubic" 
+        animation__aligcenter="dur: 2000; property: position; startEvents: back;
+              pauseEvents: ; resumeEvents: ; to: 0 0 0.01; easing: easeInOutCubic"
+              >
+        <a-entity id="containerForCard" *ngFor="let posCard of listCardOption"
+        >
+          
+          <a-entity id="cardOption{{posCard}}" geometry="primitive: plane; width: 3.5" material="src: #fondoCard"
+            position="0 0 0.2" 
+            animation__mouseleave="dur: 80; from: 1.04 1.04 1.04; property: scale; startEvents: mouseleave;
+                  pauseEvents: mouseenter; resumeEvents: ; to: 1 1 1" 
+            animation__scaledown="property: scale; from: 1.2 1.2 1.2; to: 1 1 1; dur: 100; autoplay: false; easing:
+                  easeInOutCubic; startEvents: ; pauseEvents: ; resumeEvents: " 
+            animation__scaleup="property: scale; from: 1 1 1; to: 1.2 1.2 1.2; dur: 800; autoplay: false; easing:
+                  easeInOutElastic; startEvents: ; pauseEvents: ; resumeEvents: " 
+            animation__mouseenter="dur: 80; from: 1 1 1; property: scale; startEvents: mouseenter; pauseEvents:
+                  mouseleave; resumeEvents: ; to: 1.04 1.04 1.04"
+            proxy-event="event: click; to: a-scene, #containerCardOption, #containerDetails, #containerForCard; as:
+            itemselect"
+            (click)="selectTopic(posCard)"
+            >
+
+            <a-text value="" text="align: center" id="lblTitulo{{posCard}}" scale=""
+              position="0.37698 0.02339 0"
+              proxy-event="event: click; to: a-scene, #containerCardOption, #containerDetails; as: itemselect">
+              <a-image id="imgIconCard{{posCard}}" src="#2" material="" geometry="height: 0.75; width: 0.75" position="-1.7 0 0.01"
+                proxy-event="event: click; to: a-scene, #containerCardOption, #containerDetails, #cardOption,
+                #contentMenu; as:
+                itemSelect">
+              </a-image>
+            </a-text>
+          </a-entity>
+
+        </a-entity>
+              
+      </a-entity>
+
+      <a-image id="imgNext" src="#next" scale="" position="0 -3 0.01" material="" geometry="" 
+        animation__scaledown="property: scale; from: 1.2 1.2 1.2; to: 1 1 1; dur: 100; autoplay: false; easing:
+        easeInOutCubic; startEvents: mouseleave; pauseEvents: ; resumeEvents: "
+        animation__scaleup="property: scale; from: 1 1 1; to: 1.2 1.2 1.2; dur: 100; autoplay: false; easing:
+        easeInOutElastic; startEvents: mouseenter; pauseEvents: ; resumeEvents: "
+        (click)="nextTopic()"
+        ></a-image>
+
+      <a-image id="imgPrev" src="#up" scale="" position="0 2.7 0.01" material="" geometry="" 
+       animation__scaledown="property: scale; from: 1.2 1.2 1.2; to: 1 1 1; dur: 100; autoplay: false; easing:
+       easeInOutCubic; startEvents: mouseleave; pauseEvents: ; resumeEvents: "
+       animation__scaleup="property: scale; from: 1 1 1; to: 1.2 1.2 1.2; dur: 100; autoplay: false; easing:
+       easeInOutElastic; startEvents: mouseenter; pauseEvents: ; resumeEvents: " 
+       (click)="prevTopic()"></a-image>
+    </a-entity>
+
+    <a-entity id="containerDetails" position="2.90172 0 -1" 
+      animation__up="property: position; to: 2.90172 0 0.1; dur: 1000; autoplay: false; easing:
+          easeInOutCubic; startEvents: itemselect ; pauseEvents: ; resumeEvents:;"
+      animation__down="property: position;  to: 2.90172 0 -1; dur: 1000; autoplay: false; easing:
+          easeInOutCubic; startEvents: ; pauseEvents: ; resumeEvents: ;" 
+      animation__moveback="dur: 1000; property: position; startEvents: back;
+          pauseEvents: ; resumeEvents: ; to: 2.90172 0 -1; easing: easeInOutCubic"
+      animation__visible="dur: 100; property: visible; startEvents: topic; pauseEvents:; resumeEvents: ; to: true"
+      animation__visibleback="dur: 100;  property: visible; startEvents: back; pauseEvents:
+          mouseleave; resumeEvents: ; to: false; delay:1000">
+      <a-image id="contentDetails" geometry="width: 2; height: 2" src="#texturaDetails" scale="2.5 2.5 1">
+        <a-image src="#imgPreview" geometry="height: 0.75; width: 0.75" id="imgPreview" position="0.0178 0.55073 0.01"
+          material="">
+        </a-image>
+        <a-entity position="0 0 0.01">
+          <a-text value="F" text="align: center" id="lblTituloItem" scale="0.8 0.8 1" position="-0.00713 0.02339 0.01">
+            <a-text value="Explora y conoce todo sobre los inicios de la informatica" text="align: center"
+              id="lblDescripcionItem" scale="0.5 0.5 1" position="-0.00713 -0.32106 0.1">
+            </a-text>
+          </a-text>
+        </a-entity>
+        <a-image id="btnItemGo" src="#button" scale="0.8 0.3 1" position="0 -0.52 0.1" material="" geometry="">
+        </a-image>
+      </a-image>
+    </a-entity>
+  </a-entity>
+
+  <a-entity id="containerTrophy" position="-7 2.2 -4" rotation="0 90 0">
+    <a-text rotation="" value="TROFEOS" scale="1.9 1.9 1.9" text="align: center" position="">
+    </a-text>
+
+    <a-entity id="containerDetailsTrophy" position="1.8 -1.2 0">
+      <a-text value="Detalles" position="-0.5 0 0.01" text=""></a-text>
+      <a-image id="trophyIconCategory" src="#trophyDiamond" material="" geometry="" position="-0.1 -0.6 0.01"
+        scale="0.6 0.8 1"></a-image>
+      <a-text id="lblNameTrophy" value="Atravez de la Historia" text="align: center" position="-0.1 -1.2 0"></a-text>
+      <a-text id="lblDescripcionTrophy"
+        value="Completa el recorrido por el museo de historia de la informatica de El Salvador" text="align: center"
+        position="0 -1.55 0" scale="0.7 0.7 1"></a-text>
+      <a-text id="lblCategory" value="Categoria: Diamante" position="0 -1.85 0" text="align: center" scale="0.7 0.7 1">
+      </a-text>
+      <a-text id="lblStatusTrophy" value="Estado: No desbloqueado" position="0 -2.1 0" text="align: center"
+        scale="0.7 0.7 1"></a-text>
+    </a-entity>
+
+    <a-entity id="containerCardTrophy" geometry="primitive: plane; width:7.5;  height: 3;"
+      material="src: #backgroundTrophy" position="0 -2.5 0">
+
+      <a-entity id="containerForCard" position="0 -1 0" 
+      layout="type: box; margin: 0.61; align: center; reverse: true" >
+
+        <a-entity *ngFor="let posCard of listCardOption">
+
+          <a-entity id="cardTrophy{{posCard}}" position="-2 1 0" scale="1.2 1 1" >
+            <a-image id="cardTrophyIcon{{posCard}}" src="#medal" scale="0.4 0.5 1" material="" geometry=""
+              position="-1 0 0.01">
+            </a-image>
+            <a-text id="cardTrophyTitle{{posCard}}" value="Welcome to EFE World" text="align: center"
+              position="0.2 0 0" scale="0.7 1 1"></a-text>
+            <a-image id="btnDetailsTrophy" position="1.4 0 0.01" src="#moreDetails" scale="0.4 0.4 0"
+              material="" geometry="" (click)="selectTrophy(posCard)"></a-image>
+          </a-entity>
+        </a-entity>
+
+      </a-entity>
+
+      <a-image id="imgNextTrophy" src="#next" position="-1.9 -1.2 0.1" material="" geometry="" scale="0.6 0.6 1"
+        animation__mouseleave="dur: 80; from: 0.8 0.8 1; property: scale; startEvents: mouseleave;
+        pauseEvents: mouseenter; resumeEvents: ; to: 0.6 0.6 1" animation__mouseenter="dur: 80; from: 0.6 0.6 1; property: scale; startEvents: mouseenter; pauseEvents:
+        mouseleave; resumeEvents: ; to: 0.8 0.8 1" (click)="nextTrophy()"></a-image>
+
+      <a-image id="imgUpTrophy" src="#up" position="-1.9 1.3 0.1" material="" geometry="" scale="0.6 0.6 1"
+        animation__mouseleave="dur: 80; from: 0.8 0.8 1; property: scale; startEvents: mouseleave;
+        pauseEvents: ; resumeEvents: ; to: 0.6 0.6 1" 
+        animation__mouseenter="dur: 80; from: 0.6 0.6 1; property: scale; startEvents: mouseenter; pauseEvents: ;
+         resumeEvents: ; to: 0.8 0.8 1" (click)="prevTrophy()"></a-image>
+    </a-entity>
+  </a-entity>
+
+  
+
+  <a-light type="point" color="#94c6ff" distance="15" position="0 0 -12" intensity="0"
+    animation="property: light.intensity; from: 0; to: 2; delay: 750; dur: 500"></a-light>
+  <a-light type="point" color="#94c6ff" distance="17" position="0 0 -6" intensity="0"
+    animation="property: light.intensity; from: 0; to: 1; delay: 500; dur: 500"></a-light>
+  <a-light type="ambient" color="#4f6487"></a-light>
+
+</a-scene>
