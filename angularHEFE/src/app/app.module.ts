@@ -32,6 +32,8 @@ import { DialogExampleComponent } from './components/dialogs/dialog-example/dial
 import { SceneComponent } from './components/vr/lobby/scene/scene.component';
 import { AssetsComponent } from './components/vr/lobby/assets/assets.component';
 import { CardOptionComponent } from './components/vr/lobby/card-option/card-option.component';
+import { SalasComponent } from './components/salas/salas.component';
+import { SalaComponent } from './components/sala/sala.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { CardOptionComponent } from './components/vr/lobby/card-option/card-opti
     DialogExampleComponent,
     SceneComponent,
     AssetsComponent,
-    CardOptionComponent
+    CardOptionComponent,
+    SalasComponent,
+    SalaComponent
   ],
   imports: [
     BrowserModule,

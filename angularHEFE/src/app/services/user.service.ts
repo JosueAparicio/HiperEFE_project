@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -84,7 +84,7 @@ export class UserService {
                        conocimiento:null
                    }
                    this.createNewUser(dataUser);
-                   */
+                  
    
 
                 this.sendWelcomeEmail(resp.user.email).subscribe(
@@ -97,7 +97,7 @@ export class UserService {
 
                     }
                 );
-
+ */
             });
         } catch (error) {
             console.log(error);
@@ -202,5 +202,14 @@ export class UserService {
         return this._afirestore.collection('users').doc(data.uid).set(data).then();
     }
 
+    getUserData(){
+        let uid: string;
+        this._afAuth.auth.onAuthStateChanged(user => {
+          if (user) {
+            uid = user.uid;
+           }
+        });
+        return  this._afirestore.collection('users').doc(uid).get();
+    }
 
 }

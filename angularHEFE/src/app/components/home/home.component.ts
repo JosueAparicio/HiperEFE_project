@@ -4,34 +4,38 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import  {MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DialogExampleComponent } from '../dialogs/dialog-example/dialog-example.component';
-
+import { RoomsService } from '../../services/rooms.service';
+import { Observable } from 'rxjs';
+import { Topic } from '../../models/topics';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [UserService]
+  providers: [UserService, RoomsService]
 })
 export class HomeComponent implements OnInit {
+
+  public user:any;
+  public topics:Topic[];
 
   constructor(
     public _userService: UserService,
     public _router: Router,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    public salasService: RoomsService) { }
 
   async ngOnInit(){
     
-    const user = await this._userService.getCurrentUser();
-    console.log(user);
-    
-    if (user && user.emailVerified){
-      console.log(user);
-      Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Bienvenido '+user.email,
-        showConfirmButton: false,
-        timer: 1500
-      });
+    this.salasService.getTopics().subscribe(topics =>{
+      //console.log(topics);
+      this.topics = topics;
+    });
+    this.user = await this._userService.getCurrentUser();
+    //console.log(user);
+    if (this.user && this.user.emailVerified){
+     //console.log(this.user.displayName, this.user.photoURL);
+
+
     } else{
       console.log('No hay usuario logueado');
       this._router.navigate(['/inicio']);
