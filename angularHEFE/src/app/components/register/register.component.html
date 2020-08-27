@@ -15,7 +15,8 @@
         </div>
         <form (ngSubmit)="onRegister()" [formGroup]="registerForm">
 
-          <span  class="invalid" *ngIf="registerForm.get('email').touched &&  registerForm.get('email').errors?.pattern "  >
+          <span class="invalid"
+            *ngIf="registerForm.get('email').touched &&  registerForm.get('email').errors?.pattern ">
             El email es invalido *
           </span>
           <div class="group-input">
@@ -27,7 +28,8 @@
               formControlName="email">
           </div>
 
-          <span  class="invalid" *ngIf="registerForm.get('displayName').touched &&  registerForm.get('displayName').errors?.required || registerForm.get('displayName').errors?.minlength" >
+          <span class="invalid"
+            *ngIf="registerForm.get('displayName').touched &&  registerForm.get('displayName').errors?.required || registerForm.get('displayName').errors?.minlength">
             Nombre de Usuario invalido*
           </span>
           <div class="group-input">
@@ -35,11 +37,12 @@
               class="fa fa-check i nice" aria-hidden="true"></i>
             <i *ngIf=" registerForm.get('displayName').touched &&  registerForm.get('displayName').errors?.required || registerForm.get('displayName').errors?.minlength "
               class="fa fa-times i fail" aria-hidden="true"></i>
-            <input type="text" class="form-control field one" placeholder="Ingresa tu Nombre de Usuario*" name="displayName"
-              formControlName="displayName" >
+            <input type="text" class="form-control field one" placeholder="Ingresa tu Nombre de Usuario*"
+              name="displayName" formControlName="displayName">
           </div>
 
-          <span  class="invalid" *ngIf="registerForm.get('password').touched &&  registerForm.get('password').errors?.validPASS  " >
+          <span class="invalid"
+            *ngIf="registerForm.get('password').touched &&  registerForm.get('password').errors?.validPASS  ">
             Prueba agregando mayusculas, minusculas, numeros y caracteres raros *
           </span>
           <div class="group-input">
@@ -51,7 +54,8 @@
               formControlName="password">
           </div>
 
-          <span  class="invalid" *ngIf="registerForm.get('password2').touched &&  registerForm.get('password2').value != registerForm.get('password').value  " >
+          <span class="invalid"
+            *ngIf="registerForm.get('password2').touched &&  registerForm.get('password2').value != registerForm.get('password').value  ">
             Las contraseñas no coiciden *
           </span>
           <div class="group-input">
@@ -63,7 +67,7 @@
               formControlName="password2">
           </div>
 
-          <span  class="invalid" *ngIf=" !getDateInput() && registerForm.get('date').touched ">
+          <span class="invalid" *ngIf=" !getDateInput() && registerForm.get('date').touched ">
             La fecha es invalida, debes de tener entre 6 y 60 años! *
           </span>
           <div class="group-input">
@@ -73,13 +77,14 @@
 
 
 
-          <button type="submit"   class="btn btn-login" value="" [disabled]="registerForm.invalid">Registrar</button>
+          <button type="submit" class="btn btn-login" value="" [disabled]="registerForm.invalid">Registrar</button>
         </form>
-        <button  (click)="singInGoogle()" class="btn btn-google" value="" >Registrar con Google</button>
+        <button (click)="singInGoogle()" class="btn btn-google" value="">Registrar con Google</button>
 
         <div class="sign-in-remember field">
           <label>
-          Al Registrate aceptas nuestros  <strong><a [routerLink]="['/terms-and-conditions']" [routerLinkActive]="['active']">Terminos y condiciones</a> </strong>
+            Al Registrate aceptas nuestros <strong><a [routerLink]="['/terms-and-conditions']"
+                [routerLinkActive]="['active']">Terminos y condiciones</a> </strong>
           </label>
         </div>
       </div>

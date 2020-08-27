@@ -31,40 +31,36 @@
     </div>
   </div>
 
-  <header id="header" *ngIf="status == 'false'">
-      <!-- 
+    <div *ngIf="status == 'false'">
 
-    <div class="center">
-
-        <div id="logo">
-            <img src="../../../assets/images/Angular.svg" class="app-logo" alt="Logotipo">
-            <span id="brand">
-                <strong>HiperEFE</strong>Project
-            </span>
+  
+    <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+        <label for="check">
+            <i class="fas fa-bars" id="sidebar_btn"></i>
+        </label>
+        <div class="left_area">
+            <h3>HIPER <span>EFE</span></h3>
         </div>
-      -->
-        <nav id="menu">
-            <ul>
-                <li>
-                    <a  [routerLink]="['/home']" [routerLinkActive]="['active']">Home</a>
-                </li>
-                <li>
-                    <a [routerLink]="['/home']" [routerLinkActive]="['active']">Mis salas</a>
-                </li>
-                <li>
-                    <a [routerLink]="['/home']" [routerLinkActive]="['active']">Perfil</a>
-                </li>
-                <li >
-                    <a (click)="signOut()" >Cerrar sesion</a>
-                </li>
-
-
-
-            </ul>
-        </nav>
-
- <!-- 
-        <div class="clearfix"></div>
+        <div class="right_area">
+            <a href="#" class="logout_btn">Cerrar Session</a>
+        </div>
+    </header>
+    <!--header area end-->
+    <!--sidebar start-->
+    <div class="sidebar">
+        <section>
+            <img src="../../../assets/images/profile.jpg" class="profile_image" alt="User Image">
+            <h4>Jessica</h4>
+        </section>
+        <a href="#"><i class="fa fa-user"></i><span>Mi Perfil</span></a>
+        <a href="#"><i class="fa fa-laptop"></i><span>Salas</span></a>
+        <a href="#"><i class="fa fa-comments"></i><span>Chats</span></a>
+        <a href="#"><i class="fas fa-info-circle"></i><span>Acerca de</span></a>
+        <a href="#"><i class="fas fa-sliders-h"></i><span>Configuracion</span></a>
     </div>
-</header>
+  </div>
+ <!-- 
+
 -->

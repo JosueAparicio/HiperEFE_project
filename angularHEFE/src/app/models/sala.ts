@@ -1,4 +1,4 @@
-export class Topic {
+export class Sala {
     constructor(
         public tema: String,
         public descripcion: String,

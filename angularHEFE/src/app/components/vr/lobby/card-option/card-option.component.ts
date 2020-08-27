@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Topic } from '../../../../models/Topic';
 
 @Component({
   selector: 'app-card-option',

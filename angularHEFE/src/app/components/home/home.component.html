@@ -1,27 +1,73 @@
-<div>
+<div class="home-user">
 
 
+  <input type="checkbox" id="check">
+  <!--header area start-->
+  <header>
+      <label for="check">
+          <i class="fa fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+          <h3>HIPER <span>EFE</span></h3>
+      </div>
+      <div class="right_area">
+          <a href="#" class="logout_btn">Cerrar Session</a>
+      </div>
+  </header>
 
-  <mat-toolbar color="warn">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>HIPER EFE</span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label=" icon-button with share icon">
-      <mat-icon>share</mat-icon>
-    </button>
-      <button class="btn-dialog-close" mat-stroked-button tabIndex="-1">
-        <mat-icon>clear</mat-icon>
-      </button>
-    
-  </mat-toolbar>
+  <!--header area end-->
+  <!--sidebar start-->
+  <div class="sidebar">
+      <div class="profile" *ngIf="user"> 
+          <img *ngIf="user.photoURL" src="{{user.photoURL}}" class="profile_image" alt="{{user.displayName}}">
+          <h4>{{user.displayName}}</h4>
+      </div>
+      <a href="#"><i class="fa fa-user"></i><span>Mi Perfil</span></a>
+      <a href="#"><i class="fa fa-laptop"></i><span>Salas</span></a>
+      <a href="#"><i class="fa fa-comments"></i><span>Chats</span></a>
+      <a href="#"><i class="fa fa-info-circle"></i><span>Acerca de</span></a>
+      <a  (click)="openDialog()"><i class="fa fa-info"></i><span>Configuracion</span></a>
+  </div>
+  <!--sidebar end-->
 
+  <div class="content">
+      <div id="slider" class="slider">
+          <h1>Mis Salas</h1>
+          <input type="text" placeholder="Buscar por nombre de sala">
+      </div>
+      <div class="clearfix"></div>
 
-<button mat-button (click)="openDialog()">Open dialog</button>
+      <div class="center">
+          <section id="contentSalas">
+  
+              <!--Listado salas-->
+              <div id="articles" *ngIf="topics" >
+                <div *ngFor="let topic of topics; let i = index">
+
+                    <app-sala [topic]="topic"></app-sala>
+
+                </div>
+              </div>
+
+          </section>
+       <!--Listado salas  
+          <aside id="sidebarSalas">
+              <div id="nav-blog" class="sidebar-item">
+                  <h3>Puedes hacer esto</h3>
+                  <a class="aneon" href="#">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      Crear Sala
+                  </a>
+              </div>
+          </aside>
+--> 
+          <div class="clearfix"></div>
+      </div>
+  </div>
+
 </div>
 
 <!-- 

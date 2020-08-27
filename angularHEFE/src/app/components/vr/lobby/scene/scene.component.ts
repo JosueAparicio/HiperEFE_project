@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Topic } from '../../../../models/Topic';
 import { Trophy } from '../../../../models/trophy';
 
 @Component({
@@ -9,7 +8,7 @@ import { Trophy } from '../../../../models/trophy';
 })
 export class SceneComponent implements OnInit {
 
-  private listTopics: Array<Topic>;
+  private listTopics: Array<any>;
   public listCardOption: Array<string>;
   private topicActiveCardOption: any;
   private posicionNumberTopic: number;
@@ -17,19 +16,10 @@ export class SceneComponent implements OnInit {
   private listTrophy: Array<Trophy>;
   private trophyActive: any;
   private posicionNumberTrophy: number;
-  private topicSelect: Topic;
+  private topicSelect: any;
 
   constructor() { 
-    this.listTopics = [
-      new Topic('Google CardBoard', 'Aprende a construir tus propia', '1'),
-      new Topic('Museo de la informatica', 'Aprende los inicios de la computacion mediante un viaje por el museo de El Salvador', '2'),
-      new Topic('Programacion Facilito', 'Aprende a la logica de la programacion y lo basico para comenzar en el mundo del desarrollo', '3'),
-      new Topic('Curso de OBS', 'Aprende a hacer Directos y a compartir tus experiencias con las personas', '4'),
-      new Topic('Software', 'Aprende que es el software y su importancia en nuestro entorno', '5'),
-      new Topic('La computadora', 'Conoce las partes de una computadora y como funcionan', '6'),
-      new Topic('Hardware', 'Aprende que es el Hardware y sus caracteristicas', '7'),
-      new Topic('Inteligencia Artificial (IA)', 'Aprende como funciona la inteligencia Artificial y sus grandes aportes al mundo', '8')
-    ]
+
 
     this.listCardOption = [
       '1' , '2', '3', '4'
