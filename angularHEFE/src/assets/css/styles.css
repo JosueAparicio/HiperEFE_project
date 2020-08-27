@@ -1150,10 +1150,10 @@ ul li a:hover {
   padding: 20px;
   width: 100%;
   height: 30px;
+  box-sizing: unset !important;
 }
 .home-user{
   background: #22242A;
-  box-sizing: none !important;
 }
 .home-user .left_area h3 {
   color: #fff;
@@ -1162,6 +1162,7 @@ ul li a:hover {
   font-size: 22px;
   font-weight: 900;
   margin-left: 40px;
+  margin-top: -12px;
 }
 
 .home-user .left_area span {
@@ -1305,11 +1306,12 @@ ul li a:hover {
   color: white;
   padding-top: 50px;
   text-align: center;
+  font-size: 25px !important;
 }
 
 .home-user #slider input {
   width: 50%;
-  padding: 10px;
+  padding: 18px;
   border: none;
   border-radius: 6px;
   font-family: 'Poppins', sans-serif;
@@ -1322,6 +1324,7 @@ ul li a:hover {
   background-position-x: 98%;
   background-position-y: center;
   margin-left: 25%;
+  
 }
 
 .home-user #contentSalas {
@@ -1388,6 +1391,8 @@ ul li a:hover {
   padding-bottom: 20px;
   padding-top: 20px;
   text-align: left;
+  margin-left: -70px;
+  margin-top: 20px;
 }
 
 .home-user .article-item .image-wrap {
