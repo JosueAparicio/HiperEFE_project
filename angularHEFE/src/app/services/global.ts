@@ -35,13 +35,18 @@ export var Global = {
         const resp = Global.validar_clave(control.value);
         if (!resp) {
             //console.log(resp);
+            
             return { validPASS: true };
         }
         //console.log(resp);
         return null;
     },
 
-    url: 'http://localhost:3900/api/'
+    url: 'http://localhost:3900/api/',
+
+    generarNumero(minimo, maximo) {
+        return Math.floor(Math.random() * (maximo - minimo + 1) + minimo);
+    }
 
 
 

@@ -202,14 +202,9 @@ export class UserService {
         return this._afirestore.collection('users').doc(data.uid).set(data).then();
     }
 
-    getUserData(){
-        let uid: string;
-        this._afAuth.auth.onAuthStateChanged(user => {
-          if (user) {
-            uid = user.uid;
-           }
-        });
-        return  this._afirestore.collection('users').doc(uid).get();
+     getUserData(uid: string){
+
+        return  this._afirestore.collection('users').doc(uid).valueChanges();
     }
 
 }

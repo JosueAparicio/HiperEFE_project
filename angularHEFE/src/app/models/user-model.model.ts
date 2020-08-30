@@ -1,3 +1,5 @@
+import { Room } from './room';
+
 export interface UserModel {
     uid?: string;
     email?: string;
@@ -6,4 +8,5 @@ export interface UserModel {
     date?: string;
     cuenta?: string;
     conocimiento?: string;
+    rooms?: Array<Room>
 }
