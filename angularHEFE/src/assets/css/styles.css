@@ -10,6 +10,15 @@ div.container {
   width: 95%;
   padding-left: 5%;
 }
+.inputs-radious{
+  margin-top: 15px;
+  background:  #979de6;
+}
+
+.inputs-radious mat-radio-button {
+  padding: 10px;
+  margin-top: 5px;
+}
 
 table {
   width: 95%;
@@ -19,6 +28,9 @@ table th {
   width: 60px;
   color: black;
   font-size: 15px;
+}
+mat-card {
+  border: 2px solid #0c0f38;
 }
 
 .mat-toolbar {
@@ -45,7 +57,48 @@ form.normal-form {
 }
 
 
+.card {
+  display: grid;
+  grid-template-columns: 60px;
+  grid-template-rows: 60px 60px 30px;
+  grid-template-areas: "image" "text" "stats";
+  border-radius: 18px;
+  background: white;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+  font-family: roboto;
+  text-align: center;
+  width: 400px;
+  background: #0c0f38;
 
+}
+.card:hover {
+  transform: scale(1.15);
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+}
+.card {
+  transition: 0.5s ease;
+  cursor: pointer;
+  margin:30px;
+}
+
+mat-grid-tile p {
+  font-size: 11px;
+  margin-left: -20px;
+  color: black;
+  text-justify: auto;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.card img {
+  margin-top: 33px !important;
+  margin-left: 2px;
+}
+.cuenta img {
+  margin-left: 30px !important;
+}
+.dateForm {
+  margin-top: 50px;
+}
 .controles-container-search {
   width: 100%;
 }
@@ -58,7 +111,9 @@ form.normal-form {
 
   border: 1.5px solid #0c0f38;
 }
-
+.new-room .img {
+  background-size: cover;
+}
 .new-room .img img {
   width: 150px;
   border-radius: 100%;
@@ -77,6 +132,11 @@ mat-form-field {
 }
 mat-form-field  img{
   width: 80px;
+  background-size: cover;
+}
+
+mat-horizontal-stepper{
+  margin-top: 15px;
 }
 
 .button-row {
@@ -1459,11 +1519,14 @@ ul li a:hover {
   float: left;
   margin-right: 15px;
   border: 1px solid #ccc;
+  background-size: cover;
+
 }
 
 .home-user .article-item .image-wrap img {
   height: 100%;
   text-align: center;
+
 }
 
 .home-user .article-item h2 {

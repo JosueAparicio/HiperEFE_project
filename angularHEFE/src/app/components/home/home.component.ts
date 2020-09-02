@@ -1,14 +1,15 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, Inject } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { DialogExampleComponent } from '../dialogs/dialog-example/dialog-example.component';
 import { RoomComponent } from '../dialogs/room/room.component';
 import { RoomsService } from '../../services/rooms.service';
 import { Observable } from 'rxjs';
 import { Room } from '../../models/room';
 import { MatTableDataSource } from '@angular/material/table';
+import { UserConfigComponent } from '../dialogs/user-config/user-config.component';
 
 
 
@@ -22,27 +23,36 @@ export class HomeComponent implements OnInit {
 
   public user: any;
   rooms: Room[];
-  searchRooms: Room[];
+  ready: boolean;
   constructor(
     public _userService: UserService,
     public _router: Router,
     public dialog: MatDialog,
     public salasService: RoomsService) { }
 
+  //verificaciones iniciales
   async ngOnInit() {
 
-    this.user = await this._userService.getCurrentUser();
+    const user = await this._userService.getCurrentUser();
     //console.log(user);
-    if (this.user && this.user.emailVerified) {
+    if (user && user.emailVerified) {
       //console.log(this.user.displayName, this.user.photoURL);
-      this._userService.getUserData(this.user.uid).subscribe(datauser => {
-        console.log(datauser);
+      this._userService.getUserData(user.uid).subscribe(datauser => {
+        this.user = datauser;
+        if(!this.user.photoURL){
+          this.user.photoURL = user.photoURL;
+        }
+        if(!this.user.cuenta || !this.user.conocimiento || !this.user.date){
+          if(!this.user.date){
+            sessionStorage.setItem('date', 'false');
+          }
+          this.EditAccount();
+        } else {
+          this.salasService.getRooms(user.uid).subscribe(rooms => this.rooms = rooms);
+          this.ready = true;
+        }
       });
 
-      this.salasService.getRooms(this.user.uid).subscribe(rooms => {
-        this.rooms = rooms;
-        this.searchRooms = rooms;
-      });
       
     } else {
       console.log('No hay usuario logueado');
@@ -51,6 +61,7 @@ export class HomeComponent implements OnInit {
 
 
   }
+  //buscar
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
 
@@ -58,6 +69,7 @@ export class HomeComponent implements OnInit {
     //this.topics.filter = filterValue.trim().toLowerCase();
 
   }
+  //cerrar sesion
   singOut() {
     Swal.fire({
       title: '¿Cerrar sesión?',
@@ -84,7 +96,7 @@ export class HomeComponent implements OnInit {
       }
     })
   }
-
+  //prueba
   openDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
@@ -92,14 +104,47 @@ export class HomeComponent implements OnInit {
     dialogConfig.width = '60%';
     this.dialog.open(DialogExampleComponent, dialogConfig);
   }
-
+  //Dialog para crear una nueva sala
   newRoom() {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = false;
+    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
     dialogConfig.height = '500px';
+    dialogConfig.data = this.user;
     this.dialog.open(RoomComponent, dialogConfig);
+    
   }
+
+  EditAccount(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '70%';
+    dialogConfig.height = '520px';
+    dialogConfig.data = this.user;
+    const ref = this.dialog.open(UserConfigComponent, dialogConfig );
+
+    ref.afterClosed().subscribe(async res => {
+      // received data 
+      let newDate = res.data.date;
+      if(res.data.date == ''){
+        newDate = this.user.date;
+      }
+      const fullDaata= { 
+        uid: this.user.uid,
+        displayName: this.user.displayName,
+        email: this.user.email,
+        photoURL: this.user.photoURL,
+        date: newDate,
+        cuenta: res.data.cuenta,
+        conocimiento: res.data.conocimiento
+    }
+    //console.log(fullDaata);
+      setTimeout(() => {this._userService.createNewUser(fullDaata)}, 2000);
+    })
+  }
+
+
 
 }

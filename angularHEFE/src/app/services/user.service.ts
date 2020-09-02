@@ -189,8 +189,6 @@ export class UserService {
     async handleVerifyEmail(actionCode) { //verifica el email...
         return await (this._afAuth.auth).applyActionCode(actionCode);
     }
-
-
     sendWelcomeEmail(email): Observable<any> {// envia un email de bienivenida cuando el usuario ha sifo verificado
         // let params = JSON.stringify(email);
         return this._hhtp.get(this.url + 'sendWelcomeEmail/' + email);
@@ -199,11 +197,10 @@ export class UserService {
     //GUARDAR, MODIFICAR O ELIMINAR USUARIOS
     async createNewUser(data): Promise<void> {//Crea un un nuevo usuario en el documento 'users' de firestore
         console.log(data);
-        return this._afirestore.collection('users').doc(data.uid).set(data).then();
+        return this._afirestore.collection('users').doc(data.uid).set(data);
     }
 
      getUserData(uid: string){
-
         return  this._afirestore.collection('users').doc(uid).valueChanges();
     }
 

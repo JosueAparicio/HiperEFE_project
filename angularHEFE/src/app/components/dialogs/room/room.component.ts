@@ -9,6 +9,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 
 
@@ -30,7 +31,8 @@ export class RoomComponent implements OnInit {
   selection = new SelectionModel<Topic>(true, []);
   public load: boolean;
 
-  constructor(public salasService: RoomsService, private fb: FormBuilder, private _snackBar: MatSnackBar, public _userService: UserService) {
+  constructor(public salasService: RoomsService, private fb: FormBuilder, private _snackBar: MatSnackBar, public _userService: UserService,public dialog: MatDialog,
+    ) {
 
    }
 
@@ -54,6 +56,7 @@ export class RoomComponent implements OnInit {
       this.dataSource.data = topics;
       //this.topics = topics;
     });
+
   }
 
 
@@ -61,7 +64,6 @@ export class RoomComponent implements OnInit {
   //guardar una nueva sala
   async onSubmit() {
     const user = await this._userService.getCurrentUser();
-    this.load = true;
     if(this.selection.selected.length >5) {
       this.openSnackBar('Son 5 temas como maximo', 'Ok');
 
@@ -74,10 +76,13 @@ export class RoomComponent implements OnInit {
         topics: this.selection.selected,
         user: user
        }
-       this.salasService.addRoom(datos);
+       this.load = true;
+       const resp = await this.salasService.addRoom(datos)
+       setTimeout(() => { this.onClose(); this.load=false}, 1500);
     }
   }
   onClose() {
+    this.dialog.closeAll();
   }
 
   //aplicar un filtro para realizar busquedas
@@ -132,6 +137,8 @@ export class RoomComponent implements OnInit {
       duration: 5000,
     });
   }
+
+
 
 }
 
