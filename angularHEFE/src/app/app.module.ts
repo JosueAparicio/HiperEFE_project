@@ -35,6 +35,8 @@ import { CardOptionComponent } from './components/vr/lobby/card-option/card-opti
 import { SalasComponent } from './components/salas/salas.component';
 import { SalaComponent } from './components/sala/sala.component';
 import { RoomComponent } from './components/dialogs/room/room.component';
+import { UserConfigComponent } from './components/dialogs/user-config/user-config.component';
+import { ChatsComponent } from './components/chats/chats.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { RoomComponent } from './components/dialogs/room/room.component';
     CardOptionComponent,
     SalasComponent,
     SalaComponent,
-    RoomComponent
+    RoomComponent,
+    UserConfigComponent,
+    ChatsComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +78,10 @@ import { RoomComponent } from './components/dialogs/room/room.component';
     MatNativeDateModule
 
   ],
-  entryComponents: [DialogExampleComponent, RoomComponent],
+  entryComponents: [
+    DialogExampleComponent, 
+    RoomComponent,
+    UserConfigComponent],
   providers: [appRoutingProviders, { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

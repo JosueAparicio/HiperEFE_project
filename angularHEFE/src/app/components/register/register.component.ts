@@ -35,9 +35,7 @@ export class RegisterComponent implements OnInit {
   }
   async onRegister() {
 
-    console.log(this.getDateInput());
 
-    console.log('onRegister');
 
     if (this.registerForm.value.password === this.registerForm.value.password2 && this.getDateInput()) {
       Swal.fire({
@@ -49,7 +47,6 @@ export class RegisterComponent implements OnInit {
       });
 
       const create = this._userService.createAccount(this.registerForm.value);
-      console.log(this.registerForm.value);
     }
 
   }

@@ -1,10 +1,10 @@
 
 
 export interface Room {
-    idRoom?: string;
-    descripcion?: string;
-    maxParticipantes?: string;
-    nombre?: string;
+    id?: string;
+    descripcion: string;
+    maxParticipantes: string;
+    nombre: string;
     photo?: string;
 
 }

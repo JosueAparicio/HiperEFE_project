@@ -1,7 +1,6 @@
-<div class="home-user" *ngIf="user; else Load">
+<div class="home-user" *ngIf="ready && user && rooms; else Load">
 
-
-  <input type="checkbox" id="check">
+  <input type="checkbox" id="check" checked>
   <!--header area start-->
   <header>
       <label for="check">
@@ -51,6 +50,7 @@
                 <div *ngFor="let r of rooms">
 
                     <app-sala [room]="r"></app-sala>
+                    
                 </div>
               </div>
 
@@ -75,7 +75,10 @@
 </div>
 
 <ng-template  #Load >
-    <mat-spinner align="center" style="margin-top: 20%; left: 50%;"></mat-spinner>
+    <div align="center" style="margin-top: 20%;">
+        <mat-spinner ></mat-spinner>
+        <h3 >Estamos preparando todo, por favor espera...</h3>
+    </div>
 </ng-template>
 <!-- 
 

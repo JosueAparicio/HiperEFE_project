@@ -9,4 +9,5 @@ export interface UserModel {
     cuenta?: string;
     conocimiento?: string;
     rooms?: Array<Room>
+    
 }
