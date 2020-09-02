@@ -117,6 +117,8 @@ mat-grid-tile p {
 .new-room .img img {
   width: 150px;
   border-radius: 100%;
+  margin-top: 10px;
+
 }
 
 .add-bottom-padding {

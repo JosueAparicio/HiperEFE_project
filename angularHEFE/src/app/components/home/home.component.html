@@ -34,7 +34,7 @@
   <!--sidebar end-->
 
 
-  <div class="content" *ngIf="rooms">
+  <div class="content" >
       <div id="slider" class="slider">
           <h1>Mis Salas</h1>
           <input type="text" (keyup)="applyFilter($event)" placeholder="Buscar por nombre de sala">
@@ -45,7 +45,7 @@
           <section id="contentSalas">
   
               <!--Listado salas-->
-              <div id="articles" *ngIf="rooms" >
+              <div id="articles" *ngIf="rooms.length>0; else Norooms" >
 
                 <div *ngFor="let r of rooms">
 
@@ -83,10 +83,17 @@
 
 </div>
 
+
 <ng-template  #Load >
     <div align="center" style="margin-top: 20%;">
         <mat-spinner ></mat-spinner>
         <h3 >Estamos preparando todo, por favor espera...</h3>
+    </div>
+</ng-template>
+
+<ng-template #Norooms>
+    <div align="center" style="margin-top: 100px; color: white; font-weight: bold;">
+        <h3 >No hay salas que mostrar</h3>
     </div>
 </ng-template>
 <!-- 

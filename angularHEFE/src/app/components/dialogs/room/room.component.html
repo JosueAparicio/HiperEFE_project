@@ -53,9 +53,11 @@
             </mat-form-field>
 
             <mat-form-field class="example-full-width">
-              <mat-label>Imagen de referencia de la sala</mat-label>
+              <mat-label>URL de la imagen</mat-label>
               <input #url type="tel" matInput placeholder="https://image-example.com" formControlName="photo">
               <mat-icon matSuffix>mode_edit</mat-icon>
+              <mat-hint align="left">Este campo No es obligatorio. Pero si la imagen no cambia, la URL es invalida.</mat-hint>
+
             </mat-form-field>
             <div align="center" class="img"> 
               <img  src="{{url.value}}" onError="this.src='assets/images/vr.jpg'"  />
