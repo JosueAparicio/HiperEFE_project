@@ -1,14 +1,12 @@
-import { Component, OnInit, Input, Output, Inject } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { DialogExampleComponent } from '../dialogs/dialog-example/dialog-example.component';
 import { RoomComponent } from '../dialogs/room/room.component';
 import { RoomsService } from '../../services/rooms.service';
-import { Observable } from 'rxjs';
 import { Room } from '../../models/room';
-import { MatTableDataSource } from '@angular/material/table';
 import { UserConfigComponent } from '../dialogs/user-config/user-config.component';
 
 
@@ -38,19 +36,28 @@ export class HomeComponent implements OnInit {
     if (user && user.emailVerified) {
       //console.log(this.user.displayName, this.user.photoURL);
       this._userService.getUserData(user.uid).subscribe(datauser => {
-        this.user = datauser;
-        if(!this.user.photoURL){
-          this.user.photoURL = user.photoURL;
+        //console.log(datauser);
+        if(datauser){
+          this.user = datauser;
+        }else{
+          this.user = user;
         }
-        if(!this.user.cuenta || !this.user.conocimiento || !this.user.date){
-          if(!this.user.date){
-            sessionStorage.setItem('date', 'false');
+          if(!this.user.photoURL){
+            this.user.photoURL = user.photoURL;
           }
-          this.EditAccount();
-        } else {
-          this.salasService.getRooms(user.uid).subscribe(rooms => this.rooms = rooms);
-          this.ready = true;
-        }
+          if(!this.user.cuenta || !this.user.conocimiento || !this.user.date){
+            if(!this.user.date){
+              sessionStorage.setItem('date', 'false');
+            }else{
+              sessionStorage.setItem('date', 'true');
+            }
+  
+            this.EditAccount();
+          } else {
+            this.salasService.getRooms(user.uid).subscribe(rooms => this.rooms = rooms);
+            this.ready = true;
+          }
+        
       });
 
       

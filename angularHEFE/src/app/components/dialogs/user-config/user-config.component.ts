@@ -60,7 +60,7 @@ export class UserConfigComponent implements OnInit {
 
 
   onSubmit() {
-    if (this.date == false) {
+    if (this.date == true) {
 
       if (this.conocimientoForm.invalid || this.cuentaForm.invalid) {
 

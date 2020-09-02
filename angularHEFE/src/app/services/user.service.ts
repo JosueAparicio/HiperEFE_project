@@ -196,7 +196,7 @@ export class UserService {
 
     //GUARDAR, MODIFICAR O ELIMINAR USUARIOS
     async createNewUser(data): Promise<void> {//Crea un un nuevo usuario en el documento 'users' de firestore
-        console.log(data);
+        //console.log(data);
         return this._afirestore.collection('users').doc(data.uid).set(data);
     }
 
