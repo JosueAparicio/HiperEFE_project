@@ -36,7 +36,7 @@ export class UserConfigComponent implements OnInit {
 
   ngOnInit(): void {
 
-      
+
     if (sessionStorage.getItem('date') == 'false') {
       this.date = false;
     } else {
@@ -65,7 +65,7 @@ export class UserConfigComponent implements OnInit {
       if (this.conocimientoForm.invalid || this.cuentaForm.invalid) {
 
         this.openSnackBar('LLena todos los campos solicitados 1', 'Ok');
-        
+
       } else {
         this.onClose();
       }
@@ -92,7 +92,7 @@ export class UserConfigComponent implements OnInit {
     });
   }
 
-  onClose(){
+  onClose() {
     this.data = {
       cuenta: this.cuentaForm.value.cuenta,
       conocimiento: this.conocimientoForm.value.conocimiento,

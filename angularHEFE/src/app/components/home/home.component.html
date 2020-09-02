@@ -1,91 +1,75 @@
 <div class="home-user" *ngIf="ready && user && rooms; else Load">
 
   <input type="checkbox" id="check" checked>
-  <!--header area start-->
-  <header>
-      <label for="check">
-          <i class="fa fa-bars" id="sidebar_btn"></i>
-      </label>
-      <div class="left_area">
-          <h3>HIPER <span>EFE</span></h3>
-      </div>
-      <div class="right_area" >
-          <a (click)="singOut()" class="logout_btn">Sing Out</a>
-      </div>
-  </header>
-
-  <!--header area end-->
-  <!--sidebar start-->
-  <div class="sidebar">
-      <div class="profile" > 
-          <img *ngIf="user.photoURL" src="{{user.photoURL}}" class="profile_image" alt="{{user.displayName}}">
-          <img *ngIf="!user.photoURL" src="../../../assets/images/default.png" class="profile_image" alt="User Name">
-
-          <h4 *ngIf="user.displayName">{{user.displayName}}</h4>
-          <h4 *ngIf="!user.displayName">User Name</h4>
-
-      </div>
-      <a href="#"><i class="fa fa-user"></i><span>Mi Perfil</span></a>
-      <a href="#"><i class="fa fa-laptop"></i><span>Salas</span></a>
-      <a href="#"><i class="fa fa-comments"></i><span>Chats</span></a>
-      <a href="#"><i class="fa fa-info-circle"></i><span>Acerca de</span></a>
-      <a (click)="openDialog()"><i class="fas fa-sliders-h"></i><span>Configuracion</span></a>
-  </div>
-  <!--sidebar end-->
+  <app-header [status]="'principal'" [user]="user"></app-header>
 
 
-  <div class="content" >
-      <div id="slider" class="slider">
-          <h1>Mis Salas</h1>
-          <input type="text" (keyup)="applyFilter($event)" placeholder="Buscar por nombre de sala">
-      </div>
+  <div class="content">
+    <div id="slider" class="slider">
+      <h1>Mis Salas</h1>
+      <input type="text" (keyup)="applyFilter($event)" placeholder="Buscar por nombre de sala">
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="center">
+      <section id="contentSalas">
+
+        <!--Listado salas-->
+        <div id="articles" *ngIf="rooms.length>0; else Norooms">
+
+          <div *ngFor="let r of rooms">
+
+            <app-sala [room]="r"></app-sala>
+
+          </div>
+        </div>
+
+      </section>
+      <aside id="sidebarSalas">
+        <div id="nav-blog" class="sidebar-item">
+          <h3>Puedes hacer esto</h3>
+          <div *ngIf="docente">
+            <a class="aneon" (click)="newRoom()">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              Crear Sala
+            </a>
+          </div>
+
+          <div *ngIf="estudiante">
+            <a class="aneon" (click)="joinRoom()">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              Unirme a una Sala
+            </a>
+          </div>
+        </div>
+
+      </aside>
+
       <div class="clearfix"></div>
-
-      <div class="center">
-          <section id="contentSalas">
-  
-              <!--Listado salas-->
-              <div id="articles" *ngIf="rooms.length>0; else Norooms" >
-
-                <div *ngFor="let r of rooms">
-
-                    <app-sala [room]="r"></app-sala>
-                    
-                </div>
-              </div>
-
-          </section>
-          <aside id="sidebarSalas">
-              <div id="nav-blog" class="sidebar-item">
-                  <h3>Puedes hacer esto</h3>
-                  <a class="aneon" (click)="newRoom()">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                      Crear Sala
-                  </a>
-              </div>
-          </aside>
-
-          <div class="clearfix"></div>
-      </div>
+    </div>
   </div>
+
 
 </div>
 
 
-<ng-template  #Load >
-    <div align="center" style="margin-top: 20%;">
-        <mat-spinner ></mat-spinner>
-        <h3 >Estamos preparando todo, por favor espera...</h3>
-    </div>
+<ng-template #Load>
+  <div align="center" style="margin-top: 20%;">
+    <mat-spinner></mat-spinner>
+    <h3>Estamos preparando todo, por favor espera...</h3>
+  </div>
 </ng-template>
 
 <ng-template #Norooms>
-    <div align="center" style="margin-top: 100px; color: white; font-weight: bold;">
-        <h3 >No hay salas que mostrar</h3>
-    </div>
+  <div align="center" style="margin-top: 100px; color: white; font-weight: bold;">
+    <h3>No hay salas que mostrar</h3>
+  </div>
 </ng-template>
 <!-- 
 

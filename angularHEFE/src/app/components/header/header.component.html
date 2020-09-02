@@ -1,17 +1,16 @@
-
-
-<div class="nav-container" *ngIf="!status" >
+<div *ngIf="!status">
+  <div class="nav-container">
     <div class="wapper-nav">
       <nav id="header1">
         <div class="logo">
           <img src="../../assets/images/loge.svg" alt="LOGO">
           <small>HIPER EFE</small>
         </div>
-  
-        <ul class="nav-items" >
-  
+
+        <ul class="nav-items">
+
           <li>
-              <a [routerLink]="['/inicio']" [routerLinkActive]="['active']" >Inicio</a>
+            <a [routerLink]="['/inicio']" [routerLinkActive]="['active']">Inicio</a>
           </li>
 
           <li>
@@ -19,7 +18,7 @@
           </li>
 
           <li>
-          <a [routerLink]="['/register']" [routerLinkActive]="['active']">Registrate</a>
+            <a [routerLink]="['/register']" [routerLinkActive]="['active']">Registrate</a>
           </li>
 
           <li>
@@ -30,36 +29,43 @@
       </nav>
     </div>
   </div>
+</div>
 
-    <div *ngIf="status == 'false'">
-      
-    <input type="checkbox" id="check">
-    <!--header area start-->
-    <header>
-        <label for="check">
-            <i class="fas fa-bars" id="sidebar_btn"></i>
-        </label>
-        <div class="left_area">
-            <h3>HIPER <span>EFE</span></h3>
-        </div>
-        <div class="right_area">
-            <a href="#" class="logout_btn">Cerrar Session</a>
-        </div>
-    </header>
-    <!--header area end-->
-    <!--sidebar start-->
-    <div class="sidebar">
-        <section>
-            <img src="../../../assets/images/profile.jpg" class="profile_image" alt="User Image">
-            <h4>Jessica</h4>
-        </section>
-        <a href="#"><i class="fa fa-user"></i><span>Mi Perfil</span></a>
-        <a href="#"><i class="fa fa-laptop"></i><span>Salas</span></a>
-        <a href="#"><i class="fa fa-comments"></i><span>Chats</span></a>
-        <a href="#"><i class="fas fa-info-circle"></i><span>Acerca de</span></a>
-        <a href="#"><i class="fas fa-sliders-h"></i><span>Configuracion</span></a>
+
+<div *ngIf="status">
+  
+  <!--header area start-->
+  <header>
+    <label for="check">
+      <i class="fa fa-bars" id="sidebar_btn"></i>
+    </label>
+    <div class="left_area">
+      <h3>HIPER <span>EFE</span></h3>
     </div>
+    <div class="right_area">
+      <a (click)="singOut()" class="logout_btn">Sing Out</a>
+    </div>
+  </header>
+
+  <!--header area end-->
+  <!--sidebar start-->
+  <div class="sidebar">
+    <div class="profile">
+      <img *ngIf="user.photoURL" src="{{user.photoURL}}" class="profile_image" alt="{{user.displayName}}">
+      <img *ngIf="!user.photoURL" src="../../../assets/images/default.png" class="profile_image" alt="User Name">
+
+      <h4 *ngIf="user.displayName">{{user.displayName}}</h4>
+      <h4 *ngIf="!user.displayName">User Name</h4>
+
+    </div>
+    <a href="#"><i class="fa fa-user"></i><span>Mi Perfil</span></a>
+    <a href="#"><i class="fa fa-laptop"></i><span>Salas</span></a>
+    <a href="#"><i class="fa fa-comments"></i><span>Chats</span></a>
+    <a href="#"><i class="fa fa-info-circle"></i><span>Acerca de</span></a>
+    <a (click)="openDialog()"><i class="fas fa-sliders-h"></i><span>Configuracion</span></a>
   </div>
- <!-- 
+  <!--sidebar end-->
+</div>
+<!-- 
 
 -->

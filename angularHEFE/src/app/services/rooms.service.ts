@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
 import { Observable} from 'rxjs';
 import { Topic } from '../models/topics';
 import { Room } from '../models/room';
@@ -14,11 +14,15 @@ export class RoomsService {
 
   public topics: Observable<Topic[]>;
   public rooms: Observable<Room[]>;
+  public creatorRoom: Observable<any>;
+  public dataRoom: any;
   public topicsCollection: AngularFirestoreCollection;
   public topicsSelectedCollection: AngularFirestoreCollection;
   public roomsCollection: AngularFirestoreCollection;
-  constructor(private bd: AngularFirestore, private _snackBar: MatSnackBar) {
 
+  public listRooms: AngularFirestoreDocument;
+  public docRoom: AngularFirestoreDocument;
+  constructor(private bd: AngularFirestore, private _snackBar: MatSnackBar) {
 
   }
 
@@ -27,8 +31,8 @@ export class RoomsService {
     return this.topics = this.topicsCollection.valueChanges();
   }
 
-  getRooms(uid){
-    this.roomsCollection = this.bd.collection(`users/${uid}/salas/`);
+  getRooms(uid, typeRoom){
+    this.roomsCollection = this.bd.collection(`users/${uid}/${typeRoom}/`);
     return this.rooms =this.roomsCollection.snapshotChanges().pipe(map(actions =>{
         return actions.map (a => {
           const data = a.payload.doc.data() as Room;
@@ -36,6 +40,21 @@ export class RoomsService {
           return data;
         })
     }));
+  }
+
+  getCreatorRoom(codeRoom){
+    this.listRooms = this.bd.collection(`rooms/`).doc(codeRoom);
+    return this.creatorRoom = this.listRooms.valueChanges();
+  }
+
+  getDataRoom(uid, codeRoom){
+    this.docRoom = this.bd.collection(`users/${uid}/salas/`).doc(codeRoom);
+    return this.dataRoom = this.docRoom.ref.get();
+  }
+
+  getCollectionRoom(uid, codeRoom){
+    this.roomsCollection = this.bd.collection(`users/${uid}/salas/${codeRoom}/members/`);
+    return this.roomsCollection.ref.get();
   }
 
   addRoom(room) {
@@ -64,8 +83,11 @@ export class RoomsService {
   }
 
   addMemberToTheROOM(data){
-    this.roomsCollection = this.bd.collection(`users/${data.uid}/salas/${data.idRoom}/members`);
-    this.roomsCollection.add(data.member).then(resp => console.log('agregado')).catch(error => console.log(error));
+    this.roomsCollection = this.bd.collection(`users/${data.uidCreador}/salas/${data.codeRoom}/members/`);
+    this.roomsCollection.doc(data.dataMember.uidStudent).set(data.dataMember).then((resp) => console.log('Exito')).catch(error => console.log(error));
+    
+    this.roomsCollection = this.bd.collection(`users/${data.dataMember.uidStudent}/joinRoom/`);
+    this.roomsCollection.doc(data.codeRoom).set(data.dataRoom).then((resp) => console.log(resp)).catch(error => console.log(error));
 
   }
 
