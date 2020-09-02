@@ -117,6 +117,8 @@ mat-grid-tile p {
 .new-room .img img {
   width: 150px;
   border-radius: 100%;
+  margin-top: 10px;
+
 }
 
 .add-bottom-padding {
@@ -1392,7 +1394,7 @@ ul li a:hover {
   background: black;
 }
 
-.home-user #check:checked~ div div.content {
+.home-user #check:checked~ div.content {
   margin-left: 60px;
 }
 

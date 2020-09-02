@@ -63,7 +63,8 @@ export class RoomComponent implements OnInit {
 
   //guardar una nueva sala
   async onSubmit() {
-    const user = await this._userService.getCurrentUser();
+    const userOn = await this._userService.getCurrentUser();
+
     if(this.selection.selected.length >5) {
       this.openSnackBar('Son 5 temas como maximo', 'Ok');
 
@@ -71,14 +72,18 @@ export class RoomComponent implements OnInit {
       this.openSnackBar('No hay ningun tema seleccionado', 'Ok');
 
     }else{
-      const datos = {
-        data: this.newRoomForm.value,
-        topics: this.selection.selected,
-        user: user
-       }
+      this._userService.getUserData(userOn.uid).subscribe(data =>{
+       const userFull = {
+         data: this.newRoomForm.value,
+         topics: this.selection.selected,
+         user: data
+        }
+        this.salasService.addRoom(userFull);
+
+     });
        this.load = true;
-       const resp = await this.salasService.addRoom(datos)
-       setTimeout(() => { this.onClose(); this.load=false}, 1500);
+       setTimeout(() => { this.onClose(); this.load=false}, 1000);
+       
     }
   }
   onClose() {

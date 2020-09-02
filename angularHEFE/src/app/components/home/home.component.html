@@ -1,68 +1,74 @@
 <div class="home-user" *ngIf="ready && user && rooms; else Load">
 
-   <input type="checkbox" id="check" checked>
-  <app-header [user]="user"></app-header>
+  <input type="checkbox" id="check" checked>
+  <app-header [status]="'principal'" [user]="user"></app-header>
 
-  <div *ngIf="rooms">
-    <div class="content">
-      <div id="slider" class="slider">
-        <h1>Mis Salas</h1>
-        <input type="text" (keyup)="applyFilter($event)" placeholder="Buscar por nombre de sala">
-      </div>
+
+  <div class="content">
+    <div id="slider" class="slider">
+      <h1>Mis Salas</h1>
+      <input type="text" (keyup)="applyFilter($event)" placeholder="Buscar por nombre de sala">
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="center">
+      <section id="contentSalas">
+
+        <!--Listado salas-->
+        <div id="articles" *ngIf="rooms.length>0; else Norooms">
+
+          <div *ngFor="let r of rooms">
+
+            <app-sala [room]="r"></app-sala>
+
+          </div>
+        </div>
+
+      </section>
+      <aside id="sidebarSalas">
+        <div id="nav-blog" class="sidebar-item">
+          <h3>Puedes hacer esto</h3>
+          <div *ngIf="docente">
+            <a class="aneon" (click)="newRoom()">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              Crear Sala
+            </a>
+          </div>
+
+          <div *ngIf="estudiante">
+            <a class="aneon" (click)="joinRoom()">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              Unirme a una Sala
+            </a>
+          </div>
+        </div>
+
+      </aside>
+
       <div class="clearfix"></div>
-
-      <div class="center">
-        <section id="contentSalas">
-
-          <!--Listado salas-->
-          <div id="articles" *ngIf="rooms">
-
-            <div *ngFor="let r of rooms">
-
-              <app-sala [room]="r"></app-sala>
-
-            </div>
-          </div>
-
-        </section>
-        <aside id="sidebarSalas">
-          <div id="nav-blog" class="sidebar-item">
-
-            <h3>Puedes hacer esto</h3>
-            <div *ngIf="docente">
-              <a class="aneon" (click)="newRoom()">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                Crear Sala
-              </a>
-            </div>
-            <div *ngIf="estudiante">
-              <a class="aneon" (click)="joinRoom()">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                Unirme a una Sala
-              </a>
-            </div>
-
-          </div>
-
-        </aside>
-
-        <div class="clearfix"></div>
-      </div>
     </div>
   </div>
 
+
 </div>
+
 
 <ng-template #Load>
   <div align="center" style="margin-top: 20%;">
     <mat-spinner></mat-spinner>
     <h3>Estamos preparando todo, por favor espera...</h3>
+  </div>
+</ng-template>
+
+<ng-template #Norooms>
+  <div align="center" style="margin-top: 100px; color: white; font-weight: bold;">
+    <h3>No hay salas que mostrar</h3>
   </div>
 </ng-template>
 <!-- 

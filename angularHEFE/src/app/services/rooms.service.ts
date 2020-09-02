@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Observable, Subject } from 'rxjs';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
+import { Observable} from 'rxjs';
 import { Topic } from '../models/topics';
 import { Room } from '../models/room';
 import { Global } from './global';
@@ -58,7 +58,8 @@ export class RoomsService {
   }
 
   addRoom(room) {
-
+    console.log(room);
+    
     const idRoom = room.user.displayName.substring(0, 2).toLowerCase() + room.user.uid.substring(0, 2).toLowerCase() + Global.generarNumero(1000, 9999);
     const newDoc ={
       uidCreador : room.user.uid

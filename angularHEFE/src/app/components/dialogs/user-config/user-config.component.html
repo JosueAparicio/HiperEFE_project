@@ -84,7 +84,7 @@
     </form>
   </mat-step>
 
-  <mat-step *ngIf="date" [stepControl]="dateForm" errorMessage="Es requierido.">
+  <mat-step *ngIf="!date" [stepControl]="dateForm" errorMessage="Es requierido.">
     <form [formGroup]="dateForm">
       <ng-template matStepLabel>Fecha de nacimiento</ng-template>
       <mat-card>
