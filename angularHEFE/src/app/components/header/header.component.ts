@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
+import { DialogExampleComponent } from '../dialogs/dialog-example/dialog-example.component';
 
 @Component({
   selector: 'app-header',
@@ -11,36 +13,52 @@ import Swal from 'sweetalert2';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() status: string = '';
+  @Input() status: string;
+  @Input() user: any;
 
   constructor(
     public _userService: UserService,
-    public _router: Router) { }
+    public _router: Router,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     
   }
 
-  signOut(){
- 
+  //cerrar sesion
+  singOut() {
     Swal.fire({
-      title: 'Cerrar sesion?',
-      text: "Se cerrará esta sesion!",
+      title: '¿Cerrar sesión?',
+      text: "Se cerrará tu sesión!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, salir'
-    }).then((result) => {
+      confirmButtonText: 'OK'
+    }).then(async (result) => {
       if (result.value) {
-        this._router.navigate(['inicio'])
-        Swal.fire(
-          'Has salido!',
-          'Vuelve pronto ;)',
-          'success'
-        )
+
+        Swal.fire({
+          title: 'Cerrando Sesion...',
+          allowOutsideClick: false,
+          timer: 1000,
+          onBeforeOpen: () => {
+            Swal.showLoading()
+          },
+          onClose: () => {
+            this._userService.signOut();
+          }
+        });
       }
     })
   }
 
+  //prueba
+  openDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '60%';
+    this.dialog.open(DialogExampleComponent, dialogConfig);
+  }
 }

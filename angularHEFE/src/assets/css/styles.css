@@ -1367,7 +1367,7 @@ ul li a:hover {
   color: #19B3D3;
 }
 
-.home-user #check:checked~.sidebar {
+.home-user #check:checked~ app-header .sidebar {
   left: -190px;
 }
 
@@ -1392,7 +1392,7 @@ ul li a:hover {
   background: black;
 }
 
-.home-user #check:checked~.content {
+.home-user #check:checked~ div div.content {
   margin-left: 60px;
 }
 

@@ -31,8 +31,8 @@ export class RoomsService {
     return this.topics = this.topicsCollection.valueChanges();
   }
 
-  getRooms(uid){
-    this.roomsCollection = this.bd.collection(`users/${uid}/salas/`);
+  getRooms(uid, typeRoom){
+    this.roomsCollection = this.bd.collection(`users/${uid}/${typeRoom}/`);
     return this.rooms =this.roomsCollection.snapshotChanges().pipe(map(actions =>{
         return actions.map (a => {
           const data = a.payload.doc.data() as Room;

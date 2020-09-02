@@ -22,6 +22,10 @@ import { UserConfigComponent } from '../dialogs/user-config/user-config.componen
 export class HomeComponent implements OnInit {
 
   public user: any;
+  public docente: any;
+  public estudiante: any;
+  public typeRoom: any;
+
   rooms: Room[];
   ready: boolean;
   constructor(
@@ -39,6 +43,7 @@ export class HomeComponent implements OnInit {
       //console.log(this.user.displayName, this.user.photoURL);
       this._userService.getUserData(user.uid).subscribe(datauser => {
         this.user = datauser;
+        
         if(!this.user.photoURL){
           this.user.photoURL = user.photoURL;
         }
@@ -48,7 +53,14 @@ export class HomeComponent implements OnInit {
           }
           this.EditAccount();
         } else {
-          this.salasService.getRooms(user.uid).subscribe(rooms => this.rooms = rooms);
+          if (this.user.cuenta == 'Estudiante') {
+            this.estudiante = this.user.cuenta;
+            this.typeRoom = 'joinRoom';
+          } else {
+            this.docente = this.user.cuenta;
+            this.typeRoom = 'salas'
+          }
+          this.salasService.getRooms(user.uid, this.typeRoom).subscribe(rooms => this.rooms = rooms);
           this.ready = true;
         }
       });
@@ -161,7 +173,7 @@ export class HomeComponent implements OnInit {
     if (codeRoom) {
       Swal.fire({
         title: 'Verificando Sala...',
-        allowOutsideClick: true,
+        allowOutsideClick: false,
         onBeforeOpen: () => {
           this.verifiedRoom(codeRoom);
         }
@@ -227,7 +239,8 @@ export class HomeComponent implements OnInit {
     let dataRoom = {
       nombre: room.nombre,
       descripcion: room.descripcion,
-      photo: room.photo
+      photo: room.photo,
+      maxParticipantes: room.maxParticipantes
     };
     return dataRoom
   }

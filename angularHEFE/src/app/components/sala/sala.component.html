@@ -6,7 +6,7 @@
     </div>
 
     <h2>{{room.nombre}}</h2>
-    <span class="date">
+    <span class="date" *ngIf="!room.maxParticipantes">
         Numero de participantes: 1/{{room.maxParticipantes}}
     </span>
     <a href="#">Ver detalles</a>
