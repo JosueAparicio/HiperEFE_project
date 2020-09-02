@@ -102,4 +102,90 @@ export class HomeComponent implements OnInit {
     this.dialog.open(RoomComponent, dialogConfig);
   }
 
+  async joinRoom(){
+    const { value: codeRoom } = await Swal.fire({
+      title: 'Ingresa el codigo de la sala',
+      input: 'text',
+      inputPlaceholder: 'XXXXXX',
+      showCancelButton: true,
+      inputValidator: (value) => {
+        if (!value) {
+          return 'Ingrese un codigo de sala!'
+        }
+      }
+    })
+
+    if (codeRoom) {
+      Swal.fire({
+        title: 'Verificando Sala...',
+        allowOutsideClick: true,
+        onBeforeOpen: () => {
+          this.verifiedRoom(codeRoom);
+        }
+      });
+    }
+  }
+
+  private verifiedRoom(codeRoom: any) {
+    this.salasService.getCreatorRoom(codeRoom).subscribe(uidCreator => {
+
+      if(uidCreator){
+        this.salasService.getDataRoom(uidCreator.uidCreador, codeRoom).then((dataRoom) => {
+          if (dataRoom.exists) {
+            this.salasService.getCollectionRoom(uidCreator.uidCreador, codeRoom).then((collectionMembers) => {
+              if (collectionMembers.docs.length < dataRoom.data().maxParticipantes){
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Datos de la sala',
+                  html: `<h3> ${dataRoom.data().nombre}</h3>
+                     <p> ${dataRoom.data().descripcion} </p>`,
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Unirse',
+                  cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                  if (result.value) {
+                    let packageRoom = {
+                      uidCreador: uidCreator.uidCreador,
+                      codeRoom: codeRoom,
+                      dataMember: this.getDataUser(),
+                      dataRoom: this.getDataRoom(dataRoom.data())
+                    };
+                    this.salasService.addMemberToTheROOM(packageRoom);
+                  }
+                });
+              }else{
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Sala Completa, consulte con su docente'
+                });
+              }
+            }); 
+          }
+        });
+      }else{
+        Swal.fire({
+          icon:'error',
+          title: 'Codigo de sala no existe, verifique de nuevo'
+        })
+      }
+    });
+  }
+
+  private getDataUser(){
+    let dataMember = {
+      uidStudent: this.user.uid
+    };
+    return dataMember
+  }
+
+  private getDataRoom(room){
+    let dataRoom = {
+      nombre: room.nombre,
+      descripcion: room.descripcion,
+      photo: room.photo
+    };
+    return dataRoom
+  }
 }

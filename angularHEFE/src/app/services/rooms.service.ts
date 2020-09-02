@@ -12,9 +12,13 @@ export class RoomsService {
 
   public topics: Observable<Topic[]>;
   public rooms: Observable<Room[]>;
+  public creatorRoom: Observable<any>;
+  public dataRoom: any;
   public topicsCollection: AngularFirestoreCollection;
   public topicsSelectedCollection: AngularFirestoreCollection;
   public roomsCollection: AngularFirestoreCollection;
+  public listRooms: AngularFirestoreDocument;
+  public docRoom: AngularFirestoreDocument;
   constructor(private bd: AngularFirestore) {
 
 
@@ -28,6 +32,21 @@ export class RoomsService {
   getRooms(uid){
     this.roomsCollection = this.bd.collection(`users/${uid}/salas/`);
     return this.rooms =this.roomsCollection.valueChanges();
+  }
+
+  getCreatorRoom(codeRoom){
+    this.listRooms = this.bd.collection(`rooms/`).doc(codeRoom);
+    return this.creatorRoom = this.listRooms.valueChanges();
+  }
+
+  getDataRoom(uid, codeRoom){
+    this.docRoom = this.bd.collection(`users/${uid}/salas/`).doc(codeRoom);
+    return this.dataRoom = this.docRoom.ref.get();
+  }
+
+  getCollectionRoom(uid, codeRoom){
+    this.roomsCollection = this.bd.collection(`users/${uid}/salas/${codeRoom}/members/`);
+    return this.roomsCollection.ref.get();
   }
 
   addRoom(room) {
@@ -50,8 +69,11 @@ export class RoomsService {
   }
 
   addMemberToTheROOM(data){
-    this.roomsCollection = this.bd.collection(`users/${data.uid}/salas/${data.idRoom}/members`);
-    this.roomsCollection.add(data.member).then(resp => console.log('agregado')).catch(error => console.log(error));
+    this.roomsCollection = this.bd.collection(`users/${data.uidCreador}/salas/${data.codeRoom}/members/`);
+    this.roomsCollection.doc(data.dataMember.uidStudent).set(data.dataMember).then((resp) => console.log('Exito')).catch(error => console.log(error));
+    
+    this.roomsCollection = this.bd.collection(`users/${data.dataMember.uidStudent}/joinRoom/`);
+    this.roomsCollection.doc(data.codeRoom).set(data.dataRoom).then((resp) => console.log(resp)).catch(error => console.log(error));
 
   }
 

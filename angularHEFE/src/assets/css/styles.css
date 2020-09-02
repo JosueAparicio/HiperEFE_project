@@ -1540,7 +1540,6 @@ ul li a:hover {
   transition: 0.5s;
   overflow: hidden;
   padding: 20px;
-  letter-spacing: 2px;
 }
 
 .home-user .aneon:hover {
