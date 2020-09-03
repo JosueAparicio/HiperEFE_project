@@ -38,8 +38,8 @@ export class SceneComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.topicActiveCardOption = this.orderArray(this.getStartPosition(this.posicionNumberTopic) , this.getEndPosition(), this.listTopics);
     this.trophyActive = this.orderArray(this.getStartPosition(this.posicionNumberTrophy), this.posicionNumberTrophy, this.listTrophy);
+    //this.topicActiveCardOption = this.orderArray(this.getStartPosition(this.posicionNumberTopic) , this.getEndPosition(), this.listTopics);
   }
 
   sceneLoad() {
