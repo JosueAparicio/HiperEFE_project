@@ -14,15 +14,26 @@ import { DialogExampleComponent } from '../dialogs/dialog-example/dialog-example
 export class HeaderComponent implements OnInit {
 
   @Input() status: string;
-  @Input() user: any;
+  user: any;
 
   constructor(
     public _userService: UserService,
     public _router: Router,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog) {
 
-  ngOnInit(): void {
-    
+     }
+
+  async ngOnInit(): Promise<void> {
+    const user = await this._userService.getCurrentUser();
+    if(user){
+      this._userService.getUserData(user.uid).subscribe(datauser => {
+        this.user = datauser;
+        if(!this.user.photoURL){
+          this.user.photoURL = user.photoURL;
+        }
+      });
+    }
+
   }
 
   //cerrar sesion

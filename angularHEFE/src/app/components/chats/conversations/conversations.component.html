@@ -1,0 +1,13 @@
+<div class="conversation active" *ngIf="conversation && message && user">
+  <img src="{{conversation.photo}}" alt="room image" onError="this.src='assets/images/vr.jpg'">
+
+  <div class="title-text">
+    {{conversation.nombre}}
+  </div>
+  <div class="created-date">
+    May 16
+  </div>
+  <div class="conversation-message">
+    <strong>{{user.displayName}}: </strong> {{message[0].message}}
+  </div>
+</div>
