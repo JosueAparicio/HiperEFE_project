@@ -14,6 +14,7 @@ import { GeneralValidationsComponent } from './components/general-validations/ge
 import { TermsconditionsComponent } from './components/termsconditions/termsconditions.component';
 import { SceneComponent } from './components/vr/lobby/scene/scene.component';
 import { DetailsRoomComponent } from './components/details-room/details-room.component';
+import { ChatsComponent } from './components/chats/chats.component';
 
 
 const appRoutes: Routes =[
@@ -27,6 +28,7 @@ const appRoutes: Routes =[
     { path: 'terms-and-conditions', component: TermsconditionsComponent},
     { path: 'vr/lobby', component: SceneComponent},
     { path: 'detailsRoom', component: DetailsRoomComponent},
+    { path: 'rooms/chats', component: ChatsComponent},
     { path: '**', component: ErrorComponent}
 
 ];
