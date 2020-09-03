@@ -1,0 +1,30 @@
+.buttonDelete{
+    background: red;
+}
+.buttonDelete:hover{
+    background: rgb(150, 12, 12);
+}
+
+.tableDetails{
+    background: black !important;
+    
+}
+.tableDetails td{
+    color: white;
+    border-bottom: white solid 3px;
+}
+
+.tableDetails th {
+  color: white;
+  border-bottom: white solid 3px;
+}
+
+.searchMember {
+    background: black;
+}
+.searchMember input {
+    color: white;
+}
+.labelFilter {
+    color: white;
+}

@@ -37,6 +37,7 @@ import { SalaComponent } from './components/sala/sala.component';
 import { RoomComponent } from './components/dialogs/room/room.component';
 import { UserConfigComponent } from './components/dialogs/user-config/user-config.component';
 import { ChatsComponent } from './components/chats/chats.component';
+import { DetailsRoomComponent } from './components/details-room/details-room.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { ChatsComponent } from './components/chats/chats.component';
     SalaComponent,
     RoomComponent,
     UserConfigComponent,
-    ChatsComponent
+    ChatsComponent,
+    DetailsRoomComponent
   ],
   imports: [
     BrowserModule,
