@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-messages',
@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessagesComponent implements OnInit {
 
-  constructor() { }
+  @Input()  selector: any; 
+  @Input()  user : any; 
+  public mostrar: string;
+  constructor() { 
 
-  ngOnInit(): void {
   }
 
+  ngOnInit(): void {
+
+    console.log(this.user.uid);
+    this.mostrar = this.selector;
+
+}
 }

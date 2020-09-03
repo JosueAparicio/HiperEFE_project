@@ -1,8 +1,9 @@
-<div class="conversation active" *ngIf="conversation && message && user">
+<div class="conversation" *ngIf="conversation && message && user" (click)="seleccionar($event, conversation.id)">
   <img src="{{conversation.photo}}" alt="room image" onError="this.src='assets/images/vr.jpg'">
 
   <div class="title-text">
-    {{conversation.nombre}}
+    
+    <strong>{{conversation.nombre}}</strong>
   </div>
   <div class="created-date">
     May 16

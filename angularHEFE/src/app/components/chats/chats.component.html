@@ -1,4 +1,4 @@
-<div class="home-user">
+<div class="home-user" >
 
   <input type="checkbox" id="check">
 
@@ -15,7 +15,10 @@
       <div id="conversation-list">
         <div *ngFor="let room of rooms">
 
-          <app-conversations [conversation]="room"></app-conversations>
+          <app-conversations 
+          [conversation]="room" 
+          (chatSelect)="mostrarChat($event)">
+          </app-conversations>
 
         </div>
       </div>
@@ -23,12 +26,15 @@
         <a href="#">+</a>
       </div>
       <div id="chat-title">
-        <span>Aprendiendo Angular</span>
+        <span>{{selector}}</span>
         <img src="assets/images/trash.png" alt="Delete Conversation">
       </div>
-      <div id="chat-message-list">
+      <div id="chat-message-list" *ngIf="user">
 
-        <app-messages></app-messages>
+        <app-messages 
+        [user]="user" 
+        [selector]="selector">
+      </app-messages>
 
       </div>
       <div id="chat-form">
