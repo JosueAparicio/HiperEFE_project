@@ -50,7 +50,7 @@
   <!--header area end-->
   <!--sidebar start-->
   <div class="sidebar">
-    <div class="profile">
+    <div class="profile" *ngIf="user">
       <img *ngIf="user.photoURL" src="{{user.photoURL}}" class="profile_image" alt="{{user.displayName}}">
       <img *ngIf="!user.photoURL" src="../../../assets/images/default.png" class="profile_image" alt="User Name">
 
@@ -59,9 +59,13 @@
 
     </div>
     <a href="#"><i class="fa fa-user"></i><span>Mi Perfil</span></a>
-    <a href="#"><i class="fa fa-laptop"></i><span>Salas</span></a>
-    <a href="#"><i class="fa fa-comments"></i><span>Chats</span></a>
+
+    <a [routerLink]="['/home']" [routerLinkActive]="['active']"><i class="fa fa-laptop"></i><span>Salas</span></a>
+
+    <a [routerLink]="['/rooms/chats']" [routerLinkActive]="['active']"><i class="fa fa-comments"></i><span>Chats</span></a>
+
     <a href="#"><i class="fa fa-info-circle"></i><span>Acerca de</span></a>
+
     <a (click)="openDialog()"><i class="fas fa-sliders-h"></i><span>Configuracion</span></a>
   </div>
   <!--sidebar end-->

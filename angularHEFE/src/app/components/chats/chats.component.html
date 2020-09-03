@@ -1,1 +1,41 @@
-<p>chats works!</p>
+<div class="home-user">
+
+  <input type="checkbox" id="check">
+
+  <app-header [status]="'principal'"></app-header>
+
+  <div class="clearfix"></div>
+  <div class="order ">
+
+    <div id="chat-container">
+
+      <div id="search-container">
+        <input type="text" placeholder="Buscar">
+      </div>
+      <div id="conversation-list">
+        <div *ngFor="let room of rooms">
+
+          <app-conversations [conversation]="room"></app-conversations>
+
+        </div>
+      </div>
+      <div id="new-message-container">
+        <a href="#">+</a>
+      </div>
+      <div id="chat-title">
+        <span>Aprendiendo Angular</span>
+        <img src="assets/images/trash.png" alt="Delete Conversation">
+      </div>
+      <div id="chat-message-list">
+
+        <app-messages></app-messages>
+
+      </div>
+      <div id="chat-form">
+        <img src="assets/images/upppload.png" alt="add archv">
+        <input type="text" placeholder="Escribe un mensaje">
+      </div>
+    </div>
+i5jtiroejgierjgitjgiotjg
+  </div>
+</div>

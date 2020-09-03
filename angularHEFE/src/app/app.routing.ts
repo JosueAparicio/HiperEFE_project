@@ -13,6 +13,7 @@ import { VerificarEmailComponent } from './components/verificar-email/verificar-
 import { GeneralValidationsComponent } from './components/general-validations/general-validations.component';
 import { TermsconditionsComponent } from './components/termsconditions/termsconditions.component';
 import { SceneComponent } from './components/vr/lobby/scene/scene.component';
+import { ChatsComponent } from './components/chats/chats.component';
 
 
 const appRoutes: Routes =[
@@ -25,6 +26,7 @@ const appRoutes: Routes =[
     { path: 'user/general-validations', component:GeneralValidationsComponent},
     { path: 'terms-and-conditions', component: TermsconditionsComponent},
     { path: 'vr/lobby', component: SceneComponent},
+    { path: 'rooms/chats', component: ChatsComponent},
     { path: '**', component: ErrorComponent}
 
 ];
