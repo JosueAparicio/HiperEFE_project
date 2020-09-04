@@ -1,4 +1,4 @@
-<div class="home-user" >
+<div class="home-user">
 
   <input type="checkbox" id="check">
 
@@ -7,7 +7,7 @@
   <div class="clearfix"></div>
   <div class="order ">
 
-    <div id="chat-container">
+    <div id="chat-container" *ngIf="rooms">
 
       <div id="search-container">
         <input type="text" placeholder="Buscar">
@@ -15,9 +15,7 @@
       <div id="conversation-list">
         <div *ngFor="let room of rooms">
 
-          <app-conversations 
-          [conversation]="room" 
-          (chatSelect)="mostrarChat($event)">
+          <app-conversations [conversation]="room" (chatSelect)="mostrarChat($event)">
           </app-conversations>
 
         </div>
@@ -25,22 +23,23 @@
       <div id="new-message-container">
         <a href="#">+</a>
       </div>
-      <div id="chat-title">
-        <span>{{selector}}</span>
+      <div id="chat-title" *ngIf="conversation.nombre && user">
+        <span>{{conversation.nombre}}</span>
         <img src="assets/images/trash.png" alt="Delete Conversation">
       </div>
-      <div id="chat-message-list" *ngIf="user">
-
-        <app-messages 
-        [user]="user" 
-        [selector]="selector">
-      </app-messages>
+      <div id="chat-message-list" *ngIf="messages">
+        <div *ngFor="let msg of messages">
+          <app-messages [uid]="user.uid" [message]="msg">
+          </app-messages>
 
       </div>
-      <div id="chat-form">
-        <img src="assets/images/upppload.png" alt="add archv">
-        <input type="text" placeholder="Escribe un mensaje">
+
       </div>
+      <form id="chat-form" (submit)="send()" [formGroup]="msgForm">
+        <img src="assets/images/upppload.png" alt="add archv" (click)="mmm()">
+        <mat-icon >send</mat-icon>
+        <input type="text" placeholder="Escribe un mensaje" formControlName="msg">
+      </form>
     </div>
   </div>
 </div>

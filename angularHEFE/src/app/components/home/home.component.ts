@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
       //console.log(this.user.displayName, this.user.photoURL);
       this._userService.getUserData(user.uid).subscribe(datauser => {
         //console.log(datauser);
+        
         if(datauser){
           this.user = datauser;
         }else{
@@ -66,7 +67,11 @@ export class HomeComponent implements OnInit {
               this.docente = this.user.cuenta;
               this.typeRoom = 'salas'
             }
-            this.salasService.getRooms(user.uid, this.typeRoom).subscribe(rooms => this.rooms = rooms);
+            this.salasService.getRooms(user.uid, this.typeRoom).subscribe(rooms => {
+              this.rooms = rooms;
+              console.log(rooms);
+              
+            });
 
             this.ready = true;
           }
@@ -118,11 +123,18 @@ export class HomeComponent implements OnInit {
   }
   //prueba
   openDialog() {
+
+    this.salasService.getRooms(this.user.uid, this.typeRoom).subscribe(rooms => {
+     // this.rooms = rooms;
+      console.log(rooms);
+      
+    });
+    /*
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
-    this.dialog.open(DialogExampleComponent, dialogConfig);
+    this.dialog.open(DialogExampleComponent, dialogConfig);*/
   }
   //Dialog para crear una nueva sala
   newRoom() {
@@ -161,7 +173,7 @@ export class HomeComponent implements OnInit {
         conocimiento: res.data.conocimiento
     }
     //console.log(fullDaata);
-      setTimeout(() => {this._userService.createNewUser(fullDaata)}, 2000);
+      setTimeout(() => {this._userService.updateUserandSendEmail(fullDaata)}, 2000);
     })
   }
   

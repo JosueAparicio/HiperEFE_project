@@ -1,4 +1,4 @@
-<div class="conversation" *ngIf="conversation && message && user" (click)="seleccionar($event, conversation.id)">
+<div class="conversation" *ngIf="conversation && message && user" (click)="seleccionar($event, conversation)">
   <img src="{{conversation.photo}}" alt="room image" onError="this.src='assets/images/vr.jpg'">
 
   <div class="title-text">

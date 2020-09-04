@@ -19,19 +19,26 @@ export class ConversationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.chatService.getLastMessage(this.conversation.id).subscribe(msg =>{
-        this.message = msg;
-       // console.log(msg);
-        this.chatService.getUserMsg(msg[0].uid).subscribe(p =>{
-          this.user = p;
-         // console.log(p);
-        });
+      //console.log(msg)
+      if(msg){
+        if(msg[0].uid){
+          this.message = msg;
+         // console.log(msg);
+          this.chatService.getUserMsg(msg[0].uid).subscribe(p =>{
+            this.user = p;
+           // console.log(p);
+          });
+        }
+      }
+
+
     });
   }
 
   seleccionar(event, selector){
 
     this.chatSelect.emit({
-      selector: selector
+      conversation: selector
     });
     
   }
