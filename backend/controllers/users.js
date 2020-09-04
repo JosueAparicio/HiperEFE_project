@@ -11,8 +11,8 @@ var controller = {
         console.log(req.params.email);
         var transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
-            port: 25,
-            secure: false,
+            port: 465,
+            secure: true,
             auth: {
                 user: 'hiperefe.contact@gmail.com',
                 pass: 'hiperEFE2020'
