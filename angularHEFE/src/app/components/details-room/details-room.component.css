@@ -1,12 +1,19 @@
 .buttonDelete{
     background: red;
 }
+
+.home-user .contentDetails{
+    height: 100vh;
+    background: black;
+    position: inherit;
+}
+
 .buttonDelete:hover{
     background: rgb(150, 12, 12);
 }
 
 .tableDetails{
-    background: black !important;
+    background: transparent !important;
     
 }
 .tableDetails td{
@@ -20,11 +27,23 @@
 }
 
 .searchMember {
+    padding-top: 50px;
     background: black;
+    position: inherit;
 }
 .searchMember input {
-    color: white;
+    color: black;
+    width: 50%;
+    margin-left: 25%;
+    background: white;
+    padding: 10px;
+    border-radius: 20px;
 }
 .labelFilter {
     color: white;
+}
+
+.titleDetails{
+    color:white;
+    text-align: center;
 }
