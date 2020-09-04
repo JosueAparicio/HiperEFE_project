@@ -1,23 +1,45 @@
- <div class="message-row other-message">
-          <div class="message-content">
-            <img src="assets/images/profilepp.jpeg" alt="user image">
-            <div class="message-text">Esque tasca ya nadie me quiere y boy a vever cloro pork
-              si y porke ya no kier0o segir con este prollecto feo que solo kita tienpo</div>
-            <div class="message-time"><strong>Josue Aparicio </strong> Hace un momento</div>
-          </div>
-        </div>
+  <div *ngIf="message; else Load">
+
+      <div class="message-row other-message" *ngIf="!you">
         <div class="message-content">
-          <div class="message-row you-message">
-            <div class="message-text">Inuil que sos</div>
-            <div class="message-time">Hace un momento</div>
-          </div>
+          <img src="{{message.photo}}" onError="this.src='assets/images/default.png'" alt="user image">
+          <div class="message-text" [matMenuTriggerFor]="menuRep">{{message.message}}</div>
+          <div class="message-time"><strong>{{message.displayName}} </strong>{{message.date}}</div>
         </div>
+      </div>
 
-        <div class="message-row other-message">
-          <div class="message-content">
-            <img src="assets/images/profilepp.jpeg" alt="user image">
-            <div class="message-text">Ok entendido compa</div>
-            <div class="message-time">Hace un momento</div>
-          </div>
+      <div class="message-content" *ngIf="you">
+        <div class="message-row you-message">
+          <div class="message-text" [matMenuTriggerFor]="menu">{{message.message}}</div>
+          <div class="message-time">{{message.date}}</div>
         </div>
+      </div>
 
+  </div>
+
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>delete_sweep</mat-icon>
+      <span>Eliminar mensaje</span>
+    </button>
+
+    <button mat-menu-item>
+      <mat-icon>edit</mat-icon>
+      <span>Editar mensaje</span>
+    </button>
+  </mat-menu>
+
+
+  <mat-menu #menuRep="matMenu">
+
+    <button mat-menu-item (click)="reportMsg('ktg')">
+      <mat-icon>report_problem</mat-icon>
+      <span>Reportar mensaje</span>
+    </button>
+
+  </mat-menu>
+
+  <ng-template #Load>
+    <div  style="margin-top: -100px; font-size: 25px;" align="center">@HIPEREFE</div>
+  </ng-template>
