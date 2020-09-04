@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Trophy } from '../../../../models/trophy';
+import { Topic } from '../../../../models/topics';
 
 @Component({
   selector: 'app-scene',
@@ -25,6 +26,15 @@ export class SceneComponent implements OnInit {
       '1' , '2', '3', '4'
     ]
 
+    this.listTopics = [
+      { idTema: '1', tema: 'Google CardBoard', descripcion: 'Aprende a construir tus propia'},
+      { idTema: '2', tema: 'Museo de la informatica', descripcion: 'Aprende los inicios de la computacion mediante un viaje por el museo de El Salvador'},
+      { idTema: '3', tema: 'Programacion Facilito', descripcion: 'Aprende a la logica de la programacion y lo basico para comenzar en el mundo del desarrollo'},
+      { idTema: '4', tema: 'Curso de OBS', descripcion: 'Aprende a hacer Directos y a compartir tus experiencias con las personas'},
+      { idTema: '5', tema: 'Software', descripcion: 'Aprende que es el software y su importancia en nuestro entorno'},
+      { idTema: '6', tema: 'La computadora', descripcion: 'Conoce las partes de una computadora y como funcionan'},
+    ]
+
     this.listTrophy = [
       new Trophy('?', 'Diamond', 'Descubre el secreto de HiperEFE', '1'),
       new Trophy('Sumergiendonos en la VR', 'Silver', 'Visita el edificio de las CardBoard y cosntruye tus propias gafas de VR', '1'),
@@ -39,7 +49,7 @@ export class SceneComponent implements OnInit {
 
   ngOnInit(): void {
     this.trophyActive = this.orderArray(this.getStartPosition(this.posicionNumberTrophy), this.posicionNumberTrophy, this.listTrophy);
-    //this.topicActiveCardOption = this.orderArray(this.getStartPosition(this.posicionNumberTopic) , this.getEndPosition(), this.listTopics);
+    this.topicActiveCardOption = this.orderArray(this.getStartPosition(this.posicionNumberTopic) , this.getEndPosition(), this.listTopics);
   }
 
   sceneLoad() {
