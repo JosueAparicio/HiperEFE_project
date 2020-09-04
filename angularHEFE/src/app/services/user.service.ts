@@ -204,4 +204,18 @@ export class UserService {
         return  this._afirestore.collection('users').doc(uid).valueChanges();
     }
 
+    async updateUserandSendEmail(data): Promise<void> {//Crea un un nuevo usuario en el documento 'users' de firestore
+    //console.log(data);
+    return this._afirestore.collection('users').doc(data.uid).set(data).then(resp =>{
+        this.sendWelcomeEmail(data.email).subscribe(
+            Response => {
+                console.log(Response.message);
+            },
+            error => {
+                console.log(error);
+            }
+        );
+    });
+}
+
 }

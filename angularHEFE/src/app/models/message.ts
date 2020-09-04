@@ -2,8 +2,9 @@
 
 export interface Message {
     uid: string;
-    displayName: string;
+    displayName?: string;
     date: string;
     message: string;
     photoURL?: string;
+    id?: string;
 }
