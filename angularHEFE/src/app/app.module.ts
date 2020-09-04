@@ -37,6 +37,7 @@ import { SalaComponent } from './components/sala/sala.component';
 import { RoomComponent } from './components/dialogs/room/room.component';
 import { UserConfigComponent } from './components/dialogs/user-config/user-config.component';
 import { ChatsComponent } from './components/chats/chats.component';
+import { DetailsRoomComponent } from './components/details-room/details-room.component';
 import { MessagesComponent } from './components/chats/messages/messages.component';
 import { ConversationsComponent } from './components/chats/conversations/conversations.component';
 
@@ -64,6 +65,7 @@ import { ConversationsComponent } from './components/chats/conversations/convers
     RoomComponent,
     UserConfigComponent,
     ChatsComponent,
+    DetailsRoomComponent,
     MessagesComponent,
     ConversationsComponent
   ],
