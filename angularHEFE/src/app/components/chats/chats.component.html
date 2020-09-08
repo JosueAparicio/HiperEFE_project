@@ -10,7 +10,7 @@
     <div id="chat-container" *ngIf="rooms">
 
       <div id="search-container">
-        <input type="text" placeholder="Buscar">
+        <input type="text" (keyup)="applyFilter($event)" placeholder="Buscar">
       </div>
       <div id="conversation-list">
         <div *ngFor="let room of rooms">
@@ -23,23 +23,40 @@
       <div id="new-message-container">
         <a href="#">+</a>
       </div>
-      <div id="chat-title" *ngIf="conversation.nombre && user">
-        <span>{{conversation.nombre}}</span>
-        <img src="assets/images/trash.png" alt="Delete Conversation">
+      <div id="chat-title" >
+        <span *ngIf="conversation.nombre && user">{{conversation.nombre}}</span>
+        <span *ngIf="!conversation.nombre ">@HIPER EFE</span>
+        <img src="{{conversation.photo}}" onError="this.src='assets/images/default.png'" alt="photo">
+        <mat-progress-bar *ngIf="procesando" mode="indeterminate"></mat-progress-bar>
       </div>
-      <div id="chat-message-list" *ngIf="messages">
+      <div id="chat-message-list" *ngIf="messages; else Principal">
         <div *ngFor="let msg of messages">
-          <app-messages [uid]="user.uid" [message]="msg">
+          
+        
+          <app-messages [uid]="user.uid" 
+          [message]="msg" 
+          [room]="conversation.id" 
+          (delete)="deleteMsg($event)" 
+          (reported)="reportMsg($event)">
           </app-messages>
+        
 
       </div>
-
       </div>
-      <form id="chat-form" (submit)="send()" [formGroup]="msgForm">
-        <img src="assets/images/upppload.png" alt="add archv" (click)="mmm()">
+      <form id="chat-form" (submit)="send()" [formGroup]="msgForm" >
+
+        <img src="assets/images/upppload.png" alt="add archv" (click) ="onUploadImage()">
         <mat-icon >send</mat-icon>
-        <input type="text" placeholder="Escribe un mensaje" formControlName="msg">
+        <input type="text" placeholder="Escribe un mensaje"  formControlName="msg">
       </form>
     </div>
   </div>
 </div>
+
+<ng-template #Principal>
+  <div align ="center">
+    <img  id="image-principal-chat" src="assets/images/resource1.svg" alt="">
+
+  </div>
+
+</ng-template>

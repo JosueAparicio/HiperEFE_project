@@ -194,6 +194,12 @@ export class UserService {
         return this._hhtp.get(this.url + 'sendWelcomeEmail/' + email);
     }
 
+    sendReportedEmail(email): Observable<any> {// envia un email de bienivenida cuando el usuario ha sifo verificado
+        console.log('enviando correo...');
+        return this._hhtp.get(this.url + 'sendReportedEmail/' + email);
+    }
+
+
     //GUARDAR, MODIFICAR O ELIMINAR USUARIOS
     async createNewUser(data): Promise<void> {//Crea un un nuevo usuario en el documento 'users' de firestore
         //console.log(data);

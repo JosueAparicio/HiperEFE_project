@@ -1,4 +1,4 @@
-<div class="conversation" *ngIf="conversation && message && user" (click)="seleccionar($event, conversation)">
+<div class="conversation" *ngIf="conversation " (click)="seleccionar($event, conversation)">
   <img src="{{conversation.photo}}" alt="room image" onError="this.src='assets/images/vr.jpg'">
 
   <div class="title-text">
@@ -6,9 +6,12 @@
     <strong>{{conversation.nombre}}</strong>
   </div>
   <div class="created-date">
-    May 16
+    {{date}}
   </div>
-  <div class="conversation-message">
-    <strong>{{user.displayName}}: </strong> {{message[0].message}}
+  <div class="conversation-message" *ngIf="user && message">
+    <strong >{{user.displayName}}: </strong> {{message.message}}
+  </div>
+  <div class="conversation-message" *ngIf="!user && !message">
+    <strong >HIPER EFE ADMIN: </strong> Bienvenidos!!
   </div>
 </div>
