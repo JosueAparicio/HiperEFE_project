@@ -1556,6 +1556,8 @@ ul li a:hover {
   text-decoration: none;
   margin-top: 12px;
   font-size: 11px;
+  float: right;
+  margin-right: 30px;
 }
 
 .home-user .article-item a:hover {

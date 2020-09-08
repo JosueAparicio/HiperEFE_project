@@ -6,11 +6,11 @@
     </div>
 
     <h2>{{room.nombre}}</h2>
-    <p style="color:white">Codigo de Sala: {{room.id}} </p>
+    <span class="date" >Codigo: {{room.id}} </span>
     <span class="date" *ngIf="room.maxParticipantes">
-        Numero de participantes: 1/{{room.maxParticipantes}}
+        Participantes: 1/{{room.maxParticipantes}}
     </span>
-    <a href="#">Ver detalles</a>
+    <a  href="#">Ver detalles</a>
 
     <div class="clearfix"></div>
 </article>
