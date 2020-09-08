@@ -27,7 +27,7 @@ const appRoutes: Routes =[
     { path: 'user/general-validations', component:GeneralValidationsComponent},
     { path: 'terms-and-conditions', component: TermsconditionsComponent},
     { path: 'vr/lobby', component: SceneComponent},
-    { path: 'detailsRoom', component: DetailsRoomComponent},
+    { path: 'detailsRoom/:creator/:codeRoom', component: DetailsRoomComponent},
     { path: 'rooms/chats', component: ChatsComponent},
     { path: '**', component: ErrorComponent}
 

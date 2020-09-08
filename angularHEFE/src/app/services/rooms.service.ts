@@ -14,11 +14,12 @@ export class RoomsService {
 
   public topics: Observable<Topic[]>;
   public rooms: Observable<Room[]>;
-  public creatorRoom: Observable<any>;
+  public creatorRoom: any;
   public dataRoom: any;
   public topicsCollection: AngularFirestoreCollection;
   public topicsSelectedCollection: AngularFirestoreCollection;
   public roomsCollection: AngularFirestoreCollection;
+  public MembersRoom: AngularFirestoreCollection;
 
   public listRooms: AngularFirestoreDocument;
   public docRoom: AngularFirestoreDocument;
@@ -44,7 +45,7 @@ export class RoomsService {
 
   getCreatorRoom(codeRoom){
     this.listRooms = this.bd.collection(`rooms/`).doc(codeRoom);
-    return this.creatorRoom = this.listRooms.valueChanges();
+    return this.creatorRoom = this.listRooms.ref.get();
   }
 
   getDataRoom(uid, codeRoom){
@@ -91,6 +92,10 @@ export class RoomsService {
 
   }
 
+  getListMembers(uidCreator, codeRoom){
+    this.MembersRoom = this.bd.collection(`users/${uidCreator}/salas/${codeRoom}/members`);
+    return this.MembersRoom.valueChanges();
+  }
 
   //SMALL ALERTS
   openSnackBar(message: string, action: string) {

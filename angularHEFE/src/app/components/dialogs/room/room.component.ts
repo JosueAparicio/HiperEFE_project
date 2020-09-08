@@ -52,7 +52,7 @@ export class RoomComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.salasService.getTopics().subscribe(topics => {
-      //console.log(topics);
+      console.log(topics);
       this.dataSource.data = topics;
       //this.topics = topics;
     });

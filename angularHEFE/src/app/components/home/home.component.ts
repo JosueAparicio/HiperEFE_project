@@ -70,7 +70,6 @@ export class HomeComponent implements OnInit {
             this.salasService.getRooms(user.uid, this.typeRoom).subscribe(rooms => {
               this.rooms = rooms;
               console.log(rooms);
-              
             });
 
             this.ready = true;
@@ -202,12 +201,12 @@ export class HomeComponent implements OnInit {
   }
 
   private verifiedRoom(codeRoom: any) {
-    this.salasService.getCreatorRoom(codeRoom).subscribe(uidCreator => {
+    this.salasService.getCreatorRoom(codeRoom).then((uidCreator) => {
 
       if(uidCreator){
-        this.salasService.getDataRoom(uidCreator.uidCreador, codeRoom).then((dataRoom) => {
+        this.salasService.getDataRoom(uidCreator.data().uidCreador, codeRoom).then((dataRoom) => {
           if (dataRoom.exists) {
-            this.salasService.getCollectionRoom(uidCreator.uidCreador, codeRoom).then((collectionMembers) => {
+            this.salasService.getCollectionRoom(uidCreator.data().uidCreador, codeRoom).then((collectionMembers) => {
               if (collectionMembers.docs.length < dataRoom.data().maxParticipantes){
                 Swal.fire({
                   icon: 'success',
@@ -222,7 +221,7 @@ export class HomeComponent implements OnInit {
                 }).then((result) => {
                   if (result.value) {
                     let packageRoom = {
-                      uidCreador: uidCreator.uidCreador,
+                      uidCreador: uidCreator.data().uidCreador,
                       codeRoom: codeRoom,
                       dataMember: this.getDataUser(),
                       dataRoom: this.getDataRoom(dataRoom.data())
