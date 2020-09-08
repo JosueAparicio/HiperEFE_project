@@ -88,6 +88,11 @@ export class ChatsService {
     this.msgCollection.doc(id).delete().then(()=>this.openSnackBar('Mensaje eliminado', 'Ok')).catch(err=>this.openSnackBar('Intentalo mas tarde', 'Ok'));
  }
 
+ deleteReportedMsg(id, room){
+  this.msgCollection = this.bd.collection(`rooms/${room}/chat/`);
+    this.msgCollection.doc(id).delete();
+ }
+
  uploadImage(data){
 
   const filepath = `images/chat/${data.room}/${data.file.name}`;
