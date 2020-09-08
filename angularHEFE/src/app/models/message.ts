@@ -7,4 +7,6 @@ export interface Message {
     message: string;
     photoURL?: string;
     id?: string;
+    tipe?: string;
+    image?: string;
 }

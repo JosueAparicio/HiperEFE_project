@@ -123,7 +123,9 @@ html{
 
 #chat-title > img {
   cursor: pointer;
-  width: 20px;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
 }
 
 #chat-message-list{
@@ -185,7 +187,7 @@ html{
   grid-column-gap: 15px;
 }
 
-.message-row img{
+.other-message #user-image-message{
   border-radius: 100%;
   grid-row: span 2;
   width: 35px;
@@ -281,6 +283,17 @@ html{
 .created-date{
   color: #ddd;
   font-size: 9px;
+}
+
+#image-principal-chat{
+  width: 500px;
+  height: 350px;
+}
+#image-message{
+}
+#image-message img{
+  width: 150px !important;
+  heigth: 100px !important;
 }
 
 #conversation-list::-webkit-scrollbar,
