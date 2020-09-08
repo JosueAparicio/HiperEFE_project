@@ -59,10 +59,10 @@ export class ChatsComponent implements OnInit {
     
     //this.rooms.filter = filterValue.trim().toLowerCase();
     this.rooms.forEach(row =>{      
-      if(filterValue.indexOf(row.nombre) !== -1){
-        console.log(row);
+      if(row.nombre.indexOf(filterValue) !== -1){
+        //console.log(row);
       }else{
-        console.log('nada');
+        //console.log('nada');
         
       }
     })
@@ -116,7 +116,7 @@ export class ChatsComponent implements OnInit {
     var cont = 0;
     Global.report.forEach(word =>{
       //console.log(word)
-      if(event.reported.indexOf(word) !== -1){
+      if(event.reported.toLowerCase().indexOf(word) !== -1){
         console.log('encontrado => '+ word);
         cont ++;
       }
@@ -131,7 +131,7 @@ export class ChatsComponent implements OnInit {
         }, error =>{
           console.log(error);
         });
-        this._chatsService.deleteMsg(event.id, this.conversation.id);
+        this._chatsService.deleteReportedMsg(event.id, this.conversation.id);
       } else{
         this.openSnackBar('Evaluaremos este mensaje... Gracias por tu reporte.', 'Ok');
       };
