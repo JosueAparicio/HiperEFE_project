@@ -1391,7 +1391,7 @@ ul li a:hover {
   margin-left: 250px;
   height: 100%;
   transition: 0.5s;
-  background: black;
+  background: #181818;
 }
 
 .home-user #check:checked~ div.content {
