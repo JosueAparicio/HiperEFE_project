@@ -48,11 +48,6 @@ export var Global = {
         return Math.floor(Math.random() * (maximo - minimo + 1) + minimo);
     },
 
-
     report: ['porno', 'pvta', 'pvto', 'pornografia', 'sexo', 'marihuana', 'te mato', 'sos estupido', 'eres estupido', 'estupido negro', 'negro imbecil', 'puto', 'puta', 'te violo', 'te voy a violar' ]
-
-    
-
-
 
 }
