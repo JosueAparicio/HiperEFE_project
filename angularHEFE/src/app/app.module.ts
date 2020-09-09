@@ -13,7 +13,7 @@ import { MaterialModule } from './material/material.module';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
@@ -81,7 +81,8 @@ import { ConversationsComponent } from './components/chats/conversations/convers
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
     SweetAlert2Module, BrowserAnimationsModule,
     MaterialModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    PickerModule
 
   ],
   entryComponents: [

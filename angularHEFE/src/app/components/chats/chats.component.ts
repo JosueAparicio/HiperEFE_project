@@ -18,6 +18,9 @@ import Swal from 'sweetalert2';
 })
 export class ChatsComponent implements OnInit {
 
+
+
+
   public user: any;
   public rooms: Room[];
   public roomSearch: Room [];
@@ -27,6 +30,7 @@ export class ChatsComponent implements OnInit {
   msgForm: FormGroup;
   msgImageForm: FormGroup;
   public procesando: boolean;
+  emojis: boolean = false;
   constructor(public _userService: UserService, public _chatsService: ChatsService, private _formBuilder: FormBuilder, private _snackBar: MatSnackBar) { }
 
   async ngOnInit(): Promise<void> {
@@ -51,6 +55,19 @@ export class ChatsComponent implements OnInit {
       });
     });
 
+  }
+
+  addEmoji($event){
+    let data = this.msgForm.get('msg');
+    data.patchValue(data.value + $event.emoji.native)
+  }
+
+  changeEmojis(){
+    if(this.emojis == true){
+      this.emojis = false
+    } else{
+      this.emojis = true
+    }
   }
 
   applyFilter(event: Event) {

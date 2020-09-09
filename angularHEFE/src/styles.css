@@ -194,6 +194,19 @@ html{
   height: 35px;
 }
 
+.emoji-mart-scroll {
+  border-bottom: 0;
+  margin-bottom: 6px;
+}
+
+.emoji-mart-scroll + .emoji-mart-bar {
+  display: none;
+}
+emoji-mart{
+  z-index: 1000;
+  margin-left: 300px !important;
+  margin-top: -450px !important;
+}
 #chat-form{
   display: grid;
   grid: 51px / 32px 1fr;
@@ -217,7 +230,16 @@ html{
 #chat-form > img:hover{
   cursor: pointer;
 }
-
+#chat-form #emoji{
+  position: absolute;
+  top: 0;
+  left: 10%;
+  padding: 22px 0;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  width: 55px;
+  cursor: pointer;
+}
 #chat-form input{
   outline: none;
   padding: 15px;
@@ -225,6 +247,8 @@ html{
   color: #330;
   border-radius: 6px;
   font-size: 13.5px;
+  width: 95%;
+  margin-left: 7%;
 }
 #chat-form mat-icon {
   position: absolute;
@@ -233,8 +257,8 @@ html{
   padding: 27px 0;
   font-size: 16px;
   color: rgb(0, 0, 0);
-  pointer-events: none;
   transition: .5s;
+  cursor: pointer;
 
 }
 .conversation {

@@ -21,7 +21,7 @@
         </div>
       </div>
       <div id="new-message-container">
-        <a href="#">+</a>
+        <a>+</a>
       </div>
       <div id="chat-title" >
         <span *ngIf="conversation.nombre && user">{{conversation.nombre}}</span>
@@ -43,10 +43,12 @@
 
       </div>
       </div>
+      <emoji-mart *ngIf="emojis" (emojiClick)="addEmoji($event)" emoji="point_up"></emoji-mart>
       <form id="chat-form" (submit)="send()" [formGroup]="msgForm" >
-
         <img src="assets/images/upppload.png" alt="add archv" (click) ="onUploadImage()">
-        <mat-icon >send</mat-icon>
+        <img src="assets/images/emoji.png" alt="add emoji" id="emoji"   (click)="changeEmojis()">
+
+        <mat-icon (clicl)="send()" >send</mat-icon>
         <input type="text" placeholder="Escribe un mensaje"  formControlName="msg">
       </form>
     </div>
@@ -56,7 +58,7 @@
 <ng-template #Principal>
   <div align ="center">
     <img  id="image-principal-chat" src="assets/images/resource1.svg" alt="">
-
   </div>
-
 </ng-template>
+
+
