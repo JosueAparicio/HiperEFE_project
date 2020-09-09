@@ -52,7 +52,7 @@
   <div class="sidebar">
     <div class="profile" *ngIf="user">
       <img *ngIf="user.photoURL" src="{{user.photoURL}}" class="profile_image" alt="{{user.displayName}}">
-      <img *ngIf="!user.photoURL" src="../../../assets/images/default.png" class="profile_image" alt="User Name">
+      <img *ngIf="!user.photoURL" src="../../../assets/images/userDefault.svg" class="profile_image" alt="User Name">
 
       <h4 *ngIf="user.displayName">{{user.displayName}}</h4>
       <h4 *ngIf="!user.displayName">User Name</h4>
