@@ -58,6 +58,11 @@ export class RoomsService {
     return this.roomsCollection.ref.get();
   }
 
+  getCollectionRoomAsync(uid, codeRoom) {
+    this.roomsCollection = this.bd.collection(`users/${uid}/salas/${codeRoom}/members/`);
+    return this.roomsCollection.valueChanges();
+  }
+
   addRoom(room) {
     console.log(room);
     

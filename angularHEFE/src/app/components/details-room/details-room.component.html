@@ -19,7 +19,8 @@
           <!-- Position Column -->
           <ng-container matColumnDef="photoURL">
             <th mat-header-cell *matHeaderCellDef> Foto de Perfil </th>
-            <td mat-cell *matCellDef="let element"><img src="{{element.photoURL}}"></td>
+            <td mat-cell *matCellDef="let element">
+              <img src="{{element.photoURL}}" onError="this.src='assets/images/userDefault.svg'"></td>
           </ng-container>
 
           <!-- Name Column -->
