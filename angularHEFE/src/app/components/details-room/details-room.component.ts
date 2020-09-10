@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RoomsService } from '../../services/rooms.service';
 import { UserService } from '../../services/user.service';
 import { UserModel } from '../../models/user-model.model';
-import { Room } from '../../models/room';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,13 +20,15 @@ export class DetailsRoomComponent implements OnInit {
   public typeUser: string;
   public uidCreator: string;
   public codeRoom: string;
+  public messageTemplate: string;
   public dataRoom: any;
   public numberMembersActive: number;
   public listMembersIndex: Array<UserModel>;
   constructor(
     public _router: ActivatedRoute,
     public roomService: RoomsService,
-    public userService: UserService
+    public userService: UserService,
+    public router: Router
   ) { }
 
   displayedColumns: string[];
@@ -51,6 +53,7 @@ export class DetailsRoomComponent implements OnInit {
     var listDataUser = [];
     this.roomService.getListMembers(this.uidCreator, this.codeRoom).subscribe(listUidMembers => {
       this.numberMembersActive = listUidMembers.length;
+      
       listUidMembers.map(item => {
         listDataUser = [];
         this.userService.getUserData(item.uidStudent).subscribe(dataUser => {
@@ -72,8 +75,16 @@ export class DetailsRoomComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  prueba() {
-    console.log('Click en VR');
+  getListTopics() {
+    let listTopic = [];
+    this.roomService.getListTopic(this.uidCreator, this.codeRoom).then((list)=>{
+      
+      list.docChanges().forEach(element => {
+        listTopic.push(element.doc.data());
+      });
+      sessionStorage.setItem('topics', JSON.stringify(listTopic));
+      this.router.navigate(['/vr/lobby']);
+    });
   }
 
 }

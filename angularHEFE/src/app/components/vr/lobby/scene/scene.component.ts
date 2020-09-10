@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Trophy } from '../../../../models/trophy';
 import { Topic } from '../../../../models/topics';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-scene',
@@ -19,20 +21,11 @@ export class SceneComponent implements OnInit {
   private posicionNumberTrophy: number;
   private topicSelect: any;
 
-  constructor() { 
-
-
+  constructor(
+    private location: Location
+  ) { 
     this.listCardOption = [
       '1' , '2', '3', '4'
-    ]
-
-    this.listTopics = [
-      { idTema: '1', tema: 'Google CardBoard', descripcion: 'Aprende a construir tus propia'},
-      { idTema: '2', tema: 'Museo de la informatica', descripcion: 'Aprende los inicios de la computacion mediante un viaje por el museo de El Salvador'},
-      { idTema: '3', tema: 'Programacion Facilito', descripcion: 'Aprende a la logica de la programacion y lo basico para comenzar en el mundo del desarrollo'},
-      { idTema: '4', tema: 'Curso de OBS', descripcion: 'Aprende a hacer Directos y a compartir tus experiencias con las personas'},
-      { idTema: '5', tema: 'Software', descripcion: 'Aprende que es el software y su importancia en nuestro entorno'},
-      { idTema: '6', tema: 'La computadora', descripcion: 'Conoce las partes de una computadora y como funcionan'},
     ]
 
     this.listTrophy = [
@@ -48,6 +41,8 @@ export class SceneComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.listTopics = JSON.parse(sessionStorage.getItem('topics'));
+
     this.trophyActive = this.orderArray(this.getStartPosition(this.posicionNumberTrophy), this.posicionNumberTrophy, this.listTrophy);
     this.topicActiveCardOption = this.orderArray(this.getStartPosition(this.posicionNumberTopic) , this.getEndPosition(), this.listTopics);
   }
@@ -157,5 +152,9 @@ export class SceneComponent implements OnInit {
     return topicSlice.reduce((acc, el, i) => ({
       ...acc, [i + 1]: el,
     }), {});
+  }
+
+  exitLobby(){
+    this.location.back();
   }
 }

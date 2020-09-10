@@ -20,6 +20,7 @@ export class RoomsService {
   public topicsSelectedCollection: AngularFirestoreCollection;
   public roomsCollection: AngularFirestoreCollection;
   public MembersRoom: AngularFirestoreCollection;
+  public listTopics: AngularFirestoreCollection;
 
   public listRooms: AngularFirestoreDocument;
   public docRoom: AngularFirestoreDocument;
@@ -100,6 +101,11 @@ export class RoomsService {
   getListMembers(uidCreator, codeRoom){
     this.MembersRoom = this.bd.collection(`users/${uidCreator}/salas/${codeRoom}/members`);
     return this.MembersRoom.valueChanges();
+  }
+
+  getListTopic(uidCreator, codeRoom) {
+    this.listTopics = this.bd.collection(`users/${uidCreator}/salas/${codeRoom}/topics`);
+    return this.listTopics.ref.get();
   }
 
   //SMALL ALERTS
