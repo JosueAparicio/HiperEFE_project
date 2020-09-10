@@ -43,7 +43,8 @@
       <h3>HIPER <span>EFE</span></h3>
     </div>
     <div class="right_area">
-      <a (click)="singOut()" class="logout_btn">Cerrar Sesion</a>
+      <a (click)="singOut()" class="logout_btn">Cerrar Session <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+      
     </div>
   </header>
 
@@ -52,7 +53,7 @@
   <div class="sidebar">
     <div class="profile" *ngIf="user">
       <img *ngIf="user.photoURL" src="{{user.photoURL}}" class="profile_image" alt="{{user.displayName}}">
-      <img *ngIf="!user.photoURL" src="../../../assets/images/default.png" class="profile_image" alt="User Name">
+      <img *ngIf="!user.photoURL" src="../../../assets/images/userDefault.svg" class="profile_image" alt="User Name">
 
       <h4 *ngIf="user.displayName">{{user.displayName}}</h4>
       <h4 *ngIf="!user.displayName">User Name</h4>

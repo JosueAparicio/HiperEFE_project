@@ -11,9 +11,9 @@
     <h2>{{room.nombre}}</h2>
     <span class="date" >Codigo: {{room.id}} </span>
     <span class="date" *ngIf="room.maxParticipantes">
-        Participantes: 1/{{room.maxParticipantes}}
+        Participantes: {{numberMembers}} / {{room.maxParticipantes}}
     </span>
-    <a  href="#">Ver detalles</a>
+    <a (click)="detailsRoom()">Ver detalles</a>
 
     <div class="clearfix"></div>
 </mat-card>

@@ -1,24 +1,32 @@
-.buttonDelete{
-    background: red;
+.buttonDelete {
+  background: red;
 }
 
-.home-user .contentDetails{
-    height: 100vh;
-    background: black;
-    position: inherit;
+.home-user .contentDetails {
+  height: 100vh;
+  background: #181818;
+  position: inherit;
 }
 
-.buttonDelete:hover{
-    background: rgb(150, 12, 12);
+.buttonDelete:hover {
+  background: rgb(150, 12, 12);
 }
 
-.tableDetails{
-    background: transparent !important;
-    
+.tableDetails {
+  background: transparent !important;
+  margin-left: 10%;
+  width: 80%;
 }
-.tableDetails td{
-    color: white;
-    border-bottom: white solid 3px;
+
+.tableDetails td {
+  color: white;
+  border-bottom: white solid 3px;
+}
+
+.tableDetails td img {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
 }
 
 .tableDetails th {
@@ -27,23 +35,57 @@
 }
 
 .searchMember {
-    padding-top: 50px;
-    background: black;
-    position: inherit;
-}
-.searchMember input {
-    color: black;
-    width: 50%;
-    margin-left: 25%;
-    background: white;
-    padding: 10px;
-    border-radius: 20px;
-}
-.labelFilter {
-    color: white;
+  padding-top: 50px;
+  background: #181818;
+  position: inherit;
 }
 
-.titleDetails{
-    color:white;
-    text-align: center;
+.searchMember input {
+  color: black;
+  width: 50%;
+  margin-left: 25%;
+  background: white;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.dataroom h3 {
+  color: white;
+  text-align: center;
+  font-size: 27px;
+  margin-bottom: 0px;
+}
+
+.dataroom p{
+  color: white;
+  text-align: right;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.labelFilter {
+  color: white;
+}
+
+.titleDetails {
+  color: white;
+  text-align: center;
+  font-size: 25px;
+}
+
+.codeRoom {
+  padding-top: 0px;
+}
+
+.codeRoom h4 {
+  color: white;
+  text-align: right;
+  font-size: 13px;
+  margin-bottom: 0px;
+}
+
+.codeRoom h4 span {
+  font-size: 18px;
+  text-decoration: none;
+  font-style: italic;
 }
