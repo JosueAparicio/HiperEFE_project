@@ -10,24 +10,26 @@
           <div class="dataroom" *ngIf="dataRoom">
             <h3> {{dataRoom.nombre}} </h3>
           </div>
-          <div class="codeRoom">
-            <h4>Codigo Sala: <span> {{codeRoom}} </span> </h4>
-          </div>
-          <div class="dataroom" *ngIf="dataRoom">
-            <p>{{numberMembersActive}} / {{dataRoom.maxParticipantes}} </p>
-            <div class="worldVirtual">
-              <button (click)="prueba()">
-                <img src="../../../assets/images/virtual-reality.svg" alt="Mundo Virtual">
-                <p>Mundo Virtual</p>
-              </button>
-              <button>
-                <img src="../../../assets/images/temas.svg" alt="Mundo Virtual">
-                <p>Temas</p>
-              </button>
-              <button>
-                <img src="../../../assets/images/grupo.svg" alt="Mundo Virtual">
-                <p>Integrantes</p>
-              </button>
+          <div class="itemData">
+            <div class="codeRoom">
+              <h4>Codigo Sala: <span> {{codeRoom}} </span> </h4>
+            </div>
+            <div class="dataroom" *ngIf="dataRoom">
+              <p>{{numberMembersActive}} / {{dataRoom.maxParticipantes}} </p>
+              <div class="worldVirtual">
+                <button (click)="prueba()">
+                  <img src="../../../assets/images/virtual-reality.svg" alt="Mundo Virtual">
+                  <p>Mundo Virtual</p>
+                </button>
+                <button>
+                  <img src="../../../assets/images/temas.svg" alt="Mundo Virtual">
+                  <p>Temas</p>
+                </button>
+                <button>
+                  <img src="../../../assets/images/grupo.svg" alt="Mundo Virtual">
+                  <p>Integrantes</p>
+                </button>
+              </div>
             </div>
           </div>
           
