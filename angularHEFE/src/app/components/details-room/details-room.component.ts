@@ -72,8 +72,8 @@ export class DetailsRoomComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  prueba(userJoin) {
-
+  prueba() {
+    console.log('Click en VR');
   }
 
 }
