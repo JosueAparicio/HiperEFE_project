@@ -17,6 +17,10 @@
             <div class="dataroom" *ngIf="dataRoom">
               <p>{{numberMembersActive}} / {{dataRoom.maxParticipantes}} </p>
               <div class="worldVirtual">
+                <button (click)="back()">
+                  <img src="../../../assets/images/atras.svg" alt="Mundo Virtual">
+                  <p>Atras</p>
+                </button>
                 <button (click)="getListTopics()">
                   <img src="../../../assets/images/virtual-reality.svg" alt="Mundo Virtual">
                   <p>Mundo Virtual</p>

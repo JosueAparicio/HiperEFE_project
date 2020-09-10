@@ -5,6 +5,7 @@ import { RoomsService } from '../../services/rooms.service';
 import { UserService } from '../../services/user.service';
 import { UserModel } from '../../models/user-model.model';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class DetailsRoomComponent implements OnInit {
     public _router: ActivatedRoute,
     public roomService: RoomsService,
     public userService: UserService,
-    public router: Router
+    public router: Router,
+    public location: Location
   ) { }
 
   displayedColumns: string[];
@@ -85,6 +87,10 @@ export class DetailsRoomComponent implements OnInit {
       sessionStorage.setItem('topics', JSON.stringify(listTopic));
       this.router.navigate(['/vr/lobby']);
     });
+  }
+
+  back(){
+    this.location.back();
   }
 
 }
