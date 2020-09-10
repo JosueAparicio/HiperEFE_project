@@ -1373,11 +1373,11 @@ ul li a:hover {
   left: -190px;
 }
 
-.home-user #check:checked~.sidebar a span {
+.home-user #check:checked~ app-header .sidebar a span {
   display: none;
 }
 
-.home-user #check:checked~.sidebar a {
+.home-user #check:checked~ app-header .sidebar a {
   font-size: 20px;
   margin-left: 170px;
   width: 80px;
