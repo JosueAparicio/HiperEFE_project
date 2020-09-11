@@ -2,16 +2,17 @@
   <img src="{{conversation.photo}}" alt="room image" onError="this.src='assets/images/vr.jpg'">
 
   <div class="title-text">
-    
+
     <strong>{{conversation.nombre}}</strong>
   </div>
   <div class="created-date">
     {{date}}
   </div>
   <div class="conversation-message" *ngIf="user && message">
-    <strong >{{user.displayName}}: </strong> {{message.message}}
+    <div  *ngIf="message.message"> <strong>{{user.displayName}}: </strong> {{message.message}}</div>
+    <div  *ngIf="!message.message"> <strong>{{user.displayName}}: </strong>Ha enviado una imagen</div>
   </div>
   <div class="conversation-message" *ngIf="!user && !message">
-    <strong >HIPER EFE ADMIN: </strong> Bienvenidos!!
+    <strong>HIPER EFE ADMIN: </strong> Bienvenidos!!
   </div>
 </div>
