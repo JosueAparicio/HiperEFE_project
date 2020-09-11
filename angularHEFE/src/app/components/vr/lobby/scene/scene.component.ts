@@ -43,6 +43,11 @@ export class SceneComponent implements OnInit {
   ngOnInit(): void {
     this.listTopics = JSON.parse(sessionStorage.getItem('topics'));
 
+    if(this.listTopics.length<4){
+      this.modificView('imgNext','visible',false);
+      this.modificView('imgPrev','visible',false);
+    }
+
     this.trophyActive = this.orderArray(this.getStartPosition(this.posicionNumberTrophy), this.posicionNumberTrophy, this.listTrophy);
     this.topicActiveCardOption = this.orderArray(this.getStartPosition(this.posicionNumberTopic) , this.getEndPosition(), this.listTopics);
   }
