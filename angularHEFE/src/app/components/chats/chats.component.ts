@@ -23,7 +23,7 @@ export class ChatsComponent implements OnInit {
 
   public user: any;
   public rooms: Room[];
-  public roomSearch: Room [];
+  public roomSearch: Room[];
   public conversation: any;
   public messages: Message[];
   public msgImage: string;
@@ -57,15 +57,15 @@ export class ChatsComponent implements OnInit {
 
   }
 
-  addEmoji($event){
+  addEmoji($event) {
     let data = this.msgForm.get('msg');
     data.patchValue(data.value + $event.emoji.native)
   }
 
-  changeEmojis(){
-    if(this.emojis == true){
+  changeEmojis() {
+    if (this.emojis == true) {
       this.emojis = false
-    } else{
+    } else {
       this.emojis = true
     }
   }
@@ -73,19 +73,19 @@ export class ChatsComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     //console.log(filterValue);
-    
+
     //this.rooms.filter = filterValue.trim().toLowerCase();
-    this.rooms.forEach(row =>{      
-      if(row.nombre.indexOf(filterValue) !== -1){
+    this.rooms.forEach(row => {
+      if (row.nombre.indexOf(filterValue) !== -1) {
         //console.log(row);
-      }else{
+      } else {
         //console.log('nada');
-        
+
       }
     })
 
-    if(this.roomSearch){
-     // this.rooms = this.roomSearch;
+    if (this.roomSearch) {
+      // this.rooms = this.roomSearch;
     }
   }
   inputMessages() {
@@ -93,7 +93,6 @@ export class ChatsComponent implements OnInit {
     this._chatsService.getFullMessages(this.conversation.id).subscribe(msgs => {
       this.messages = msgs;
       //console.log(msgs);
-
     })
   }
   mostrarChat(event) {
@@ -118,8 +117,10 @@ export class ChatsComponent implements OnInit {
     }
 
     this.msgForm.reset();
-    setTimeout(() => { this._chatsService.sendMessage(newMsg, this.conversation.id);
-      this.procesando=false;}, 1000);
+    setTimeout(() => {
+      this._chatsService.sendMessage(newMsg, this.conversation.id);
+      this.procesando = false;
+    }, 1000);
 
 
   }
@@ -127,38 +128,39 @@ export class ChatsComponent implements OnInit {
     this._chatsService.deleteMsg(event.delete, this.conversation.id);
     //this.inputMessages();
   }
-  reportMsg(event){
+  reportMsg(event) {
     //console.log(event.reported);
     this.procesando = true;
     var cont = 0;
-    Global.report.forEach(word =>{
+    Global.report.forEach(word => {
       //console.log(word)
-      if(event.reported.toLowerCase().indexOf(word) !== -1){
-        console.log('encontrado => '+ word);
-        cont ++;
+      if (event.reported.toLowerCase().indexOf(word) !== -1) {
+        console.log('encontrado => ' + word);
+        cont++;
       }
-    })  
-   console.log(event.email);
-    
+    })
+    console.log(event.email);
+
     setTimeout(() => {
-      if(cont > 0){
+      if (cont > 0) {
         this.openSnackBar('El mensaje contiene lenguaje ofensivo, gracias por tu reporte', 'Ok');
-        this._userService.sendReportedEmail(event.email).subscribe(Response =>{
+        this._userService.sendReportedEmail(event.email).subscribe(Response => {
           console.log(Response.message);
-        }, error =>{
+        }, error => {
           console.log(error);
         });
         this._chatsService.deleteReportedMsg(event.id, this.conversation.id);
-      } else{
+      } else {
         this.openSnackBar('Evaluaremos este mensaje... Gracias por tu reporte.', 'Ok');
       };
-      this.procesando = false;}, 2000);
+      this.procesando = false;
+    }, 2000);
 
   }
 
 
-  async onUploadImage(){
-    if(this.conversation == 'Empty'){
+  async onUploadImage() {
+    if (this.conversation == 'Empty') {
       return;
     }
     const { value: file } = await Swal.fire({
@@ -169,36 +171,36 @@ export class ChatsComponent implements OnInit {
         'aria-label': 'Sube tu imagen aqui'
       }
     })
-    
+
     if (file) {
       const reader = new FileReader()
       reader.onload = async (e) => {
         Swal.fire({
-        title: 'Imagen lista para enviar',
-        imageUrl: e.target.result as string,
-        imageAlt: 'Imagen lista',
-        input: 'textarea',
-        inputPlaceholder: 'Type your message here...',
-        inputAttributes: {
-          'aria-label': 'Type your message here'
-        },
-        confirmButtonText: 'Enviar!'
-      }).then((result) => {
-        
-        if (result.isConfirmed) {
-          this.procesando = true;
-          console.log(result.value)
-          var data = {
-            file: file,
-            room: this.conversation.nombre,
-            roomId: this.conversation.id,
-            msg: result.value,
-            uid: this.user.uid
-          };
+          title: 'Imagen lista para enviar',
+          imageUrl: e.target.result as string,
+          imageAlt: 'Imagen lista',
+          input: 'textarea',
+          inputPlaceholder: 'Type your message here...',
+          inputAttributes: {
+            'aria-label': 'Type your message here'
+          },
+          confirmButtonText: 'Enviar!'
+        }).then((result) => {
 
-          this._chatsService.uploadImage(data);
-          setTimeout(() => {this.procesando=false;}, 2500);
-        }
+          if (result.isConfirmed) {
+            this.procesando = true;
+            console.log(result.value)
+            var data = {
+              file: file,
+              room: this.conversation.nombre,
+              roomId: this.conversation.id,
+              msg: result.value,
+              uid: this.user.uid
+            };
+
+            this._chatsService.uploadImage(data);
+            setTimeout(() => { this.procesando = false; }, 2500);
+          }
         })
       }
       reader.readAsDataURL(file as Blob)
@@ -210,9 +212,19 @@ export class ChatsComponent implements OnInit {
 
   //SMALL ALERTS
   openSnackBar(message: string, action: string) {
-      this._snackBar.open(message, action, {
-        duration: 5000,
-      });
+    this._snackBar.open(message, action, {
+      duration: 5000,
+    });
+  }
+
+  viewImage(event) {
+    Swal.fire({
+      imageUrl: event.target.src,
+      imageAlt: 'Custom image',
+      showConfirmButton: false,
+      background: 'transparent',
+      imageWidth: 350
+    })
   }
 
 }

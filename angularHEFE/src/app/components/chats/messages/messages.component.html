@@ -2,11 +2,11 @@
 
       <div class="message-row other-message" *ngIf="!you">
         <div class="message-content" *ngIf="user">
-          <img id="user-image-message" src="{{user.photoURL}}" onError="this.src='assets/images/default.png'" alt="user image">
+          <img id="user-image-message" (click)="viewImageUser($event)" src="{{user.photoURL}}" onError="this.src='assets/images/default.png'" alt="user image">
 
           <div class="message-text" [matMenuTriggerFor]="menuRep">
             <div id="image-message" align ="center">
-              <img *ngIf="tipe == 'img'" src="{{message.image}}" onError="this.src='assets/images/default.png'" alt="image">
+              <img *ngIf="tipe == 'img'" src="{{message.image}}" aria-label="Ver imagen" onError="this.src='assets/images/default.png'" alt="image">
             </div>
             {{message.message}}</div>
           <div class="message-time"><strong>{{user.displayName}},  </strong>{{date}}</div>
@@ -45,7 +45,7 @@
       <mat-icon>report_problem</mat-icon>
       <span>Reportar mensaje</span>
     </button>
-    <button *ngIf="tipe == 'img'" mat-menu-item (click)="verImagen(message.image, message.message, user.displayName)">
+    <button *ngIf="tipe == 'img'" mat-menu-item (click)="verImagen(message.image)">
       <mat-icon>visibility</mat-icon>
       <span>Ver imagen</span>
     </button>
