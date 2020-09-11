@@ -203,7 +203,7 @@ export class HomeComponent implements OnInit {
   private verifiedRoom(codeRoom: any) {
     this.salasService.getCreatorRoom(codeRoom).then((uidCreator) => {
 
-      if(uidCreator){
+      if(uidCreator.exists){
         this.salasService.getDataRoom(uidCreator.data().uidCreador, codeRoom).then((dataRoom) => {
           if (dataRoom.exists) {
             this.salasService.getCollectionRoom(uidCreator.data().uidCreador, codeRoom).then((collectionMembers) => {

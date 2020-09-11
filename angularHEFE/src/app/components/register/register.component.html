@@ -43,7 +43,7 @@
 
           <span class="invalid"
             *ngIf="registerForm.get('password').touched &&  registerForm.get('password').errors?.validPASS  ">
-            Prueba agregando mayusculas, minusculas, numeros y caracteres raros *
+            Agrega mayusculas, minusculas, numeros y caracteres raros *
           </span>
           <div class="group-input">
             <i *ngIf="registerForm.get('password').value.length > 1 && registerForm.get('password').touched  && !registerForm.get('password').errors?.required  && !registerForm.get('password').errors?.validPASS"
