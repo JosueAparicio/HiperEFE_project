@@ -90,8 +90,34 @@
     </div>
   </div>
 
+
+  <section id="chat">
+    <emoji-mart *ngIf="emojis" id="details-chat" (emojiClick)="addEmoji($event)" emoji="point_up"></emoji-mart>
+
+    <button class="chat-btn" (click)="showChat()">
+      <i class="material-icons"> comment </i>
+    </button>
+
+    <div *ngIf="showchat" class="chat-popup">
+      <div class="badge">1</div>
+      <mat-progress-bar color="accent" *ngIf="procesando" mode="indeterminate"></mat-progress-bar>
+      <div class="chat-area">
+        <div *ngFor="let msg of messages">
+
+          <app-messages [uid]="user.uid" [message]="msg" [room]="codeRoom" (delete)="deleteMsg($event)"
+            (reported)="reportMsg($event)">
+          </app-messages>
+
+        </div>
+      </div>
+      <form [formGroup]="msgForm" class="input-area">
+        <input id="send-msg" placeholder="Escribe un mensaje..." type="text" formControlName="msg">
+        <button id="emoji-btn" class="button" (click)="changeEmojis()">😄</button>
+        <button class="submit button"> <i class="material-icons" (click)="send()">send</i></button>
+      </form>
+
+    </div>
+
+  </section>
+
 </div>
-
-
-
-

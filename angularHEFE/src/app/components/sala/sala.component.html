@@ -1,4 +1,7 @@
+
+
 <article class="article-item" id="article-template">
+    <mat-card> 
     <div class="image-wrap">
         <img *ngIf="!room.photo" src="assets/images/vr.jpg" alt="Sala Image" />
         <img *ngIf="room.photo" src="{{room.photo}}" alt="Sala Image" onError="this.src='assets/images/vr.jpg'" />
@@ -13,4 +16,6 @@
     <a (click)="detailsRoom()">Ver detalles</a>
 
     <div class="clearfix"></div>
+</mat-card>
 </article>
+

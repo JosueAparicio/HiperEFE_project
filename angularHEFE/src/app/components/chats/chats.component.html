@@ -1,11 +1,10 @@
-<div class="home-user">
+<div class="home-user chats">
 
   <input type="checkbox" id="check">
 
   <app-header [status]="'principal'"></app-header>
 
-  <div class="clearfix"></div>
-  <div class="order ">
+  <div class="order">
 
     <div id="chat-container" *ngIf="rooms">
 
@@ -26,7 +25,7 @@
       <div id="chat-title" >
         <span *ngIf="conversation.nombre && user">{{conversation.nombre}}</span>
         <span *ngIf="!conversation.nombre ">@HIPER EFE</span>
-        <img src="{{conversation.photo}}" onError="this.src='assets/images/default.png'" alt="photo">
+        <img src="{{conversation.photo}}" (click)="viewImage($event)" onError="this.src='assets/images/default.png'" alt="photo">
         <mat-progress-bar *ngIf="procesando" mode="indeterminate"></mat-progress-bar>
       </div>
       <div id="chat-message-list" *ngIf="messages; else Principal">
@@ -43,12 +42,12 @@
 
       </div>
       </div>
-      <emoji-mart *ngIf="emojis" (emojiClick)="addEmoji($event)" emoji="point_up"></emoji-mart>
+      <emoji-mart *ngIf="emojis" id="general-chats" (emojiClick)="addEmoji($event)" emoji="point_up"></emoji-mart>
       <form id="chat-form" (submit)="send()" [formGroup]="msgForm" >
         <img src="assets/images/upppload.png" alt="add archv" (click) ="onUploadImage()">
         <img src="assets/images/emoji.png" alt="add emoji" id="emoji"   (click)="changeEmojis()">
 
-        <mat-icon (clicl)="send()" >send</mat-icon>
+        <mat-icon (click)="send()" >send</mat-icon>
         <input type="text" placeholder="Escribe un mensaje"  formControlName="msg">
       </form>
     </div>
