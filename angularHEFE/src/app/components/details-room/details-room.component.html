@@ -6,66 +6,92 @@
 
   <div class="content">
     <div class="contentDetails">
-        <mat-form-field class="searchMember">
-          <div class="dataroom" *ngIf="dataRoom">
-            <h3> {{dataRoom.nombre}} </h3>
-          </div>
-          <div class="codeRoom">
-            <h4>Codigo Sala: <span> {{codeRoom}} </span> </h4>
-          </div>
-          <div class="dataroom" *ngIf="dataRoom">
-            <p>{{numberMembersActive}} / {{dataRoom.maxParticipantes}} </p>
-          </div>
-          <h2 class="titleDetails">Integrante de la sala</h2>
-          <input matInput (keyup)="applyFilter($event)" placeholder="Nombre..." #input>
-        </mat-form-field>
+      <mat-form-field class="searchMember">
+        <div class="dataroom" *ngIf="dataRoom">
+          <h3> {{dataRoom.nombre}} </h3>
+        </div>
+        <div class="codeRoom">
+          <h4>Codigo Sala: <span> {{codeRoom}} </span> </h4>
+        </div>
+        <div class="dataroom" *ngIf="dataRoom">
+          <p>{{numberMembersActive}} / {{dataRoom.maxParticipantes}} </p>
+        </div>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Buscar por nombre..." #input
+          id="search-membres-input">
+      </mat-form-field>
 
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 tableDetails">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 tableDetails">
 
-          <!-- Position Column -->
-          <ng-container matColumnDef="photoURL">
-            <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let element">
-              <img src="{{element.photoURL}}" onError="this.src='assets/images/userDefault.svg'"></td>
-          </ng-container>
+        <!-- Position Column -->
+        <ng-container matColumnDef="photoURL">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <img src="{{element.photoURL}}" onError="this.src='assets/images/userDefault.svg'"></td>
+        </ng-container>
 
-          <!-- Name Column -->
-          <ng-container matColumnDef="displayName">
-            <th mat-header-cell *matHeaderCellDef> Nombre </th>
-            <td mat-cell *matCellDef="let element"> {{element.displayName}} </td>
-          </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="displayName">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let element"> {{element.displayName}} </td>
+        </ng-container>
 
-          <!-- Weight Column -->
-          <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef> Email </th>
-            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-          </ng-container>
+        <!-- Weight Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
 
-          <!-- Symbol Column -->
-          <ng-container matColumnDef="symbol" *ngIf="typeUser">
-            <th mat-header-cell *matHeaderCellDef> Eliminar </th>
-            <td mat-cell *matCellDef="let element">
-              <button (click)="prueba(element)" class="buttonDelete" mat-fab color="primary"
-                aria-label="Example icon button with a delete icon">
-                <mat-icon>delete</mat-icon>
-              </button>
-          </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="symbol" *ngIf="typeUser">
+          <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+          <td mat-cell *matCellDef="let element">
+            <button (click)="prueba(element)" class="buttonDelete" mat-fab color="primary"
+              aria-label="Example icon button with a delete icon">
+              <mat-icon>delete</mat-icon>
+            </button>
+        </ng-container>
 
 
 
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-          <!-- Row shown when there is no matching data. -->
-          <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" colspan="4" align="center">No hay miembro en la sala con llamado: "{{input.value}}"</td>
-          </tr>
-        </table>
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4" align="center">No hay miembros en la sala con "{{input.value}}"</td>
+        </tr>
+      </table>
     </div>
   </div>
 
+
+  <section id="chat">
+    <emoji-mart *ngIf="emojis" id="details-chat" (emojiClick)="addEmoji($event)" emoji="point_up"></emoji-mart>
+
+    <button class="chat-btn" (click)="showChat()">
+      <i class="material-icons"> comment </i>
+    </button>
+
+    <div *ngIf="showchat" class="chat-popup">
+      <div class="badge">1</div>
+      <mat-progress-bar color="accent" *ngIf="procesando" mode="indeterminate"></mat-progress-bar>
+      <div class="chat-area">
+        <div *ngFor="let msg of messages">
+
+          <app-messages [uid]="user.uid" [message]="msg" [room]="codeRoom" (delete)="deleteMsg($event)"
+            (reported)="reportMsg($event)">
+          </app-messages>
+
+        </div>
+      </div>
+      <form [formGroup]="msgForm" class="input-area">
+        <input id="send-msg" placeholder="Escribe un mensaje..." type="text" formControlName="msg">
+        <button id="emoji-btn" class="button" (click)="changeEmojis()">😄</button>
+        <button class="submit button"> <i class="material-icons" (click)="send()">send</i></button>
+      </form>
+
+    </div>
+
+  </section>
+
 </div>
-
-
-
-

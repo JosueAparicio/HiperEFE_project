@@ -15,17 +15,27 @@ html{
   padding: 0;
 }
 
+.chats{
+  background: #181818;
+  height: 100vh;
+}
+
 .home-user .order {
   padding-top: 100px;
   transition: 0.5s;
   height: 100%;
   margin-left: 25%;
+
 }
 
 .home-user #check:checked~ div.order {
   margin-left: 15%;
 }
 /*CHATS*/
+
+img{
+  cursor: pointer;
+}
 #chat-container{
   display: grid;
   grid: 
@@ -41,13 +51,13 @@ html{
   height: 80vh;
   background: #fff;
   border-radius: 10px;
-  border:1px solid #004BAA;
+  border:1.5px solid #004BAA;
 }
 
 #search-container,
 #conversation-list,
 #new-message-container{
-  background: #004BAA;
+  background: #0c0f38;
 }
 
 #search-container {
@@ -59,6 +69,7 @@ html{
   box-shadow: 0 1px 3px -1px black;
   z-index: 1;
 }
+
 
 #search-container input{
   color: #eee;
@@ -202,7 +213,7 @@ html{
 .emoji-mart-scroll + .emoji-mart-bar {
   display: none;
 }
-emoji-mart{
+#general-chats{
   z-index: 1000;
   margin-left: 300px !important;
   margin-top: -450px !important;

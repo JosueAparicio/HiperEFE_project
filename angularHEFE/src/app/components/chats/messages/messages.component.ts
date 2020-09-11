@@ -29,7 +29,7 @@ export class MessagesComponent implements OnInit {
 
     this.tipe = this.message.tipe;
     moment.locale('es')
-    this.date = moment(this.message.date).calendar();  
+    this.date = moment(this.message.date).fromNow();  
     if(this.message.uid == this.uid){
       this.you = true;
       this.user = '';
@@ -54,13 +54,24 @@ export class MessagesComponent implements OnInit {
 
   }
 
-  verImagen(image, message, user){
-    if(!this.user){user = 'Tu'}
+  verImagen(image){
     Swal.fire({
-      text: `${user}:  ${message}`,
       imageUrl: image,
-
       imageAlt: 'Custom image',
+      showConfirmButton: false,
+      background: 'transparent',
+      imageWidth: 350
+    })
+  }
+
+  viewImageUser(event){
+    Swal.fire({
+      imageUrl: event.target.src,
+      imageAlt: 'Custom image',
+      showConfirmButton: false,
+      background: 'transparent',
+      imageWidth: 350
+
     })
   }
 

@@ -14,6 +14,9 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import  {  NgxEmojiPickerModule  }  from  'ngx-emoji-picker';
+
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
@@ -79,10 +82,12 @@ import { ConversationsComponent } from './components/chats/conversations/convers
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
-    SweetAlert2Module, BrowserAnimationsModule,
+    SweetAlert2Module,
+    BrowserAnimationsModule,
     MaterialModule,
     MatNativeDateModule,
-    PickerModule
+    PickerModule,
+    NgxEmojiPickerModule.forRoot()
 
   ],
   entryComponents: [
