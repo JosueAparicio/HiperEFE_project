@@ -90,6 +90,34 @@
   font-style: italic;
 }
 
+.worldVirtual {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.worldVirtual img{
+  width: 40px;
+  margin-top: 5px;
+}
+
+.worldVirtual p{
+  color:white;
+  font-size: 12px;
+  text-align: center;
+}
+
+.worldVirtual button{
+  background: transparent;
+  border: solid 4px;
+  border-color: #fff;
+  border-radius: 20px;
+  width: 10%;
+  padding: 0;
+  margin-left: 10px;
+  height: 70px;
+}
+
 #search-membres-input{
   margin-bottom: 20px;
 }

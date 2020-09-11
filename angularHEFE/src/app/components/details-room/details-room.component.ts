@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { RoomsService } from '../../services/rooms.service';
 import { UserService } from '../../services/user.service';
 import { UserModel } from '../../models/user-model.model';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { Room } from '../../models/room';
 import { ChatsService } from '../../services/chats.service';
 import { Message } from '../../models/message';
@@ -25,6 +27,7 @@ export class DetailsRoomComponent implements OnInit {
   public typeUser: string;
   public uidCreator: string;
   public codeRoom: string;
+  public messageTemplate: string;
   public dataRoom: any;
   public numberMembersActive: number;
   public listMembersIndex: Array<UserModel>;
@@ -38,6 +41,8 @@ export class DetailsRoomComponent implements OnInit {
     public _router: ActivatedRoute,
     public roomService: RoomsService,
     public userService: UserService,
+    public router: Router,
+    public location: Location,
     public _chatsService: ChatsService,
     private _snackBar: MatSnackBar,
     private _formBuilder: FormBuilder
@@ -50,17 +55,17 @@ export class DetailsRoomComponent implements OnInit {
     this.msgForm = this._formBuilder.group({
       msg: ['', Validators.required]
     });
-    
+
     this.user = await this.userService.getCurrentUser();
     this.userService.getUserData(this.user.uid).subscribe(data => {
       this.userData = data;
-      if(this.userData.cuenta=='Docente'){
+      if (this.userData.cuenta == 'Docente') {
         this.displayedColumns = ['photoURL', 'displayName', 'email', 'symbol'];
         this.typeUser = this.userData.cuenta;
-      }else{
+      } else {
         this.displayedColumns = ['photoURL', 'displayName', 'email'];
       }
-      
+
     })
 
     this.uidCreator = this._router.snapshot.paramMap.get('creator');
@@ -68,16 +73,17 @@ export class DetailsRoomComponent implements OnInit {
     var listDataUser = [];
     this.roomService.getListMembers(this.uidCreator, this.codeRoom).subscribe(listUidMembers => {
       this.numberMembersActive = listUidMembers.length;
+
       listUidMembers.map(item => {
         listDataUser = [];
         this.userService.getUserData(item.uidStudent).subscribe(dataUser => {
-          listDataUser.push(dataUser);  
+          listDataUser.push(dataUser);
           this.dataSource.data = listDataUser;
         })
       });
     });
 
-    this.roomService.getDataRoom(this.uidCreator, this.codeRoom).then((room)=>{
+    this.roomService.getDataRoom(this.uidCreator, this.codeRoom).then((room) => {
       this.dataRoom = room.data();
       console.log(this.dataRoom);
     });
@@ -88,15 +94,15 @@ export class DetailsRoomComponent implements OnInit {
 
   }
 
-  changeEmojis(){
-    if(this.emojis == true){
+  changeEmojis() {
+    if (this.emojis == true) {
       this.emojis = false
-    } else{
+    } else {
       this.emojis = true
     }
   }
 
-  addEmoji($event){
+  addEmoji($event) {
     let data = this.msgForm.get('msg');
     data.patchValue(data.value + $event.emoji.native)
   }
@@ -126,49 +132,64 @@ export class DetailsRoomComponent implements OnInit {
 
   }
 
-  showChat(){
+  showChat() {
     console.log(this.showchat);
-    
-    if(this.showchat == true){
+
+    if (this.showchat == true) {
       this.showchat = false;
-    }else {
+    } else {
       this.showchat = true;
     }
+  }
 
+  getListTopics() {
+    let listTopic = [];
+    this.roomService.getListTopic(this.uidCreator, this.codeRoom).then((list) => {
+
+      list.docChanges().forEach(element => {
+        listTopic.push(element.doc.data());
+      });
+      sessionStorage.setItem('topics', JSON.stringify(listTopic));
+      this.router.navigate(['/vr/lobby']);
+    });
+  }
+
+  back() {
+    this.location.back();
   }
 
   deleteMsg(event) {
     this._chatsService.deleteMsg(event.delete, this.codeRoom);
     //this.inputMessages();
   }
-  reportMsg(event){
+  reportMsg(event) {
     //console.log(event.reported);
     var cont = 0;
     this.procesando = true;
-    Global.report.forEach(word =>{
+    Global.report.forEach(word => {
       //console.log(word)
-      if(event.reported.toLowerCase().indexOf(word) !== -1){
-        console.log('encontrado => '+ word);
-        cont ++;
+      if (event.reported.toLowerCase().indexOf(word) !== -1) {
+        console.log('encontrado => ' + word);
+        cont++;
       }
-    })  
-   console.log(event.email);
-    
+    })
+    console.log(event.email);
+
     setTimeout(() => {
-      if(cont > 0){
+      if (cont > 0) {
         this.openSnackBar('El mensaje contiene lenguaje ofensivo, gracias por tu reporte', 'Ok');
-        this.userService.sendReportedEmail(event.email).subscribe(Response =>{
+        this.userService.sendReportedEmail(event.email).subscribe(Response => {
           console.log(Response.message);
-        }, error =>{
+        }, error => {
           console.log(error);
         });
         this._chatsService.deleteReportedMsg(event.id, this.codeRoom);
-      } else{
+      } else {
         this.openSnackBar('Evaluaremos este mensaje... Gracias por tu reporte.', 'Ok');
       };
       this.procesando = false;
 
-      }, 2000);
+    }, 2000);
 
   }
 
@@ -177,5 +198,5 @@ export class DetailsRoomComponent implements OnInit {
     this._snackBar.open(message, action, {
       duration: 5000,
     });
-}
+  }
 }

@@ -14,7 +14,6 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
-import  {  NgxEmojiPickerModule  }  from  'ngx-emoji-picker';
 
 
 import { AppComponent } from './app.component';
@@ -86,9 +85,7 @@ import { ConversationsComponent } from './components/chats/conversations/convers
     BrowserAnimationsModule,
     MaterialModule,
     MatNativeDateModule,
-    PickerModule,
-    NgxEmojiPickerModule.forRoot()
-
+    PickerModule
   ],
   entryComponents: [
     DialogExampleComponent, 
