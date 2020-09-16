@@ -12,6 +12,7 @@ import { Message } from '../../models/message';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Global } from 'src/app/services/global';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -199,5 +200,36 @@ export class DetailsRoomComponent implements OnInit {
     });
   }
 
-  
+  removeStudentRoom(element){
+    Swal.fire({
+      title: 'Esta seguro de eliminar a',
+      text: `${element.displayName}`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, estoy seguro',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.reasonDelete(element);
+      }
+    })
+  }
+
+  private async reasonDelete(element){
+    const { value: text } = await Swal.fire({
+      title:'Ingresa el motivo de la expulsion',
+      input: 'textarea',
+      inputPlaceholder: 'Describe el motivo...',
+      inputAttributes: {
+        'aria-label': 'Describe el motivo'
+      },
+      showCancelButton: true
+    })
+
+    if (text) {
+      Swal.fire(text)
+    }
+  }
 }
