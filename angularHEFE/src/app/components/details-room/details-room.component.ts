@@ -193,10 +193,11 @@ export class DetailsRoomComponent implements OnInit {
 
   }
 
-
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 5000,
     });
   }
+
+  
 }
