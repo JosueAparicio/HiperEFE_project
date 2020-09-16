@@ -200,36 +200,46 @@ export class DetailsRoomComponent implements OnInit {
     });
   }
 
-  removeStudentRoom(element){
+  private removeStudentRoom(element, reason){
     Swal.fire({
-      title: 'Esta seguro de eliminar a',
-      text: `${element.displayName}`,
-      icon: 'question',
+      title: `Se eliminara a ${element.displayName}`,
+      text: `Motivo de a Eliminacion: ${reason}`,
+      icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, estoy seguro',
+      confirmButtonText: 'Confirmar',
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.reasonDelete(element);
+        this.roomService.deleteStudentRoom(this.uidCreator, this.codeRoom, element.uid);
       }
     })
   }
 
-  private async reasonDelete(element){
+  async reasonDelete(element){
     const { value: text } = await Swal.fire({
-      title:'Ingresa el motivo de la expulsion',
+      title:`Se eliminara a ${element.displayName}`,
+      text: `Ingrese el motivo de la expulsion`,
+      icon: 'warning',
       input: 'textarea',
       inputPlaceholder: 'Describe el motivo...',
       inputAttributes: {
         'aria-label': 'Describe el motivo'
       },
-      showCancelButton: true
+      showCancelButton: true,
+      confirmButtonText: 'Siguiente',
+      cancelButtonText: 'Cancelar',
+      cancelButtonColor: '#d33',
+      inputValidator: (value) => {
+        if (!value) {
+          return 'Ingresa un motivo valido'
+        }
+      }
     })
 
     if (text) {
-      Swal.fire(text)
+      this.removeStudentRoom(element, text);
     }
   }
 }
