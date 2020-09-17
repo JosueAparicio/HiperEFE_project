@@ -7,6 +7,7 @@ const nodemailer = require('nodemailer');
 const puppeteer = require('puppeteer');
 const hbs = require('handlebars')
 var helpers = require('handlebars-helpers')();
+const global = require('../services/Global')
 
 var controller = {
 
@@ -88,8 +89,11 @@ var controller = {
         });
 
     },
-    sendDeleteStudent: (req, res) => {
+    async sendDeleteStudent (req, res) {
         console.log(req.params.email);
+        const content = await global.compile('deleteStudent', {
+            
+        })
         var transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
             port: 465,
@@ -107,11 +111,7 @@ var controller = {
             from: 'HIPER EFE',
             to: `${req.params.email}`,
             subject: 'Expulsion de una sala HIPEREFE',
-            text: `Lamentamos informarle que usted ha sido eliminado de la sala de estudio ${req.params.nameRoom}
-                    Su docente ha proporcionado las siguientes causas de esta decision:
-                    Invasion de la sala, no pertenece a este grupo
-                    Le exortamos a que haga uso adecuado de nuestra plataforma para disfrutar de una mejor experiencia.
-                    `
+            html: content,
         };
         transporter.sendMail(mailOptions).then(
             resp => {

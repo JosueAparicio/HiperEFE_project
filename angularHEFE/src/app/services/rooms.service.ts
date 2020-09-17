@@ -113,16 +113,19 @@ export class RoomsService {
   }
 
   deleteStudentRoom(dataDelete) {
-    this.studentRoom = this.bd.collection(`users/${dataDelete.uidCreator}/salas/${dataDelete.codeRoom}/members`).doc(dataDelete.uidStudent);
+    console.log(dataDelete.emailStudent);
+    this.sendEmailDelete(dataDelete.emailStudent, dataDelete.nameRoom);
+
+    /*this.studentRoom = this.bd.collection(`users/${dataDelete.uidCreator}/salas/${dataDelete.codeRoom}/members`).doc(dataDelete.uidStudent);
     this.studentRoom.delete().then(() => {
       this.studentRoom = this.bd.collection(`users/${dataDelete.uidStudent}/joinRoom`).doc(dataDelete.codeRoom);
-      this.sendEmailDelete(dataDelete.emailStudent, dataDelete.nameRoom);
+      
       this.studentRoom.delete().catch((error) => {
         this.openSnackBar('Error, Intente mas tarde', 'ok');
       });
     }).catch((error) => {
       this.openSnackBar('Error, Intentelo mas Tarde', 'ok')
-    });
+    });*/
   }
 
   //SMALL ALERTS
@@ -133,6 +136,6 @@ export class RoomsService {
   }
 
   private sendEmailDelete(email, nameRoom){
-    return this._hhtp.get(this.url + 'sendDeleteStudent/' + email + '/' + nameRoom);
+    return this._hhtp.get(this.url + 'sendDeleteStudent/' + email);
   }
 }
