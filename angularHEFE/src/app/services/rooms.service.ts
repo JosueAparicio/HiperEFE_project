@@ -114,18 +114,24 @@ export class RoomsService {
 
   deleteStudentRoom(dataDelete) {
     console.log(dataDelete.emailStudent);
-    this.sendEmailDelete(dataDelete.emailStudent, dataDelete.nameRoom);
+    
 
-    /*this.studentRoom = this.bd.collection(`users/${dataDelete.uidCreator}/salas/${dataDelete.codeRoom}/members`).doc(dataDelete.uidStudent);
+    this.studentRoom = this.bd.collection(`users/${dataDelete.uidCreator}/salas/${dataDelete.codeRoom}/members`).doc(dataDelete.uidStudent);
     this.studentRoom.delete().then(() => {
       this.studentRoom = this.bd.collection(`users/${dataDelete.uidStudent}/joinRoom`).doc(dataDelete.codeRoom);
-      
+
+      this.sendEmailDelete(dataDelete.emailStudent, dataDelete.nameRoom).subscribe(response => { //Envia el corre notificando expulsion de la sala
+        //console.log('SE ENVIO EL PINCHE CORREO JOTO')
+      }, error => {
+        console.log(error);
+      });
+
       this.studentRoom.delete().catch((error) => {
         this.openSnackBar('Error, Intente mas tarde', 'ok');
       });
     }).catch((error) => {
       this.openSnackBar('Error, Intentelo mas Tarde', 'ok')
-    });*/
+    });
   }
 
   //SMALL ALERTS
@@ -135,9 +141,9 @@ export class RoomsService {
     });
   }
 
-  private sendEmailDelete(email, nameRoom){
-    console.log('Enviando correo...')
-    return this._hhtp.get(this.url + 'sendDeleteStudent/' + email);
+  private sendEmailDelete(email, nameRoom): Observable<any>{
+    //console.log(email);
+    return this._hhtp.get(this.url + 'sendDeleteEmail/' + email);
   }
 
 }
