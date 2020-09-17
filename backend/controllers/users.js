@@ -4,6 +4,9 @@ var validator = require('validator');
 var fs = require('fs');
 var path = require('path');
 const nodemailer = require('nodemailer');
+const puppeteer = require('puppeteer');
+const hbs = require('handlebars')
+var helpers = require('handlebars-helpers')();
 
 var controller = {
 
@@ -75,6 +78,46 @@ var controller = {
                 return res.status(200).send({
                     status: 'success',
                     message: 'Email de bienvenida enviado a '+ req.params.email
+                });
+            }).catch(err => {
+            console.log(err);
+            return res.status(500).send({
+                status: 'error',
+                message: err
+            });
+        });
+
+    },
+    sendDeleteStudent: (req, res) => {
+        console.log(req.params.email);
+        var transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 465,
+            secure: true,
+            auth: {
+                user: 'hiperefe.contact@gmail.com',
+                pass: 'hiperEFE2020'
+            },
+            tls: {
+                // do not fail on invalid certs
+                rejectUnauthorized: false
+            }
+        });
+        const mailOptions = {
+            from: 'HIPER EFE',
+            to: `${req.params.email}`,
+            subject: 'Expulsion de una sala HIPEREFE',
+            text: `Lamentamos informarle que usted ha sido eliminado de la sala de estudio ${req.params.nameRoom}
+                    Su docente ha proporcionado las siguientes causas de esta decision:
+                    Invasion de la sala, no pertenece a este grupo
+                    Le exortamos a que haga uso adecuado de nuestra plataforma para disfrutar de una mejor experiencia.
+                    `
+        };
+        transporter.sendMail(mailOptions).then(
+            resp => {
+                return res.status(200).send({
+                    status: 'success',
+                    message: 'Email de bienvenida enviado a ' + req.params.email
                 });
             }).catch(err => {
             console.log(err);

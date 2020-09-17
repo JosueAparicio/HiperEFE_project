@@ -212,15 +212,21 @@ export class DetailsRoomComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.roomService.deleteStudentRoom(this.uidCreator, this.codeRoom, element.uid);
+        let dataDelete = {
+          uidCreator : this.uidCreator,
+          codeRoom: this.codeRoom,
+          uidStudent: element.uid,
+          emailStudent: element.email,
+          nameRoom: this.dataRoom.nombre
+        }
+        this.roomService.deleteStudentRoom(dataDelete);
       }
     })
   }
 
   async reasonDelete(element){
     const { value: text } = await Swal.fire({
-      title:`Se eliminara a ${element.displayName}`,
-      text: `Ingrese el motivo de la expulsion`,
+      title:`Ingrese el motivo de la expulsion`,
       icon: 'warning',
       input: 'textarea',
       inputPlaceholder: 'Describe el motivo...',

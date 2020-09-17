@@ -6,6 +6,7 @@ import { Room } from '../models/room';
 import { Global } from './global';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { map } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 @Injectable()
@@ -25,8 +26,10 @@ export class RoomsService {
   public listRooms: AngularFirestoreDocument;
   public docRoom: AngularFirestoreDocument;
   public studentRoom: AngularFirestoreDocument;
-  constructor(private bd: AngularFirestore, private _snackBar: MatSnackBar) {
 
+  public url: string;
+  constructor(private bd: AngularFirestore, private _snackBar: MatSnackBar, private _hhtp: HttpClient) {
+    this.url = Global.url;
   }
 
   getTopics() {
@@ -109,11 +112,11 @@ export class RoomsService {
     return this.listTopics.ref.get();
   }
 
-  deleteStudentRoom(uidCreator, codeRoom, uidStudent) {
-    this.studentRoom = this.bd.collection(`users/${uidCreator}/salas/${codeRoom}/members`).doc(uidStudent);
+  deleteStudentRoom(dataDelete) {
+    this.studentRoom = this.bd.collection(`users/${dataDelete.uidCreator}/salas/${dataDelete.codeRoom}/members`).doc(dataDelete.uidStudent);
     this.studentRoom.delete().then(() => {
-      this.openSnackBar('Se ha eliminado al estudiante', 'ok');
-      this.studentRoom = this.bd.collection(`users/${uidStudent}/joinRoom`).doc(codeRoom);
+      this.studentRoom = this.bd.collection(`users/${dataDelete.uidStudent}/joinRoom`).doc(dataDelete.codeRoom);
+      this.sendEmailDelete(dataDelete.emailStudent, dataDelete.nameRoom);
       this.studentRoom.delete().catch((error) => {
         this.openSnackBar('Error, Intente mas tarde', 'ok');
       });
@@ -127,5 +130,9 @@ export class RoomsService {
     this._snackBar.open(message, action, {
       duration: 5000,
     });
+  }
+
+  private sendEmailDelete(email, nameRoom){
+    return this._hhtp.get(this.url + 'sendDeleteStudent/' + email + '/' + nameRoom);
   }
 }
