@@ -4,7 +4,6 @@ var validator = require('validator');
 var fs = require('fs');
 var path = require('path');
 const nodemailer = require('nodemailer');
-const puppeteer = require('puppeteer');
 const hbs = require('handlebars')
 var helpers = require('handlebars-helpers')();
 const global = require('../services/Global')

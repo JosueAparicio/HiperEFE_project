@@ -136,6 +136,8 @@ export class RoomsService {
   }
 
   private sendEmailDelete(email, nameRoom){
+    console.log('Enviando correo...')
     return this._hhtp.get(this.url + 'sendDeleteStudent/' + email);
   }
+
 }
