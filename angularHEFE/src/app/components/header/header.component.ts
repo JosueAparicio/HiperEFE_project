@@ -35,7 +35,9 @@ export class HeaderComponent implements OnInit {
     }
 
   }
-
+  goProfile(){
+    this._router.navigate([`/user/profile/${this.user.uid}`]);
+  }
   //cerrar sesion
   singOut() {
     Swal.fire({

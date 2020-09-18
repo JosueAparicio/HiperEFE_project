@@ -32,7 +32,6 @@ export class ConversationsComponent implements OnInit {
             this.user = p;
             this.message = row;
             this.date =  moment(row.date).fromNow(); 
-            //console.log(p, row);
 
           });
         });

@@ -1,0 +1,88 @@
+<div class="home-user">
+  <input type="checkbox" id="check">
+  <app-header [status]="'principal'"></app-header>
+
+
+  <div class="user-profile">
+
+    <div *ngIf="user" class="container">
+      <div class="profile-header">
+        <div class="profile-img">
+          <img *ngIf="user" src="{{user.photoURL}}" onError="this.src='assets/images/userDefault.svg'" width="200"
+            alt="">
+        </div>
+        <div class="profile-nav-info">
+          <h3 *ngIf="user" class="user-name">{{user.displayName}}</h3>
+          <div class="address">
+            <p *ngIf="user" class="state">{{date}} </p>
+            <span class="country">Años.</span>
+          </div>
+        </div>
+        <div class="profile-option">
+          <div class="notification">
+            <i class="fa fa-bell"></i>
+            <span class="alert-message">1</span>
+          </div>
+        </div>
+      </div>
+      <div class="main-bd">
+        <div class="left-side">
+          <div class="profile-side">
+            <p *ngIf="user" class="mobile-no"><i class="fa fa-user-circle-o"></i>{{user.cuenta}}</p>
+            <p *ngIf="user" class="user-mail"><i class="fa fa-envelope"></i>{{user.email}}</p>
+            <div class="user-bio">
+              <h3>Biografia</h3>
+              <p class="bio">{{user.bio}}</p>
+            </div>
+            <div class="profile-btn">
+              <button class="chatbtn">
+                <i class="fa fa-comment"></i> Mensaje
+              </button>
+
+            </div>
+            <div class="user-rating" *ngIf="list">
+              <h3 class="rating">{{list.length}}</h3>
+              <div class="rate">
+                <div class="stars"   >
+
+                    <i *ngFor="let i of list" class="fa fa-star"></i>
+
+                </div>
+                <span class="no-user"><span>{{list.length}}</span>&nbsp;&nbsp; salas a las que perteneces</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="right-side">
+          <div class="navb">
+            <ul>
+              <li (click)="mostrarVista(1)" class="user-post" [ngClass]="{'active' : general}">General</li>
+              <li (click)="mostrarVista(2)" class="user-review" [ngClass]="{'active' : acceso}">Acceso</li>
+              <li (click)="mostrarVista(3)" class="user-setting" [ngClass]="{'active' : otras}">Otros</li>
+            </ul>
+          </div>
+          <div class="profile-body">
+
+            <div *ngIf="general" class="general tab">
+              <app-general *ngIf="user" [user]="user"></app-general>
+            </div>
+
+            <div *ngIf="acceso" class="profile-posts tab example-container">
+              <app-access *ngIf="user" [user]="user"></app-access>
+            </div>
+
+            <div *ngIf="otras" class="profile-posts tab">
+              <app-others *ngIf="user" [user]="user"></app-others>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>
