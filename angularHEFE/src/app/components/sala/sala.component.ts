@@ -16,6 +16,8 @@ export class SalaComponent implements OnInit {
   public numberMembers: number;
   public user: any;
   public userData: any;
+  porcentaje: any
+  widthh: string
   constructor(
     public roomServices: RoomsService,
     public _router: Router,
@@ -43,6 +45,10 @@ export class SalaComponent implements OnInit {
   private getCollectionRoom() {
     this.roomServices.getCollectionRoomAsync(this.uidCreator, this.room.id).subscribe(collection => {
       this.numberMembers = collection.length;
+      this.porcentaje = (this.numberMembers / (this.room.maxParticipantes as any) * 100 ) ;
+      this.widthh = `${this.porcentaje}%;`;
+      console.log(this.widthh);
+      
     });
   }
 

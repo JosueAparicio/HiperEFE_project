@@ -15,7 +15,7 @@
       <section id="contentSalas">
 
         <!--Listado salas-->
-        <div id="articles" *ngIf="rooms.length>0; else Norooms">
+        <div class="room-container" *ngIf="rooms.length>0; else Norooms">
 
           <div *ngFor="let r of rooms">
 

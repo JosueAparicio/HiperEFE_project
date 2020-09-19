@@ -1335,14 +1335,11 @@ ul li a:hover {
 }
 
 .home-user .content {
-  margin-left: 250px;
   height: 100%;
   transition: 0.5s;
-  background: #181818;
-}
+  background: #18191a;}
 
 .home-user #check:checked~div.content {
-  margin-left: 60px;
 }
 
 .home-user #check {
@@ -1452,69 +1449,7 @@ ul li a:hover {
   margin-top: 10px;
 }
 
-.home-user .article-item {
-  width: 100%;
-  padding-top: 20px;
-  text-align: left;
-  margin-left: -70px;
-}
 
-.home-user .article-item mat-card {
-  border-radius: 20px;
-  background: #0c0f38;
-  border: 1px solid #ccc;
-}
-
-.home-user .article-item .image-wrap {
-  width: 100px;
-  height: 100px;
-  overflow: hidden;
-  float: left;
-  margin-right: 15px;
-  border: 1px solid #ccc;
-  background-size: cover;
-
-}
-
-.home-user .article-item .image-wrap img {
-  height: 100%;
-  text-align: center;
-
-}
-
-.home-user .article-item h2 {
-  display: block;
-  width: 100%;
-  padding: 0px;
-  margin: 0px;
-  margin-bottom: 7px;
-  color: white;
-  font-size: 18px;
-  margin-top: 10px;
-}
-
-.home-user .article-item .date {
-  display: block;
-  width: 100%;
-  color: white;
-  font-size: 13px;
-
-}
-
-.home-user .article-item a {
-  display: block;
-  color: white;
-  text-decoration: none;
-  margin-top: 12px;
-  font-size: 11px;
-  float: right;
-  margin-right: 30px;
-}
-
-.home-user .article-item a:hover {
-  text-decoration: underline;
-  color: cyan;
-}
 
 .home-user .subheader {
   font-size: 38px;
