@@ -42,6 +42,10 @@ import { ChatsComponent } from './components/chats/chats.component';
 import { DetailsRoomComponent } from './components/details-room/details-room.component';
 import { MessagesComponent } from './components/chats/messages/messages.component';
 import { ConversationsComponent } from './components/chats/conversations/conversations.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { GeneralComponent } from './components/profile/general/general.component';
+import { AccessComponent } from './components/profile/access/access.component';
+import { OthersComponent } from './components/profile/others/others.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +73,11 @@ import { ConversationsComponent } from './components/chats/conversations/convers
     ChatsComponent,
     DetailsRoomComponent,
     MessagesComponent,
-    ConversationsComponent
+    ConversationsComponent,
+    ProfileComponent,
+    GeneralComponent,
+    AccessComponent,
+    OthersComponent
   ],
   imports: [
     BrowserModule,

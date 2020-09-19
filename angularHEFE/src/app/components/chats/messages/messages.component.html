@@ -45,10 +45,17 @@
       <mat-icon>report_problem</mat-icon>
       <span>Reportar mensaje</span>
     </button>
+
     <button *ngIf="tipe == 'img'" mat-menu-item (click)="verImagen(message.image)">
       <mat-icon>visibility</mat-icon>
       <span>Ver imagen</span>
     </button>
+
+    <button mat-menu-item (click)="viewProfile(user.uid)">
+      <mat-icon>public</mat-icon>      
+      <span *ngIf="user">Perfil de {{user.displayName}}</span>
+    </button>
+    
   </mat-menu>
 
   <ng-template #Principal>

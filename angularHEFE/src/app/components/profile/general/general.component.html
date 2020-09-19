@@ -1,0 +1,23 @@
+<h1>GENERAL</h1>
+<p>Puedes modificar tu informacion general pero no olvides que tus datos publicos pueden ser vistos por
+  otros miembros de la pataforma. </p>
+<form (ngSubmit)="updateUserData()" [formGroup]="updateForm" >
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Usuario: {{user.displayName}}</mat-label>
+    <input matInput  formControlName="displayName">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Descripcion: {{user.bio}}</mat-label>
+    <textarea matInput #bio maxlength="200"  formControlName="bio"></textarea>
+    <mat-hint style="color: #fff !important;" align="end">{{bio.value.length}} / 200</mat-hint>
+    <mat-hint style="color: #fff !important;" align="start">Escribe una pequena descripcion de tu persona</mat-hint>
+
+  </mat-form-field>
+  
+  <mat-progress-bar color="accent" *ngIf="procesando" style="margin-top: 15px; margin-bottom: 0px;" mode="indeterminate"></mat-progress-bar>
+
+  <button class="saveBtn">
+    <i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar
+  </button>
+</form>

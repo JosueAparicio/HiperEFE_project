@@ -1,17 +1,18 @@
 import { Injectable } from "@angular/core";
-import { Observable, of, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { first } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { finalize, first, map } from 'rxjs/operators';
 import { User } from 'firebase';
-import { async } from 'rxjs/internal/scheduler/async';
 import Swal from 'sweetalert2';
-import { typeWithParameters } from '@angular/compiler/src/render3/util';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Global } from './global';
-import { UserModel } from '../models/user-model.model';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import * as firebase from 'firebase';
+import { Room } from '../models/room';
 
 
 
@@ -21,9 +22,8 @@ export class UserService {
     public user: User;
     public url: string;
 
-    constructor(public _afAuth: AngularFireAuth, private _router: Router, private _afirestore: AngularFirestore, private _hhtp: HttpClient) {
+    constructor(public _afAuth: AngularFireAuth, private _snackBar: MatSnackBar, private _router: Router, private _afirestore: AngularFirestore, private _hhtp: HttpClient, private storage: AngularFireStorage) {
         this.url = Global.url;
-
 
     }
 
@@ -74,29 +74,6 @@ export class UserService {
             return await this._afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(resp => {
                 //console.log(resp.user);
                 /*   const {uid, displayName, email, photoURL} = resp.user;
-                   const dataUser= { 
-                       uid,
-                       displayName,
-                       email,
-                       photoURL,
-                       date: null,
-                       cuenta:null,
-                       conocimiento:null
-                   }
-                   this.createNewUser(dataUser);
-                  
-   
-
-                this.sendWelcomeEmail(resp.user.email).subscribe(
-                    Response => {
-                        console.log(Response.message);
-
-                    },
-                    error => {
-                        console.log(error);
-
-                    }
-                );
  */
             });
         } catch (error) {
@@ -116,7 +93,8 @@ export class UserService {
                     photoURL,
                     date: data.date,
                     cuenta: null,
-                    conocimiento: null
+                    conocimiento: null,
+                    bio: null
                 }
                 this.createNewUser(dataUser);
                 this._router.navigate(['verify-account/' + resp.user.uid]);
@@ -144,6 +122,7 @@ export class UserService {
     }
     async getCurrentUser() { // Recoge al usuario actual si es que existe
         return this._afAuth.authState.pipe(first()).toPromise();
+
     }
     async sendVerificationEmail(): Promise<void> { //Eenvia el correo de verificacion de email
         try {
@@ -199,6 +178,15 @@ export class UserService {
         return this._hhtp.get(this.url + 'sendReportedEmail/' + email);
     }
 
+    reauthentication(nowPassword,  email) {
+        
+        const credentials = firebase.auth.EmailAuthProvider.credential(email, nowPassword);
+        return this._afAuth.auth.currentUser.reauthenticateWithCredential(credentials);
+
+    }
+    updatePasword(newPassword){
+      return this._afAuth.auth.currentUser.updatePassword(newPassword);
+    }
 
     //GUARDAR, MODIFICAR O ELIMINAR USUARIOS
     async createNewUser(data): Promise<void> {//Crea un un nuevo usuario en el documento 'users' de firestore
@@ -206,22 +194,96 @@ export class UserService {
         return this._afirestore.collection('users').doc(data.uid).set(data);
     }
 
-     getUserData(uid: string){
-        return  this._afirestore.collection('users').doc(uid).valueChanges();
+    getUserData(uid: string) {
+        return this._afirestore.collection('users').doc(uid).valueChanges();
     }
 
     async updateUserandSendEmail(data): Promise<void> {//Crea un un nuevo usuario en el documento 'users' de firestore
-    //console.log(data);
-    return this._afirestore.collection('users').doc(data.uid).set(data).then(resp =>{
-        this.sendWelcomeEmail(data.email).subscribe(
-            Response => {
-                console.log(Response.message);
-            },
-            error => {
-                console.log(error);
-            }
-        );
-    });
-}
+        //console.log(data);
+        return this._afirestore.collection('users').doc(data.uid).set(data).then(resp => {
+            this.sendWelcomeEmail(data.email).subscribe(
+                Response => {
+                    console.log(Response.message);
+                },
+                error => {
+                    console.log(error);
+                }
+            );
+        });
+    }
+    updateUserData(data) {
+
+        return this._afirestore.collection('users').doc(data.uid).update(data).then(r => {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Actualizacion exitosa!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }).catch(err => {
+            Swal.fire('Error!', `Algo salio mal, intentalo mas tarde`, 'error');
+        });
+
+    }
+
+    saveNewProfilePhoto(user, file) {
+
+        const filepath = `images/profiles/${user.uid}/${file.name}`;
+        const fileRef = this.storage.ref(filepath);
+        const task = this.storage.upload(filepath, file);
+        task.snapshotChanges().pipe(
+            finalize(() => {
+                console.log('img subida, bajando...');
+                fileRef.getDownloadURL().subscribe(url => {
+                    console.log(url);
+                    user.photoURL = url;
+                    this.updateUserData(user);
+                    this._afirestore.collection('users').doc(user.uid).collection('profiles').add({url: url, date: Date.now()}).then(()=>{console.log('ultima foto guardada')});
+                })
+            })).subscribe();
+
+    }
+
+    getLastProfiles(uid){
+    return this._afirestore.collection(`users/${uid}/profiles`,  ref => ref.orderBy('date', 'desc').limit(6) ).snapshotChanges().pipe(map(actions => {
+      
+        return actions.map(a => {
+          const data = a.payload.doc.data() as any;
+          data.id = a.payload.doc.id          
+          return data;
+        })
+      }));
+    }
+
+    deleteProfilePhoto(uid, id){
+        return this._afirestore.collection(`users/${uid}/profiles`).doc(`${id}`).delete().then(()=>{
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Se ha elinado la foto!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }).catch(err => {
+            Swal.fire('Error!', `Algo salio mal, intentalo mas tarde`, 'error');
+        });
+    }
+
+    getList(uid, rooms){
+        return this._afirestore.collection(`users/${uid}/${rooms}/`).snapshotChanges().pipe(map(actions =>{
+            return actions.map (a => {
+              const data = a.payload.doc.data() as Room;
+              data.id = a.payload.doc.id;
+              return data;
+            })
+        }));    }
+
+    //NOTIFICACIONES MINIMALISTAS
+    openSnackBar(message: string, action: string) {
+        this._snackBar.open(message, action, {
+            duration: 3500,
+        });
+    }
 
 }

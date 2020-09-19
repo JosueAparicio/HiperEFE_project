@@ -1,21 +1,24 @@
 
-
-<article class="article-item" id="article-template">
-    <mat-card> 
-    <div class="image-wrap">
+    <div class="course">
+      <div class="preview">
         <img *ngIf="!room.photo" src="assets/images/vr.jpg" alt="Sala Image" />
         <img *ngIf="room.photo" src="{{room.photo}}" alt="Sala Image" onError="this.src='assets/images/vr.jpg'" />
+      </div>
+      <div class="info">
+        <div class="progress-wrapper">
+          <div class="progress" [style]= "'--porcentaje-width:' + widthh " ></div>
+          <span class="progress-text">{{numberMembers}}/{{room.maxParticipantes}} participantes</span>
+        </div>
+        <h2>{{room.nombre}}</h2>
+        <h4 *ngIf="current == 'your'">{{room.id}}</h4>
+        <div class="trunc">
+          <P class="p-trunc">
+            {{room.descripcion}}
+          </P>
+        </div>
 
+        <button  class="btn-details" (click)="detailsRoom()">Ver detalles</button>
+      </div>
     </div>
 
-    <h2>{{room.nombre}}</h2>
-    <span class="date" >Codigo: {{room.id}} </span>
-    <span class="date" *ngIf="room.maxParticipantes">
-        Participantes: {{numberMembers}} / {{room.maxParticipantes}}
-    </span>
-    <a (click)="detailsRoom()">Ver detalles</a>
-
-    <div class="clearfix"></div>
-</mat-card>
-</article>
 

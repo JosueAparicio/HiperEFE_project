@@ -185,8 +185,7 @@ export class ChatsComponent implements OnInit {
             'aria-label': 'Type your message here'
           },
           confirmButtonText: 'Enviar!'
-        }).then((result) => {
-
+        }).then((result) => {          
           if (result.isConfirmed) {
             this.procesando = true;
             console.log(result.value)
@@ -206,9 +205,8 @@ export class ChatsComponent implements OnInit {
       reader.readAsDataURL(file as Blob)
     }
 
-
-
   }
+
 
   //SMALL ALERTS
   openSnackBar(message: string, action: string) {

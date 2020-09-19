@@ -1,13 +1,14 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DialogExampleComponent } from '../dialogs/dialog-example/dialog-example.component';
 import { RoomComponent } from '../dialogs/room/room.component';
 import { RoomsService } from '../../services/rooms.service';
 import { Room } from '../../models/room';
 import { UserConfigComponent } from '../dialogs/user-config/user-config.component';
+import * as moment from 'moment';
 
 
 
@@ -36,48 +37,47 @@ export class HomeComponent implements OnInit {
   async ngOnInit() {
 
     const user = await this._userService.getCurrentUser();
-    //console.log(user);
     if (user && user.emailVerified) {
-      //console.log(this.user.displayName, this.user.photoURL);
       this._userService.getUserData(user.uid).subscribe(datauser => {
-        //console.log(datauser);
-        
-        if(datauser){
+
+        if (datauser) {
           this.user = datauser;
-        }else{
+        } else {
           this.user = user;
         }
-          if(!this.user.photoURL){
-            this.user.photoURL = user.photoURL;
-          }
-          if(!this.user.cuenta || !this.user.conocimiento || !this.user.date){
-            if(!this.user.date){
-              sessionStorage.setItem('date', 'false');
-            }else{
-              sessionStorage.setItem('date', 'true');
-            }
-  
-            this.EditAccount();
-          } else {
-            
-            if (this.user.cuenta == 'Estudiante') {
-              this.estudiante = this.user.cuenta;
-              this.typeRoom = 'joinRoom';
-            } else {
-              this.docente = this.user.cuenta;
-              this.typeRoom = 'salas'
-            }
-            this.salasService.getRooms(user.uid, this.typeRoom).subscribe(rooms => {
-              this.rooms = rooms;
-              console.log(rooms);
-            });
 
-            this.ready = true;
+        if (!this.user.photoURL) {
+          this.user.photoURL = user.photoURL;
+        }
+        if (!this.user.cuenta || !this.user.conocimiento || !this.user.date) {
+          if (!this.user.date) {
+            sessionStorage.setItem('date', 'false');
+          } else {
+            sessionStorage.setItem('date', 'true');
           }
-        
+
+          this.EditAccount();
+        } else {
+
+
+          if (this.user.cuenta == 'Estudiante') {
+            this.estudiante = this.user.cuenta;
+            this.typeRoom = 'joinRoom';
+          } else {
+            this.docente = this.user.cuenta;
+            this.typeRoom = 'salas'
+          }
+          this.salasService.getRooms(user.uid, this.typeRoom).subscribe(rooms => {
+            this.rooms = rooms;
+            console.log(rooms);
+          });
+
+          this.ready = true;
+        }
+
       });
 
-      
+
     } else {
       console.log('No hay usuario logueado');
       this._router.navigate(['/inicio']);
@@ -124,17 +124,14 @@ export class HomeComponent implements OnInit {
   openDialog() {
 
     this.salasService.getRooms(this.user.uid, this.typeRoom).subscribe(rooms => {
-     // this.rooms = rooms;
+      // this.rooms = rooms;
       console.log(rooms);
-      
+
     });
-    /*
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = false;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = '60%';
-    this.dialog.open(DialogExampleComponent, dialogConfig);*/
+
   }
+
+
   //Dialog para crear una nueva sala
   newRoom() {
     const dialogConfig = new MatDialogConfig();
@@ -144,25 +141,25 @@ export class HomeComponent implements OnInit {
     dialogConfig.height = '500px';
     dialogConfig.data = this.user;
     this.dialog.open(RoomComponent, dialogConfig);
-    
+
   }
 
-  EditAccount(){
+  EditAccount() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '70%';
     dialogConfig.height = '520px';
     dialogConfig.data = this.user;
-    const ref = this.dialog.open(UserConfigComponent, dialogConfig );
+    const ref = this.dialog.open(UserConfigComponent, dialogConfig);
 
     ref.afterClosed().subscribe(async res => {
       // received data 
       let newDate = res.data.date;
-      if(res.data.date == ''){
+      if (res.data.date == '') {
         newDate = this.user.date;
       }
-      const fullDaata= { 
+      const fullDaata = {
         uid: this.user.uid,
         displayName: this.user.displayName,
         email: this.user.email,
@@ -170,13 +167,13 @@ export class HomeComponent implements OnInit {
         date: newDate,
         cuenta: res.data.cuenta,
         conocimiento: res.data.conocimiento
-    }
-    //console.log(fullDaata);
-      setTimeout(() => {this._userService.updateUserandSendEmail(fullDaata)}, 2000);
+      }
+      //console.log(fullDaata);
+      setTimeout(() => { this._userService.updateUserandSendEmail(fullDaata) }, 2000);
     })
   }
-  
-  async joinRoom(){
+
+  async joinRoom() {
     const { value: codeRoom } = await Swal.fire({
       title: 'Ingresa el codigo de la sala',
       input: 'text',
@@ -203,11 +200,11 @@ export class HomeComponent implements OnInit {
   private verifiedRoom(codeRoom: any) {
     this.salasService.getCreatorRoom(codeRoom).then((uidCreator) => {
 
-      if(uidCreator.exists){
+      if (uidCreator.exists) {
         this.salasService.getDataRoom(uidCreator.data().uidCreador, codeRoom).then((dataRoom) => {
           if (dataRoom.exists) {
             this.salasService.getCollectionRoom(uidCreator.data().uidCreador, codeRoom).then((collectionMembers) => {
-              if (collectionMembers.docs.length < dataRoom.data().maxParticipantes){
+              if (collectionMembers.docs.length < dataRoom.data().maxParticipantes) {
                 Swal.fire({
                   icon: 'success',
                   title: 'Datos de la sala',
@@ -229,32 +226,32 @@ export class HomeComponent implements OnInit {
                     this.salasService.addMemberToTheROOM(packageRoom);
                   }
                 });
-              }else{
+              } else {
                 Swal.fire({
                   icon: 'error',
                   title: 'Sala Completa, consulte con su docente'
                 });
               }
-            }); 
+            });
           }
         });
-      }else{
+      } else {
         Swal.fire({
-          icon:'error',
+          icon: 'error',
           title: 'Codigo de sala no existe, verifique de nuevo'
         })
       }
     });
   }
 
-  private getDataUser(){
+  private getDataUser() {
     let dataMember = {
       uidStudent: this.user.uid
     };
     return dataMember
   }
 
-  private getDataRoom(room){
+  private getDataRoom(room) {
     let dataRoom = {
       nombre: room.nombre,
       descripcion: room.descripcion,
