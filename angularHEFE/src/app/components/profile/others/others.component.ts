@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Room } from '../../../models/room';
 import Swal from 'sweetalert2';
 import { UserService } from '../../../services/user.service';
 @Component({
@@ -20,12 +21,18 @@ export class OthersComponent implements OnInit {
   procesando: boolean;
   photos: any;
   @Input() user: any;
-  ngOnInit(): void {
-    this._userService.getLastProfiles(this.user.uid).subscribe(profiles=>{
-      //onsole.log(profiles);
-      this.photos = profiles;
-    })
+  @Input() myUid: any;
+  @Input() rooms: Room[];
 
+  your: any;
+
+  ngOnInit(): void {
+    console.log(this.rooms);
+    this._userService.getLastProfiles(this.user.uid).subscribe(profiles=>{
+      this.photos = profiles;
+
+    })
+    if(this.user.uid == this.myUid){this.your=true}
 
   }
 

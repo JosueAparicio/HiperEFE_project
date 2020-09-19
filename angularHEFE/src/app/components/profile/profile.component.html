@@ -48,7 +48,7 @@
                     <i *ngFor="let i of list" class="fa fa-star"></i>
 
                 </div>
-                <span class="no-user"><span>{{list.length}}</span>&nbsp;&nbsp; salas a las que perteneces</span>
+                <span class="no-user"><span></span>&nbsp;&nbsp; salas a las que pertenece</span>
               </div>
             </div>
 
@@ -57,23 +57,25 @@
         <div class="right-side">
           <div class="navb">
             <ul>
-              <li (click)="mostrarVista(1)" class="user-post" [ngClass]="{'active' : general}">General</li>
-              <li (click)="mostrarVista(2)" class="user-review" [ngClass]="{'active' : acceso}">Acceso</li>
-              <li (click)="mostrarVista(3)" class="user-setting" [ngClass]="{'active' : otras}">Otros</li>
+              <li *ngIf="your" (click)="mostrarVista(1)" class="user-post" [ngClass]="{'active' : general}">General</li>
+              <li *ngIf="your"(click)="mostrarVista(2)" class="user-review" [ngClass]="{'active' : acceso}">Acceso</li>
+              <li *ngIf="your" (click)="mostrarVista(3)" class="user-setting" [ngClass]="{'active' : otras}">Otros</li>
+              <li *ngIf="other"  class="user-setting" [ngClass]="{'active' : otras}">General</li>
+
             </ul>
           </div>
           <div class="profile-body">
 
-            <div *ngIf="general" class="general tab">
-              <app-general *ngIf="user" [user]="user"></app-general>
+            <div *ngIf="general && your" class="general tab">
+              <app-general *ngIf="user " [user]="user"></app-general>
             </div>
 
-            <div *ngIf="acceso" class="profile-posts tab example-container">
+            <div *ngIf="acceso && your" class="profile-posts tab example-container">
               <app-access *ngIf="user" [user]="user"></app-access>
             </div>
 
-            <div *ngIf="otras" class="profile-posts tab">
-              <app-others *ngIf="user" [user]="user"></app-others>
+            <div *ngIf="otras && list" class="profile-posts tab">
+              <app-others *ngIf="user" [user]="user" [myUid]="iam.uid" [rooms]="list"></app-others>
             </div>
 
           </div>

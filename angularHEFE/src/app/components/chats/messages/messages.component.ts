@@ -3,6 +3,7 @@ import { ChatsService } from '../../../services/chats.service'
 import { Message } from '../../../models/message';
 import * as moment from 'moment';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
@@ -21,7 +22,7 @@ export class MessagesComponent implements OnInit {
   user: any;
   tipe: any;
   public messages: Message[];
-  constructor(private ChatService: ChatsService) {
+  constructor(private ChatService: ChatsService, private _router : Router) {
 
   }
 
@@ -73,6 +74,10 @@ export class MessagesComponent implements OnInit {
       imageWidth: 350
 
     })
+  }
+
+  viewProfile(uid){
+    this._router.navigate([`/user/profile/${uid}`]);
   }
 
 }

@@ -12,6 +12,7 @@ import { Global } from './global';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as firebase from 'firebase';
+import { Room } from '../models/room';
 
 
 
@@ -270,8 +271,13 @@ export class UserService {
     }
 
     getList(uid, rooms){
-       return this._afirestore.collection(`users/${uid}/${rooms}`).valueChanges();
-    }
+        return this._afirestore.collection(`users/${uid}/${rooms}/`).snapshotChanges().pipe(map(actions =>{
+            return actions.map (a => {
+              const data = a.payload.doc.data() as Room;
+              data.id = a.payload.doc.id;
+              return data;
+            })
+        }));    }
 
     //NOTIFICACIONES MINIMALISTAS
     openSnackBar(message: string, action: string) {

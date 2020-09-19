@@ -1,13 +1,15 @@
-<h1>FOTO DE PERFIL</h1>
-<p>Las fotos de perfil que ponemos son nuestro escaparate, nuestra carta de presentación al mundo. Esto
+<h1 *ngIf="your">FOTO DE PERFIL</h1>
+<p *ngIf="your">Las fotos de perfil que ponemos son nuestro escaparate, nuestra carta de presentación al mundo. Esto
   refleja cómo nos vemos a nosotros mismos y cómo queremos que los demás nos vean.</p>
-
+<p *ngIf="!your">Cuando se trata de privacidad, no olvides la regla de oro: trata a los demás como te gustaría que te
+  trataran a ti</p>
 
 
 <mat-tab-group color="accent" mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
-  <mat-tab label="Seleccionar foto">
+  <mat-tab label="Ultimas fotos">
 
-    <p style="margin-top: 20px;">Tus ultimas fotos de perfil</p>
+    <p *ngIf="your" style="margin-top: 20px;">Tus ultimas fotos de perfil</p>
+    <p *ngIf="!your" style="margin-top: 20px;">Ultimas fotos de {{user.displayName}}</p>
 
     <div *ngIf="photos && photos.length>0; else NoProfiles">
       <section>
@@ -25,11 +27,11 @@
               <mat-icon>visibility</mat-icon>
               <span>Ver imagen</span>
             </button>
-            <button mat-menu-item (click)="selectProfile(photo.url)">
+            <button *ngIf="your" mat-menu-item (click)="selectProfile(photo.url)">
               <mat-icon>add_photo_alternate</mat-icon>
               <span>Seleccionar como perfil</span>
             </button>
-            <button mat-menu-item (click)="deleteImage(photo.id)">
+            <button *ngIf="your" mat-menu-item (click)="deleteImage(photo.id)">
               <mat-icon>delete_outline</mat-icon>
               <span>Eliminar foto</span>
             </button>
@@ -42,7 +44,7 @@
 
   </mat-tab>
 
-  <mat-tab label="Subir nueva foto">
+  <mat-tab *ngIf="your" label="Subir nueva foto">
     <div class="profile-photo">
       <div class="photo">
         <img *ngIf="imgView" [src]="getSantizeUrl(preview)" alt="Image Preview">
@@ -62,6 +64,17 @@
       <i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar
     </button>
   </mat-tab>
+
+  <mat-tab *ngIf="!your" label="Salas">
+    <div class="room-container">
+      <div  *ngFor="let romm of rooms">
+        <app-sala [room]="romm" [current]="other"></app-sala>
+  
+      </div>
+    </div>
+
+  </mat-tab>
+
 </mat-tab-group>
 
 

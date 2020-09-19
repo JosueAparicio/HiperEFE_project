@@ -13,7 +13,7 @@ import { UserService } from '../../services/user.service';
 export class ProfileComponent implements OnInit {
 
   constructor(private _router: ActivatedRoute, private _userService: UserService, private _snackBar: MatSnackBar) { }
-  general: boolean = true;
+  general: boolean;
   acceso: boolean;
   otras: boolean;
   user: any;
@@ -21,22 +21,30 @@ export class ProfileComponent implements OnInit {
   hide = true;
   hiden = true;
   list: any;
-  ngOnInit(): void {
+  iam: any;
+  your: boolean;
+  other: boolean;
+  async ngOnInit(): Promise<void> {
     const uid = this._router.snapshot.paramMap.get('uid');
+
+   this.iam = await this._userService.getCurrentUser();
     this._userService.getUserData(uid).subscribe(datauser => {
       this.user = datauser;
-      //console.log(this.user.displayName);
+      if(this.iam.uid == this.user.uid){this.your = true; this.general = true}else{this.other=true; this.otras = true}
       this.date = moment().diff(this.user.date, 'years', false)
 
       if(this.user.cuenta == 'Docente'){
         this._userService.getList(this.user.uid, 'salas').subscribe(na =>{
           this.list = na;
+          
         })
       }else{
         this._userService.getList(this.user.uid, 'joinRoom').subscribe(na =>{
           this.list = na;
+
         })
       }
+      
     });
 
 
