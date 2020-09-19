@@ -9,7 +9,7 @@ var router = express.Router();
 //rutas
 router.get('/sendWelcomeEmail/:email', controller.sendWelcomeEmail);
 router.get('/sendReportedEmail/:email', controller.sendReportedEmail);
-router.get('/sendDeleteEmail/:email', controller.sendDeleteEmail);
+router.get('/sendDeleteEmail/:email/:teacher/:reason/:nameRoom', controller.sendDeleteEmail);
 
 
 

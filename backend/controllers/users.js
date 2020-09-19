@@ -4,7 +4,7 @@ var validator = require('validator');
 var fs = require('fs');
 var path = require('path');
 const nodemailer = require('nodemailer');
-const hbs = require('handlebars')
+var hbs = require('nodemailer-express-handlebars');
 var helpers = require('handlebars-helpers')();
 const global = require('../services/Global')
 
@@ -91,9 +91,10 @@ var controller = {
     async sendDeleteEmail(req, res) {
         try {
             //console.log(req.params.email);
-            const content = await global.compile('deleteStudent', {
-                nombre: 'HOLA'
-            })
+            /*const content = await global.compile('deleteStudent', {
+                teacher: req.params.teacher,
+                reason: req.params.reason
+            })*/
             var transporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
                 service: 'Gmail',
@@ -106,12 +107,29 @@ var controller = {
                     rejectUnauthorized: false
                 }
             });
+
+            transporter.use("compile", hbs({
+                viewEngine: {
+                        partialsDir: "./views/",
+                        layoutsDir: "./views/layout",
+                        extname: ".hbs"
+                    },
+                    extName: ".hbs",
+                    viewPath: "./views/"
+            }));
+
             const mailOptions = {
                 from: 'HIPER EFE',
                 to: `${req.params.email}`,
                 subject: 'Expulsion de una sala HIPEREFE',
-                html: content,
+                template: 'deleteStudent',
+                context: {
+                    teacher: req.params.teacher,
+                    reason: req.params.reason,
+                    nameRoom: req.params.nameRoom
+                }
             };
+            
             transporter.sendMail(mailOptions).then(
                 resp => {
                     return res.status(200).send({

@@ -32,6 +32,7 @@ export class DetailsRoomComponent implements OnInit {
   public dataRoom: any;
   public numberMembersActive: number;
   public listMembersIndex: Array<UserModel>;
+  private nameTeacher: string;
   showchat: boolean = false;
   messages: Message[];
   emojis: boolean = false;
@@ -63,6 +64,7 @@ export class DetailsRoomComponent implements OnInit {
       if (this.userData.cuenta == 'Docente') {
         this.displayedColumns = ['photoURL', 'displayName', 'email', 'symbol'];
         this.typeUser = this.userData.cuenta;
+        this.nameTeacher = this.userData.displayName;
       } else {
         this.displayedColumns = ['photoURL', 'displayName', 'email'];
       }
@@ -217,7 +219,9 @@ export class DetailsRoomComponent implements OnInit {
           codeRoom: this.codeRoom,
           uidStudent: element.uid,
           emailStudent: element.email,
-          nameRoom: this.dataRoom.nombre
+          nameRoom: this.dataRoom.nombre,
+          nameTeacher: this.nameTeacher,
+          reasonDelete: reason
         }
         this.roomService.deleteStudentRoom(dataDelete);
       }
