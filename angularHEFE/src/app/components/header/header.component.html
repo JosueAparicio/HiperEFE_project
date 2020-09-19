@@ -59,7 +59,7 @@
       <h4 *ngIf="!user.displayName">User Name</h4>
 
     </div>
-    <a href="#"><i class="fa fa-user"></i><span>Mi Perfil</span></a>
+    <a (click)="goProfile()" ><i class="fa fa-user"></i><span>Mi Perfil</span></a>
 
     <a [routerLink]="['/home']" [routerLinkActive]="['active']"><i class="fa fa-laptop"></i><span>Salas</span></a>
 

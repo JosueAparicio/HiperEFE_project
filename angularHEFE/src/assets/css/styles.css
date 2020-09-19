@@ -10,9 +10,10 @@ div.container {
   width: 95%;
   padding-left: 5%;
 }
-.inputs-radious{
+
+.inputs-radious {
   margin-top: 15px;
-  background:  #979de6;
+  background: #979de6;
 }
 
 .inputs-radious mat-radio-button {
@@ -29,6 +30,7 @@ table th {
   color: black;
   font-size: 15px;
 }
+
 mat-card {
   border: 2px solid #0c0f38;
 }
@@ -61,24 +63,26 @@ form.normal-form {
   display: grid;
   grid-template-columns: 60px;
   grid-template-rows: 60px 60px 30px;
-  grid-template-areas: "image" "text" "stats";
+  grid-template-areas: "image""text""stats";
   border-radius: 18px;
   background: white;
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
   font-family: roboto;
   text-align: center;
   width: 400px;
   background: #0c0f38;
 
 }
+
 .card:hover {
   transform: scale(1.15);
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
 }
+
 .card {
   transition: 0.5s ease;
   cursor: pointer;
-  margin:30px;
+  margin: 30px;
 }
 
 mat-grid-tile p {
@@ -93,12 +97,15 @@ mat-grid-tile p {
   margin-top: 33px !important;
   margin-left: 2px;
 }
+
 .cuenta img {
   margin-left: 30px !important;
 }
+
 .dateForm {
   margin-top: 50px;
 }
+
 .controles-container-search {
   width: 100%;
 }
@@ -111,9 +118,11 @@ mat-grid-tile p {
 
   border: 1.5px solid #0c0f38;
 }
+
 .new-room .img {
   background-size: cover;
 }
+
 .new-room .img img {
   width: 150px;
   border-radius: 100%;
@@ -129,15 +138,17 @@ mat-grid-tile p {
 mat-radio-group mat-radio-button {
   margin-left: 5px;
 }
+
 mat-form-field {
   margin-top: 10px;
 }
-mat-form-field  img{
+
+mat-form-field img {
   width: 80px;
   background-size: cover;
 }
 
-mat-horizontal-stepper{
+mat-horizontal-stepper {
   margin-top: 15px;
 }
 
@@ -1246,6 +1257,7 @@ ul li a:hover {
   min-height: 100vh;
   transition: 0.5s;
   transition-property: left;
+  z-index: 5000;
 }
 
 
@@ -1304,15 +1316,15 @@ ul li a:hover {
   color: #19B3D3;
 }
 
-.home-user #check:checked~ app-header .sidebar {
+.home-user #check:checked~app-header .sidebar {
   left: -190px;
 }
 
-.home-user #check:checked~ app-header .sidebar a span {
+.home-user #check:checked~app-header .sidebar a span {
   display: none;
 }
 
-.home-user #check:checked~ app-header .sidebar a {
+.home-user #check:checked~app-header .sidebar a {
   font-size: 20px;
   margin-left: 170px;
   width: 80px;
@@ -1323,14 +1335,11 @@ ul li a:hover {
 }
 
 .home-user .content {
-  margin-left: 250px;
   height: 100%;
   transition: 0.5s;
-  background: #181818;
-}
+  background: #18191a;}
 
-.home-user #check:checked~ div.content {
-  margin-left: 60px;
+.home-user #check:checked~div.content {
 }
 
 .home-user #check {
@@ -1440,68 +1449,7 @@ ul li a:hover {
   margin-top: 10px;
 }
 
-.home-user .article-item {
-  width: 100%;
-  padding-top: 20px;
-  text-align: left;
-  margin-left: -70px;
-}
-.home-user  .article-item mat-card {
-  border-radius: 20px;
-  background: #0c0f38;
-  border:  1px solid #ccc;
-}
 
-.home-user .article-item .image-wrap {
-  width: 100px;
-  height: 100px;
-  overflow: hidden;
-  float: left;
-  margin-right: 15px;
-  border: 1px solid #ccc;
-  background-size: cover;
-
-}
-
-.home-user .article-item .image-wrap img {
-  height: 100%;
-  text-align: center;
-
-}
-
-.home-user .article-item h2 {
-  display: block;
-  width: 100%;
-  padding: 0px;
-  margin: 0px;
-  margin-bottom: 7px;
-  color: white;
-  font-size: 18px;
-  margin-top: 10px;
-}
-
-.home-user .article-item .date {
-  display: block;
-  width: 100%;
-  color: white;
-  font-size: 13px;
-
-}
-
-.home-user .article-item a {
-  display: block;
-  color: white;
-  text-decoration: none;
-  margin-top: 12px;
-  font-size: 11px;
-  float: right;
-  margin-right: 30px;
-}
-
-.home-user .article-item a:hover {
-  text-decoration: underline;
-  color: cyan;
-}
 
 .home-user .subheader {
   font-size: 38px;
@@ -1644,3 +1592,26 @@ ul li a:hover {
   }
 }
 
+
+/*EMPEZANDO LO RESPONSIVE*/
+@media(max-width: 900px) {
+
+
+  .home-user #check:checked~app-header .sidebar {
+    left: -250px;
+    transition: 1s;
+  }
+
+  .home-user header {
+    margin-top: -5px;
+    height: 35px;
+  }
+
+  .home-user #check:checked~div.content {
+    margin-left: 0px;
+  }
+  .home-user .content {
+    margin-left: 0px; 
+
+}
+}

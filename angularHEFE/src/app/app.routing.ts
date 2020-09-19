@@ -15,6 +15,7 @@ import { TermsconditionsComponent } from './components/termsconditions/termscond
 import { SceneComponent } from './components/vr/lobby/scene/scene.component';
 import { DetailsRoomComponent } from './components/details-room/details-room.component';
 import { ChatsComponent } from './components/chats/chats.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 const appRoutes: Routes =[
@@ -29,6 +30,7 @@ const appRoutes: Routes =[
     { path: 'vr/lobby', component: SceneComponent},
     { path: 'detailsRoom/:creator/:codeRoom', component: DetailsRoomComponent},
     { path: 'rooms/chats', component: ChatsComponent},
+    { path: 'user/profile/:uid', component: ProfileComponent},
     { path: '**', component: ErrorComponent}
 
 ];

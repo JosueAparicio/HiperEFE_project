@@ -156,8 +156,9 @@
   position: fixed;
   right:50px;
   bottom: 50px;
-  background: dodgerblue;
-  color: white;
+  background: #e40046;
+  border: 1px solid #e40046;
+  color: #fff;
   width:60px;
   height: 60px;
   border-radius: 50%;

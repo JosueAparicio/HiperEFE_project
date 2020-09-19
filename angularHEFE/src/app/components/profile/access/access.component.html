@@ -1,0 +1,43 @@
+<h1>ACCESO</h1>
+<p>No compartas tus contraseñas con nadie. Si lo haces, dejará de ser secreta y estarás dando acceso a
+  otras personas a tu privacidad.</p>
+
+<form [formGroup]="passwordsForm">
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Contraseña actual</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'" formControlName="passwordNow">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-hint *ngIf="passwordsForm.get('passwordNow').touched &&  passwordsForm.get('passwordNow').errors?.required "
+      style="color: red !important;" align="start">Completa este campo</mat-hint>
+
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Nueva contraseña</mat-label>
+    <input matInput [type]="hiden ? 'password' : 'text'" formControlName="newPassword">
+    <button mat-icon-button matSuffix (click)="hiden = !hiden" [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hiden">
+      <mat-icon>{{hiden ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-hint *ngIf="passwordsForm.get('newPassword').touched &&  passwordsForm.get('newPassword').errors?.validPASS  "
+      style="color: red !important;" align="start">Agrega mayusculas, minusculas, numeros y caracteres raros *
+    </mat-hint>
+
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Repetir contraseña</mat-label>
+    <input matInput type="password" formControlName="newPasswordRepeat">
+    <div></div>
+    <mat-hint
+      *ngIf="passwordsForm.get('newPasswordRepeat').touched &&  passwordsForm.get('newPasswordRepeat').value != passwordsForm.get('newPassword').value"
+      style="color: red !important; " align="start">Las contraseñas no coinciden</mat-hint>
+  </mat-form-field>
+
+  <button class="saveBtn" (click)="updatePassword()" [disabled]="passwordsForm.invalid">
+    <i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar
+  </button>
+</form>

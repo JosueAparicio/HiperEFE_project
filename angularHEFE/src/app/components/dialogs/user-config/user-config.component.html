@@ -92,7 +92,7 @@
           <p>
             <mat-form-field appearance="fill">
               <mat-label>Debes tener entre 6 y 60 años de edad!</mat-label>
-              <input [readonly]="true" matInput [min]="minDate" [max]="maxDate" formControlName="date"
+              <input [readonly]="true"  matInput [min]="minDate" #dt [max]="maxDate" formControlName="date" 
                 [matDatepicker]="dp3">
               <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
               <mat-datepicker #dp3 disabled="false"></mat-datepicker>

@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angu
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-user-config',
@@ -96,7 +97,7 @@ export class UserConfigComponent implements OnInit {
     this.data = {
       cuenta: this.cuentaForm.value.cuenta,
       conocimiento: this.conocimientoForm.value.conocimiento,
-      date: this.dateForm.value.date
+      date: moment(this.dateForm.value.date).calendar()
     }
     this.load = true;
     sessionStorage.clear();

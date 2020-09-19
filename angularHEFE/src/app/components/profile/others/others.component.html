@@ -1,0 +1,84 @@
+<h1 *ngIf="your">FOTO DE PERFIL</h1>
+<p *ngIf="your">Las fotos de perfil que ponemos son nuestro escaparate, nuestra carta de presentación al mundo. Esto
+  refleja cómo nos vemos a nosotros mismos y cómo queremos que los demás nos vean.</p>
+<p *ngIf="!your">Cuando se trata de privacidad, no olvides la regla de oro: trata a los demás como te gustaría que te
+  trataran a ti</p>
+
+
+<mat-tab-group color="accent" mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
+  <mat-tab label="Ultimas fotos">
+
+    <p *ngIf="your" style="margin-top: 20px;">Tus ultimas fotos de perfil</p>
+    <p *ngIf="!your" style="margin-top: 20px;">Ultimas fotos de {{user.displayName}}</p>
+
+    <div *ngIf="photos && photos.length>0; else NoProfiles">
+      <section>
+        <div *ngFor="let photo of photos">
+          <div class="profiles">
+            <button style="float: right !important; color: black; position: absolute; z-index: 1000;" mat-icon-button
+              [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <img src="{{photo.url}}" alt="profile photo">
+          </div>
+
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="viewImage(photo.url)">
+              <mat-icon>visibility</mat-icon>
+              <span>Ver imagen</span>
+            </button>
+            <button *ngIf="your" mat-menu-item (click)="selectProfile(photo.url)">
+              <mat-icon>add_photo_alternate</mat-icon>
+              <span>Seleccionar como perfil</span>
+            </button>
+            <button *ngIf="your" mat-menu-item (click)="deleteImage(photo.id)">
+              <mat-icon>delete_outline</mat-icon>
+              <span>Eliminar foto</span>
+            </button>
+          </mat-menu>
+        </div>
+      </section>
+
+    </div>
+
+
+  </mat-tab>
+
+  <mat-tab *ngIf="your" label="Subir nueva foto">
+    <div class="profile-photo">
+      <div class="photo">
+        <img *ngIf="imgView" [src]="getSantizeUrl(preview)" alt="Image Preview">
+
+      </div>
+      <mat-hint style="color: #fff !important; font-size: 13px;" align="center">Vista previa de la imagen</mat-hint>
+    </div>
+
+    <div class="file-photo">
+      <input type="file" accept="image/*" (change)="newImage($event)">
+
+      <mat-progress-bar color="accent" *ngIf="procesando" style="margin-top: 15px; margin-bottom: 0px;"
+        mode="indeterminate"></mat-progress-bar>
+
+    </div>
+    <button class="saveBtn" (click)="saveProfileImage()">
+      <i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar
+    </button>
+  </mat-tab>
+
+  <mat-tab *ngIf="!your" label="Salas">
+    <div class="room-container">
+      <div  *ngFor="let romm of rooms">
+        <app-sala [room]="romm" [current]="other"></app-sala>
+  
+      </div>
+    </div>
+
+  </mat-tab>
+
+</mat-tab-group>
+
+
+
+<ng-template #NoProfiles>
+  <h1 style="margin-top: 50px;">No hay fotos previas</h1>
+</ng-template>
