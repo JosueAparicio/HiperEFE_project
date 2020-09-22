@@ -38,6 +38,7 @@ export class DetailsRoomComponent implements OnInit {
   emojis: boolean = false;
   msgForm: FormGroup;
   public procesando: boolean;
+  your: boolean;
 
   constructor(
     public _router: ActivatedRoute,
@@ -58,21 +59,41 @@ export class DetailsRoomComponent implements OnInit {
       msg: ['', Validators.required]
     });
 
+    this.uidCreator = this._router.snapshot.paramMap.get('creator');
+    this.codeRoom = this._router.snapshot.paramMap.get('codeRoom');
+
     this.user = await this.userService.getCurrentUser();
     this.userService.getUserData(this.user.uid).subscribe(data => {
+      console.log(this._router.snapshot.paramMap.get('creator'),this.user.uid );
+      
       this.userData = data;
       if (this.userData.cuenta == 'Docente') {
         this.displayedColumns = ['photoURL', 'displayName', 'email', 'symbol'];
         this.typeUser = this.userData.cuenta;
         this.nameTeacher = this.userData.displayName;
       } else {
+      if   (this._router.snapshot.paramMap.get('creator') != this.userData.uid){
         this.displayedColumns = ['photoURL', 'displayName', 'email'];
+        this.your = false;
+        console.log('ggbdjkdbcke');
+
+      } else{
+        this.your = true;
+        console.log('gge');
+        
+        if (this.userData.cuenta == 'Docente') {
+          this.displayedColumns = ['photoURL', 'displayName', 'email', 'symbol'];
+          this.typeUser = this.userData.cuenta;
+        } else {
+          this.displayedColumns = ['photoURL', 'displayName', 'email'];
+        }
+  
       }
+
 
     })
 
-    this.uidCreator = this._router.snapshot.paramMap.get('creator');
-    this.codeRoom = this._router.snapshot.paramMap.get('codeRoom');
+
     var listDataUser = [];
     this.roomService.getListMembers(this.uidCreator, this.codeRoom).subscribe(listUidMembers => {
       this.numberMembersActive = listUidMembers.length;

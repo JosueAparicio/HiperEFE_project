@@ -27,8 +27,7 @@ export class OthersComponent implements OnInit {
   your: any;
 
   ngOnInit(): void {
-    console.log(this.rooms);
-    this._userService.getLastProfiles(this.user.uid).subscribe(profiles=>{
+      this._userService.getLastProfiles(this.user.uid).subscribe(profiles=>{
       this.photos = profiles;
 
     })

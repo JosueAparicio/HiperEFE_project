@@ -27,24 +27,48 @@ export class ProfileComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     const uid = this._router.snapshot.paramMap.get('uid');
 
-   this.iam = await this._userService.getCurrentUser();
+    this.iam = await this._userService.getCurrentUser();
     this._userService.getUserData(uid).subscribe(datauser => {
       this.user = datauser;
-      if(this.iam.uid == this.user.uid){this.your = true; this.general = true}else{this.other=true; this.otras = true}
+
+      if (this.iam.uid == this.user.uid) {
+        this.your = true;
+
+
+        if (this.general == true) {
+          this.otras = false;
+          this.acceso = false;
+
+        } else if (this.acceso == true) {
+          this.otras = false;
+          this.general = false;
+
+        }
+        else if (this.otras == true) {
+          this.general = false;
+          this.acceso = false;
+
+        } else {
+          this.general = true;
+        }
+      } else {
+        this.other = true;
+        this.otras = true;
+      }
+
       this.date = moment().diff(this.user.date, 'years', false)
 
-      if(this.user.cuenta == 'Docente'){
-        this._userService.getList(this.user.uid, 'salas').subscribe(na =>{
-          this.list = na;
-          
-        })
-      }else{
-        this._userService.getList(this.user.uid, 'joinRoom').subscribe(na =>{
+      if (this.user.cuenta == 'Docente') {
+        this._userService.getList(this.user.uid, 'salas').subscribe(na => {
           this.list = na;
 
         })
+      } else {
+        this._userService.getList(this.user.uid, 'joinRoom').subscribe(na => {
+          this.list = na;
+        })
       }
-      
+
     });
 
 
@@ -52,6 +76,7 @@ export class ProfileComponent implements OnInit {
   }
 
   mostrarVista(e) {
+
     if (e == 1) {
       this.general = true;
       this.acceso = false;
@@ -65,6 +90,7 @@ export class ProfileComponent implements OnInit {
       this.acceso = false;
       this.otras = true;
     }
+
   }
 
 

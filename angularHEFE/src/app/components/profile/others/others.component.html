@@ -68,7 +68,7 @@
   <mat-tab *ngIf="!your" label="Salas">
     <div class="room-container">
       <div  *ngFor="let romm of rooms">
-        <app-sala [room]="romm" [current]="other"></app-sala>
+        <app-sala [room]="romm" [current]="'other'"></app-sala>
   
       </div>
     </div>

@@ -12,7 +12,7 @@
           </div>
           <div class="itemData">
             <div class="codeRoom">
-              <h4>Codigo Sala: <span> {{codeRoom}} </span> </h4>
+              <h4 *ngIf="your">Codigo: <span> {{codeRoom}} </span> </h4>
             </div>
             <div class="dataroom" *ngIf="dataRoom">
               <p>{{numberMembersActive}} / {{dataRoom.maxParticipantes}} </p>
