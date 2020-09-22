@@ -595,6 +595,7 @@ img {
   padding: 20px;
   width: 100%;
   text-align: center;
+  min-height: 500px;
 }
 
 .user-profile .user-bio h3 {
