@@ -12,6 +12,7 @@ import { Message } from '../../models/message';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Global } from 'src/app/services/global';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -31,6 +32,7 @@ export class DetailsRoomComponent implements OnInit {
   public dataRoom: any;
   public numberMembersActive: number;
   public listMembersIndex: Array<UserModel>;
+  private nameTeacher: string;
   showchat: boolean = false;
   messages: Message[];
   emojis: boolean = false;
@@ -65,6 +67,11 @@ export class DetailsRoomComponent implements OnInit {
       console.log(this._router.snapshot.paramMap.get('creator'),this.user.uid );
       
       this.userData = data;
+      if (this.userData.cuenta == 'Docente') {
+        this.displayedColumns = ['photoURL', 'displayName', 'email', 'symbol'];
+        this.typeUser = this.userData.cuenta;
+        this.nameTeacher = this.userData.displayName;
+      } else {
       if   (this._router.snapshot.paramMap.get('creator') != this.userData.uid){
         this.displayedColumns = ['photoURL', 'displayName', 'email'];
         this.your = false;
@@ -210,10 +217,60 @@ export class DetailsRoomComponent implements OnInit {
 
   }
 
-
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 5000,
     });
+  }
+
+  private removeStudentRoom(element, reason){
+    Swal.fire({
+      title: `Se eliminara a ${element.displayName}`,
+      text: `Motivo de a Eliminacion: ${reason}`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let dataDelete = {
+          uidCreator : this.uidCreator,
+          codeRoom: this.codeRoom,
+          uidStudent: element.uid,
+          emailStudent: element.email,
+          nameRoom: this.dataRoom.nombre,
+          nameTeacher: this.nameTeacher,
+          reasonDelete: reason
+        }
+        this.roomService.deleteStudentRoom(dataDelete);
+      }
+    })
+  }
+
+  async reasonDelete(element){
+    const { value: text } = await Swal.fire({
+      title:`Ingrese el motivo de la expulsion`,
+      icon: 'warning',
+      input: 'textarea',
+      inputPlaceholder: 'Describe el motivo...',
+      inputAttributes: {
+        'aria-label': 'Describe el motivo'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Siguiente',
+      cancelButtonText: 'Cancelar',
+      cancelButtonColor: '#d33',
+      inputValidator: (value) => {
+        if (!value) {
+          return 'Ingresa un motivo valido'
+        }
+      }
+    })
+
+    if (text) {
+      this.removeStudentRoom(element, text);
+    }
   }
 }
