@@ -64,33 +64,25 @@ export class DetailsRoomComponent implements OnInit {
 
     this.user = await this.userService.getCurrentUser();
     this.userService.getUserData(this.user.uid).subscribe(data => {
-      console.log(this._router.snapshot.paramMap.get('creator'),this.user.uid );
-      
-      this.userData = data;
-      if (this.userData.cuenta == 'Docente') {
-        this.displayedColumns = ['photoURL', 'displayName', 'email', 'symbol'];
-        this.typeUser = this.userData.cuenta;
-        this.nameTeacher = this.userData.displayName;
-      } else {
-      if   (this._router.snapshot.paramMap.get('creator') != this.userData.uid){
-        this.displayedColumns = ['photoURL', 'displayName', 'email'];
-        this.your = false;
-        console.log('ggbdjkdbcke');
 
-      } else{
+      this.userData = data;
+
+      if (this._router.snapshot.paramMap.get('creator') == this.user.uid) {
+
         this.your = true;
-        console.log('gge');
-        
         if (this.userData.cuenta == 'Docente') {
           this.displayedColumns = ['photoURL', 'displayName', 'email', 'symbol'];
           this.typeUser = this.userData.cuenta;
+          this.nameTeacher = this.userData.displayName;
+
         } else {
           this.displayedColumns = ['photoURL', 'displayName', 'email'];
         }
-  
+      } else {
+
+        this.displayedColumns = ['photoURL', 'displayName', 'email'];
+        this.your = false;
       }
-
-
     })
 
 
@@ -109,7 +101,7 @@ export class DetailsRoomComponent implements OnInit {
 
     this.roomService.getDataRoom(this.uidCreator, this.codeRoom).then((room) => {
       this.dataRoom = room.data();
-      console.log(this.dataRoom);
+      //console.log(this.dataRoom);
     });
     this._chatsService.getFullMessages(this.codeRoom).subscribe(msgs => {
       this.messages = msgs;
@@ -223,7 +215,7 @@ export class DetailsRoomComponent implements OnInit {
     });
   }
 
-  private removeStudentRoom(element, reason){
+  private removeStudentRoom(element, reason) {
     Swal.fire({
       title: `Se eliminara a ${element.displayName}`,
       text: `Motivo de a Eliminacion: ${reason}`,
@@ -236,7 +228,7 @@ export class DetailsRoomComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         let dataDelete = {
-          uidCreator : this.uidCreator,
+          uidCreator: this.uidCreator,
           codeRoom: this.codeRoom,
           uidStudent: element.uid,
           emailStudent: element.email,
@@ -249,9 +241,9 @@ export class DetailsRoomComponent implements OnInit {
     })
   }
 
-  async reasonDelete(element){
+  async reasonDelete(element) {
     const { value: text } = await Swal.fire({
-      title:`Ingrese el motivo de la expulsion`,
+      title: `Ingrese el motivo de la expulsion`,
       icon: 'warning',
       input: 'textarea',
       inputPlaceholder: 'Describe el motivo...',
