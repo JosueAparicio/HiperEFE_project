@@ -31,6 +31,7 @@ export class DetailsRoomComponent implements OnInit {
   public messageTemplate: string;
   public dataRoom: any;
   public numberMembersActive: number;
+  public topicList: any
   public listMembersIndex: Array<UserModel>;
   private nameTeacher: string;
   showchat: boolean = false;
@@ -39,6 +40,9 @@ export class DetailsRoomComponent implements OnInit {
   msgForm: FormGroup;
   public procesando: boolean;
   your: boolean;
+  members: boolean;
+  topics: boolean;
+  encabezado: string;
 
   constructor(
     public _router: ActivatedRoute,
@@ -52,9 +56,15 @@ export class DetailsRoomComponent implements OnInit {
   ) { }
 
   displayedColumns: string[];
+  displayedTopicColumns: string[];
   dataSource = new MatTableDataSource<UserModel>();
+  dataTopicSource = new MatTableDataSource<any>();
 
   async ngOnInit() {
+
+    this.members = true;
+    this.encabezado = 'Miembros de la sala';
+    this.displayedTopicColumns = ['tema', 'descripcion'];
     this.msgForm = this._formBuilder.group({
       msg: ['', Validators.required]
     });
@@ -95,6 +105,14 @@ export class DetailsRoomComponent implements OnInit {
         this.userService.getUserData(item.uidStudent).subscribe(dataUser => {
           listDataUser.push(dataUser);
           this.dataSource.data = listDataUser;
+          this.roomService.getListTopic(this.uidCreator, this.codeRoom).then((list) => {
+            let listTopic = [];
+            list.docChanges().forEach(element => {
+              listTopic.push(element.doc.data());
+            });
+            this.dataTopicSource.data = listTopic;
+            this.topicList = listTopic.length;
+          });
         })
       });
     });
@@ -123,10 +141,25 @@ export class DetailsRoomComponent implements OnInit {
     data.patchValue(data.value + $event.emoji.native)
   }
 
+  definirFiltro(event: Event){
+    if(this.members == true){
+      this.applyFilter(event);
+    }else if(this.topics == true){
+      this.applyFilterTopics(event)
+    }
+    
+  }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  applyFilterTopics(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataTopicSource.filter = filterValue.trim().toLowerCase();
+  }
+  
   send() {
     if (this.msgForm.invalid) {
       return;
@@ -263,6 +296,20 @@ export class DetailsRoomComponent implements OnInit {
 
     if (text) {
       this.removeStudentRoom(element, text);
+    }
+  }
+
+  changeView(e){
+    if(e == 1){
+      this.members = false;
+      this.topics = true;
+      this.encabezado = 'Temas de la sala';
+
+    }else if(e == 2){
+      this.topics = false;
+      this.members = true;
+      this.encabezado = 'Miembros de la sala';
+
     }
   }
 }
