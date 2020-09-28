@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { isEmpty } from 'rxjs/operators';
 import { UserService } from '../../../services/user.service';
 
 @Component({
@@ -26,17 +27,20 @@ export class GeneralComponent implements OnInit {
   }
 
   updateUserData() {
-    if (!this.updateForm.value.displayName && !this.updateForm.value.bio) {
+    if (!this.updateForm.value.displayName && !this.updateForm.value.bio ) {
+      this.openSnackBar('No hay cambios almacenados!', 'Entendido');
+      return;
+    } 
+    if (this.updateForm.value.displayName.trim()=='' && this.updateForm.value.bio.trim() =='') {
       this.openSnackBar('No hay cambios almacenados!', 'Entendido');
       return;
     }
 
     this.procesando = true;
-    if (!this.updateForm.value.displayName) {
+    if (!this.updateForm.value.displayName || this.updateForm.value.displayName.trim() == '') {
       this.updateForm.value.displayName = this.user.displayName;
-      //console.log(this.updateForm.value.displayName);
     }
-    if (!this.updateForm.value.bio) {
+    if (!this.updateForm.value.bio || this.updateForm.value.bio.trim() == '' ) {
       this.updateForm.value.bio = this.user.bio;
       //console.log(this.updateForm.value.bio);
     }
