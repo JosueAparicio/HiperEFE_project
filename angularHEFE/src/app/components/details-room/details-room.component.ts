@@ -31,6 +31,7 @@ export class DetailsRoomComponent implements OnInit {
   public messageTemplate: string;
   public dataRoom: any;
   public numberMembersActive: number;
+  public topicList: any
   public listMembersIndex: Array<UserModel>;
   private nameTeacher: string;
   showchat: boolean = false;
@@ -38,6 +39,10 @@ export class DetailsRoomComponent implements OnInit {
   emojis: boolean = false;
   msgForm: FormGroup;
   public procesando: boolean;
+  your: boolean;
+  members: boolean;
+  topics: boolean;
+  encabezado: string;
 
   constructor(
     public _router: ActivatedRoute,
@@ -51,28 +56,46 @@ export class DetailsRoomComponent implements OnInit {
   ) { }
 
   displayedColumns: string[];
+  displayedTopicColumns: string[];
   dataSource = new MatTableDataSource<UserModel>();
+  dataTopicSource = new MatTableDataSource<any>();
 
   async ngOnInit() {
+
+    this.members = true;
+    this.encabezado = 'Miembros de la sala';
+    this.displayedTopicColumns = ['tema', 'descripcion'];
     this.msgForm = this._formBuilder.group({
       msg: ['', Validators.required]
     });
 
-    this.user = await this.userService.getCurrentUser();
-    this.userService.getUserData(this.user.uid).subscribe(data => {
-      this.userData = data;
-      if (this.userData.cuenta == 'Docente') {
-        this.displayedColumns = ['photoURL', 'displayName', 'email', 'symbol'];
-        this.typeUser = this.userData.cuenta;
-        this.nameTeacher = this.userData.displayName;
-      } else {
-        this.displayedColumns = ['photoURL', 'displayName', 'email'];
-      }
-
-    })
-
     this.uidCreator = this._router.snapshot.paramMap.get('creator');
     this.codeRoom = this._router.snapshot.paramMap.get('codeRoom');
+
+    this.user = await this.userService.getCurrentUser();
+    this.userService.getUserData(this.user.uid).subscribe(data => {
+
+      this.userData = data;
+
+      if (this._router.snapshot.paramMap.get('creator') == this.user.uid) {
+
+        this.your = true;
+        if (this.userData.cuenta == 'Docente') {
+          this.displayedColumns = ['photoURL', 'displayName', 'email', 'symbol'];
+          this.typeUser = this.userData.cuenta;
+          this.nameTeacher = this.userData.displayName;
+
+        } else {
+          this.displayedColumns = ['photoURL', 'displayName', 'email'];
+        }
+      } else {
+
+        this.displayedColumns = ['photoURL', 'displayName', 'email'];
+        this.your = false;
+      }
+    })
+
+
     var listDataUser = [];
     this.roomService.getListMembers(this.uidCreator, this.codeRoom).subscribe(listUidMembers => {
       this.numberMembersActive = listUidMembers.length;
@@ -82,13 +105,21 @@ export class DetailsRoomComponent implements OnInit {
         this.userService.getUserData(item.uidStudent).subscribe(dataUser => {
           listDataUser.push(dataUser);
           this.dataSource.data = listDataUser;
+          this.roomService.getListTopic(this.uidCreator, this.codeRoom).then((list) => {
+            let listTopic = [];
+            list.docChanges().forEach(element => {
+              listTopic.push(element.doc.data());
+            });
+            this.dataTopicSource.data = listTopic;
+            this.topicList = listTopic.length;
+          });
         })
       });
     });
 
     this.roomService.getDataRoom(this.uidCreator, this.codeRoom).then((room) => {
       this.dataRoom = room.data();
-      console.log(this.dataRoom);
+      //console.log(this.dataRoom);
     });
     this._chatsService.getFullMessages(this.codeRoom).subscribe(msgs => {
       this.messages = msgs;
@@ -110,10 +141,25 @@ export class DetailsRoomComponent implements OnInit {
     data.patchValue(data.value + $event.emoji.native)
   }
 
+  definirFiltro(event: Event){
+    if(this.members == true){
+      this.applyFilter(event);
+    }else if(this.topics == true){
+      this.applyFilterTopics(event)
+    }
+    
+  }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  applyFilterTopics(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataTopicSource.filter = filterValue.trim().toLowerCase();
+  }
+  
   send() {
     if (this.msgForm.invalid) {
       return;
@@ -202,7 +248,7 @@ export class DetailsRoomComponent implements OnInit {
     });
   }
 
-  private removeStudentRoom(element, reason){
+  private removeStudentRoom(element, reason) {
     Swal.fire({
       title: `Se eliminara a ${element.displayName}`,
       text: `Motivo de a Eliminacion: ${reason}`,
@@ -215,7 +261,7 @@ export class DetailsRoomComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         let dataDelete = {
-          uidCreator : this.uidCreator,
+          uidCreator: this.uidCreator,
           codeRoom: this.codeRoom,
           uidStudent: element.uid,
           emailStudent: element.email,
@@ -228,9 +274,9 @@ export class DetailsRoomComponent implements OnInit {
     })
   }
 
-  async reasonDelete(element){
+  async reasonDelete(element) {
     const { value: text } = await Swal.fire({
-      title:`Ingrese el motivo de la expulsion`,
+      title: `Ingrese el motivo de la expulsion`,
       icon: 'warning',
       input: 'textarea',
       inputPlaceholder: 'Describe el motivo...',
@@ -250,6 +296,20 @@ export class DetailsRoomComponent implements OnInit {
 
     if (text) {
       this.removeStudentRoom(element, text);
+    }
+  }
+
+  changeView(e){
+    if(e == 1){
+      this.members = false;
+      this.topics = true;
+      this.encabezado = 'Temas de la sala';
+
+    }else if(e == 2){
+      this.topics = false;
+      this.members = true;
+      this.encabezado = 'Miembros de la sala';
+
     }
   }
 }
