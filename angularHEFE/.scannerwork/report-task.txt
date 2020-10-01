@@ -1,6 +1,6 @@
-projectKey=test-app
+projectKey=HIPEREFE_project
 serverUrl=http://localhost:9000
 serverVersion=8.4.2.36762
-dashboardUrl=http://localhost:9000/dashboard?id=test-app
-ceTaskId=AXTixX0z0pBj-zqB0V0P
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AXTixX0z0pBj-zqB0V0P
+dashboardUrl=http://localhost:9000/dashboard?id=HIPEREFE_project
+ceTaskId=AXTk_ve2a0mhkVeQlOFi
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXTk_ve2a0mhkVeQlOFi
