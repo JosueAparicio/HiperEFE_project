@@ -90,14 +90,10 @@ var controller = {
     },
     async sendDeleteEmail(req, res) {
         try {
-            //console.log(req.params.email);
-            /*const content = await global.compile('deleteStudent', {
-                teacher: req.params.teacher,
-                reason: req.params.reason
-            })*/
             var transporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
-                service: 'Gmail',
+                port: 465,
+                secure: true,
                 auth: {
                     user: 'hiperefe.contact@gmail.com',
                     pass: 'hiperEFE2020'
@@ -128,6 +124,7 @@ var controller = {
                     reason: req.params.reason,
                     nameRoom: req.params.nameRoom
                 }
+            
             };
             
             transporter.sendMail(mailOptions).then(
