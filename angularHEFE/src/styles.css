@@ -13,7 +13,7 @@ body {
 }
 
 .chats {
-  background: #18191a;  
+  background: #18191a;
   height: 100vh;
 }
 
@@ -887,7 +887,7 @@ mat-grid-list {
 
   .room-container .course {
     flex-direction: column;
-    width: 90%;
+    width: 100%;
     height: auto;
     max-height: 500px;
   }
@@ -896,9 +896,7 @@ mat-grid-list {
     width: 100%;
   }
 
-  .room-container .preview img {
-    left: 15%;
-  }
+  .room-container .preview img {}
 
   .room-container .info h2 {
     margin-top: 30px;
@@ -952,6 +950,26 @@ mat-grid-list {
 
   .user-profile section .profiles img {
     height: auto;
+  }
+
+  .home-user #sidebarSalas {
+    float: right !important;
+    top: 170px !important;
+    width: 75% !important;
+    position: absolute;
+    display: grid;
+    place-items: center;
+  }
+
+  .home-user #contentSalas {
+    width: 85% !important;
+
+  }
+
+  .center {
+    margin-top: 150px !important;
+    display: grid;
+    place-items: center;
   }
 
   .user-profile .profile-header {
@@ -1012,6 +1030,135 @@ mat-grid-list {
 
   .user-profile .user-rating {
     justify-content: center;
+  }
+
+  @media only screen and (min-width:100px)  and (max-width:459px) {
+
+    .nav-items li a {
+      margin-left: 13px !important;
+      margin-right: 5px !important;
+      font-size: 12px !important;
+    }
+
+    .body header .virtual h1 {
+      font-size: 4rem !important;
+    }
+
+    .body header .virtual h2 {
+      font-size: 3rem !important;
+    }
+
+    .body header .text-and-button-init p {
+      font-size: 11px !important;
+    }
+
+    .button-hover{
+      min-width: 150px !important;
+    }
+
+    .wrapper {
+      margin-top: -100px !important;
+    }
+    .wapper-nav nav {
+    }
+
+    .header-container{
+      margin-bottom: 250px !important;
+    }
+
+    .wapper-nav nav .logo{
+      margin-left: -10px;
+    }
+  }
+
+
+  @media only screen and (min-width: 460px)  and (max-width:520px) {
+
+    .nav-items li a {
+      margin-left: 25px !important;
+    }
+
+    .body header .virtual h1 {
+      font-size: 4rem !important;
+    }
+
+    .body header .virtual h2 {
+      font-size: 3rem !important;
+    }
+
+    .body header .text-and-button-init p {
+      font-size: 11px !important;
+    }
+
+    .button-hover{
+      min-width: 150px !important;
+    }
+
+    .wrapper {
+      margin-top: -100px !important;
+    }
+    .wapper-nav nav {
+    }
+  }
+
+  @media only screen and (min-width:521px) and (max-width:600px){
+    .wapper-nav nav {
+      max-width: 100%;
+    }
+
+    .nav-items li a {
+      margin-left: 40px !important;
+    }
+  }
+
+  @media(max-width: 860px) {
+
+    .body {
+      display: grid;
+      place-items: center;
+      min-width: 100%;
+      min-height: 100vh;
+      background:  radial-gradient(circle at 85.4% 50.8%, rgb(14, 72, 222) 0%, rgb(3, 22, 65) 74.2%) !important;
+
+    }
+
+    .body header {
+      float: none !important;
+      margin-top: 100px !important;
+      display: grid !important;
+      place-items: center !important;
+
+    }
+
+    .hero-container{
+      margin-left: 0 !important;
+    }
+    .smokes{
+      display: none !important;
+    }
+
+    .termsconditions{
+      margin-left: 0 !important;
+      max-width: 100% !important;
+    }
+
+  }
+
+  @media(max-width: 500px) {
+    .home-user .logout_btn {
+      display: none;
+    }
+
+    .home-user #slider h1 {
+      display: none;
+    }
+
+    .home-user #slider input {
+      margin-top: 75px !important;
+      padding: 10px !important;
+      margin-left: 40px !important;
+      width: 80% !important;
+    }
   }
 
   @media(max-width: 400px) {

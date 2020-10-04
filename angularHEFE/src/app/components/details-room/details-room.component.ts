@@ -312,4 +312,10 @@ export class DetailsRoomComponent implements OnInit {
 
     }
   }
+
+  viewProfile(uid){
+    this.router.navigate([`/user/profile/${uid}`]);
+
+  }
+
 }

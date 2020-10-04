@@ -1,6 +1,6 @@
 <div class="home-user">
 
-  <input type="checkbox" id="check">
+  <input type="checkbox" id="check" checked="true">
   <app-header [status]="'principal'"></app-header>
 
 
@@ -53,7 +53,16 @@
           <ng-container matColumnDef="photoURL">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
-              <img src="{{element.photoURL}}" onError="this.src='assets/images/userDefault.svg'"></td>
+              <img [matMenuTriggerFor]="menu" src="{{element.photoURL}}" onError="this.src='assets/images/userDefault.svg'">
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="viewProfile(element.uid)">
+                  <mat-icon>visibility</mat-icon>
+                  <span>Ver perfil de {{element.displayName}}</span>
+                </button>
+              </mat-menu>
+            </td>
+
+
           </ng-container>
 
           <!-- Name Column -->
