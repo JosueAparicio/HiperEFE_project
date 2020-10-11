@@ -7,16 +7,18 @@
   <div class="content">
     <div class="contentDetails">
         <mat-form-field class="searchMember">
-          <div class="dataroom" *ngIf="dataRoom">
-            <h3> {{dataRoom.nombre}} </h3>
-          </div>
+
+          <mat-chip-list class="chipListNormal" aria-label="Fish selection" *ngIf="dataRoom">
+            <mat-chip  color="accent" selected>{{dataRoom.nombre}}</mat-chip>
+            <mat-chip  color="accent" selected>{{codeRoom}}</mat-chip>
+            <mat-chip  color="accent" selected>{{numberMembersActive}} / {{dataRoom.maxParticipantes}}</mat-chip>
+          </mat-chip-list>  
           <div class="itemData">
-            <div class="codeRoom">
-              <h4 *ngIf="your">Codigo: <span> {{codeRoom}} </span> </h4>
-            </div>
+
             <div class="dataroom" *ngIf="dataRoom">
-              <p>{{numberMembersActive}} / {{dataRoom.maxParticipantes}} </p>
               <div class="worldVirtual">
+
+                <div class="two-btn-details">
                 <button (click)="back()">
                   <img src="../../../assets/images/atras.svg" alt="Atras">
                   <p>Atras</p>
@@ -26,6 +28,10 @@
                   <img src="../../../assets/images/grupo.svg" alt="Miembros">
                   <p>Miembros</p>
                 </button>
+
+              </div>
+
+              <div class="two-btn-details"> 
                 <button (click)="changeView(1)" [ngClass]="{'active-header-btn' : topics}">
                   <img src="../../../assets/images/temas.svg" alt="Temas">
                   <p>Temas</p>
@@ -34,11 +40,20 @@
                   <img src="../../../assets/images/virtual-reality.svg" alt="Mundo Virtual">
                   <p>Mundo Virtual</p>
                 </button>
+
+              </div>
+
               </div>
             </div>
           </div>
           
-          <h2 class="titleDetails" style="margin: 25px; font-size: 14px;">{{encabezado}}</h2>
+          <mat-chip-list class="chipListMovil" aria-label="Fish selection" *ngIf="dataRoom">
+            <mat-chip  color="accent" selected>{{dataRoom.nombre}}</mat-chip>
+            <mat-chip  color="accent" selected>{{codeRoom}}</mat-chip>
+            <mat-chip  color="accent" selected>{{numberMembersActive}} / {{dataRoom.maxParticipantes}}</mat-chip>
+          </mat-chip-list>  
+
+          <h2 class="titleDetails" style="margin: 25px 0px 0px 0px;; font-size: 14px;">{{encabezado}}</h2>
           <div class="itemSearch" style="margin: 10px;">
 
             <input #input  matInput (keyup)="definirFiltro($event)" placeholder="Buscar.." >
@@ -46,7 +61,7 @@
           </div>
         </mat-form-field>
 
-        <div *ngIf="members">
+        <div *ngIf="members" class="table-in-details">
         <table  mat-table [dataSource]="dataSource" class="mat-elevation-z8 tableDetails">
 
           <!-- Position Column -->
@@ -104,7 +119,7 @@
         </table>
       </div>
 
-        <div *ngIf="topics">
+        <div *ngIf="topics" class="table-in-details table-topics">
           <table  mat-table [dataSource]="dataTopicSource" class="mat-elevation-z8 tableDetails">
 
             <!-- Name Column -->

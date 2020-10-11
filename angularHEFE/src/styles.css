@@ -18,6 +18,21 @@ body {
   min-width: 100%;
 }
 
+.mat-chip.mat-standard-chip.mat-chip-selected.mat-accent {
+  min-width: 150px !important;
+  margin-bottom: 64px;
+}
+
+.chipListMovil {
+  display: none;
+}
+
+
+.mat-chip-list-wrapper {
+  place-content: center;
+
+}
+
 .home-user .order {
   transition: 0.5s;
   height: 100%;
@@ -25,8 +40,7 @@ body {
   place-items: center;
 }
 
-.home-user #check:checked~div.order {
-}
+.home-user #check:checked~div.order {}
 
 /*CHATS*/
 
@@ -49,7 +63,7 @@ img {
   position: relative;
   border-radius: 10px;
   border: 1.5px solid #004BAA;
-  margin-top: 100px;  
+  margin-top: 100px;
 }
 
 #search-container,
@@ -1037,7 +1051,7 @@ mat-grid-list {
     justify-content: center;
   }
 
-  @media only screen and (min-width:100px)  and (max-width:459px) {
+  @media only screen and (min-width:100px) and (max-width:459px) {
 
     .nav-items li a {
       margin-left: 13px !important;
@@ -1057,27 +1071,27 @@ mat-grid-list {
       font-size: 11px !important;
     }
 
-    .button-hover{
+    .button-hover {
       min-width: 150px !important;
     }
 
     .wrapper {
       margin-top: -100px !important;
     }
-    .wapper-nav nav {
-    }
 
-    .header-container{
+    .wapper-nav nav {}
+
+    .header-container {
       margin-bottom: 250px !important;
     }
 
-    .wapper-nav nav .logo{
+    .wapper-nav nav .logo {
       margin-left: -10px;
     }
   }
 
 
-  @media only screen and (min-width: 460px)  and (max-width:520px) {
+  @media only screen and (min-width: 460px) and (max-width:520px) {
 
     .nav-items li a {
       margin-left: 25px !important;
@@ -1095,18 +1109,18 @@ mat-grid-list {
       font-size: 11px !important;
     }
 
-    .button-hover{
+    .button-hover {
       min-width: 150px !important;
     }
 
     .wrapper {
       margin-top: -100px !important;
     }
-    .wapper-nav nav {
-    }
+
+    .wapper-nav nav {}
   }
 
-  @media only screen and (min-width:521px) and (max-width:600px){
+  @media only screen and (min-width:521px) and (max-width:600px) {
     .wapper-nav nav {
       max-width: 100%;
     }
@@ -1125,7 +1139,8 @@ mat-grid-list {
       min-height: 550px;
       max-height: 550px !important;
     }
-   .home-user .order {
+
+    .home-user .order {
       display: block !important;
     }
 
@@ -1133,46 +1148,51 @@ mat-grid-list {
       padding: 10px 20px;
     }
 
-    #conversation-list{
+    #conversation-list {
       height: 90px;
     }
 
     #new-message-container {
       display: none;
     }
-    #chat-title{
+
+    #chat-title {
       border-radius: 0px;
       height: 60px;
     }
-    #chat-message-list{
+
+    #chat-message-list {
       max-height: 290px;
       min-height: 290px;
 
     }
 
-    #image-principal-chat{
+    #image-principal-chat {
       width: 300px;
       height: 300px;
     }
 
 
-    #chat-form mat-icon{
+    #chat-form mat-icon {
       padding: 15px 0;
     }
-    #chat-form{
+
+    #chat-form {
       border-radius: 0 0 10px 10px;
     }
 
-    #general-chats{
+    #general-chats {
       margin-top: -350px !important;
       margin-left: 0px !important;
       position: absolute;
     }
-    #chat-form>img{
+
+    #chat-form>img {
       margin-left: 0px;
       width: 25px;
     }
-    #chat-form #emoji{
+
+    #chat-form #emoji {
       left: 13%;
       padding: 9px 0;
     }
@@ -1187,7 +1207,7 @@ mat-grid-list {
       place-items: center;
       min-width: 100%;
       min-height: 100vh;
-      background:  radial-gradient(circle at 85.4% 50.8%, rgb(14, 72, 222) 0%, rgb(3, 22, 65) 74.2%) !important;
+      background: radial-gradient(circle at 85.4% 50.8%, rgb(14, 72, 222) 0%, rgb(3, 22, 65) 74.2%) !important;
 
     }
 
@@ -1205,18 +1225,50 @@ mat-grid-list {
 
     }
 
-    .hero-container{
+    .hero-container {
       margin-left: 0 !important;
     }
-    .smokes{
+
+    .smokes {
       display: none !important;
     }
 
-    .termsconditions{
+    .termsconditions {
       margin-left: 0 !important;
       max-width: 100% !important;
     }
 
+  }
+
+  @media (max-width:600px) {
+
+    .mat-chip.mat-standard-chip.mat-chip-selected.mat-accent {
+      margin-bottom: 0;
+    }
+    .mat-chip-list-wrapper {
+      place-content: center;
+    }
+
+    .chipListMovil {
+      display: block;
+    }
+
+    .chipListNormal {
+      display: none;
+    }
+
+    #totalMembers {
+      display: none;
+    }
+
+    #coodee {
+      display: none;
+    }
+
+    #nameRoooom {
+      display: none;
+
+    }
   }
 
   @media(max-width: 500px) {
@@ -1234,10 +1286,12 @@ mat-grid-list {
       margin-left: 40px !important;
       width: 80% !important;
     }
-    #chat-form>img{
+
+    #chat-form>img {
       margin-left: -11px !important;
     }
-    #chat-form #emoji{
+
+    #chat-form #emoji {
       left: 19.5% !important;
       width: 50px;
     }
@@ -1281,20 +1335,18 @@ mat-grid-list {
 
 
 
-    #chat-form mat-icon{  
+    #chat-form mat-icon {
       left: 88%;
     }
 
   }
 
   @media(max-width: 360px) {
-    #image-principal-chat{
+    #image-principal-chat {
       width: 270px;
     }
   }
 
-  @media(max-width: 700px) {
-
-  }
+  @media(max-width: 700px) {}
 
 }
