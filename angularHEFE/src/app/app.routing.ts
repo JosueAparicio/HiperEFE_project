@@ -27,7 +27,7 @@ const appRoutes: Routes =[
     { path: 'verify-account/:uid', component: VerificarEmailComponent},
     { path: 'user/general-validations', component:GeneralValidationsComponent},
     { path: 'terms-and-conditions', component: TermsconditionsComponent},
-    { path: 'vr/lobby', component: SceneComponent},
+    { path: 'vr/lobby/:creator/:codeRoom', component: SceneComponent},
     { path: 'detailsRoom/:creator/:codeRoom', component: DetailsRoomComponent},
     { path: 'rooms/chats', component: ChatsComponent},
     { path: 'user/profile/:uid', component: ProfileComponent},

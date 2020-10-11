@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Trophy } from '../../../../models/trophy';
 import { Topic } from '../../../../models/topics';
 import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -20,9 +21,14 @@ export class SceneComponent implements OnInit {
   private trophyActive: any;
   private posicionNumberTrophy: number;
   private topicSelect: any;
+  private uidCreator: string;
+  private codeRoom: string;
+  
 
   constructor(
-    private location: Location
+    private location: Location,
+    public _router: Router,
+    public routerParams: ActivatedRoute,
   ) { 
     this.listCardOption = [
       '1' , '2', '3', '4'
@@ -42,6 +48,8 @@ export class SceneComponent implements OnInit {
 
   ngOnInit(): void {
     this.listTopics = JSON.parse(sessionStorage.getItem('topics'));
+    this.uidCreator = this.routerParams.snapshot.paramMap.get('creator');
+    this.codeRoom = this.routerParams.snapshot.paramMap.get('codeRoom');
 
     if(this.listTopics.length<4){
       this.modificView('imgNext','visible',false);
@@ -160,6 +168,6 @@ export class SceneComponent implements OnInit {
   }
 
   exitLobby(){
-    this.location.back();
+    this._router.navigate([`detailsRoom/${this.uidCreator}/${this.codeRoom}`]);
   }
 }
