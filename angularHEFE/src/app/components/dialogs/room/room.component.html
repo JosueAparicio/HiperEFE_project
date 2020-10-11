@@ -60,7 +60,7 @@
 
             </mat-form-field>
             <div align="center" class="img"> 
-              <img  src="{{url.value}}" onError="this.src='assets/images/vr.jpg'"  />
+              <img src="{{url.value}}" onError="this.src='assets/images/vr.jpg'" alt="Imagen de la sala"/>
             </div>
 
           </div>
@@ -86,9 +86,7 @@ TABLA
     <table mat-table [dataSource]="dataSource" matSort>
 
       <ng-container matColumnDef="select">
-        <th mat-header-cell *matHeaderCellDef> agregar
-
-        </th>
+        <th id="thAgregar" mat-header-cell *matHeaderCellDef> agregar </th>
         <td mat-cell *matCellDef="let row; let i=index">
 
           <mat-checkbox (click)="$event.stopPropagation()" (change)="updateCheckedList($event, row)"
@@ -99,13 +97,13 @@ TABLA
       </ng-container>
 
       <ng-container matColumnDef="Tema">
-        <th mat-header-cell *matHeaderCellDef> Tema </th>
+        <th id="thTopic" mat-header-cell *matHeaderCellDef> Tema </th>
         <td mat-cell *matCellDef="let element"> {{element.tema}} </td>
 
       </ng-container>
 
       <ng-container matColumnDef="Descripcion">
-        <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+        <th id="thDescripcion" mat-header-cell *matHeaderCellDef> Descripcion </th>
         <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
 
       </ng-container>
