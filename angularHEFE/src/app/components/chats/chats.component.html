@@ -29,7 +29,7 @@
         <mat-progress-bar *ngIf="procesando" mode="indeterminate"></mat-progress-bar>
       </div>
       <div id="chat-message-list" *ngIf="messages; else Principal">
-        <div *ngFor="let msg of messages">
+        <div  *ngFor="let msg of messages">
           
         
           <app-messages [uid]="user.uid" 

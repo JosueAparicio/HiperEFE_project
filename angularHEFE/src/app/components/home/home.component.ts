@@ -88,8 +88,6 @@ export class HomeComponent implements OnInit {
   //buscar
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-
-
     //this.topics.filter = filterValue.trim().toLowerCase();
 
   }

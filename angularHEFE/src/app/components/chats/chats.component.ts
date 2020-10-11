@@ -59,6 +59,10 @@ export class ChatsComponent implements OnInit {
 
   addEmoji($event) {
     let data = this.msgForm.get('msg');
+    if($event.emoji.native == null || $event.emoji.native =='null'){
+      return;
+    }
+    
     data.patchValue(data.value + $event.emoji.native)
   }
 
@@ -160,6 +164,8 @@ export class ChatsComponent implements OnInit {
 
 
   async onUploadImage() {
+
+    
     if (this.conversation == 'Empty') {
       return;
     }

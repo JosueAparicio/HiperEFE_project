@@ -1337,10 +1337,10 @@ ul li a:hover {
 .home-user .content {
   height: 100%;
   transition: 0.5s;
-  background: #18191a;}
-
-.home-user #check:checked~div.content {
+  background: #18191a;
 }
+
+.home-user #check:checked~div.content {}
 
 .home-user #check {
   display: none;
@@ -1593,6 +1593,7 @@ ul li a:hover {
 }
 
 
+
 /*EMPEZANDO LO RESPONSIVE*/
 @media(max-width: 900px) {
 
@@ -1610,8 +1611,11 @@ ul li a:hover {
   .home-user #check:checked~div.content {
     margin-left: 0px;
   }
-  .home-user .content {
-    margin-left: 0px; 
 
+  .home-user .content {
+    margin-left: 0px;
+
+  }
 }
-}
+
+

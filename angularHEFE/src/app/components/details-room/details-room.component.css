@@ -2,15 +2,17 @@
   background: red;
 }
 
-.divButtonDelete{
+.divButtonDelete {
   margin: 3px;
 }
 
 .home-user .contentDetails {
   min-height: 100vh;
-  background:#18191a;
+  background: #18191a;
   position: inherit;
 }
+
+
 
 .buttonDelete:hover {
   background: rgb(150, 12, 12);
@@ -20,11 +22,15 @@
   background: transparent !important;
   margin-left: 10%;
   width: 80%;
+  font-family: monospace;
+
 }
 
 .tableDetails td {
   color: white;
-  border-bottom: white solid 3px;
+  border-bottom: white solid 2.5px;
+  overflow-x: scroll;
+  min-width: 100px;
 }
 
 .tableDetails td img {
@@ -35,7 +41,7 @@
 
 .tableDetails th {
   color: white;
-  border-bottom: white solid 3px;
+  border-bottom: white solid 2.5px;
 }
 
 .searchMember {
@@ -46,8 +52,8 @@
 
 .searchMember input {
   color: black;
-  width: 50%;
-  margin-left: 25%;
+  width: 70%;
+  margin-left: 15%;
   background: white;
   padding: 10px;
   border-radius: 20px;
@@ -60,7 +66,7 @@
   margin-bottom: 15px;
 }
 
-.dataroom p{
+.dataroom p {
   color: white;
   text-align: right;
   font-size: 18px;
@@ -91,7 +97,7 @@
 .codeRoom h4 span {
   font-size: 18px;
   text-decoration: none;
-  font-style: italic;
+
 }
 
 .worldVirtual {
@@ -101,18 +107,18 @@
   margin-top: -35px;
 }
 
-.worldVirtual img{
+.worldVirtual img {
   width: 40px;
   margin-top: 5px;
 }
 
-.worldVirtual p{
-  color:white;
+.worldVirtual p {
+  color: white;
   font-size: 12px;
   text-align: center;
 }
 
-.worldVirtual button{
+.worldVirtual button {
   background: transparent;
   border: solid 4px;
   border-color: #fff;
@@ -121,63 +127,67 @@
   padding: 0;
   margin-left: 10px;
   height: 70px;
+  font-family: monospace;
 }
 
-#search-membres-input{
+#search-membres-input {
   margin-bottom: 20px;
 }
 
-.button{
-  border:none;
+.button {
+  border: none;
   outline: none;
   cursor: pointer;
 }
 
 .worldVirtual button:hover,
-.worldVirtual .active-header-btn{
+.worldVirtual .active-header-btn {
   border-color: #e40046 !important;
 }
 
-#chat{
+#chat {
   max-width: 1100px;
   margin: auto;
   text-align: center;
   padding: 0 1rem;
 }
-#title{
+
+#title {
   font-size: 3rem;
   margin-bottom: 2rem;
 }
 
 
-#other-msg{
+#other-msg {
   font-size: 2rem;
 }
 
 
-.chat-btn{
+.chat-btn {
   position: fixed;
-  right:50px;
+  right: 50px;
   bottom: 50px;
   background: #e40046;
   border: 1px solid #e40046;
   color: #fff;
-  width:60px;
+  width: 60px;
   height: 60px;
   border-radius: 50%;
   opacity: 0.8;
-  transition: opacity 0.3s;
-  box-shadow: 0 5px 5px rgba(0,0,0,0.4);
+  transition: 0.5s;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
 }
 
-.chat-btn:hover, .submit:hover, #emoji-btn:hover{
+.chat-btn:hover,
+.submit:hover,
+#emoji-btn:hover {
   opacity: 1;
 }
 
-.chat-popup{
+.chat-popup {
   position: fixed;
-  bottom:80px;
-  right:120px;
+  bottom: 80px;
+  right: 120px;
   height: 400px;
   width: 300px;
   background: #0c0f38;
@@ -185,88 +195,91 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 0.75rem;
-  box-shadow: 15px 15px 15px rgba(0,0,0,0.4);
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.4);
   border-radius: 10px;
   border: 1.5px solid #1ff4ff;
+  z-index: 5001;
+
 }
 
-.show{
+.show {
   display: flex;
 }
 
-.chat-area{
+.chat-area {
   height: 90%;
   display: flex;
   flex-direction: column-reverse;
   overflow-y: auto;
   overflow-x: hidden;
-
+  border: 1px solid #e40046;
+  border-radius: 10px 0 0 0;
 }
 
-.income-msg{
+.income-msg {
   display: flex;
   align-items: center;
 }
 
-.avatar{
-  width:45px;
+.avatar {
+  width: 45px;
   height: 45px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.income-msg .msg{
+.income-msg .msg {
   background-color: dodgerblue;
   color: white;
-  padding:0.5rem;
+  padding: 0.5rem;
   border-radius: 25px;
   margin-left: 1rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
   font-size: 13px;
 }
 
-.badge{
+.badge {
   position: absolute;
   width: 30px;
   height: 30px;
   background-color: red;
-  color:white;
+  color: white;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  top:-10px;
+  top: -10px;
   right: -10px;
 }
 
-.input-area{
+.input-area {
   position: relative;
   display: flex;
   justify-content: center;
 }
 
-#send-msg{
-  width:100%;
+#send-msg {
+  width: 100%;
   border: 1px solid #ccc;
   font-size: 1rem;
   border-radius: 5px;
   height: 2.2rem;
 }
 
-#emoji-btn{
+#emoji-btn {
   position: absolute;
   font-size: 1.2rem;
   background: transparent;
   right: 55px;
-  top:2px;
-  opacity:0.5;
+  top: 2px;
+  opacity: 0.5;
 }
 
-.submit{
+.submit {
   padding: 0.25rem 0.5rem;
   margin-left: 0.5rem;
   background-color: green;
-  color:white;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -275,34 +288,155 @@
 }
 
 
-.out-msg{
+.out-msg {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 
 }
-.my-msg{
+
+.my-msg {
   display: flex;
   justify-content: flex-end;
   margin: 0.75rem;
   padding: 0.5rem;
   background-color: #ddd;
   border-radius: 25px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
   word-break: break-all;
   font-size: 13px;
 }
 
+.table-in-details {
+  padding-bottom: 25px;
+  overflow-x: scroll;
+}
 
-@media (max-width:500px){
+.tableDetails td::-webkit-scrollbar,
+.table-in-details::-webkit-scrollbar {
+  display: none;
+}
 
-  .chat-popup{
-      bottom: 120px;
-      right:10%;
-      width: 80vw;
+
+
+@media (max-width:800px) {
+
+  .codeRoom h4 {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .codeRoom h4 span {
+    font-size: 16px;
+
+  }
+
+  .dataroom p {
+    text-align: center;
+    font-size: 12px;
+    margin-bottom: 15px;
+  }
+
+  .dataroom h3 {
+
+    margin-bottom: 5px;
+  }
+
+  .worldVirtual {
+    margin-top: 0px;
   }
 }
-#details-chat{
+
+@media (max-width: 600px) {
+  .chat-btn {
+    right: 25px;
+    bottom: 25px;
+
+  }
+
+  .searchMember input {
+    width: 90%;
+    margin-left: 5%;
+
+  }
+
+  .two-btn-details {
+    width: 40%;
+    display: grid;
+    place-items: center;
+  }
+  
+  .worldVirtual {
+    padding: 10px;
+  }
+
+  .worldVirtual button {
+    margin-left: 0px;
+    width: 150px;
+    height: 90px;
+    margin-top: 10px;
+  }
+
+  .dataroom p {
+
+    margin-bottom: 0px;
+  }
+
+  .table-in-details {
+    padding: 10px 10px 40px 10px;
+    max-width: 95%;
+    margin-left: 10px;
+
+  }
+  .table-topics{
+    display: grid;
+    place-items: center;
+  }
+
+  .tableDetails td {
+    min-width: 180px;
+  }
+  .tableDetails {
+    margin-left: 0px;
+  }
+}
+
+
+@media (max-width:500px) {
+
+  .chat-popup {
+    bottom: 90px;
+    right: 10%;
+    width: 80vw;
+  }
+
+  .worldVirtual button {
+    width: 125px;
+    height: 85px;
+  }
+
+  .tableDetails td img {
+    width: 35px;
+    height: 35px;
+  }
+  .buttonDelete {
+    width: 35px;
+    height: 35px;
+  }
+
+  .buttonDelete mat-icon {
+    margin-top: -22px !important;
+  }
+}
+
+@media (max-width:400px){
+  .worldVirtual button {
+    width: 100px;
+    height: 75px;
+  }
+}
+
+#details-chat {
   z-index: 3000;
   margin-right: -500px !important;
   margin-top: -500px !important;
@@ -310,7 +444,9 @@
 }
 
 .chat-area::-webkit-scrollbar,
-.chat-area::-webkit-scrollbar{
+.chat-area::-webkit-scrollbar {
   display: none;
 
 }
+
+
