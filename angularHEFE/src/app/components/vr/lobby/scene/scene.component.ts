@@ -23,15 +23,16 @@ export class SceneComponent implements OnInit {
   private topicSelect: any;
   private uidCreator: string;
   private codeRoom: string;
-  
+
 
   constructor(
     private location: Location,
     public _router: Router,
     public routerParams: ActivatedRoute,
-  ) { 
+    
+  ) {
     this.listCardOption = [
-      '1' , '2', '3', '4'
+      '1', '2', '3', '4'
     ]
 
     this.listTrophy = [
@@ -51,23 +52,25 @@ export class SceneComponent implements OnInit {
     this.uidCreator = this.routerParams.snapshot.paramMap.get('creator');
     this.codeRoom = this.routerParams.snapshot.paramMap.get('codeRoom');
 
-    if(this.listTopics.length<4){
-      this.modificView('imgNext','visible',false);
-      this.modificView('imgPrev','visible',false);
+    this.checkMobileDevice();
+
+    if (this.listTopics.length < 4) {
+      this.modificView('imgNext', 'visible', false);
+      this.modificView('imgPrev', 'visible', false);
     }
 
     this.trophyActive = this.orderArray(this.getStartPosition(this.posicionNumberTrophy), this.posicionNumberTrophy, this.listTrophy);
-    this.topicActiveCardOption = this.orderArray(this.getStartPosition(this.posicionNumberTopic) , this.getEndPosition(), this.listTopics);
+    this.topicActiveCardOption = this.orderArray(this.getStartPosition(this.posicionNumberTopic), this.getEndPosition(), this.listTopics);
   }
 
   sceneLoad() {
     this.loadTrophyCard();
   }
 
-  loadTopicCardOption(){
+  loadTopicCardOption() {
     this.listCardOption.forEach(element => {
       let title = this.topicActiveCardOption[element];
-      
+
       this.modificView('lblTitulo' + element, 'value', title.tema.toString());
       this.modificView('imgIconCard' + element, 'src', '#' + title.idTema.toString());
 
@@ -75,7 +78,12 @@ export class SceneComponent implements OnInit {
     });
   }
 
-  selectTopic(posCard: string){
+  backMainMenu() {
+    this.topicSelect = 0;
+    this.removeColorTitleCard();
+  }
+
+  selectTopic(posCard: string) {
     this.topicSelect = this.topicActiveCardOption[posCard];
 
     this.removeColorTitleCard();
@@ -83,15 +91,15 @@ export class SceneComponent implements OnInit {
     this.modificView('lblDescripcionItem', 'value', this.topicSelect.descripcion);
   }
 
-  nextTopic(){
-    if(this.posicionNumberTopic != this.listTopics.length){
+  nextTopic() {
+    if (this.posicionNumberTopic != this.listTopics.length) {
       this.posicionNumberTopic++;
       this.topicActiveCardOption = this.orderArray(this.getStartPosition(this.posicionNumberTopic), this.getEndPosition(), this.listTopics);
       this.loadTopicCardOption();
     }
   }
 
-  prevTopic(){
+  prevTopic() {
     if (this.posicionNumberTopic != 4) {
       this.posicionNumberTopic--;
       this.topicActiveCardOption = this.orderArray(this.getStartPosition(this.posicionNumberTopic), this.getEndPosition(), this.listTopics);
@@ -99,33 +107,32 @@ export class SceneComponent implements OnInit {
     }
   }
 
-  removeColorTitleCard(){
+  removeColorTitleCard() {
     this.listCardOption.forEach(element => {
-      
-      if(this.topicActiveCardOption[element] == this.topicSelect){
+
+      if (this.topicActiveCardOption[element] == this.topicSelect) {
         this.modificView('lblTitulo' + element, 'color', '#36FF00');
-      }else{
+      } else {
         this.modificView('lblTitulo' + element, 'color', '#FFF');
       }
-      
     });
   }
 
-  getStartPosition(posicion: number){
+  getStartPosition(posicion: number) {
     return posicion - 4;
   }
 
-  getEndPosition(){
+  getEndPosition() {
     return this.posicionNumberTopic;
   }
 
-  modificView(idItem: string, attribute: any, value: any){
+  modificView(idItem: string, attribute: any, value: any) {
     let itemView = document.getElementById(idItem);
     itemView.setAttribute(attribute, value);
   }
 
 
-  loadTrophyCard(){
+  loadTrophyCard() {
     this.listCardOption.forEach(element => {
       let trophy = this.trophyActive[element];
 
@@ -134,7 +141,7 @@ export class SceneComponent implements OnInit {
     });
   }
 
-  nextTrophy(){
+  nextTrophy() {
     if (this.posicionNumberTrophy != this.listTrophy.length) {
       this.posicionNumberTrophy++;
       this.trophyActive = this.orderArray(this.getStartPosition(this.posicionNumberTrophy), this.posicionNumberTrophy, this.listTrophy);
@@ -142,7 +149,7 @@ export class SceneComponent implements OnInit {
     }
   }
 
-  prevTrophy(){
+  prevTrophy() {
     if (this.posicionNumberTrophy != 4) {
       this.posicionNumberTrophy--;
       this.trophyActive = this.orderArray(this.getStartPosition(this.posicionNumberTrophy), this.posicionNumberTrophy, this.listTrophy);
@@ -150,7 +157,7 @@ export class SceneComponent implements OnInit {
     }
   }
 
-  selectTrophy(position: string){
+  selectTrophy(position: string) {
     const topicSelect = this.trophyActive[position];
 
     this.modificView('lblNameTrophy', 'value', topicSelect.nombreLogro);
@@ -167,7 +174,17 @@ export class SceneComponent implements OnInit {
     }), {});
   }
 
-  exitLobby(){
+  exitLobby() {
     this._router.navigate([`detailsRoom/${this.uidCreator}/${this.codeRoom}`]);
+  }
+
+
+  /**CODIGO DE COMPATIBILIDAD CON MOVIL */
+  checkMobileDevice() {
+    if (AFRAME.utils.device.isMobile()) {
+      console.log('ESTA EN UN DISPOSITIVO MOVIL');
+    } else {
+      console.log('ESTA EN OTRO DISPOSITIVO PAPI');
+    }
   }
 }

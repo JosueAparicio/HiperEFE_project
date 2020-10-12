@@ -96,7 +96,7 @@
       <a-text value="A donde quieres ir?" text="align: center" id="lblTitulo" scale="2 2 1" position="0 3.5 0.1"></a-text>
       <a-entity position="-5.3 3.4 0.1"  
         proxy-event="event: click; to: a-scene, #panelPrincipal, #conteinerbtn, #contentMenu, #containerDetails,
-        #containerCardOption; as: back">
+        #containerCardOption; as: back" (click)="backMainMenu()">
         <a-image id="btnBackTopic" src="#back"  material="" geometry="" scale="0.8 0.8 0.8"
           animation__mouseleave="dur: 80; from: 1 1 1; property: scale; startEvents: mouseleave;
           pauseEvents: mouseenter; resumeEvents: ; to: 0.8 0.8 0.8" 
