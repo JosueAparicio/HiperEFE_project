@@ -6,14 +6,15 @@
   </a-assets>
 
   <a-entity id="cameraUser" camera look-controls wasd-controls="acceleration:50" position="0 0 0">
-    <a-entity id="mouseCursor" cursor="rayOrigin:mouse;">
+    <a-entity id="mouseCursor">
       
     </a-entity>
+    
   </a-entity>
 
   <a-entity id="containerPortals" position="0 0 0">
-    <a-image id="portalMenu" cursor-listener visible="false"></a-image>
-    <a-image id="portalTrophy" cursor-listener visible="false"></a-image>
+    <a-image id="portalMenu" cursor-listener visible="false" (click)="goPortalMenu()"></a-image>
+    <a-image id="portalTrophy" cursor-listener visible="false" (click)="goPortalTrophy()"></a-image>
   </a-entity>
 
   <a-entity position="0 0 -3">
@@ -187,7 +188,8 @@
             </a-text>
           </a-text>
         </a-entity>
-        <a-image id="btnItemGo" src="#button" scale="0.8 0.3 1" position="0 -0.52 0.1" material="" geometry="">
+        <a-image id="btnItemGo" src="#button" scale="0.8 0.3 1" position="0 -0.52 0.1" material="" geometry=""
+          (mouseenter)="prueba()" (mouseleave)="prueba2()">
         </a-image>
       </a-image>
     </a-entity>

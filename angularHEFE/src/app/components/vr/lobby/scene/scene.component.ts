@@ -183,14 +183,13 @@ export class SceneComponent implements OnInit {
   /**CODIGO DE COMPATIBILIDAD CON MOVIL */
   checkMobileDevice() {
     if (AFRAME.utils.device.isMobile()) {
-      console.log('ESTA EN UN DISPOSITIVO MOVIL');
       this.configCameraMobile();
     } else {
-      console.log('ESTA EN OTRO DISPOSITIVO PAPI');
       this.configCameraDefault();
     }
   }
 
+  /**Configura la camara del usuario para funcionar en Movil */
   configCameraMobile() {
     let configCamera = {
       cursor: { fuse: true, fuseTimeout: 2000 },
@@ -203,7 +202,7 @@ export class SceneComponent implements OnInit {
       menu: { id: 'portalMenu', src: '#imgArrowgo', visible: true, position: { x: 0, y: -2, z: -4}, rotation: { x: -90, y: 0, z: 0 }},
       trophy: { id: 'portalTrophy', src: '#imgArrowgo', visible: true, position: { x: -4.5, y: -2, z: -4 }, rotation: { x: -90, y: 90, z: 0 }}
     }
-
+    
     /**Añadiendo los atributos a la camara en modo Movil */
     this.modificView(this.cursorVR, 'cursor', configCamera.cursor);
     this.modificView(this.cursorVR, 'position', configCamera.position);
@@ -223,8 +222,26 @@ export class SceneComponent implements OnInit {
     this.modificView(configPortals.trophy.id, 'rotation', configPortals.trophy.rotation);
   }
 
+  /**Configura una camara por default */
   configCameraDefault(){
     let configCamera = { cursor: { rayOrigin: 'mouse' }};
-    this.modificView(this.cursorVR, 'cursor', configCamera);
+    this.modificView(this.cursorVR, 'cursor', configCamera.cursor);
+  }
+
+  /**TELEPORTS DEL MODO MOVIL */
+  goPortalMenu(){
+    this.modificView('cameraUser', 'position', { x: 0, y: 0, z: -4 });
+  }
+
+  goPortalTrophy(){
+    this.modificView('cameraUser', 'position', { x: -3.5, y: 0, z: -4 });
+  }
+
+  prueba(){
+    console.log('MOUSE ENCIMA DE UN OBJETO');
+  }
+
+  prueba2(){
+    console.log('MOUSE SALIO DEL OBJETO');
   }
 }
