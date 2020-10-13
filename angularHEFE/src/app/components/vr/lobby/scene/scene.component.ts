@@ -23,13 +23,13 @@ export class SceneComponent implements OnInit {
   private topicSelect: any;
   private uidCreator: string;
   private codeRoom: string;
-
+  private cursorVR: string;
 
   constructor(
     private location: Location,
     public _router: Router,
     public routerParams: ActivatedRoute,
-    
+
   ) {
     this.listCardOption = [
       '1', '2', '3', '4'
@@ -45,6 +45,7 @@ export class SceneComponent implements OnInit {
 
     this.posicionNumberTopic = 4;
     this.posicionNumberTrophy = 4;
+    this.cursorVR = 'mouseCursor';
   }
 
   ngOnInit(): void {
@@ -183,8 +184,47 @@ export class SceneComponent implements OnInit {
   checkMobileDevice() {
     if (AFRAME.utils.device.isMobile()) {
       console.log('ESTA EN UN DISPOSITIVO MOVIL');
+      this.configCameraMobile();
     } else {
       console.log('ESTA EN OTRO DISPOSITIVO PAPI');
+      this.configCameraDefault();
     }
+  }
+
+  configCameraMobile() {
+    let configCamera = {
+      cursor: { fuse: true, fuseTimeout: 2000 },
+      position : { x: 0, y:0, z:-1 },
+      geometry: { primitive: 'ring', radiusInner: 0.03, radiusOuter: 0.04 },
+      visible : true
+    }
+
+    let configPortals = {
+      menu: { id: 'portalMenu', src: '#imgArrowgo', visible: true, position: { x: 0, y: -2, z: -4}, rotation: { x: -90, y: 0, z: 0 }},
+      trophy: { id: 'portalTrophy', src: '#imgArrowgo', visible: true, position: { x: -4.5, y: -2, z: -4 }, rotation: { x: -90, y: 90, z: 0 }}
+    }
+
+    /**Añadiendo los atributos a la camara en modo Movil */
+    this.modificView(this.cursorVR, 'cursor', configCamera.cursor);
+    this.modificView(this.cursorVR, 'position', configCamera.position);
+    this.modificView(this.cursorVR, 'geometry', configCamera.geometry);
+    this.modificView(this.cursorVR, 'visible', configCamera.visible);
+
+    /**Añadiendo los atributos al portal del menu en modo Movil*/
+    this.modificView(configPortals.menu.id, 'src', configPortals.menu.src);
+    this.modificView(configPortals.menu.id, 'visible', configPortals.menu.visible);
+    this.modificView(configPortals.menu.id, 'position', configPortals.menu.position);
+    this.modificView(configPortals.menu.id, 'rotation', configPortals.menu.rotation);
+
+    /**Añadiendo los atributos al portal de trofeos en Modo movil */
+    this.modificView(configPortals.trophy.id, 'src', configPortals.trophy.src);
+    this.modificView(configPortals.trophy.id, 'visible', configPortals.trophy.visible);
+    this.modificView(configPortals.trophy.id, 'position', configPortals.trophy.position);
+    this.modificView(configPortals.trophy.id, 'rotation', configPortals.trophy.rotation);
+  }
+
+  configCameraDefault(){
+    let configCamera = { cursor: { rayOrigin: 'mouse' }};
+    this.modificView(this.cursorVR, 'cursor', configCamera);
   }
 }

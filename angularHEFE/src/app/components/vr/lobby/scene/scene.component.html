@@ -7,10 +7,14 @@
 
   <a-entity id="cameraUser" camera look-controls wasd-controls="acceleration:50" position="0 0 0">
     <a-entity id="mouseCursor" cursor="rayOrigin:mouse;">
+      
     </a-entity>
   </a-entity>
 
-  <a-entity id="containerPortals" position="0 0 0"></a-entity>
+  <a-entity id="containerPortals" position="0 0 0">
+    <a-image id="portalMenu" cursor-listener visible="false"></a-image>
+    <a-image id="portalTrophy" cursor-listener visible="false"></a-image>
+  </a-entity>
 
   <a-entity position="0 0 -3">
     <a-gltf-model src="#engine" rotation="90 0 0" scale="18 18 18"></a-gltf-model>
