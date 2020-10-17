@@ -6,7 +6,7 @@
 
   <div class="content">
     <div class="contentDetails">
-        <mat-form-field class="searchMember">
+        <div class="searchMember">
 
           <mat-chip-list class="chipListNormal" aria-label="Fish selection" *ngIf="dataRoom">
             <mat-chip  color="accent" selected>{{dataRoom.nombre}}</mat-chip>
@@ -59,7 +59,7 @@
             <input #input  matInput (keyup)="definirFiltro($event)" placeholder="Buscar.." >
 
           </div>
-        </mat-form-field>
+        </div>
 
         <div *ngIf="members" class="table-in-details">
         <table  mat-table [dataSource]="dataSource" class="mat-elevation-z8 tableDetails">
