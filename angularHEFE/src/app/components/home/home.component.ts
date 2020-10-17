@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   public docente: any;
   public estudiante: any;
   public typeRoom: any;
-
+  public ReemplaceRooms: Room[];
   rooms: Room[];
   ready: boolean;
   constructor(
@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit {
           }
           this.salasService.getRooms(user.uid, this.typeRoom).subscribe(rooms => {
             this.rooms = rooms;
-            console.log(rooms);
+            this.ReemplaceRooms = this.rooms;
           });
 
           this.ready = true;
@@ -80,14 +80,25 @@ export class HomeComponent implements OnInit {
       console.log('No hay usuario logueado');
       this._router.navigate(['/inicio']);
     }
-
+    //hola como estan los quiero mucho :D
 
   }
   //buscar
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    //this.topics.filter = filterValue.trim().toLowerCase();
+    //this.rooms.filter = filterValue.trim().toLowerCase();
 
+    const arrayFilter = this.ReemplaceRooms.filter((val, index)=>{
+      const Roomname = val.nombre.toLowerCase();
+
+      if (Roomname.indexOf(filterValue) != -1){
+        return true;
+      }else{
+        return false;
+      }
+    })
+
+    this.rooms = arrayFilter;
   }
 
 
