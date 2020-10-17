@@ -24,7 +24,9 @@ export class SceneComponent implements OnInit {
   private uidCreator: string;
   private codeRoom: string;
   private cursorVR: string;
-
+  private rotateActive: any;
+  public sensibilityCamera: number = 0;
+  
   constructor(
     private location: Location,
     public _router: Router,
@@ -243,5 +245,47 @@ export class SceneComponent implements OnInit {
 
   prueba2(){
     console.log('MOUSE SALIO DEL OBJETO');
+  }
+
+  /**CONFIGURACION DE CONTROLES DE SENSIBILIDAD */
+  rotateCameraLeft(){
+    //this.sensibilityCamera = 1;
+    this.rotateActive = setInterval(()=> this.startRotate.call(this,0.2), 10);
+  }
+
+  rotateCameraRight(){
+    //this.sensibilityCamera = -1;
+    this.rotateActive = window.setInterval(()=> this.startRotate.call(this,-0.2), 10);
+  }
+
+  stopRotateCamera(){
+    clearInterval(this.rotateActive);
+  }
+
+  rotateLeft(){
+    let cameraUser = document.querySelector('#entornoVR');
+    let valueRotation = AFRAME.utils.entity.getComponentProperty(cameraUser, 'rotation');
+
+    let newValue = { x: valueRotation['x'], y: (valueRotation['y'] - 1), z: valueRotation['z'] };
+    
+    AFRAME.utils.entity.setComponentProperty(cameraUser, 'rotation', newValue);
+  }
+
+  rotateRight(){
+    let cameraUser = document.querySelector('#entornoVR');
+    let valueRotation = AFRAME.utils.entity.getComponentProperty(cameraUser, 'rotation');
+
+    let newValue = { x: valueRotation['x'], y: (valueRotation['y'] - -1), z: valueRotation['z'] };
+    console.log(newValue);
+    AFRAME.utils.entity.setComponentProperty(cameraUser, 'rotation', newValue);
+  }
+
+  startRotate(sensibility: number){
+    let cameraUser = document.querySelector('#entornoVR');
+    let valueRotation = AFRAME.utils.entity.getComponentProperty(cameraUser, 'rotation');
+    
+    let newValue = { x: valueRotation['x'], y: (valueRotation['y'] - sensibility), z: valueRotation['z']};
+    console.log(newValue);
+    AFRAME.utils.entity.setComponentProperty(cameraUser,'rotation', newValue);
   }
 }
