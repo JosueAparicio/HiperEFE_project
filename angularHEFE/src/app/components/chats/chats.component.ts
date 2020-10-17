@@ -23,7 +23,8 @@ export class ChatsComponent implements OnInit {
 
   public user: any;
   public rooms: Room[];
-  public roomSearch: Room[];
+  public ReemplaceRooms: Room[];
+
   public conversation: any;
   public messages: Message[];
   public msgImage: string;
@@ -48,9 +49,8 @@ export class ChatsComponent implements OnInit {
       this.user = datauser;
       this._chatsService.getRooms(datauser).subscribe(rooms => {
         this.rooms = rooms;
-        //this.roomSearch = rooms;
-        //console.log(rooms);
-        //rooms.map(row => this._chatsService.getFullMessages(row.id).subscribe());
+        this.ReemplaceRooms = this.rooms;
+
 
       });
     });
@@ -76,21 +76,18 @@ export class ChatsComponent implements OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    //console.log(filterValue);
 
-    //this.rooms.filter = filterValue.trim().toLowerCase();
-    this.rooms.forEach(row => {
-      if (row.nombre.indexOf(filterValue) !== -1) {
-        //console.log(row);
-      } else {
-        //console.log('nada');
+    const arrayFilter = this.ReemplaceRooms.filter((val, index)=>{
+      const Roomname = val.nombre.toLowerCase();
 
+      if (Roomname.indexOf(filterValue) != -1){
+        return true;
+      }else{
+        return false;
       }
     })
 
-    if (this.roomSearch) {
-      // this.rooms = this.roomSearch;
-    }
+    this.rooms = arrayFilter;
   }
   inputMessages() {
     this.messages = [];
