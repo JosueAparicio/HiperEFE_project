@@ -13,7 +13,7 @@ var users_rutes = require('./routes/users');
 
 
 //Middlewares (es algo que se ejecuta antes de cargar alguna ruta)
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
 //CORS (permite peticiones desde el Frontend , sean estas ajax desde cualquier frontend (angular, react, vue, etc))
@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 
 
 //Añadir prefijos a rutas / cargar rtas
-app.use('/api', users_rutes);
+app.use('/', users_rutes);
 
 
 //Exportar modulo (fichero actual)

@@ -13,7 +13,4 @@ router.get('/sendDeleteEmail/:email/:teacher/:reason/:nameRoom', controller.send
 
 
 
-
 module.exports = router;
-
-
