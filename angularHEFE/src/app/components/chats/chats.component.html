@@ -12,7 +12,7 @@
         <input type="text" (keyup)="applyFilter($event)" placeholder="Buscar">
       </div>
       <div id="conversation-list">
-        <div *ngIf="rooms.length>0; else Norooms" ></div>
+        <div *ngIf="rooms.length>0; else Norooms"></div>
         <div *ngFor="let room of rooms">
 
           <app-conversations [conversation]="room" (chatSelect)="mostrarChat($event)">
@@ -20,52 +20,53 @@
 
         </div>
       </div>
-      </div>
       <div id="new-message-container">
         <a>+</a>
       </div>
-      <div id="chat-title" >
+      <div id="chat-title">
         <span *ngIf="conversation.nombre && user">{{conversation.nombre}}</span>
         <span *ngIf="!conversation.nombre ">@HIPER EFE</span>
-        <img src="{{conversation.photo}}" (click)="viewImage($event)" onError="this.src='assets/images/default.png'" alt="photo">
+        <img src="{{conversation.photo}}" (click)="viewImage($event)" onError="this.src='assets/images/default.png'"
+          alt="photo">
         <mat-progress-bar *ngIf="procesando" mode="indeterminate"></mat-progress-bar>
       </div>
       <div id="chat-message-list" *ngIf="messages; else Principal">
-        <div  *ngFor="let msg of messages">
-          
-        
-          <app-messages [uid]="user.uid" 
-          [message]="msg" 
-          [room]="conversation.id" 
-          (delete)="deleteMsg($event)" 
-          (reported)="reportMsg($event)">
+        <div *ngFor="let msg of messages">
+
+
+          <app-messages [uid]="user.uid" [message]="msg" [room]="conversation.id" (delete)="deleteMsg($event)"
+            (reported)="reportMsg($event)">
           </app-messages>
-        
 
+
+        </div>
       </div>
-      </div>
+
+
       <emoji-mart *ngIf="emojis" id="general-chats" (emojiClick)="addEmoji($event)" emoji="point_up"></emoji-mart>
-      <form id="chat-form" (submit)="send()" [formGroup]="msgForm" >
-        <img src="assets/images/upppload.png" alt="add archv" (click) ="onUploadImage()">
-        <img src="assets/images/emoji.png" alt="add emoji" id="emoji"   (click)="changeEmojis()">
+      <form id="chat-form" (submit)="send()" [formGroup]="msgForm">
+        <img src="assets/images/upppload.png" alt="add archv" (click)="onUploadImage()">
+        <img src="assets/images/emoji.png" alt="add emoji" id="emoji" (click)="changeEmojis()">
 
-        <mat-icon (click)="send()" >send</mat-icon>
-        <input type="text" placeholder="Escribe un mensaje"  formControlName="msg">
+        <mat-icon (click)="send()">send</mat-icon>
+        <input type="text" placeholder="Escribe un mensaje" formControlName="msg">
       </form>
+
     </div>
+
   </div>
+
 </div>
 
+
 <ng-template #Principal>
-  <div align ="center">
-    <img  id="image-principal-chat" src="assets/images/resource1.svg" alt="">
+  <div align="center">
+    <img id="image-principal-chat" src="assets/images/resource1.svg" alt="">
   </div>
 </ng-template>
 
 <ng-template #Norooms>
-  <div align="center" style="margin-top: 10px; color: white; font-weight: bold;">
-    <h3>No se encontraron chats</h3>
+  <div align="center" style="margin-top: 25px; color: white; font-weight: bold;">
+    <h3 style=" font-size: 16px;">No se encontraron chats</h3>
   </div>
 </ng-template>
-
-

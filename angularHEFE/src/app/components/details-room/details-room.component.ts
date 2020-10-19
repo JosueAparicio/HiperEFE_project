@@ -73,6 +73,7 @@ export class DetailsRoomComponent implements OnInit {
     this.codeRoom = this._router.snapshot.paramMap.get('codeRoom');
 
     this.user = await this.userService.getCurrentUser();
+    
     this.userService.getUserData(this.user.uid).subscribe(data => {
 
       this.userData = data;
