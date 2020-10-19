@@ -88,12 +88,12 @@ export class HomeComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     //this.rooms.filter = filterValue.trim().toLowerCase();
 
-    const arrayFilter = this.ReemplaceRooms.filter((val, index)=>{
+    const arrayFilter = this.ReemplaceRooms.filter((val, index) => {
       const Roomname = val.nombre.toLowerCase();
 
-      if (Roomname.indexOf(filterValue) != -1){
+      if (Roomname.indexOf(filterValue.trim().toLowerCase()) != -1) {
         return true;
-      }else{
+      } else {
         return false;
       }
     })
