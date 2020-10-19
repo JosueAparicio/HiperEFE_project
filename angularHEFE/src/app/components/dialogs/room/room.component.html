@@ -28,7 +28,8 @@
               </mat-error>
             </mat-form-field>
             <mat-form-field>
-              <textarea style="height: 50px;" matInput #message  maxlength="200" cols="2" rows="2" placeholder="Descripcion" formControlName="descripcion">
+              <textarea style="height: 50px;" matInput #message maxlength="200" cols="2" rows="2"
+                placeholder="Descripcion" formControlName="descripcion">
               </textarea>
               <mat-hint align="end">{{message.value.length}} / 200</mat-hint>
               <mat-error *ngIf="newRoomForm.get('descripcion').errors?.minlength">
@@ -56,11 +57,12 @@
               <mat-label>URL de la imagen</mat-label>
               <input #url type="tel" matInput placeholder="https://image-example.com" formControlName="photo">
               <mat-icon matSuffix>insert_link</mat-icon>
-              <mat-hint align="left">Este campo No es obligatorio. Pero si la imagen no cambia, la URL es invalida.</mat-hint>
+              <mat-hint align="left">Este campo No es obligatorio. Pero si la imagen no cambia, la URL es invalida.
+              </mat-hint>
 
             </mat-form-field>
-            <div align="center" class="img"> 
-              <img  src="{{url.value}}" onError="this.src='assets/images/vr.jpg'"  />
+            <div align="center" class="img">
+              <img src="{{url.value}}" onError="this.src='assets/images/vr.jpg'" />
             </div>
 
           </div>
@@ -126,7 +128,8 @@ TABLA
   </div>
 
   <div class="button-row">
-    <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" [disabled]="newRoomForm.invalid">Guardar</button>
+    <button mat-raised-button color="primary" type="submit" (click)="onSubmit()"
+      [disabled]="newRoomForm.invalid">Guardar</button>
     <button mat-raised-button color="warn" (click)="onClose()">Cancelar</button>
   </div>
 

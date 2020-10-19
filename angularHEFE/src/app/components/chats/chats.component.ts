@@ -59,10 +59,10 @@ export class ChatsComponent implements OnInit {
 
   addEmoji($event) {
     let data = this.msgForm.get('msg');
-    if($event.emoji.native == null || $event.emoji.native =='null'){
+    if ($event.emoji.native == null || $event.emoji.native == 'null') {
       return;
     }
-    
+
     data.patchValue(data.value + $event.emoji.native)
   }
 
@@ -77,12 +77,12 @@ export class ChatsComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
 
-    const arrayFilter = this.ReemplaceRooms.filter((val, index)=>{
+    const arrayFilter = this.ReemplaceRooms.filter((val, index) => {
       const Roomname = val.nombre.toLowerCase();
 
-      if (Roomname.indexOf(filterValue) != -1){
+      if (Roomname.indexOf(filterValue.trim().toLowerCase()) != -1) {
         return true;
-      }else{
+      } else {
         return false;
       }
     })
@@ -162,7 +162,7 @@ export class ChatsComponent implements OnInit {
 
   async onUploadImage() {
 
-    
+
     if (this.conversation == 'Empty') {
       return;
     }
@@ -188,7 +188,7 @@ export class ChatsComponent implements OnInit {
             'aria-label': 'Type your message here'
           },
           confirmButtonText: 'Enviar!'
-        }).then((result) => {          
+        }).then((result) => {
           if (result.isConfirmed) {
             this.procesando = true;
             console.log(result.value)
