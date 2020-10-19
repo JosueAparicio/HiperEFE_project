@@ -3,6 +3,7 @@ import { Trophy } from '../../../../models/trophy';
 import { Topic } from '../../../../models/topics';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Howl, Howler } from 'howler';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class SceneComponent implements OnInit {
   private codeRoom: string;
   private cursorVR: string;
   private rotateActive: any;
-  public sensibilityCamera: number = 0;
+  private sensibilityCamera: number = 0.2;
+  private velocityCamera: number = 10;
   
   constructor(
     private location: Location,
@@ -64,6 +66,8 @@ export class SceneComponent implements OnInit {
 
     this.trophyActive = this.orderArray(this.getStartPosition(this.posicionNumberTrophy), this.posicionNumberTrophy, this.listTrophy);
     this.topicActiveCardOption = this.orderArray(this.getStartPosition(this.posicionNumberTopic), this.getEndPosition(), this.listTopics);
+
+    this.startMusicBackgroud();
   }
 
   sceneLoad() {
@@ -239,45 +243,17 @@ export class SceneComponent implements OnInit {
     this.modificView('cameraUser', 'position', { x: -3.5, y: 0, z: -4 });
   }
 
-  prueba(){
-    console.log('MOUSE ENCIMA DE UN OBJETO');
-  }
-
-  prueba2(){
-    console.log('MOUSE SALIO DEL OBJETO');
-  }
-
   /**CONFIGURACION DE CONTROLES DE SENSIBILIDAD */
   rotateCameraLeft(){
-    //this.sensibilityCamera = 1;
-    this.rotateActive = setInterval(()=> this.startRotate.call(this,0.2), 10);
+    this.rotateActive = setInterval(() => this.startRotate.call(this, this.sensibilityCamera), this.velocityCamera);
   }
 
   rotateCameraRight(){
-    //this.sensibilityCamera = -1;
-    this.rotateActive = window.setInterval(()=> this.startRotate.call(this,-0.2), 10);
+    this.rotateActive = window.setInterval(()=> this.startRotate.call(this,-this.sensibilityCamera), this.velocityCamera);
   }
 
   stopRotateCamera(){
     clearInterval(this.rotateActive);
-  }
-
-  rotateLeft(){
-    let cameraUser = document.querySelector('#entornoVR');
-    let valueRotation = AFRAME.utils.entity.getComponentProperty(cameraUser, 'rotation');
-
-    let newValue = { x: valueRotation['x'], y: (valueRotation['y'] - 1), z: valueRotation['z'] };
-    
-    AFRAME.utils.entity.setComponentProperty(cameraUser, 'rotation', newValue);
-  }
-
-  rotateRight(){
-    let cameraUser = document.querySelector('#entornoVR');
-    let valueRotation = AFRAME.utils.entity.getComponentProperty(cameraUser, 'rotation');
-
-    let newValue = { x: valueRotation['x'], y: (valueRotation['y'] - -1), z: valueRotation['z'] };
-    console.log(newValue);
-    AFRAME.utils.entity.setComponentProperty(cameraUser, 'rotation', newValue);
   }
 
   startRotate(sensibility: number){
@@ -287,5 +263,19 @@ export class SceneComponent implements OnInit {
     let newValue = { x: valueRotation['x'], y: (valueRotation['y'] - sensibility), z: valueRotation['z']};
     console.log(newValue);
     AFRAME.utils.entity.setComponentProperty(cameraUser,'rotation', newValue);
+  }
+
+  /**CONFIGURACION DE BANDA SONORA LOBBY VR */
+  startMusicBackgroud(){
+    var sound = new Howl({
+      src: ['../../../../../assets/music/musicLobby.mp3'],
+      autoplay: true,
+      loop: true,
+      volume: 0.5,
+      onend: function () {
+        console.log('Finished!');
+      }
+    });
+    sound.play();
   }
 }
