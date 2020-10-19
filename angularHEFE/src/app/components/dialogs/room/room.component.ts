@@ -8,7 +8,7 @@ import { Room } from '../../../models/room';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 
@@ -31,17 +31,17 @@ export class RoomComponent implements OnInit {
   selection = new SelectionModel<Topic>(true, []);
   public load: boolean;
 
-  constructor(public salasService: RoomsService, private fb: FormBuilder, private _snackBar: MatSnackBar, public _userService: UserService,public dialog: MatDialog,
-    ) {
+  constructor(public salasService: RoomsService, private fb: FormBuilder, private _snackBar: MatSnackBar, public _userService: UserService, public dialog: MatDialog,
+  ) {
 
-   }
+  }
 
   ngOnInit(): void {
 
     //asignar validaciones al formulario
     this.newRoomForm = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(5)]],
-      descripcion: ['',[Validators.required, Validators.minLength(10)]],
+      descripcion: ['', [Validators.required, Validators.minLength(10)]],
       maxParticipantes: ['', Validators.required],
       photo: ['']
     });
@@ -65,25 +65,25 @@ export class RoomComponent implements OnInit {
   async onSubmit() {
     const userOn = await this._userService.getCurrentUser();
 
-    if(this.selection.selected.length >5) {
+    if (this.selection.selected.length > 5) {
       this.openSnackBar('Son 5 temas como maximo', 'Ok');
 
-    }else if(this.selection.selected.length ==0){
+    } else if (this.selection.selected.length == 0) {
       this.openSnackBar('No hay ningun tema seleccionado', 'Ok');
 
-    }else{
-      this._userService.getUserData(userOn.uid).subscribe(data =>{
-       const userFull = {
-         data: this.newRoomForm.value,
-         topics: this.selection.selected,
-         user: data
+    } else {
+      this._userService.getUserData(userOn.uid).subscribe(data => {
+        const userFull = {
+          data: this.newRoomForm.value,
+          topics: this.selection.selected,
+          user: data
         }
         this.salasService.addRoom(userFull);
 
-     });
-       this.load = true;
-       setTimeout(() => { this.onClose(); this.load=false}, 1000);
-       
+      });
+      this.load = true;
+      setTimeout(() => { this.onClose(); this.load = false }, 1000);
+
     }
   }
   onClose() {
@@ -120,10 +120,10 @@ export class RoomComponent implements OnInit {
 
   //selecciona una fila en concreto o todas
   checkboxLabel(row?: Topic): string {
-      if (!row) {
-        return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-      }
-      return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.idTema + 1}`;
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.idTema + 1}`;
   }
   //actualiza la fila seleccionada
   updateCheckedList(event, row) {
