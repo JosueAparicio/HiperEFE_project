@@ -28,12 +28,12 @@ export class SceneComponent implements OnInit {
   private rotateActive: any;
   private sensibilityCamera: number = 0.2;
   private velocityCamera: number = 10;
+  private sound: Howl;
   
   constructor(
     private location: Location,
     public _router: Router,
     public routerParams: ActivatedRoute,
-
   ) {
     this.listCardOption = [
       '1', '2', '3', '4'
@@ -50,6 +50,16 @@ export class SceneComponent implements OnInit {
     this.posicionNumberTopic = 4;
     this.posicionNumberTrophy = 4;
     this.cursorVR = 'mouseCursor';
+
+    this.sound = new Howl({
+      src: ['../../../../../assets/music/musicLobby.mp3'],
+      autoplay: true,
+      loop: true,
+      volume: 0.5,
+      onend: function () {
+        console.log('Finished!');
+      }
+    })
   }
 
   ngOnInit(): void {
@@ -182,6 +192,7 @@ export class SceneComponent implements OnInit {
   }
 
   exitLobby() {
+    this.sound.stop();
     this._router.navigate([`detailsRoom/${this.uidCreator}/${this.codeRoom}`]);
   }
 
@@ -267,15 +278,6 @@ export class SceneComponent implements OnInit {
 
   /**CONFIGURACION DE BANDA SONORA LOBBY VR */
   startMusicBackgroud(){
-    var sound = new Howl({
-      src: ['../../../../../assets/music/musicLobby.mp3'],
-      autoplay: true,
-      loop: true,
-      volume: 0.5,
-      onend: function () {
-        console.log('Finished!');
-      }
-    });
-    sound.play();
+    this.sound.play();
   }
 }
