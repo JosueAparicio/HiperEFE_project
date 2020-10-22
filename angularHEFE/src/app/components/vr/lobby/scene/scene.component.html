@@ -132,14 +132,15 @@
        easeInOutElastic; startEvents: mouseenter; pauseEvents: ; resumeEvents: " (click)="prevTopic()"></a-image>
       </a-entity>
 
-      <a-entity id="containerDetails" position="2.90172 0 -1" animation__up="property: position; to: 2.90172 0 0.1; dur: 1000; autoplay: false; easing:
+      <a-entity id="containerDetails" position="2.70 0 -1" animation__up="property: position; to: 2.70 0 0.1; dur: 1000; autoplay: false; easing:
           easeInOutCubic; startEvents: itemselect ; pauseEvents: ; resumeEvents:;" animation__down="property: position;  to: 2.90172 0 -1; dur: 1000; autoplay: false; easing:
           easeInOutCubic; startEvents: ; pauseEvents: ; resumeEvents: ;" animation__moveback="dur: 1000; property: position; startEvents: back;
           pauseEvents: ; resumeEvents: ; to: 2.90172 0 -1; easing: easeInOutCubic"
         animation__visible="dur: 100; property: visible; startEvents: topic; pauseEvents:; resumeEvents: ; to: true"
         animation__visibleback="dur: 100;  property: visible; startEvents: back; pauseEvents:
           mouseleave; resumeEvents: ; to: false; delay:1000">
-        <a-image id="contentDetails" geometry="width: 2; height: 2" src="#texturaDetails" scale="2.5 2.5 1">
+        <a-entity id="contentDetails" geometry="primitive: plane; width: 2; height: 2" material="src: #texturaDetails;"
+          scale="3 2.20 0.4">
           <a-image src="#imgPreview" geometry="height: 0.75; width: 0.75" id="imgPreview" position="0.0178 0.55073 0.01"
             material="">
           </a-image>
@@ -147,13 +148,13 @@
             <a-text value="F" text="align: center" id="lblTituloItem" scale="0.8 0.8 1"
               position="-0.00713 0.02339 0.01">
               <a-text value="Explora y conoce todo sobre los inicios de la informatica" text="align: center"
-                id="lblDescripcionItem" scale="0.5 0.5 1" position="-0.00713 -0.32106 0.1">
+                id="lblDescripcionItem" scale="0.5 0.5 1" position="-0.00713 -0.40 0.1">
               </a-text>
             </a-text>
           </a-entity>
-          <a-image id="btnItemGo" src="#button" scale="0.8 0.3 1" position="0 -0.52 0.1" material="" geometry="">
+          <a-image id="btnItemGo" src="#button" scale="0.8 0.3 1" position="0 -0.70 0.1" material="" geometry="">
           </a-image>
-        </a-image>
+        </a-entity>
       </a-entity>
     </a-entity>
 

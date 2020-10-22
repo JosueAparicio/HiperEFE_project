@@ -1,0 +1,86 @@
+<a-scene device-orientation-permission-ui="enabled: true" renderer="colorManagement: true;">
+    <a-assets>
+      <app-assets-museum></app-assets-museum>
+    </a-assets>
+
+    <a-entity camera="" position="0 0.6 0" wasd-controls rotation="-9.969465635276295 1023.3026221036458 0"
+      look-controls cursor="rayOrigin: mouse"></a-entity>
+
+    <a-entity id="modelMuseo" gltf-model="#museo" position="53.5 0 -7.5" rotation="0 -90 0"></a-entity>
+    <a-sky id="skyMuseo" color="#0a0d1f"></a-sky>
+
+    <a-entity id="ligthAmbient" light="type: ambient; color: #1c5aab"></a-entity>
+
+    <a-entity id="ligthOff" light="type: ambient; color: #0a1524" visible="false"></a-entity>
+
+
+    <a-entity id="focoRobot" position="2.355 -1.259 -2.799"
+      light="color: #22f789; intensity: 21.23; type: point; distance: 2.33; decay: 2" visible=""></a-entity>
+
+    <a-entity id="focoRobot" position="-2 -1.259 -2.799"
+      light="color: #22f789; intensity: 21.23; type: point; distance: 2.33; decay: 2" visible=""></a-entity>
+
+    <a-entity id="lblBanner"
+      text="font: https://cdn.aframe.io/fonts/Monoid.fnt; value: BIENVENIDO AL MUSEO DE HISTORIA; align: center; width: 7"
+      position="0.69354 1.5 -5" rotation=""></a-entity>
+
+    <a-entity id="contentRobot">
+      <a-image src="#robot" width="3" height="1.5" position="2.10472 -0.67227 -2.79854" material="" geometry="">
+      </a-image>
+
+      <a-image src="#ballon" width="3" height="1.5" position="2.80701 0.76 -2.79854" material="side: front" geometry=""
+        scale="0.5 1 1">
+      </a-image>
+
+      <a-entity
+        text="font: https://cdn.aframe.io/fonts/Monoid.fnt; value: Yepa, que pasa gente; align: center; wrapCount: 9"
+        position="2.77632 0.79231 -2.79" rotation="" scale=""></a-entity>
+    </a-entity>
+
+    <a-entity id="btnStartTravel" position="-0.79164 0.19721 -2.799" rotation="" onclick="prueba()">
+      <a-image src="#startTravel" position="0 0.31336 0" material="side: front" geometry="" scale="0.5 0.5 1">
+      </a-image>
+      <a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: Iniciar Paseo; align: center; width: 4"
+        position="0 0.05223 0"></a-entity>
+    </a-entity>
+    <a-entity id="btnExitMuseum" position="-0.85285 -0.75937 -2.799" rotation="">
+      <a-image src="#exit" position="0 0.313 0" material="side: front" geometry="" scale="0.5 0.5 1"></a-image>
+      <a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: Lobby; align: center; width: 4"
+        position="0 0.05223 0"></a-entity>
+    </a-entity>
+
+    <a-entity id="containerLigth">
+      <a-entity id="focoBase" position="4.77 0.174 -5.06"
+        light="color: #ffffff; intensity: 2; type: point; distance: 2.5"></a-entity>
+
+      <a-entity id="focoBase" position="8 0.174 -9.546"
+        light="color: #ffffff; intensity: 2; type: point; distance: 2.5"></a-entity>
+
+      <a-entity id="focoBase" position="11 0.174 -5.06"
+        light="color: #ffffff; intensity: 2; type: point; distance: 2.5"></a-entity>
+
+      <a-entity id="focoBase" position="15 0.174 -9.546"
+        light="color: #ffffff; intensity: 2; type: point; distance: 2.5"></a-entity>
+
+      <a-entity id="focoBase" position="18 0.174 -5.06"
+        light="color: #ffffff; intensity: 2; type: point; distance: 2.5"></a-entity>
+
+      <a-entity id="focoBase" position="21 0.174 -9.546" visible="false"
+        light="color: #ffffff; intensity: 2; type: point; distance: 2.5"></a-entity>
+
+      <a-entity id="focoBase" position="24 0.174 -5.06" visible="false"
+        light="color: #ffffff; intensity: 2; type: point; distance: 2.5"></a-entity>
+
+      <a-entity id="focoBase" position="27 0.174 -9.546" visible="false"
+        light="color: #ffffff; intensity: 2; type: point; distance: 2.5"></a-entity>
+
+      <a-entity id="focoBase" position="30 0.174 -5.06" visible="false"
+        light="color: #ffffff; intensity: 2; type: point; distance: 2.5"></a-entity>
+
+      <a-entity id="focoBase" position="33 0.174 -9.546" visible="false"
+        light="color: #ffffff; intensity: 2; type: point; distance: 2.5"></a-entity>
+
+      <a-entity id="focoBase" position="36 0.174 -5.06" visible="false"
+        light="color: #ffffff; intensity: 2; type: point; distance: 2.5"></a-entity>
+    </a-entity>
+</a-scene>
