@@ -152,7 +152,14 @@
               </a-text>
             </a-text>
           </a-entity>
-          <a-image id="btnItemGo" src="#button" scale="0.8 0.3 1" position="0 -0.70 0.1" material="" geometry="">
+          <a-image geometry="height: 0.5; width: 0.5;" id="containerbtngo" material="" position="-0.50 -0.7 0.1"
+            scale="1 1 1" src="#goPlace"
+            animation__scaledown="property: scale; from: 1.1 1.1 1.1; to: 1 1 1; dur: 100; autoplay: false; easing:
+            easeInOutCubic; startEvents: mouseleave; pauseEvents: mouseenter; resumeEvents: "
+            animation__scaleup="property: scale; from: 1 1 1; to: 1.1 1.1 1.1; dur: 100; autoplay: false; easing:
+            easeInOutElastic; startEvents: mouseenter; pauseEvents: mouseleave; resumeEvents: ">
+            <a-image id="btnItemGo" src="#button" scale="0.8 0.3 1" position="0.630 0.030 0.1" material="" geometry="">
+            </a-image>
           </a-image>
         </a-entity>
       </a-entity>
@@ -215,8 +222,6 @@
 
   <a-light type="point" color="#94c6ff" distance="15" position="0 0 -12" intensity="0"
     animation="property: light.intensity; from: 0; to: 2; delay: 750; dur: 500"></a-light>
-  <a-light type="point" color="#94c6ff" distance="17" position="0 0 -6" intensity="0"
-    animation="property: light.intensity; from: 0; to: 1; delay: 500; dur: 500"></a-light>
   <a-light type="ambient" color="#4f6487"></a-light>
 
 </a-scene>
