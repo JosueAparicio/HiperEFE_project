@@ -191,6 +191,11 @@ export class SceneComponent implements OnInit {
     }), {});
   }
 
+  goMuseum(){
+    this.sound.stop();
+    this._router.navigate([`vr/museum/${this.uidCreator}/${this.codeRoom}`]);
+  }
+
   exitLobby() {
     this.sound.stop();
     this._router.navigate([`detailsRoom/${this.uidCreator}/${this.codeRoom}`]);
