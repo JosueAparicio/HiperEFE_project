@@ -10,20 +10,26 @@
     </a-gltf-model>
     <a-sky id="skyMuseo" color="#0a0d1f"></a-sky>
 
-    <a-entity id="ligthAmbient" light="type: ambient; color: #1c5aab"></a-entity>
+    <a-entity id="ligthAmbient" light="type: ambient; color: #1c5aab" visible="false"></a-entity>
 
-    <a-entity id="ligthOff" light="type: ambient; color: #0a1524" visible="false"></a-entity>
+    <a-entity id="ligthOff" light="type: ambient; color: #0a1524" ></a-entity>
 
 
     <a-entity id="focoRobot" position="2.355 -1.259 -2.799"
       light="color: #22f789; intensity: 21.23; type: point; distance: 2.33; decay: 2" visible=""></a-entity>
 
-    <a-entity id="focoRobot" position="-2 -1.259 -2.799"
-      light="color: #22f789; intensity: 21.23; type: point; distance: 2.33; decay: 2" visible=""></a-entity>
+    <a-entity id="focoMenu" position="-2 -1.259 -2.799"
+      light="color: #22f789; intensity: 21.23; type: point; distance: 2.33; decay: 2" visible=""
+      animation__position="property: position; to: -2.61 -1.24 -5; dur: 1000; autoplay: false; easing:
+      easeInOutCubic; startEvents: startYep;"></a-entity>
 
     <a-entity id="lblBanner"
       text="font: https://cdn.aframe.io/fonts/Monoid.fnt; value: BIENVENIDO AL MUSEO DE HISTORIA; align: center; width: 7"
-      position="0.69354 1.5 -5" rotation=""></a-entity>
+      position="0.69354 1.5 -5" rotation=""
+      animation__rotation="property: rotation; to: 0 90 0; dur: 1000; autoplay: false; easing:
+      easeInOutCubic; startEvents: startYep;"
+      animation__position="property: position; to: -3.60 1.5 -5; dur: 1000; autoplay: false; easing:
+      easeInOutCubic; startEvents: startYep;"></a-entity>
 
     <a-entity id="contentRobot">
       <a-image src="#robot" width="3" height="1.5" position="2.10472 -0.67227 -2.79854" material="" geometry="">
@@ -33,24 +39,39 @@
         scale="0.5 1 1">
       </a-image>
 
-      <a-entity
+      <a-entity id="phrasesRobot"
         text="font: https://cdn.aframe.io/fonts/Monoid.fnt; value: Yepa, que pasa gente; align: center; wrapCount: 9"
         position="2.77632 0.79231 -2.79" rotation="" scale=""></a-entity>
     </a-entity>
 
-    <a-entity id="btnStartTravel" position="-0.79164 0.19721 -2.799" rotation="" onclick="prueba()">
-      <a-image src="#startTravel" position="0 0.31336 0" material="side: front" geometry="" scale="0.5 0.5 1">
-      </a-image>
-      <a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: Iniciar Paseo; align: center; width: 4"
-        position="0 0.05223 0"></a-entity>
-    </a-entity>
-    <a-entity id="btnExitMuseum" position="-0.85285 -0.75937 -2.799" rotation="">
-      <a-image src="#exit" position="0 0.313 0" material="side: front" geometry="" scale="0.5 0.5 1"></a-image>
-      <a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: Lobby; align: center; width: 4"
-        position="0 0.05223 0"></a-entity>
+    <a-entity id="containerBtnStart" 
+      animation__rotation="property: rotation; to: 0 90 0; dur: 1000; autoplay: false; easing:
+      easeInOutCubic; startEvents: startYep;"
+      animation__position="property: position; to: -0.77 0 -5; dur: 1000; autoplay: false; easing:
+      easeInOutCubic; startEvents: startYep;">
+      <a-entity id="btnStartTravel" position="-0.79164 0.19721 -2.799" rotation="" (click)="startTravel()"
+        animation__scaledown="property: scale; from: 1.1 1.1 1.1; to: 1 1 1; dur: 100; autoplay: false; easing:
+      easeInOutCubic; startEvents: mouseleave; pauseEvents: mouseenter; resumeEvents: " 
+      animation__scaleup="property: scale; from: 1 1 1; to: 1.1 1.1 1.1; dur: 100; autoplay: false; easing:
+      easeInOutElastic; startEvents: mouseenter; pauseEvents: mouseleave; resumeEvents: "
+        proxy-event="event: click; to: a-scene, #lblBanner, #containerBtnStart, #focoMenu; as: startYep; captureBubbles:
+        true; bubbles: true">
+        <a-image src="#startTravel" position="0 0.31336 0" material="side: front" geometry="" scale="0.5 0.5 1">
+        </a-image>
+        <a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: Iniciar Paseo; align: center; width: 4"
+          position="0 0.05223 0"></a-entity>
+      </a-entity>
+      <a-entity id="btnExitMuseum" position="-0.85285 -0.75937 -2.799" rotation="" (click)="goToLobby()"
+        animation__scaledown="property: scale; from: 1.1 1.1 1.1; to: 1 1 1; dur: 100; autoplay: false; easing:
+    easeInOutCubic; startEvents: mouseleave; pauseEvents: mouseenter; resumeEvents: " animation__scaleup="property: scale; from: 1 1 1; to: 1.1 1.1 1.1; dur: 100; autoplay: false; easing:
+    easeInOutElastic; startEvents: mouseenter; pauseEvents: mouseleave; resumeEvents: ">
+        <a-image src="#exit" position="0 0.313 0" material="side: front" geometry="" scale="0.5 0.5 1"></a-image>
+        <a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: Lobby; align: center; width: 4"
+          position="0 0.05223 0"></a-entity>
+      </a-entity>
     </a-entity>
 
-    <a-entity id="containerLigth">
+    <a-entity id="containerLigth" visible="false">
       <a-entity id="focoBase" position="4.77 0.174 -5.06"
         light="color: #ffffff; intensity: 2; type: point; distance: 2.5"></a-entity>
 
@@ -60,10 +81,10 @@
       <a-entity id="focoBase" position="11 0.174 -5.06"
         light="color: #ffffff; intensity: 2; type: point; distance: 2.5"></a-entity>
 
-      <a-entity id="focoBase" position="15 0.174 -9.546"
+      <a-entity id="focoBase" position="15 0.174 -9.546" visible="false"
         light="color: #ffffff; intensity: 2; type: point; distance: 2.5"></a-entity>
 
-      <a-entity id="focoBase" position="18 0.174 -5.06"
+      <a-entity id="focoBase" position="18 0.174 -5.06" visible="false"
         light="color: #ffffff; intensity: 2; type: point; distance: 2.5"></a-entity>
 
       <a-entity id="focoBase" position="21 0.174 -9.546" visible="false"
@@ -83,5 +104,14 @@
 
       <a-entity id="focoBase" position="36 0.174 -5.06" visible="false"
         light="color: #ffffff; intensity: 2; type: point; distance: 2.5"></a-entity>
+    </a-entity>
+
+    <a-entity id="robotMantenice" position="15 0 -5" scale="1 1.2 1" rotation="0 90 0">
+      <a-image src="#robotSad" width="3" height="1.5" position="2 -0.522 -2.799" material="" geometry="">
+      </a-image>
+
+      <a-entity text="font: https://cdn.aframe.io/fonts/Monoid.fnt; value: Estamos en Mantenimiento, vuelve pronto para
+                tu primer paseo; align: center; wrapCount: 35; width: 5;" position="2 0.850 -2.79" rotation="0 180 0"
+        scale="1.2 1.2 1" rotation="0 180 0"></a-entity>
     </a-entity>
 </a-scene>
