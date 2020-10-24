@@ -63,6 +63,7 @@ export class SceneComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.sound.stop();
     this.listTopics = JSON.parse(sessionStorage.getItem('topics'));
     this.uidCreator = this.routerParams.snapshot.paramMap.get('creator');
     this.codeRoom = this.routerParams.snapshot.paramMap.get('codeRoom');
