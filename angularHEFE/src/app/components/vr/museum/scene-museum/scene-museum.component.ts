@@ -35,6 +35,7 @@ export class SceneMuseumComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.musicBackgroud.stop();
     this.uidCreator = this.routerParams.snapshot.paramMap.get('creator');
     this.codeRoom = this.routerParams.snapshot.paramMap.get('codeRoom');
     let phrasesRamdon = { value: this.phrases[Global.generarNumero(1, 5)] };
