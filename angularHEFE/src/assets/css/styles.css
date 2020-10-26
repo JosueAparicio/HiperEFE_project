@@ -1340,8 +1340,6 @@ ul li a:hover {
   background: #18191a;
 }
 
-.home-user #check:checked~div.content {}
-
 .home-user #check {
   display: none;
 }
@@ -1516,6 +1514,12 @@ ul li a:hover {
   height: 2px;
   background: linear-gradient(90deg, transparent, #03e9f4);
   animation: animate1 1s linear infinite;
+}
+
+body::-webkit-scrollbar {
+  width: 1.5px;
+  background: #e40046;
+  max-width: 100%;
 }
 
 @keyframes animate1 {
