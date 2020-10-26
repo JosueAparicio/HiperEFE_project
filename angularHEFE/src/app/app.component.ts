@@ -1,7 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
-import { Observable, from } from 'rxjs';
-
-
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',

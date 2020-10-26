@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ChatsService } from '../../../services/chats.service';
-import { Message } from '../../../models/message';
 import * as moment from 'moment';
 
 
@@ -26,21 +25,14 @@ export class ConversationsComponent implements OnInit {
     this.chatService.getLastMessage(this.conversation.id).subscribe(msg => {
       //console.log(msg)
       if (msg) {
-
-        msg.map(row => {
+        msg.forEach(row => {
           this.chatService.getUserMsg(row.uid).subscribe(p => {
             this.user = p;
             this.message = row;
-            this.date =  moment(row.date).fromNow(); 
-
+            this.date = moment(row.date).fromNow();
           });
         });
-
-
-
       }
-
-
     });
   }
 

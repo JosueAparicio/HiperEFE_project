@@ -1,5 +1,5 @@
 //importamos los modulos de router de angular para navegar entre los doferentes componentes
-import { ModuleWithProviders, Component } from '@angular/core';
+import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 

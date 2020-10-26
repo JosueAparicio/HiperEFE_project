@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Global } from '../../services/global';
 
 
@@ -67,7 +67,7 @@ export class GeneralValidationsComponent implements OnInit {
         break;
       case '':
         this._router.navigate(['/inicio']);
-
+        break;
       default:
     }
   }
@@ -80,14 +80,14 @@ export class GeneralValidationsComponent implements OnInit {
       try {
         await this._userService.recoverPassword(this.action, this.resetForm.value.password).then(async resp => {
           try {
-            const resp = await this._userService.getAuth().confirmPasswordReset(this.action, this.resetForm.value.password)
+            await this._userService.getAuth().confirmPasswordReset(this.action, this.resetForm.value.password)
               .then(async resp => {
                 Swal.fire('Listo!', 'Se ha actualizado su contraseña, Inicie sesion nuevamente !!!', 'success');
                 this._router.navigate(['/login']);
               }).catch(error => {
                 console.log(error);
                 Swal.fire('Caducado!', 'El enlace solo es valido para una cambio de contraseña', 'error');
-              });;
+              });
           }
           catch (error) {
             console.log(error);

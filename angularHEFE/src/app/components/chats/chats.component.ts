@@ -153,7 +153,7 @@ export class ChatsComponent implements OnInit {
         this._chatsService.deleteReportedMsg(event.id, this.conversation.id);
       } else {
         this.openSnackBar('Evaluaremos este mensaje... Gracias por tu reporte.', 'Ok');
-      };
+      }
       this.procesando = false;
     }, 2000);
 

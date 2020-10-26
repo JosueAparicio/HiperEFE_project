@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Trophy } from '../../../../models/trophy';
-import { Topic } from '../../../../models/topics';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Howl, Howler } from 'howler';
+import { Howl } from 'howler';
 
 
 @Component({

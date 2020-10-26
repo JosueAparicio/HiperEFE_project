@@ -4,12 +4,11 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { RoomsService } from '../../../services/rooms.service';
 import { UserService } from '../../../services/user.service';
 import { Topic } from '../../../models/topics';
-import { Room } from '../../../models/room';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 
 
