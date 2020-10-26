@@ -6,7 +6,7 @@ import { Room } from '../models/room';
 import { Global } from './global';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { map } from 'rxjs/operators';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
@@ -84,7 +84,7 @@ export class RoomsService {
       this.topicsSelectedCollection = this.bd.collection(`users/${room.user.uid}/salas/${idRoom}/topics`);
 
       room.topics.forEach(row => {
-        this.topicsSelectedCollection.add(row).then(resp => console.log('agregado')).catch(error => console.log(error));
+        this.topicsSelectedCollection.add(row).then(respSelect => console.log('agregado')).catch(error => console.log(error));
       });
 
     }).catch(error => {

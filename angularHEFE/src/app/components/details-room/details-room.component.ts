@@ -100,7 +100,7 @@ export class DetailsRoomComponent implements OnInit {
     this.roomService.getListMembers(this.uidCreator, this.codeRoom).subscribe(listUidMembers => {
       this.numberMembersActive = listUidMembers.length;
 
-      listUidMembers.map(item => {
+      listUidMembers.forEach(item => {
         listDataUser = [];
         this.userService.getUserData(item.uidStudent).subscribe(dataUser => {
           listDataUser.push(dataUser);
@@ -234,7 +234,7 @@ export class DetailsRoomComponent implements OnInit {
         this._chatsService.deleteReportedMsg(event.id, this.codeRoom);
       } else {
         this.openSnackBar('Evaluaremos este mensaje... Gracias por tu reporte.', 'Ok');
-      };
+      }
       this.procesando = false;
 
     }, 2000);

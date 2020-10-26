@@ -28,7 +28,7 @@ export class VerificarEmailComponent implements OnInit {
           Swal.showLoading()
         },
       });
-      const send = await this._userService.sendVerificationEmail();
+      await this._userService.sendVerificationEmail();
 
     } catch (error) {
       Swal.fire('Error!', 'Parece que algo ha salido mal, intantelo más tarde', 'error');

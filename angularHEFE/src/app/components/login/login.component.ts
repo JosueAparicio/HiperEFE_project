@@ -48,9 +48,6 @@ export class LoginComponent implements OnInit {
     if (result) {
       this.obtenerVerificacion();
     }
-    else {
-      
-    }
   }
   async obtenerVerificacion() {
     try {
@@ -94,7 +91,7 @@ export class LoginComponent implements OnInit {
           Swal.showLoading()
         },
       });
-      const result =  this._userService.sendRecoverPasswordEmail(email);
+      this._userService.sendRecoverPasswordEmail(email);
         //Swal.close() == await result;
     
     }

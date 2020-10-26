@@ -4,7 +4,7 @@ import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Global } from '../../services/global';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
         },
       });
 
-      const create = this._userService.createAccount(this.registerForm.value);
+      this._userService.createAccount(this.registerForm.value);
     }
 
   }

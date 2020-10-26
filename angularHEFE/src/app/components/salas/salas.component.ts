@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { RoomsService } from '../../services/rooms.service';
 
 @Component({
   selector: 'app-salas',

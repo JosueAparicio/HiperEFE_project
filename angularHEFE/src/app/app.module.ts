@@ -12,7 +12,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material/material.module';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 
