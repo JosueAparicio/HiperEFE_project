@@ -28,7 +28,6 @@
     "@sweetalert2/ngx-sweetalert2": "^8.1.1",
     "@sweetalert2/themes": "^3.2.0",
     "@types/howler": "^2.2.1",
-    "@types/three": "^0.103.2",
     "aframe": "^1.0.4",
     "aframe-layout-component": "^5.3.0",
     "aframe-proxy-event-component": "^2.1.0",
@@ -44,7 +43,6 @@
     "nodemailer": "^6.4.11",
     "rxjs": "~6.5.5",
     "sweetalert2": "^9.17.1",
-    "three": "^0.121.1",
     "tslib": "^2.0.0",
     "twemoji": "^13.0.1",
     "zone.js": "~0.10.3"

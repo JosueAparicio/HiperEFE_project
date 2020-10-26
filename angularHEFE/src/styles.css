@@ -1071,6 +1071,11 @@ mat-grid-list {
       font-size: 11px !important;
     }
 
+    .body header{
+      margin-top: 45% !important;
+
+    }
+
     .button-hover {
       min-width: 150px !important;
     }
@@ -1079,11 +1084,7 @@ mat-grid-list {
       margin-top: -100px !important;
     }
 
-    .wapper-nav nav {}
 
-    .header-container {
-      margin-bottom: 250px !important;
-    }
 
     .wapper-nav nav .logo {
       margin-left: -10px;
@@ -1095,6 +1096,11 @@ mat-grid-list {
 
     .nav-items li a {
       margin-left: 25px !important;
+    }
+
+    .body header{
+      margin-top: 45% !important;
+
     }
 
     .body header .virtual h1 {
@@ -1117,7 +1123,6 @@ mat-grid-list {
       margin-top: -100px !important;
     }
 
-    .wapper-nav nav {}
   }
 
   @media only screen and (min-width:521px) and (max-width:600px) {
@@ -1203,8 +1208,6 @@ mat-grid-list {
   @media(max-width: 860px) {
 
     .body {
-      display: grid;
-      place-items: center;
       min-width: 100%;
       min-height: 100vh;
       background: radial-gradient(circle at 85.4% 50.8%, rgb(14, 72, 222) 0%, rgb(3, 22, 65) 74.2%) !important;
@@ -1219,8 +1222,6 @@ mat-grid-list {
 
     .body header {
       float: none !important;
-      margin-top: 100px !important;
-      display: grid !important;
       place-items: center !important;
 
     }
