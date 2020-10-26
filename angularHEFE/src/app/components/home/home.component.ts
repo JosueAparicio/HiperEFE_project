@@ -3,12 +3,10 @@ import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { DialogExampleComponent } from '../dialogs/dialog-example/dialog-example.component';
 import { RoomComponent } from '../dialogs/room/room.component';
 import { RoomsService } from '../../services/rooms.service';
 import { Room } from '../../models/room';
 import { UserConfigComponent } from '../dialogs/user-config/user-config.component';
-import * as moment from 'moment';
 
 
 
@@ -101,43 +99,6 @@ export class HomeComponent implements OnInit {
     })
 
     this.rooms = arrayFilter;
-  }
-  //cerrar sesion
-  singOut() {
-    Swal.fire({
-      title: '¿Cerrar sesión?',
-      text: "Se cerrará tu sesión!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'OK'
-    }).then(async (result) => {
-      if (result.value) {
-
-        Swal.fire({
-          title: 'Cerrando Sesion...',
-          allowOutsideClick: false,
-          timer: 1000,
-          onBeforeOpen: () => {
-            Swal.showLoading()
-          },
-          onClose: () => {
-            this._userService.signOut();
-          }
-        });
-      }
-    })
-  }
-  //prueba
-  openDialog() {
-
-    this.salasService.getRooms(this.user.uid, this.typeRoom).subscribe(rooms => {
-      // this.rooms = rooms;
-      console.log(rooms);
-
-    });
-
   }
 
 

@@ -16,6 +16,7 @@ import { SceneComponent } from './components/vr/lobby/scene/scene.component';
 import { DetailsRoomComponent } from './components/details-room/details-room.component';
 import { ChatsComponent } from './components/chats/chats.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { SceneMuseumComponent } from './components/vr/museum/scene-museum/scene-museum.component';
 
 
 const appRoutes: Routes =[
@@ -27,7 +28,8 @@ const appRoutes: Routes =[
     { path: 'verify-account/:uid', component: VerificarEmailComponent},
     { path: 'user/general-validations', component:GeneralValidationsComponent},
     { path: 'terms-and-conditions', component: TermsconditionsComponent},
-    { path: 'vr/lobby', component: SceneComponent},
+    { path: 'vr/lobby/:creator/:codeRoom', component: SceneComponent},
+    { path: 'vr/museum/:creator/:codeRoom', component: SceneMuseumComponent},
     { path: 'detailsRoom/:creator/:codeRoom', component: DetailsRoomComponent},
     { path: 'rooms/chats', component: ChatsComponent},
     { path: 'user/profile/:uid', component: ProfileComponent},

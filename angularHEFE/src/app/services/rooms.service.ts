@@ -113,23 +113,23 @@ export class RoomsService {
   }
 
   deleteStudentRoom(dataDelete) {
-    console.log(dataDelete);
-    this.sendEmailDelete(dataDelete).subscribe(response => { //Envia el corre notificando expulsion de la sala
-      //console.log('SE ENVIO EL PINCHE CORREO JOTO')
-    }, error => {
-      console.log(error);
-    });
-
-    /*this.studentRoom = this.bd.collection(`users/${dataDelete.uidCreator}/salas/${dataDelete.codeRoom}/members`).doc(dataDelete.uidStudent);
+    
+    this.studentRoom = this.bd.collection(`users/${dataDelete.uidCreator}/salas/${dataDelete.codeRoom}/members`).doc(dataDelete.uidStudent);
     this.studentRoom.delete().then(() => {
       this.studentRoom = this.bd.collection(`users/${dataDelete.uidStudent}/joinRoom`).doc(dataDelete.codeRoom);
+     
+      this.sendEmailDelete(dataDelete).subscribe(response => { //Envia el corre notificando expulsion de la sala
+        this.openSnackBar('Eliminado con exito','Aceptar');
+      }, error => {
+        console.log(error);
+      });
 
       this.studentRoom.delete().catch((error) => {
         this.openSnackBar('Error, Intente mas tarde', 'ok');
       });
     }).catch((error) => {
       this.openSnackBar('Error, Intentelo mas Tarde', 'ok')
-    });*/
+    });
   }
 
   //SMALL ALERTS

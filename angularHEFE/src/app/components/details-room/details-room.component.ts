@@ -6,7 +6,6 @@ import { UserService } from '../../services/user.service';
 import { UserModel } from '../../models/user-model.model';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { Room } from '../../models/room';
 import { ChatsService } from '../../services/chats.service';
 import { Message } from '../../models/message';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -31,7 +30,7 @@ export class DetailsRoomComponent implements OnInit {
   public messageTemplate: string;
   public dataRoom: any;
   public numberMembersActive: number;
-  public topicList: any
+  public topicList: any;
   public listMembersIndex: Array<UserModel>;
   private nameTeacher: string;
   showchat: boolean = false;
@@ -192,7 +191,7 @@ export class DetailsRoomComponent implements OnInit {
     }
   }
 
-  getListTopics() {
+  goLobbyVR() {
     let listTopic = [];
     this.roomService.getListTopic(this.uidCreator, this.codeRoom).then((list) => {
 
@@ -200,20 +199,19 @@ export class DetailsRoomComponent implements OnInit {
         listTopic.push(element.doc.data());
       });
       sessionStorage.setItem('topics', JSON.stringify(listTopic));
-      this.router.navigate(['/vr/lobby']);
+      this.router.navigate([`/vr/lobby/${this.uidCreator}/${this.codeRoom}`]);
     });
   }
 
   back() {
-    this.location.back();
+    this.router.navigate(['home']);
   }
 
   deleteMsg(event) {
     this._chatsService.deleteMsg(event.delete, this.codeRoom);
-    //this.inputMessages();
   }
+  
   reportMsg(event) {
-    //console.log(event.reported);
     var cont = 0;
     this.procesando = true;
     Global.report.forEach(word => {

@@ -46,6 +46,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { GeneralComponent } from './components/profile/general/general.component';
 import { AccessComponent } from './components/profile/access/access.component';
 import { OthersComponent } from './components/profile/others/others.component';
+import { SceneMuseumComponent } from './components/vr/museum/scene-museum/scene-museum.component';
+import { AssetsMuseumComponent } from './components/vr/museum/assets-museum/assets-museum.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,9 @@ import { OthersComponent } from './components/profile/others/others.component';
     ProfileComponent,
     GeneralComponent,
     AccessComponent,
-    OthersComponent
+    OthersComponent,
+    SceneMuseumComponent,
+    AssetsMuseumComponent
   ],
   imports: [
     BrowserModule,

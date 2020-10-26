@@ -1,24 +1,44 @@
 'use strict'
 
-var validator = require('validator');
-var fs = require('fs');
-var path = require('path');
+const { google } = require('googleapis');
+const { OAuth2 } = google.auth;
 const nodemailer = require('nodemailer');
 var hbs = require('nodemailer-express-handlebars');
-var helpers = require('handlebars-helpers')();
-const global = require('../services/Global')
+var user = 'hiperefe.contact@gmail.com';
+var cliente_id = '367396264455-uorv0btft5fm4k919t5t1db8ris9qom8.apps.googleusercontent.com';
+var privateKey = 'MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCf7jH5F3y4KoKn\n3YpOjgZUptNNKhfukGJFjR7D1XMdhGUmqf/NwpAhZ6ysCfvlBg+7d1bBOtJDauuu\nWi3Q/qbZou/OykSyKsF61eFAyajKe7zl3k1M5fE3huOCxBLi8ffYeFSadLedGdjz\n0RFyQuh9DH0Ozw4nLYbKjgP2VVPOFXBH87RlAlg/62U9UQAzNaFPdAm+gmTi5J7b\nPKog2iNxmn+KHCc/mnLg3d/UZdU8MMwUm9Q/mt7KuvnV4F6/upgioSXUjzSKFsci\np0lm9bZujnxVg9pIaNZXVt0UnbhDxwM0AedBnXVH1dcLJ0cCIGrGOQrM2HeFZExU\nqoJfllLjAgMBAAECggEAAOs05UnxwPsZig5XQ5FETwswTpKt1YSF1AF2Ckj5ItPG\nYvz6B7wU6OQ4FTrvdAbfY0PRv0VvvMxp8zP4bGlyGvD5MLZvw5hESUjeROmDqzof\nwTBQQF9Xzepb9z3aH+yk8Fzsm4CNJ31lBi2OzJm+zS0bsNCWs7nqutIrCqi91QK/\nMbYr+7TvAucgiFKqUws/TM1qsK0/52uMkb58n8TOxaSlUW9Lu3UpKesr8UiNsb0N\nCgpYe2sWts449yz2XfKygqXO0y5pV1Sj5GTifuG8mSiuq0Aj8nHeasnM5PvAqm+m\n+rHTPeEN5uKmmtUkmVl1DUI8Aox3T8u1HDp9e9laOQKBgQDLHEC83AeTNbHso6nZ\ngN3alQFz3H69kMBDp89tuXkdon4UFqm4QSaHP9D8gtTVnu3T3QjWRH4uTZkAhpVV\ns4aqpMMdTu7ET5i4aB8c4xdg7k7vBPEQ9K/MJS5SZDns8aL1suDjhh/wL95c0cbS\nnfAmL1/fokOGQxdy9bXchC+R2wKBgQDJk3trNWcSqkIDru/OKUjsbnxzJFmcqpEn\nqmEWJyuefZLBv90SWUxmpT3wRKZulkuevfEmQh5Mm8X/KJXM7uvhsq/Qxg+YLkQc\nTeRhta/FbFbJiSN7E0DIeWenDchTLpE94n6M8VhFj0L1TkliCbek/q+CWNWh3f64\nGNpTWlKlmQKBgBI+rHYKkcegeCYYoYY/NC6RWfsNYHkoyoyJQ3HIyl9mHEszqfU6\nLPrTObOlEPdLenOglE2jA26nW8oXTMzQ/pTPjhNQ5tPNjptqBvlyUMRNQ9vmprzu\nLeh5ooqWJDnrjsbhVaA6iR3rPt85nNGIjGzxrnwJOGWUG0QhXD+9xAQnAoGAfsbU\n/o5trx2Ju0tQ4zav+JNcjgY0ngXgmTPdL9Oe6WVM4bJL1fh3xq7yj6R9kFvSX5pS\nip9W8xOdqWbbIDK8BA0f6oxGzo16pNqQYqukSuRiiQpJWGS5f9xrRnOypC5LhsJm\nmTpJLCZ4FFQSbyhxacIMnExGwDEgvKRU28uY4zECgYBTb1nLpnsiqcj3nDrQ84EU\nR+0C1KdlUCAF1mmGbk7uNeRs+y2iinh5965FQiXwb01ZaLlz4cj3MJ4NsqdVaLlZ\nyi8mKP/JI5BMWXh8Gn6BJHei2135o4yCOGwzZMIPAtmmNw0vIVJMgNPCJC/U3Oep\ntoHFSpZZ5wdnEx1fAvHg5Q==';
+var typeAuth = 'OAuth2';
+var clientSecret = 'bZ0xJXOtTMI5Z_G5aitgvU_j';
+var refreshToken = '1//04b6981HmurdrCgYIARAAGAQSNwF-L9IrPzQ4NCiqZ1eFtasBUvwy0LwL4Quf5OyI7sxJe1TXsKhh8GNwzIDcl709hM8uJd7Q0yA';
+const OAUTH_PLAYGROUND = 'https://developers.google.com/oauthplayground';
+
+const oauth2Client = new OAuth2(
+    cliente_id,
+    clientSecret,
+    OAUTH_PLAYGROUND
+);
 
 var controller = {
 
     sendWelcomeEmail: (req, res) => {
+        oauth2Client.setCredentials({
+            refresh_token: refreshToken,
+        });
+
+        const accessToken = oauth2Client.getAccessToken();
+
         console.log(req.params.email);
         var transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
             port: 465,
             secure: true,
             auth: {
-                user: 'hiperefe.contact@gmail.com',
-                pass: 'hiperEFE2020'
+                type: typeAuth,
+                user: user,
+                clientId: cliente_id,
+                clientSecret: clientSecret,
+                refreshToken: refreshToken,
+                accessToken
             },
             tls: {
                 // do not fail on invalid certs
@@ -50,14 +70,24 @@ var controller = {
     },
 
     sendReportedEmail: (req, res) => {
+        oauth2Client.setCredentials({
+            refresh_token: refreshToken,
+        });
+
+        const accessToken = oauth2Client.getAccessToken();
+
         console.log(req.params.email);
         var transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
             port: 465,
             secure: true,
             auth: {
-                user: 'hiperefe.contact@gmail.com',
-                pass: 'hiperEFE2020'
+                type: typeAuth,
+                user: user,
+                clientId: cliente_id,
+                clientSecret: clientSecret,
+                refreshToken: refreshToken,
+                accessToken
             },
             tls: {
                 // do not fail on invalid certs
@@ -90,13 +120,23 @@ var controller = {
     },
     async sendDeleteEmail(req, res) {
         try {
+            oauth2Client.setCredentials({
+                refresh_token: refreshToken,
+            });
+
+            const accessToken = oauth2Client.getAccessToken();
+
             var transporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
                 port: 465,
                 secure: true,
                 auth: {
-                    user: 'hiperefe.contact@gmail.com',
-                    pass: 'hiperEFE2020'
+                    type: typeAuth,
+                    user: user,
+                    clientId: cliente_id,
+                    clientSecret: clientSecret,
+                    refreshToken: refreshToken,
+                    accessToken
                 },
                 tls: {
                     // do not fail on invalid certs
