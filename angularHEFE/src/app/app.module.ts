@@ -47,6 +47,7 @@ import { AccessComponent } from './components/profile/access/access.component';
 import { OthersComponent } from './components/profile/others/others.component';
 import { SceneMuseumComponent } from './components/vr/museum/scene-museum/scene-museum.component';
 import { AssetsMuseumComponent } from './components/vr/museum/assets-museum/assets-museum.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,8 @@ import { AssetsMuseumComponent } from './components/vr/museum/assets-museum/asse
     BrowserAnimationsModule,
     MaterialModule,
     MatNativeDateModule,
-    PickerModule
+    PickerModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: [
     DialogExampleComponent, 
