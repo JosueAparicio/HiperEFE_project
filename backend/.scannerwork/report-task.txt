@@ -1,6 +1,6 @@
-projectKey=HIPEREFE_backend
+projectKey=HiperEfe_backend_plugin
 serverUrl=http://localhost:9000
 serverVersion=8.4.2.36762
-dashboardUrl=http://localhost:9000/dashboard?id=HIPEREFE_backend
-ceTaskId=AXTlMy8Da0mhkVeQlOFv
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AXTlMy8Da0mhkVeQlOFv
+dashboardUrl=http://localhost:9000/dashboard?id=HiperEfe_backend_plugin
+ceTaskId=AXVsQfY28OtnNmK63N_f
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXVsQfY28OtnNmK63N_f
