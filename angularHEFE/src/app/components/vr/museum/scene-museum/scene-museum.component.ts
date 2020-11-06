@@ -38,8 +38,6 @@ export class SceneMuseumComponent implements OnInit {
     this.musicBackgroud.stop();
     this.uidCreator = this.routerParams.snapshot.paramMap.get('creator');
     this.codeRoom = this.routerParams.snapshot.paramMap.get('codeRoom');
-    let phrasesRamdon = { value: this.phrases[Global.generarNumero(1, 5)] };
-    this.modificView('phrasesRobot', 'text', phrasesRamdon);
     this.musicBackgroud.play();
   }
 
@@ -52,6 +50,11 @@ export class SceneMuseumComponent implements OnInit {
     this.modificView('ligthAmbient', 'visible', 'true');
     this.modificView('ligthOff', 'visible', 'false');
     this.modificView('containerLigth', 'visible', 'true');
+  }
+
+  visitGuided(){
+    console.log('CLICK EN GUIDED');
+    this.modificView('question', 'text','value:Elige que quieres ver en el Museo');
   }
 
   modificView(idItem: string, attribute: any, value: any) {
