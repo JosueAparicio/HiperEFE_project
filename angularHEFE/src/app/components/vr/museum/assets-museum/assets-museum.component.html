@@ -10,3 +10,10 @@
 <a-asset id="exhibitionMuseum" src="../../../../../assets/images/museum/exhibition.svg"></a-asset>
 <a-asset id="computer" src="../../../../../assets/images/museum/laptop.svg"></a-asset>
 <a-asset id="internetSV" src="../../../../../assets/images/museum/internetSV.svg"></a-asset>
+
+<a-mixin id="scaleDown"
+  animation__scaledown="property: scale; from: 1.1 1.1 1.1; to: 1 1 1; dur: 100; autoplay: false; easing:
+    easeInOutCubic; startEvents: mouseleave; pauseEvents: mouseenter; resumeEvents: "></a-mixin>
+<a-mixin id="scaleUp"
+  animation__scaleup="property: scale; from: 1 1 1; to: 1.1 1.1 1.1; dur: 100; autoplay: false; easing:
+        easeInOutElastic; startEvents: mouseenter; pauseEvents: mouseleave; resumeEvents: "></a-mixin>

@@ -3,7 +3,7 @@
       <app-assets-museum></app-assets-museum>
     </a-assets>
 
-    <a-entity camera="" position="0 0.6 0" wasd-controls rotation="-9.969465635276295 1023.3026221036458 0"
+    <a-entity id="cameraUser" camera="" position="0 0.6 0" rotation="-9.969465635276295 1023.3026221036458 0"
       look-controls cursor="rayOrigin: mouse"></a-entity>
 
     <a-gltf-model id="modelMuseo" src="#museo" rotation="0 -90 0" position="53.5 0 -7.5">
@@ -42,13 +42,9 @@
 
     <a-entity id="containerBtnStart">
 
-      <a-entity id="btnStartTravelGuided" position="1.3 0.19721 -2.799" rotation="" (click)="visitGuided()"
+      <a-entity id="btnStartTravelGuided" position="1.3 0.19721 -2.799" rotation="" (click)="visitGuided()" mixin="scaleUp scaleDown"
           animation__hidden="property: position; to: 1.3 -3 2; startEvents: visitGuided;
             dur: 1000; easing: easeInOutCubic; autoplay: false;"
-            animation__scaledown="property: scale; from: 1.1 1.1 1.1; to: 1 1 1; dur: 100; autoplay: false; easing:
-            easeInOutCubic; startEvents: mouseleave; pauseEvents: mouseenter; resumeEvents: "
-            animation__scaleup="property: scale; from: 1 1 1; to: 1.1 1.1 1.1; dur: 100; autoplay: false; easing:
-            easeInOutElastic; startEvents: mouseenter; pauseEvents: mouseleave; resumeEvents: "
             proxy-event="event: click; to: a-scene, #lblBanner,#btnStartTravelGuided, #containerBtnStart, #focoMenu,
             #btnStartTravelFree, #btnExitMuseum, #btnTravelComplete, #exhibition, #historyComputer, #historyInternetSV,
             #contentRobot, #question, #imgRobot;
@@ -59,8 +55,8 @@
           position="0 0.05223 0"></a-entity>
       </a-entity>
 
-      <a-entity id="btnStartTravelFree" position="-1 0.19721 -2.799" rotation="" 
-      animation__hidden="property: position; to: -2.568 -0.661 -2.799; startEvents: visitGuided;
+      <a-entity id="btnStartTravelFree" position="-1 0.19721 -2.799" rotation="" mixin="scaleUp scaleDown"
+        animation__hidden="property: position; to: -2.568 -0.661 -2.799; startEvents: visitGuided;
             dur: 1000; easing: easeInOutCubic; autoplay: false;">
         <a-image src="#startTravel" position="0 0.31336 0" material="side: front" geometry="" scale="0.5 0.5 1">
         </a-image>
@@ -69,15 +65,18 @@
           position="0 0.05223 0"></a-entity>
       </a-entity>
       
-      <a-entity id="btnExitMuseum" position="-2.5 0.19721 -2.799" rotation="">
+      <a-entity id="btnExitMuseum" position="-2.5 0.19721 -2.799" rotation="" mixin="scaleUp scaleDown">
         <a-image src="#exit" position="0 0.313 0" material="side: front" geometry="" scale="0.5 0.5 1"></a-image>
         <a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: Lobby; align: center; width: 4"
           position="0 0.05223 0"></a-entity>
       </a-entity>
 
-      <a-entity id="btnTravelComplete" position="-2.568 -3 2" rotation="" 
-      animation__hidden="property: position; to: -1 0.756 -2.799; startEvents: visitGuided;
-            dur: 1000; easing: easeInOutCubic; autoplay: false;">
+      <a-entity id="btnTravelComplete" position="-2.568 -3 2" rotation="" mixin="scaleUp scaleDown"
+        (click)="startTravelFree()" (animationcomplete__hidden)="moveCameraUser()"
+      animation__show="property: position; to: -1 0.756 -2.799; startEvents: visitGuided;
+            dur: 1000; easing: easeInOutCubic; autoplay: false;"
+      animation__hidden="property: position; to: -2.568 -3 2; startEvents: click;
+      dur: 1000; easing: easeInOutCubic; autoplay: false; delay: 1000">
         <a-image src="#travelComplete" position="0 0.31336 0" material="side: front" geometry="" scale="0.5 0.5 1">
         </a-image>
         <a-entity
@@ -96,7 +95,7 @@
           position="0.59 0.4 0"></a-entity>
       </a-entity>
 
-      <a-entity id="historyComputer" position="1.2 -3 2" rotation="" 
+      <a-entity id="historyComputer" position="1.2 -3 2" rotation="" mixin="scaleUp scaleDown"
       animation__hidden="property: position; to:1.3 0.3 -2.799; startEvents: visitGuided;
             dur: 1000; easing: easeInOutCubic; autoplay: false; delay: 500">
         <a-image src="#computer" position="0 0.31336 0" material="side: front" geometry="" scale="0.5 0.5 1">
@@ -106,7 +105,7 @@
           position="0 0.05223 0"></a-entity>
       </a-entity>
 
-      <a-entity id="historyInternetSV" position="1.3 -4 2" rotation="" 
+      <a-entity id="historyInternetSV" position="1.3 -4 2" rotation="" mixin="scaleUp scaleDown"
       animation__hidden="property: position; to: 1.3 -0.5 -2.799; startEvents: visitGuided;
             dur: 1000; easing: easeInOutCubic; autoplay: false; delay: 500">
         <a-image src="#internetSV" position="0 0.31336 0" material="side: front" geometry="" scale="0.5 0.5 1">

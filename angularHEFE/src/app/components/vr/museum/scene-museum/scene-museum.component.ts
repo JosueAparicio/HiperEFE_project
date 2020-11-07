@@ -12,14 +12,10 @@ export class SceneMuseumComponent implements OnInit {
 
   private uidCreator: string;
   private codeRoom: string;
-  public phrases = {
-    1: 'Yepa, que pasa gente',
-    2: 'Buenas, Como esta?',
-    3: 'Todo bien, Todo correcto',
-    4: 'Hola, mi nombre es HYPER',
-    5: 'Listo para aprender?'
-  }
   private musicBackgroud: Howl;
+  private moveCamera: any;
+  private sensibilityCamera: number = 0.2;
+  private velocityCamera: number = 50;
   constructor(
     public _router: Router,
     public routerParams: ActivatedRoute) {
@@ -46,10 +42,9 @@ export class SceneMuseumComponent implements OnInit {
     this._router.navigate([`vr/lobby/${this.uidCreator}/${this.codeRoom}`]);
   }
 
-  startTravel() {
+  startTravelFree() {
     this.modificView('ligthAmbient', 'visible', 'true');
     this.modificView('ligthOff', 'visible', 'false');
-    this.modificView('containerLigth', 'visible', 'true');
   }
 
   visitGuided(){
@@ -60,5 +55,26 @@ export class SceneMuseumComponent implements OnInit {
   modificView(idItem: string, attribute: any, value: any) {
     let itemView = document.getElementById(idItem);
     itemView.setAttribute(attribute, value);
+  }
+
+  moveCameraUser(){
+    this.moveCamera = window.setInterval(() => this.startRotate.call(this, this.sensibilityCamera), this.velocityCamera);
+  }
+
+  startRotate(sensibility: number) {
+    let cameraUser = document.querySelector('#cameraUser');
+    let valueRotation = AFRAME.utils.entity.getComponentProperty(cameraUser, 'position');
+    if(valueRotation['z'] > -7){
+      let newValue = { x: valueRotation['x'], y: (valueRotation['y']), z: valueRotation['z'] - sensibility };
+
+      AFRAME.utils.entity.setComponentProperty(cameraUser, 'position', newValue);
+    }else{
+      this.modificView('lightSphere', 'visible', 'true');
+      this.stopRotateCamera();
+    }
+  }
+
+  stopRotateCamera() {
+    clearInterval(this.moveCamera);
   }
 }
