@@ -43,38 +43,39 @@ export class SceneMuseumComponent implements OnInit {
   }
 
   startTravelFree() {
-    this.modificView('ligthAmbient', 'visible', 'true');
     this.modificView('ligthOff', 'visible', 'false');
+    this.modificView('question', 'text', 'value:Adelante, Comienza tu viaje');
   }
 
   visitGuided(){
-    console.log('CLICK EN GUIDED');
     this.modificView('question', 'text','value:Elige que quieres ver en el Museo');
+  }
+
+  moveCameraUser(){
+    this.moveCamera = window.setInterval(() => this.startMove.call(this, -this.sensibilityCamera, 'z', -7), this.velocityCamera);
+  }
+
+  startMove(sensibility: number, axis: string, arrivalPoint: number) {
+
+    let valueRotation = AFRAME.utils.entity.getComponentProperty(document.querySelector('#cameraUser'), 'position');
+
+    if(valueRotation[axis] > arrivalPoint){
+      valueRotation[axis] +=sensibility;
+      AFRAME.utils.entity.setComponentProperty(document.querySelector('#cameraUser'), 'position', valueRotation);
+    }else{
+      this.modificView('lightSphere', 'visible', 'true');
+      this.modificView('focoRobot', 'visible', 'false');
+      this.modificView('focoMenu', 'visible', 'false');
+      this.stopMoveCamera();
+    }
+  }
+
+  stopMoveCamera() {
+    clearInterval(this.moveCamera);
   }
 
   modificView(idItem: string, attribute: any, value: any) {
     let itemView = document.getElementById(idItem);
     itemView.setAttribute(attribute, value);
-  }
-
-  moveCameraUser(){
-    this.moveCamera = window.setInterval(() => this.startRotate.call(this, this.sensibilityCamera), this.velocityCamera);
-  }
-
-  startRotate(sensibility: number) {
-    let cameraUser = document.querySelector('#cameraUser');
-    let valueRotation = AFRAME.utils.entity.getComponentProperty(cameraUser, 'position');
-    if(valueRotation['z'] > -7){
-      let newValue = { x: valueRotation['x'], y: (valueRotation['y']), z: valueRotation['z'] - sensibility };
-
-      AFRAME.utils.entity.setComponentProperty(cameraUser, 'position', newValue);
-    }else{
-      this.modificView('lightSphere', 'visible', 'true');
-      this.stopRotateCamera();
-    }
-  }
-
-  stopRotateCamera() {
-    clearInterval(this.moveCamera);
   }
 }
