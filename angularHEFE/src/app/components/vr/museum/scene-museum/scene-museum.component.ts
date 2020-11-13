@@ -16,18 +16,33 @@ export class SceneMuseumComponent implements OnInit {
   private moveCamera: any;
   private sensibilityCamera: number = 0.2;
   private velocityCamera: number = 50;
+  private configSound ={
+    src: [],
+    autoplay: true,
+    loop: true,
+    volume: 0.2
+  }
+  private voice: Howl;
+  private soundMenuSelect: Howl;
+  private soundMenuFocus: Howl;
+  private soundMenudeselect: Howl;
   constructor(
     public _router: Router,
     public routerParams: ActivatedRoute) {
-    this.musicBackgroud = new Howl({
-      src: ['../../../../../assets/music/musicMuseum.mp3'],
-      autoplay: true,
-      loop: true,
-      volume: 0.2,
-      onend: function () {
-        console.log('Finished!');
-      }
-    })
+    this.configSound.src = ['../../../../../assets/music/musicMuseum.mp3']
+    this.musicBackgroud = new Howl(this.configSound)
+    //this.configSound.src = ['../../../../../assets/music/voiceMuseum/doVisit.mp3'];
+    this.configSound.src = ['../../../../../assets/music/voiceMuseum/doVisitD.m4a'];
+    this.configSound.volume = 1;
+    this.configSound.loop = false;
+    this.voice = new Howl(this.configSound);
+    
+    this.configSound.src = ['../../../../../assets/music/menu/focus.mp3'];
+    this.soundMenuFocus = new Howl(this.configSound);
+    this.configSound.src = ['../../../../../assets/music/menu/select.mp3'];
+    this.soundMenuSelect = new Howl(this.configSound);
+    this.configSound.src = ['../../../../../assets/music/menu/deselect.mp3'];
+    this.soundMenudeselect = new Howl(this.configSound);
   }
 
   ngOnInit(): void {
@@ -35,6 +50,7 @@ export class SceneMuseumComponent implements OnInit {
     this.uidCreator = this.routerParams.snapshot.paramMap.get('creator');
     this.codeRoom = this.routerParams.snapshot.paramMap.get('codeRoom');
     this.musicBackgroud.play();
+    this.voice.play();
   }
 
   goToLobby() {
@@ -43,12 +59,16 @@ export class SceneMuseumComponent implements OnInit {
   }
 
   startTravelFree() {
+    this.selectObject();
+    this.fullTourVoice()
     this.modificView('ligthOff', 'visible', 'false');
     this.modificView('question', 'text', 'value:Adelante, Comienza tu viaje');
   }
 
   visitGuided(){
     this.modificView('question', 'text','value:Elige que quieres ver en el Museo');
+    this.selectObject()
+    this.exhibitionOrFreeVoice();
   }
 
   moveCameraUser(){
@@ -77,5 +97,39 @@ export class SceneMuseumComponent implements OnInit {
   modificView(idItem: string, attribute: any, value: any) {
     let itemView = document.getElementById(idItem);
     itemView.setAttribute(attribute, value);
+  }
+  
+  exhibitionOrFreeVoice(){
+    //const pathSound = '../../../../../assets/music/voiceMuseum/exhibitionOrFree.mp3';
+    const pathSound = '../../../../../assets/music/voiceMuseum/exhibitionOrFreeD.m4a';
+    this.configVoice(pathSound, 1);
+  }
+  
+  configVoice(src: string, volumen: number){
+    this.configSound.src = [src]
+    this.configSound.volume = volumen;
+    this.voice.stop();
+    this.voice = new Howl(this.configSound);
+    this.voice.play();
+  }
+  
+  fullTourVoice(){
+    //const pathSound = '../../../../../assets/music/voiceMuseum/fullTour.mp3';
+    const pathSound = '../../../../../assets/music/voiceMuseum/fullTourD.m4a';
+    this.configVoice(pathSound, 1);
+  }
+  
+  
+  //CONFIGURACION DE SONIDOS DEL MENU
+  focusObject(){
+    this.soundMenuFocus.play();
+  }
+  
+  selectObject(){
+    this.soundMenuSelect.play();
+  }
+  
+  deselectObject(){
+    this.soundMenudeselect.play();
   }
 }
