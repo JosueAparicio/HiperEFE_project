@@ -72,7 +72,7 @@ export class SceneMuseumComponent implements OnInit {
   }
 
   moveCameraUser(){
-    this.moveCamera = window.setInterval(() => this.startMove.call(this, -this.sensibilityCamera, 'z', -7), this.velocityCamera);
+    this.moveCamera = window.setInterval(() => this.startMove.call(this, -this.sensibilityCamera, 'z', -14), this.velocityCamera);
   }
 
   startMove(sensibility: number, axis: string, arrivalPoint: number) {
