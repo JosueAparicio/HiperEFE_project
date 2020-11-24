@@ -50,7 +50,7 @@
 
   <!--header area end-->
   <!--sidebar start-->
-  <div class="sidebar">
+  <div class="sidebar" >
     <div class="profile" *ngIf="user">
       <img *ngIf="user.photoURL" src="{{user.photoURL}}" class="profile_image" alt="{{user.displayName}}">
       <img *ngIf="!user.photoURL" src="../../../assets/images/userDefault.svg" class="profile_image" alt="User Name">
@@ -65,9 +65,10 @@
 
     <a [routerLink]="['/rooms/chats']" [routerLinkActive]="['active']"><i class="fa fa-comments"></i><span>Chats</span></a>
 
-    <a href="#"><i class="fa fa-info-circle"></i><span>Acerca de</span></a>
+    <a href="#"><i class="fa fa-question-circle"></i><span>Ayuda</span></a>
 
-    <a (click)="openDialog()"><i class="fas fa-sliders-h"></i><span>Configuracion</span></a>
+    <a id="salir-mov" style="display: none;" (click)="singOut()"><i class="fa fa-sign-out"></i><span>Cerrar sesion</span></a>
+
   </div>
   <!--sidebar end-->
 </div>
