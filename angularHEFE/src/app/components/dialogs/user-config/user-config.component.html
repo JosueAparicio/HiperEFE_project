@@ -1,9 +1,12 @@
-<mat-toolbar>
-  <span align="center">Por favor configura tu cuenta, solo tomara un par de minutos</span>
+<mat-toolbar id="tollbar-user-config">
+  <span id="span-config-cuenta" align="center">Por favor configura tu cuenta, solo tomara un par de minutos</span>
+  <span id="span-config-cuenta2" align="center">Por favor configura tu cuenta</span>
+  <span id="span-config-cuenta3" align="center">Solo tomara un par de minutos</span>
+
   <span class="fill-remaining-space"></span>
 </mat-toolbar>
 
-<mat-horizontal-stepper #stepper>
+<mat-horizontal-stepper #stepper id="stepper-ho">
 
   <mat-step [stepControl]="cuentaForm" errorMessage="Es requierido.">
     <form [formGroup]="cuentaForm">
@@ -11,20 +14,26 @@
       <mat-card>
         <mat-card-content>
           <mat-grid-list cols="2" rowHeight="180px">
-            <mat-grid-tile>
-              <div class="card cuenta">
-                <img mat-card-image src="assets/images/resource1.svg" alt="">
-              </div>
-              <p><strong>Como Estudiante </strong>, puedes unirte a salas creadas por tu docente o unirte a salas
-                generales.</p>
-            </mat-grid-tile>
-            <mat-grid-tile>
-              <div class="card cuenta">
-                <img mat-card-image src="assets/images/resource1.svg" alt="">
-              </div>
-              <p> <strong>Como Docente</strong>, puedes crear salas personalizadas para tus estudiantes y controlar a
-                sus miembros.</p>
-            </mat-grid-tile>
+            <div class="config-user-column">
+              <mat-grid-tile>
+                <div class="card cuenta">
+                  <img mat-card-image src="assets/images/resource1.svg" alt="">
+                </div>
+                <img class="img-display-none" mat-card-image src="assets/images/resource1.svg" alt="">
+
+                <p><strong>Como Estudiante </strong>, puedes unirte a salas creadas por tu docente o unirte a salas
+                  generales.</p>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <div class="card cuenta">
+                  <img mat-card-image src="assets/images/resource1.svg" alt="">
+                </div>
+                <img class="img-display-none" mat-card-image src="assets/images/resource1.svg" alt="">
+
+                <p> <strong>Como Docente</strong>, puedes crear salas personalizadas para tus estudiantes y controlar a
+                  sus miembros.</p>
+              </mat-grid-tile>
+            </div>
           </mat-grid-list>
           <mat-form-field>
             <mat-select placeholder="Elegir..." formControlName="cuenta" required>
@@ -48,24 +57,34 @@
       <mat-card>
         <mat-card-content>
           <mat-grid-list cols="3" rowHeight="180px">
-            <mat-grid-tile>
-              <div class="card">
-                <img mat-card-image src="assets/images/resource1.svg" alt="">
-              </div>
-              <p> <strong>Poco: </strong>No se casi nada sobre la tecnologia y quiero aprender desde lo mas basico.</p>
-            </mat-grid-tile>
-            <mat-grid-tile>
-              <div class="card">
-                <img mat-card-image src="assets/images/resource1.svg" alt="">
-              </div>
-              <p><strong>Intermedio:</strong> Se lo basico y quiero seguir aprendiendo mas sobre la tecnologia.</p>
-            </mat-grid-tile>
-            <mat-grid-tile>
-              <div class="card">
-                <img mat-card-image src="assets/images/resource1.svg" alt="">
-              </div>
-              <p> <strong>Avanzado:</strong> Estoy en un nivel avanzado pero siempre es bueno seguir aprendiendo.</p>
-            </mat-grid-tile>
+            <div class="config-user-column">
+              <mat-grid-tile>
+                <div class="card cuenta">
+                  <img mat-card-image src="assets/images/resource1.svg" alt="">
+                </div>
+                <img class="img-display-none" mat-card-image src="assets/images/resource1.svg" alt="">
+
+                <p> <strong>Poco: </strong>No se casi nada sobre la tecnologia y quiero aprender desde lo mas basico.
+                </p>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <div class="card cuenta">
+                  <img mat-card-image src="assets/images/resource1.svg" alt="">
+                </div>
+                <img class="img-display-none" mat-card-image src="assets/images/resource1.svg" alt="">
+
+                <p><strong>Intermedio:</strong> Se lo basico y quiero seguir aprendiendo mas sobre la tecnologia.</p>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <div class="card cuenta">
+                  <img mat-card-image src="assets/images/resource1.svg" alt="">
+                </div>
+                <img class="img-display-none" mat-card-image src="assets/images/resource1.svg" alt="">
+
+                <p> <strong>Avanzado:</strong> Estoy en un nivel avanzado pero siempre es bueno seguir aprendiendo.</p>
+              </mat-grid-tile>
+            </div>
+
           </mat-grid-list>
           <mat-form-field>
             <mat-select placeholder="Elegir..." formControlName="conocimiento" required>
@@ -92,7 +111,7 @@
           <p>
             <mat-form-field appearance="fill">
               <mat-label>Debes tener entre 6 y 60 años de edad!</mat-label>
-              <input [readonly]="true"  matInput [min]="minDate" #dt [max]="maxDate" formControlName="date" 
+              <input [readonly]="true" matInput [min]="minDate" #dt [max]="maxDate" formControlName="date"
                 [matDatepicker]="dp3">
               <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
               <mat-datepicker #dp3 disabled="false"></mat-datepicker>
@@ -109,7 +128,7 @@
   <mat-step>
     <ng-template matStepLabel>Listo</ng-template>
 
-    <h4 align="center"  style="margin-top: 50px;">Asegurate de que todo este listo y preciona en el boton guardar :)</h4>
+    <h4 align="center" style="margin-top: 50px;">Asegurate de que todo este listo y preciona en el boton guardar :)</h4>
     <div align="center">
       <button style="margin-top: 40px;" mat-raised-button color="primary" (click)="onSubmit()">Guardar</button>
     </div>
@@ -118,4 +137,130 @@
 
 </mat-horizontal-stepper>
 
+<mat-vertical-stepper #stepperr id="stepper-ve">
+
+  <mat-step [stepControl]="cuentaForm" errorMessage="Es requierido.">
+    <form [formGroup]="cuentaForm">
+      <ng-template matStepLabel>Tipo de cuenta</ng-template>
+      <mat-card>
+        <mat-card-content>
+            <div class="config-user-column">
+              <div class="targett">
+                <div class="card cuenta">
+                  <img mat-card-image src="assets/images/resource1.svg" alt="">
+                </div>
+                <img class="img-display-none" mat-card-image src="assets/images/resource1.svg" alt="">
+
+                <p><strong>Como Estudiante </strong>, puedes unirte a salas creadas por tu docente o unirte a salas
+                  generales.</p>
+                </div>
+                <div class="targett">
+                <div class="card cuenta">
+                  <img mat-card-image src="assets/images/resource1.svg" alt="">
+                </div>
+                <img class="img-display-none" mat-card-image src="assets/images/resource1.svg" alt="">
+
+                <p> <strong>Como Docente</strong>, puedes crear salas personalizadas para tus estudiantes y controlar a
+                  sus miembros.</p>
+                </div>
+            </div>
+          <mat-form-field>
+            <mat-select placeholder="Elegir..." formControlName="cuenta" required>
+              <ng-container>
+                <mat-option value="Estudiante">Estudiante</mat-option>
+                <mat-option value="Docente">Docente</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+      <div align="right">
+        <button style="margin-top: 15px;" mat-raised-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step class="dateForm" [stepControl]="conocimientoForm" errorMessage="Es requierido.">
+    <form [formGroup]="conocimientoForm">
+      <ng-template matStepLabel>Tus conocimientos</ng-template>
+      <mat-card>
+        <mat-card-content>
+            <div class="config-user-column">
+              <div class="targett">
+                <div class="card cuenta">
+                  <img mat-card-image src="assets/images/resource1.svg" alt="">
+                </div>
+                <img class="img-display-none" mat-card-image src="assets/images/resource1.svg" alt="">
+
+                <p> <strong>Poco: </strong>No se casi nada sobre la tecnologia y quiero aprender desde lo mas basico.
+                </p>
+              </div>
+              <div class="targett">
+                <div class="card cuenta">
+                  <img mat-card-image src="assets/images/resource1.svg" alt="">
+                </div>
+                <img class="img-display-none" mat-card-image src="assets/images/resource1.svg" alt="">
+
+                <p><strong>Intermedio:</strong> Se lo basico y quiero seguir aprendiendo mas sobre la tecnologia.</p>
+              </div>
+              <div class="targett">
+                <div class="card cuenta">
+                  <img mat-card-image src="assets/images/resource1.svg" alt="">
+                </div>
+                <img class="img-display-none" mat-card-image src="assets/images/resource1.svg" alt="">
+
+                <p> <strong>Avanzado:</strong> Estoy en un nivel avanzado pero siempre es bueno seguir aprendiendo.</p>
+              </div>
+            </div>
+
+          <mat-form-field>
+            <mat-select placeholder="Elegir..." formControlName="conocimiento" required>
+              <ng-container>
+                <mat-option value="Poco">Poco</mat-option>
+                <mat-option value="Intermedio">Intermedio</mat-option>
+                <mat-option value="Avanzado">Avanzado</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+      <div align="right">
+        <button style="margin-top: 15px;" mat-raised-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step *ngIf="!date" [stepControl]="dateForm" errorMessage="Es requierido.">
+    <form [formGroup]="dateForm">
+      <ng-template matStepLabel>Fecha de nacimiento</ng-template>
+      <mat-card>
+        <mat-card-content>
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Debes tener entre 6 y 60 años de edad!</mat-label>
+              <input [readonly]="true" matInput [min]="minDate" #dt [max]="maxDate" formControlName="date"
+                [matDatepicker]="dp3">
+              <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+              <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </p>
+        </mat-card-content>
+      </mat-card>
+      <div align="right">
+        <button style="margin-top: 15px;" mat-raised-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Listo</ng-template>
+    <div class="targett">
+    <h4 align="center" style="margin-top: 50px;">Asegurate de que todo este listo y preciona en el boton guardar :)</h4>
+    <div align="center">
+      <button id="btn-config-user" style="margin-top: 40px;" mat-raised-button color="primary" (click)="onSubmit()">Guardar</button>
+    </div>
+  </div>
+  </mat-step>
+
+</mat-vertical-stepper>
 <mat-progress-bar *ngIf="load" mode="indeterminate"></mat-progress-bar>
