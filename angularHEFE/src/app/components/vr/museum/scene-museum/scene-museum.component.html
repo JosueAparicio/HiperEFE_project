@@ -27,7 +27,10 @@
         text="font: https://cdn.aframe.io/fonts/Monoid.fnt; value: BIENVENIDO AL MUSEO DE HIPEREFE; align: center; width: 6"
         position="0 1.5 0" rotation="" 
         animation__hidden="property: position; to: 1.3 -3 2; startEvents: visitGuided;
-        dur: 1000; easing: easeInOutCubic; autoplay: false;"></a-entity>
+        dur: 1000; easing: easeInOutCubic; autoplay: false;"
+        animation__visible="property: visible; to: false; startEvents: animationcomplete__hidden; easing:
+        easeInOutCubic;
+        autoplay: false"></a-entity>
 
       <a-entity id="question"
         text="font: https://cdn.aframe.io/fonts/Monoid.fnt; value: Como quieres realizar tu visita?; width: 4; align: center;"
@@ -75,10 +78,11 @@
           position="0 0.05223 0"></a-entity>
       </a-entity>
 
-      <a-entity id="btnTravelComplete" position="-2.568 -3 2" rotation="" mixin="scaleUp scaleDown"
+      <a-entity id="btnTravelComplete" position="-2.568 -3 2" rotation="" mixin="scaleUp scaleDown" visible="false"
         (click)="startTravelFree()" (mouseenter)="focusObject()" (animationcomplete__hidden)="moveCameraUser()"
-      animation__show="property: position; to: -1 0.756 -2.799; startEvents: visitGuided;
+      animation__show="property: position; to: -1 0.756 -2.799; startEvents: animationcomplete__visible;
             dur: 1000; easing: easeInOutCubic; autoplay: false;"
+       animation__visible="property: visible; to: true; startEvents: visitGuided; easing: easeInOutCubic; autoplay: false"
       animation__hidden="property: position; to: -2.568 -3 2; startEvents: click;
       dur: 1000; easing: easeInOutCubic; autoplay: false; delay: 2500"
       proxy-event="event: click; to: a-scene, #containerBtnStart, #imgRobot, #lightSphere, #ligthAmbient, #ligthOff;
@@ -90,9 +94,11 @@
           position="0 0.05223 0"></a-entity>
       </a-entity>
 
-      <a-entity id="exhibition" position="1.2 -3 2" rotation=""
-        animation__hidden="property: position; to:0.95 0.756 -2.79 ; startEvents: visitGuided; easing: easeInOutCubic;
-        autoplay: false">
+      <a-entity id="exhibition" position="1.2 -3 2" rotation="" visible="false"
+        animation__hidden="property: position; to:0.95 0.756 -2.79 ; startEvents: animationcomplete__visible; easing:
+          easeInOutCubic; autoplay: false"
+        animation__visible="property: visible; to: true; startEvents: visitGuided; easing: easeInOutCubic;
+          autoplay: false">
         <a-image src="#exhibitionMuseum" position="-0.65 0.31336 0" material="side: front" geometry=""
           scale="0.5 0.5 1">
         </a-image>
@@ -102,9 +108,11 @@
       </a-entity>
 
       <a-entity id="historyComputer" position="1.2 -3 2" rotation="" mixin="scaleUp scaleDown"
-        (mouseenter)="focusObject()"
-      animation__show="property: position; to:1.3 0.3 -2.799; startEvents: visitGuided;
-            dur: 1000; easing: easeInOutCubic; autoplay: false; delay: 1000">
+        (mouseenter)="focusObject()" visible="false"
+      animation__show="property: position; to:1.3 0.3 -2.799; startEvents: animationcomplete__visible;
+        dur: 1000; easing: easeInOutCubic; autoplay: false; delay: 1000"
+      animation__visible="property: visible; to: true; startEvents: visitGuided; easing: easeInOutCubic;
+        autoplay: false">
         <a-image src="#computer" position="0 0.31336 0" material="side: front" geometry="" scale="0.5 0.5 1">
         </a-image>
         <a-entity
@@ -113,9 +121,11 @@
       </a-entity>
 
       <a-entity id="historyInternetSV" position="1.3 -4 2" rotation="" mixin="scaleUp scaleDown"
-      (mouseenter)="focusObject()"
-      animation__show="property: position; to: 1.3 -0.8 -2.799; startEvents: visitGuided;
-            dur: 1000; easing: easeInOutCubic; autoplay: false; delay: 1000">
+      (mouseenter)="focusObject()" visible="false"
+      animation__show="property: position; to: 1.3 -0.8 -2.799; startEvents: animationcomplete__visible;
+            dur: 1000; easing: easeInOutCubic; autoplay: false; delay: 1000"
+      animation__visible="property: visible; to: true; startEvents: visitGuided; easing: easeInOutCubic;
+      autoplay: false">
         <a-image src="#internetSV" position="0 0.31336 0" material="side: front" geometry="" scale="0.5 0.5 1">
         </a-image>
         <a-entity
