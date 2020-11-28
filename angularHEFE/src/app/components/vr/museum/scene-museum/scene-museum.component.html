@@ -17,10 +17,14 @@
 
 
     <a-entity id="focoRobot" position="2.355 -1.259 -2.799"
-      light="color: #22f789; intensity: 21.23; type: point; distance: 2.33; decay: 2" visible=""></a-entity>
+      light="color: #22f789; intensity: 21.23; type: point; distance: 2.33; decay: 2" visible=""
+      animation__visible="property: visible; to: false; startEvents: start; easing: easeInOutCubic; autoplay:
+      false"></a-entity>
 
     <a-entity id="focoMenu" position="-2 -1.259 -2.799"
-      light="color: #22f789; intensity: 21.23; type: point; distance: 2.33; decay: 2" visible=""></a-entity>
+      light="color: #22f789; intensity: 21.23; type: point; distance: 2.33; decay: 2" visible=""
+      animation__visible="property: visible; to: false; startEvents: start; easing: easeInOutCubic; autoplay:
+      false"></a-entity>
 
     <a-entity id="contentRobot" position="0.209 0 -2.799">
       <a-entity id="lblBanner"
@@ -85,8 +89,8 @@
        animation__visible="property: visible; to: true; startEvents: visitGuided; easing: easeInOutCubic; autoplay: false"
       animation__hidden="property: position; to: -2.568 -3 2; startEvents: click;
       dur: 1000; easing: easeInOutCubic; autoplay: false; delay: 2500"
-      proxy-event="event: click; to: a-scene, #containerBtnStart, #imgRobot, #lightSphere, #ligthAmbient, #ligthOff;
-      as: start; captureBubbles: true; bubbles: true;">
+      proxy-event="event: click; to: a-scene, #containerBtnStart, #imgRobot, #lightSphere, #ligthAmbient, #ligthOff,
+      #focoRobot, #focoMenu; as: start; captureBubbles: true; bubbles: true;">
         <a-image src="#travelComplete" position="0 0.31336 0" material="side: front" geometry="" scale="0.5 0.5 1">
         </a-image>
         <a-entity
@@ -121,11 +125,15 @@
       </a-entity>
 
       <a-entity id="historyInternetSV" position="1.3 -4 2" rotation="" mixin="scaleUp scaleDown"
-      (mouseenter)="focusObject()" visible="false"
+      (mouseenter)="focusObject()" visible="false" (animationcomplete__hidden)="startTravelUPH()"
       animation__show="property: position; to: 1.3 -0.8 -2.799; startEvents: animationcomplete__visible;
             dur: 1000; easing: easeInOutCubic; autoplay: false; delay: 1000"
       animation__visible="property: visible; to: true; startEvents: visitGuided; easing: easeInOutCubic;
-      autoplay: false">
+      autoplay: false"
+      animation__hidden="property: position; to: -2.568 -3 2; startEvents: click;
+      dur: 1000; easing: easeInOutCubic; autoplay: false; delay: 2500"
+      proxy-event="event: click; to: a-scene, #containerBtnStart, #imgRobot, #lightSphere, #ligthAmbient, #ligthOff,
+      #focoRobot, #focoMenu; as: start; captureBubbles: true; bubbles: true;">
         <a-image src="#internetSV" position="0 0.31336 0" material="side: front" geometry="" scale="0.5 0.5 1">
         </a-image>
         <a-entity
