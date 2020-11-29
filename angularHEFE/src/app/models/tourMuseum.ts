@@ -1,10 +1,10 @@
 export class Tour {
     private tour = {
         uph:{
-            first: { x: +8.6, z: -7.412 , order: ["z", "x"]}
+            first: { x: 8.6, z: -7.412 , order: ["z", "x"]}
         },
         generation:{
-            first: {z: -14, order: ['z']}
+            first: {z: -12.5, order: ['z']}
         }
     }
     constructor(){}

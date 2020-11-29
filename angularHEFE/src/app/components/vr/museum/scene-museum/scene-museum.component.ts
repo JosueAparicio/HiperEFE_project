@@ -58,7 +58,7 @@ export class SceneMuseumComponent implements OnInit {
     this.configMoveCamera();
   }
 
-  startMoveY(sensibility: number, axis: any, arrivalPoint: number) {
+  startMoveAhead(sensibility: number, axis: any, arrivalPoint: number) {
 
     let valueRotation = AFRAME.utils.entity.getComponentProperty(document.querySelector('#cameraUser'), 'position');
     console.log(sensibility);
@@ -71,7 +71,7 @@ export class SceneMuseumComponent implements OnInit {
     }
   }
 
-  startMoveX(sensibility: number, axis: any, arrivalPoint: number){
+  startMoveBehind(sensibility: number, axis: any, arrivalPoint: number){
     let valueRotation = AFRAME.utils.entity.getComponentProperty(document.querySelector('#cameraUser'), 'position');
     
     if (valueRotation[axis] < arrivalPoint) {
@@ -118,9 +118,8 @@ export class SceneMuseumComponent implements OnInit {
   }
 
   //Recorrido HIPEREFE x UnPocoDeHistoria
-
   startTravelUPH(){
-    this.positionMove = this.configTour.getPositionUPH('first')
+    this.positionMove = this.configTour.getPositionUPH('first');
     this.configMoveCamera();
   }
 
@@ -128,9 +127,9 @@ export class SceneMuseumComponent implements OnInit {
     if(this.orderMoveAxis < this.positionMove.order.length){
       let axisPosition: string = this.positionMove.order[this.orderMoveAxis];
       if (this.positionMove[axisPosition]<0){
-        this.moveCamera = window.setInterval(() => this.startMoveY.call(this, -this.sensibilityCamera, axisPosition, this.positionMove[axisPosition]), this.velocityCamera);
+        this.moveCamera = window.setInterval(() => this.startMoveAhead.call(this, -this.sensibilityCamera, axisPosition, this.positionMove[axisPosition]), this.velocityCamera);
       }else{
-        this.moveCamera = window.setInterval(() => this.startMoveX.call(this, this.sensibilityCamera, axisPosition, this.positionMove[axisPosition]), this.velocityCamera); 
+        this.moveCamera = window.setInterval(() => this.startMoveBehind.call(this, this.sensibilityCamera, axisPosition, this.positionMove[axisPosition]), this.velocityCamera); 
       }
       this.orderMoveAxis++;
     }else{
