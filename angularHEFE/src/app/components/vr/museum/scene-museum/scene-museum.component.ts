@@ -61,7 +61,7 @@ export class SceneMuseumComponent implements OnInit {
   startMoveAhead(sensibility: number, axis: any, arrivalPoint: number) {
 
     let valueRotation = AFRAME.utils.entity.getComponentProperty(document.querySelector('#cameraUser'), 'position');
-    console.log(sensibility);
+
     if (valueRotation[axis] > arrivalPoint){
       valueRotation[axis] +=sensibility;
       AFRAME.utils.entity.setComponentProperty(document.querySelector('#cameraUser'), 'position', valueRotation);
@@ -120,6 +120,14 @@ export class SceneMuseumComponent implements OnInit {
   //Recorrido HIPEREFE x UnPocoDeHistoria
   startTravelUPH(){
     this.positionMove = this.configTour.getPositionUPH('first');
+    this.configMoveCamera();
+  }
+
+  nextFrame(){
+    this.positionMove = this.configTour.next();
+    let prueba = { x: this.positionMove['x'] + 1.3, y: 1.9, z: -1.2 };
+    console.log(prueba);
+    this.modificView('ArrowFrame', 'position', prueba);
     this.configMoveCamera();
   }
 
