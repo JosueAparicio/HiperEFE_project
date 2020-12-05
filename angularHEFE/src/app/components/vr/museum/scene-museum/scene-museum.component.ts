@@ -73,6 +73,7 @@ export class SceneMuseumComponent implements OnInit {
   stopMoveCamera() {
     clearInterval(this.moveCamera);
     this.configMoveCamera();
+    
   }
 
   modificView(idItem: string, attribute: any, value: any) {
@@ -97,6 +98,7 @@ export class SceneMuseumComponent implements OnInit {
   //Recorrido HIPEREFE x UnPocoDeHistoria
   startTravelUPH(){
     this.positionMove = this.configTour.getPositionUPH('first');
+    this.soundtrack.playVoiceUph();
     this.configMoveCamera();
   }
 
@@ -106,6 +108,7 @@ export class SceneMuseumComponent implements OnInit {
     console.log(prueba);
     this.modificView('ArrowFrame', 'position', prueba);
     this.configMoveCamera();
+    this.soundtrack.playVoiceUph();
   }
 
   configMoveCamera(){

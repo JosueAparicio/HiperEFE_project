@@ -4,18 +4,31 @@ export class Soundtrack{
         src: [],
         autoplay: true,
         loop: true,
-        volume: 0.2
+        volume: 0.1
     };
 
     private pathVoice = {
         welcome: '../../assets/music/voiceMuseum/welcomeMuseum.mp3'
     }
 
+    private pathVoiceuph = [
+        '../../assets/music/voiceMuseum/to220.m4a',
+        '../../assets/music/voiceMuseum/ciSV.m4a',
+        '../../assets/music/voiceMuseum/oblea.m4a',
+        '../../assets/music/voiceMuseum/hpJornada.m4a',
+        '../../assets/music/voiceMuseum/libreto110c.m4a',
+        '../../assets/music/voiceMuseum/disk1541.m4a',
+        '../../assets/music/voiceMuseum/txiPortatil.m4a',
+        '../../assets/music/voiceMuseum/dnsSv.m4a'
+    ]
+    private countVoiceUph:number = 0;
+
     private soundTrackAmbient : Howl;
     private soundTrackFocus: Howl;
     private soundTrackSelect: Howl;
     private soundTrackDeSelect: Howl;
     private voice: Howl;
+    private voiceUph: Howl;
 
     constructor(){
         this.soundTrackAmbient = new Howl(this.changeSoundSrc('../../assets/music/musicMuseum.mp3'));
@@ -63,5 +76,11 @@ export class Soundtrack{
 
     public stopVoice(){
         this.voice.stop();
+    }
+
+    public playVoiceUph(){
+        this.voiceUph = new Howl(this.changeSoundSrc(this.pathVoiceuph[this.countVoiceUph]));
+        this.voiceUph.play();
+        this.countVoiceUph++;
     }
 }
