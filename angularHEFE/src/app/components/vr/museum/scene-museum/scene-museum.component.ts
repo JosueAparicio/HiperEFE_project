@@ -40,19 +40,6 @@ export class SceneMuseumComponent implements OnInit {
     this._router.navigate([`vr/lobby/${this.uidCreator}/${this.codeRoom}`]);
   }
 
-  startTravelFree() {
-    this.selectObject();
-    this.fullTourVoice()
-    this.modificView('ligthOff', 'visible', 'false');
-    this.modificView('question', 'text', 'value:Adelante, Comienza tu viaje');
-  }
-
-  visitGuided(){
-    this.modificView('question', 'text','value:Elige que quieres ver en el Museo');
-    this.selectObject()
-    this.exhibitionOrFreeVoice();
-  }
-
   moveCameraUser(){
     this.positionMove = this.configTour.getPositionGeneration('first');
     this.configMoveCamera();
@@ -91,16 +78,6 @@ export class SceneMuseumComponent implements OnInit {
   modificView(idItem: string, attribute: any, value: any) {
     let itemView = document.getElementById(idItem);
     itemView.setAttribute(attribute, value);
-  }
-  
-  exhibitionOrFreeVoice(){
-    this.soundtrack.stopVoice();
-    this.soundtrack.playVoice('exhOrFree');
-  }
-  
-  fullTourVoice(){
-    this.soundtrack.stopVoice();
-    this.soundtrack.playVoice('fullTour');
   }
   
   

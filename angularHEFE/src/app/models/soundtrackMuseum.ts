@@ -8,9 +8,7 @@ export class Soundtrack{
     };
 
     private pathVoice = {
-        welcome: '../../assets/music/voiceMuseum/doVisitD.m4a',
-        exhOrFree: '../../assets/music/voiceMuseum/exhibitionOrFreeD.m4a',
-        fullTour: '../../assets/music/voiceMuseum/fullTourD.m4a'
+        welcome: '../../assets/music/voiceMuseum/welcomeMuseum.mp3'
     }
 
     private soundTrackAmbient : Howl;
