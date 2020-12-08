@@ -2,8 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
-import { DialogExampleComponent } from '../dialogs/dialog-example/dialog-example.component';
+
 
 @Component({
   selector: 'app-header',
@@ -18,26 +17,27 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public _userService: UserService,
-    public _router: Router,
-    public dialog: MatDialog) {
+    public _router: Router) {
 
-     }
+  }
 
   async ngOnInit(): Promise<void> {
     const user = await this._userService.getCurrentUser();
-    if(user){
+    if (user) {
       this._userService.getUserData(user.uid).subscribe(datauser => {
         this.user = datauser;
-        if(!this.user.photoURL){
+        if (!this.user.photoURL) {
           this.user.photoURL = user.photoURL;
         }
       });
     }
 
   }
-  goProfile(){
+  goProfile() {
     this._router.navigate([`/user/profile/${this.user.uid}`]);
   }
+
+  
   //cerrar sesion
   singOut() {
     Swal.fire({
@@ -66,12 +66,5 @@ export class HeaderComponent implements OnInit {
     })
   }
 
-  //prueba
-  openDialog() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = false;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = '60%';
-    this.dialog.open(DialogExampleComponent, dialogConfig);
-  }
+
 }

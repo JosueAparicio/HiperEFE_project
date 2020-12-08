@@ -1,14 +1,18 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ChatsService } from '../../../services/chats.service'
+import { UserService } from '../../../services/user.service'
+
 import { Message } from '../../../models/message';
 import * as moment from 'moment';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.css'],
-  providers: [ChatsService]
+  providers: [ChatsService, UserService]
 })
 export class MessagesComponent implements OnInit {
 
@@ -17,12 +21,15 @@ export class MessagesComponent implements OnInit {
   @Input() uid: any;
   @Output() delete = new EventEmitter();
   @Output() reported = new EventEmitter();
+  @Output() reportedImg = new EventEmitter();
+
+
   date: any;
   you: boolean;
   user: any;
   tipe: any;
   public messages: Message[];
-  constructor(private ChatService: ChatsService, private _router : Router) {
+  constructor(private ChatService: ChatsService, private userService : UserService, private _router : Router, private _snackBar: MatSnackBar) {
 
   }
 
@@ -80,4 +87,22 @@ export class MessagesComponent implements OnInit {
     this._router.navigate([`/user/profile/${uid}`]);
   }
 
+  repImage(image, id, email){
+    const data = {
+      image : image
+    }
+    this.userService.revImage(data).subscribe(resp =>{
+      console.log(resp.message.nudity, email);
+
+        this.reportedImg.emit({resp: resp.message.nudity, id: id, email: email})
+      
+    })
+  }
+
+    //SMALL ALERTS
+    openSnackBar(message: string, action: string) {
+      this._snackBar.open(message, action, {
+        duration: 5000,
+      });
+    }
 }

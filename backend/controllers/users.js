@@ -1,7 +1,11 @@
 'use strict'
 
-const { google } = require('googleapis');
-const { OAuth2 } = google.auth;
+const {
+    google
+} = require('googleapis');
+const {
+    OAuth2
+} = google.auth;
 const nodemailer = require('nodemailer');
 var hbs = require('nodemailer-express-handlebars');
 var user = 'hiperefe.contact@gmail.com';
@@ -11,6 +15,10 @@ var typeAuth = 'OAuth2';
 var clientSecret = 'bZ0xJXOtTMI5Z_G5aitgvU_j';
 var refreshToken = '1//04b6981HmurdrCgYIARAAGAQSNwF-L9IrPzQ4NCiqZ1eFtasBUvwy0LwL4Quf5OyI7sxJe1TXsKhh8GNwzIDcl709hM8uJd7Q0yA';
 const OAUTH_PLAYGROUND = 'https://developers.google.com/oauthplayground';
+
+
+var sightengine = require('sightengine')('115828723', 'PaXmNEGLkzAkTABXEK7B');
+
 
 const oauth2Client = new OAuth2(
     cliente_id,
@@ -146,12 +154,12 @@ var controller = {
 
             transporter.use("compile", hbs({
                 viewEngine: {
-                        partialsDir: "./views/",
-                        layoutsDir: "./views/layout",
-                        extname: ".hbs"
-                    },
-                    extName: ".hbs",
-                    viewPath: "./views/"
+                    partialsDir: "./views/",
+                    layoutsDir: "./views/layout",
+                    extname: ".hbs"
+                },
+                extName: ".hbs",
+                viewPath: "./views/"
             }));
 
             const mailOptions = {
@@ -164,9 +172,9 @@ var controller = {
                     reason: req.params.reason,
                     nameRoom: req.params.nameRoom
                 }
-            
+
             };
-            
+
             transporter.sendMail(mailOptions).then(
                 resp => {
                     return res.status(200).send({
@@ -184,6 +192,25 @@ var controller = {
         } catch (error) {
             console.log(error);
         }
+    },
+
+    revImage: (req, res) => {
+
+        console.log(req.body.image);
+
+        sightengine.check(['nudity']).set_url(req.body.image).then(function (result) {
+            // The API response (result)
+            return res.status(200).send({
+                status: 'success',
+                message: result
+            });
+        }).catch(function (err) {
+            // Handle error
+            return res.status(500).send({
+                status: 'error',
+                message: err
+            });
+        });
     }
 }
 
