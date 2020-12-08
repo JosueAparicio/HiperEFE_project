@@ -88,7 +88,7 @@ export class SceneMuseumComponent implements OnInit {
   }
   
   selectObject(){
-    this.soundtrack.playSoundTrackSelect();
+    
   }
   
   deselectObject(){
@@ -98,10 +98,15 @@ export class SceneMuseumComponent implements OnInit {
   //Recorrido HIPEREFE x UnPocoDeHistoria
   startTravelUPH(){
     this.positionMove = this.configTour.getPositionUPH('first');
+    
     this.soundtrack.playVoiceUph();
     this.configMoveCamera();
   }
 
+  selectUphTravel(){
+    this.soundtrack.playSoundTrackSelect();
+    this.soundtrack.stopVoice();
+  }
   nextFrame(){
     this.positionMove = this.configTour.next();
     let positionArrow = { x: this.positionMove['x'] + 1.3, y: 1.9, z: -1.2 };

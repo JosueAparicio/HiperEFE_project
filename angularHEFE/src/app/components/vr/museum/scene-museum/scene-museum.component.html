@@ -47,7 +47,7 @@
     animation__hidden="property: position; to: -0.20 -1 5; startEvents: start;
       dur: 1000; easing: easeInOutCubic; autoplay: false;">
       <a-image id="boton1" src="#shaderUphxEfe" position="-0.20 0.669 -2.799" material="side: front" geometry="height:1.700; width:2.800;" scale="1.40 0.75 1"
-        mixin="scaleDownCard scaleUpCard" (animationcomplete__visible)="startTravelUPH()" (mouseenter)="focusObject()" (click)="selectObject()"
+        mixin="scaleDownCard scaleUpCard" (animationcomplete__visible)="startTravelUPH()" (mouseenter)="focusObject()" (click)="selectUphTravel()"
         animation__visible="property: visible; to: false; startEvents: click; easing: easeInOutCubic;
           autoplay: false; delay: 2500;"
         proxy-event="event: click; to: a-scene, #containerBtnStart, #ligthAmbient, #ligthOff,
@@ -110,11 +110,11 @@
         <a-entity geometry="primitive: cone; radiusBottom: 0.52; radiusTop: 0.12" id="forma"
           material="shader: flat; opacity: 0.5" position="-0.04 1.23868 -0.57" rotation="50 0 0"></a-entity>
       </a-light>
-      <a-entity id="pilar" geometry="primitive: cylinder; height: 2.760; segmentsHeight: 17; radius: 0.46"
-        material="shader: flat; color: #fff" position="-0.088 -2.04 -5">
-        <a-gltf-model id="computer" mixin="rotationObj" src="#mouse" position="0 2 0" scale="0.1 0.1 0.1"
+      <a-gltf-model id="pilar" src="#pilar3D" scale="1 1.3 1"
+         position="-0.088 -3.48 -5">
+        <a-gltf-model id="computer" mixin="rotationObj" src="#mouse" position="0 2.9 0" scale="0.1 0.1 0.1"
           rotation="0 90 0"></a-gltf-model>
-      </a-entity>
+      </a-gltf-model>
       <a-gltf-model id="modelTv" position="-1.60 1.5 -6" rotation="0 180 0" src="#tv" scale="3 2.5 1"></a-gltf-model>
       <a-gltf-model id="modelTv2" position="1.4 1.5 -6" rotation="0 180 0" src="#tv" scale="3 2.5 1"></a-gltf-model>
     </a-entity>
