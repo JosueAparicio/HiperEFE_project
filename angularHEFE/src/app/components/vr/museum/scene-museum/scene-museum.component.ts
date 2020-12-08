@@ -104,10 +104,13 @@ export class SceneMuseumComponent implements OnInit {
 
   nextFrame(){
     this.positionMove = this.configTour.next();
-    let prueba = { x: this.positionMove['x'] + 1.3, y: 1.9, z: -1.2 };
-    console.log(prueba);
-    this.modificView('ArrowFrame', 'position', prueba);
+    let positionArrow = { x: this.positionMove['x'] + 1.3, y: 1.9, z: -1.2 };
+    let positionLigth = { x: this.positionMove['x'] + 1, y: -0.730, z: 1.913 };
+    
+    this.modificView('ArrowFrame', 'position', positionArrow);
+    this.modificView('lightSphereFrame', 'position', positionLigth);
     this.configMoveCamera();
+    this.soundtrack.stopVoiceUph();
     this.soundtrack.playVoiceUph();
   }
 

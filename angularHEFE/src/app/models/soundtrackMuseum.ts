@@ -12,14 +12,14 @@ export class Soundtrack{
     }
 
     private pathVoiceuph = [
-        '../../assets/music/voiceMuseum/to220.m4a',
-        '../../assets/music/voiceMuseum/ciSV.m4a',
-        '../../assets/music/voiceMuseum/oblea.m4a',
-        '../../assets/music/voiceMuseum/hpJornada.m4a',
-        '../../assets/music/voiceMuseum/libreto110c.m4a',
-        '../../assets/music/voiceMuseum/disk1541.m4a',
-        '../../assets/music/voiceMuseum/txiPortatil.m4a',
-        '../../assets/music/voiceMuseum/dnsSv.m4a'
+        '../../assets/music/voiceMuseum/to220.mp3',
+        '../../assets/music/voiceMuseum/ciSV.mp3',
+        '../../assets/music/voiceMuseum/oblea.mp3',
+        '../../assets/music/voiceMuseum/hpJornada.mp3',
+        '../../assets/music/voiceMuseum/libreto110c.mp3',
+        '../../assets/music/voiceMuseum/disk1541.mp3',
+        '../../assets/music/voiceMuseum/txiPortatil.mp3',
+        '../../assets/music/voiceMuseum/dnsSv.mp3'
     ]
     private countVoiceUph:number = 0;
 
@@ -82,5 +82,9 @@ export class Soundtrack{
         this.voiceUph = new Howl(this.changeSoundSrc(this.pathVoiceuph[this.countVoiceUph]));
         this.voiceUph.play();
         this.countVoiceUph++;
+    }
+
+    public stopVoiceUph(){
+        this.voiceUph.stop();
     }
 }

@@ -50,16 +50,8 @@
         mixin="scaleDownCard scaleUpCard" (animationcomplete__visible)="startTravelUPH()" (mouseenter)="focusObject()" (click)="selectObject()"
         animation__visible="property: visible; to: false; startEvents: click; easing: easeInOutCubic;
           autoplay: false; delay: 2500;"
-        proxy-event="event: click; to: a-scene, #containerBtnStart, #lightSphere, #ligthAmbient, #ligthOff,
-          #focoRobot, #focoMenu, #containerMenu, #boton2; as: start; captureBubbles: true; bubbles: true;">
-        </a-image>
-  
-        <a-image id="boton2" src="#shaderGeneracion" position="-0.20 -0.90 -2.799" material="side: front" geometry="height:1.700; width:2.800;" scale="1.40 0.75 1"
-        mixin="scaleDownCard scaleUpCard menuInvisible" (animationcomplete__visible)="moveCameraUser()" (mouseenter)="focusObject()" (click)="selectObject()"
-        animation__visible="property: visible; to: false; startEvents: click; easing: easeInOutCubic;
-          autoplay: false; delay: 2500;"
-        proxy-event="event: click; to: a-scene, #containerBtnStart, #lightSphere, #ligthAmbient, #ligthOff,
-          #focoRobot, #focoMenu, #containerMenu, #boton2; as: start; captureBubbles: true; bubbles: true;">
+        proxy-event="event: click; to: a-scene, #containerBtnStart, #ligthAmbient, #ligthOff,
+          #focoRobot, #focoMenu, #containerMenu, #boton2, #lightSphereFrame; as: start; captureBubbles: true; bubbles: true;">
         </a-image>
     </a-entity>
 
@@ -100,7 +92,7 @@
 
     <a-entity id="abtractionComputer" position="0 0 -12">
       <a-light id="lightSphere" type="spot" decay="3" distance="20" intensity="0" penumbra="0.1"
-        position="-0.01961 1.23176 0" visible="true" mixin="ligthIntesity">
+        position="-0.01961 1.23176 0" visible="true">
         <a-entity geometry="primitive: cone; radiusBottom: 0.52; radiusTop: 0.12" id="forma"
           material="shader: flat; opacity: 0.5" position="-0.04 1.23868 -0.57" rotation="50 0 0"></a-entity>
       </a-light>
@@ -114,7 +106,7 @@
 
     <a-entity id="abtractionInternetsv" position="8 0 -12">
       <a-light id="lightSphere" type="spot" decay="3" distance="20" intensity="0" penumbra="0.1"
-        position="-0.01961 1.23176 0" visible="true" mixin="ligthIntesity">
+        position="-0.01961 1.23176 0" visible="true">
         <a-entity geometry="primitive: cone; radiusBottom: 0.52; radiusTop: 0.12" id="forma"
           material="shader: flat; opacity: 0.5" position="-0.04 1.23868 -0.57" rotation="50 0 0"></a-entity>
       </a-light>
@@ -132,19 +124,26 @@
         geometry="height:0.4; width:0.4;" (animationcomplete__hidden)="nextFrame()" mixin="scaleDown scaleUp"
         animation__hidden="property: position; to: 50 1.9 1; startEvents: click;
         dur: 1000; easing: easeInOutCubic; autoplay: false;"
+        proxy-event="event: click; to: a-scene, #lightSphereFrame; as: nextFrame; captureBubbles: true; bubbles: true;"
       >
         <a-entity id="lblArrowFrame" text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: Siguiente; align: center; width: 4"
           position="0 0.5 0"
           ></a-entity>
       </a-image>
 
+      <a-light id="lightSphereFrame" type="spot" decay="3" distance="20" intensity="0" penumbra="0.1"
+          position="8.686 -0.730 1.913" visible="true" mixin="ligthIntesity"
+          animation__intesityon="property: intensity; to: 1.33; startEvents: animationcomplete__intesityoff;
+            dur: 1000; autoplay: false;"
+            animation__intesityoff="property: intensity; to: 0; startEvents: nextFrame;
+            dur: 1000; easing: easeInOutCubic; autoplay: false;">
+        </a-light>
+
       <a-gltf-model id="modelFrame" position="8.6 0 0" rotation="0 180 0" src="#framePhoto">
         <a-entity id="titleFrame"
           text="font: https://cdn.aframe.io/fonts/Monoid.fnt; value: Regulador de Voltaje TO-220; width: 4; align: center;"
           position="0 1.6 1" rotation=""></a-entity>
-        <a-light id="lightSphere" type="spot" decay="3" distance="20" intensity="0" penumbra="0.1"
-          position="0.086 0.262 2.70" visible="true" mixin="ligthIntesity">
-        </a-light>
+        
         <a-image src="#to220" width="1.650" height="1.9" position="0 0 0.103" material="" geometry="">
         </a-image>
       </a-gltf-model>
