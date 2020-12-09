@@ -7,7 +7,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { finalize, first, map } from 'rxjs/operators';
 import { User } from 'firebase';
 import Swal from 'sweetalert2';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Global } from './global';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -21,10 +21,10 @@ export class UserService {
 
     public user: User;
     public url: string;
-
+    public urlDev: string;
     constructor(public _afAuth: AngularFireAuth, private _snackBar: MatSnackBar, private _router: Router, private _afirestore: AngularFirestore, private _hhtp: HttpClient, private storage: AngularFireStorage) {
         this.url = Global.url;
-
+        this.urlDev = Global.urlDev;
     }
 
     //AUTH GENERAL
@@ -172,6 +172,20 @@ export class UserService {
         // let params = JSON.stringify(email);
         return this._hhtp.get(this.url + 'sendWelcomeEmail/' + email);
     }
+
+    revImage(data): Observable<any> {// envia la url de la imagen para ser analizada
+        let params = JSON.stringify(data);
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        return this._hhtp.post(this.urlDev + 'revImage',  params, {headers: headers});
+    }
+
+    sendAyuda(data): Observable<any> {// 
+        let params = JSON.stringify(data);
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        return this._hhtp.post(this.urlDev + 'ayuda', params, {headers: headers});
+    }
+
+
 
     sendReportedEmail(email): Observable<any> {// envia un email de bienivenida cuando el usuario ha sifo verificado
         console.log('enviando correo...');

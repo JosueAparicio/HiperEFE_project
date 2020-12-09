@@ -43,6 +43,7 @@ export var Global = {
     },
 
     url: 'https://backend-hiperefe.herokuapp.com/',
+    urlDev: 'http://localhost:3900/',
 
     generarNumero(minimo, maximo) {
         return Math.floor(Math.random() * (maximo - minimo + 1) + minimo);

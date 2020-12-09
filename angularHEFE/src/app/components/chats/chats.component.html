@@ -35,7 +35,7 @@
 
 
           <app-messages [uid]="user.uid" [message]="msg" [room]="conversation.id" (delete)="deleteMsg($event)"
-            (reported)="reportMsg($event)">
+            (reported)="reportMsg($event)" (reportedImg)="reportedImg($event)" >
           </app-messages>
 
 

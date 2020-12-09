@@ -48,6 +48,8 @@ import { OthersComponent } from './components/profile/others/others.component';
 import { SceneMuseumComponent } from './components/vr/museum/scene-museum/scene-museum.component';
 import { AssetsMuseumComponent } from './components/vr/museum/assets-museum/assets-museum.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { PreguntasfreqComponent } from './components/preguntasfreq/preguntasfreq.component';
+import { AyudaComponent } from './components/ayuda/ayuda.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +83,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     AccessComponent,
     OthersComponent,
     SceneMuseumComponent,
-    AssetsMuseumComponent
+    AssetsMuseumComponent,
+    PreguntasfreqComponent,
+    AyudaComponent
   ],
   imports: [
     BrowserModule,

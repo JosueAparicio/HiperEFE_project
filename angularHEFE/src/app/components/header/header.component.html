@@ -22,9 +22,32 @@
           </li>
 
           <li>
-            <a [routerLink]="['/terms-and-conditions']" [routerLinkActive]="['active']">Sobre nosotros</a>
+            <a [matMenuTriggerFor]="options">Sobre Nosotros</a>
           </li>
         </ul>
+
+        <mat-menu #options="matMenu">
+          <button style="border: none;" mat-menu-item>
+            <ul class="nav-items">
+
+              <li>
+                <a style="margin: 0px !important;" [routerLink]="['/terms-and-conditions']"
+                  [routerLinkActive]="['active']">Termimos y Condiciones</a>
+              </li>
+
+            </ul>
+          </button>
+
+          <button style="border: none;" mat-menu-item>
+            <ul class="nav-items">
+
+              <li>
+                <a style="margin: 0px !important;" [routerLink]="['/preguntas-frecuentes']"
+                  [routerLinkActive]="['active']">Ayuda</a>
+              </li>
+            </ul>
+          </button>
+        </mat-menu>
 
       </nav>
     </div>
@@ -32,8 +55,9 @@
 </div>
 
 
+
 <div *ngIf="status">
-  
+
   <!--header area start-->
   <header>
     <label for="check">
@@ -44,13 +68,13 @@
     </div>
     <div class="right_area">
       <a (click)="singOut()" class="logout_btn">Cerrar Session <i class="fa fa-sign-out" aria-hidden="true"></i></a>
-      
+
     </div>
   </header>
 
   <!--header area end-->
   <!--sidebar start-->
-  <div class="sidebar" >
+  <div class="sidebar">
     <div class="profile" *ngIf="user">
       <img *ngIf="user.photoURL" src="{{user.photoURL}}" class="profile_image" alt="{{user.displayName}}">
       <img *ngIf="!user.photoURL" src="../../../assets/images/userDefault.svg" class="profile_image" alt="User Name">
@@ -59,15 +83,17 @@
       <h4 *ngIf="!user.displayName">User Name</h4>
 
     </div>
-    <a (click)="goProfile()" ><i class="fa fa-user"></i><span>Mi Perfil</span></a>
+    <a (click)="goProfile()"><i class="fa fa-user"></i><span>Mi Perfil</span></a>
 
     <a [routerLink]="['/home']" [routerLinkActive]="['active']"><i class="fa fa-laptop"></i><span>Salas</span></a>
 
-    <a [routerLink]="['/rooms/chats']" [routerLinkActive]="['active']"><i class="fa fa-comments"></i><span>Chats</span></a>
+    <a [routerLink]="['/rooms/chats']" [routerLinkActive]="['active']"><i
+        class="fa fa-comments"></i><span>Chats</span></a>
 
     <a href="#"><i class="fa fa-question-circle"></i><span>Ayuda</span></a>
 
-    <a id="salir-mov" style="display: none;" (click)="singOut()"><i class="fa fa-sign-out"></i><span>Cerrar sesion</span></a>
+    <a id="salir-mov" style="display: none;" (click)="singOut()"><i class="fa fa-sign-out"></i><span>Cerrar
+        sesion</span></a>
 
   </div>
   <!--sidebar end-->

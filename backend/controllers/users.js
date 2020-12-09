@@ -1,7 +1,11 @@
 'use strict'
 
-const { google } = require('googleapis');
-const { OAuth2 } = google.auth;
+const {
+    google
+} = require('googleapis');
+const {
+    OAuth2
+} = google.auth;
 const nodemailer = require('nodemailer');
 var hbs = require('nodemailer-express-handlebars');
 var user = 'hiperefe.contact@gmail.com';
@@ -11,6 +15,10 @@ var typeAuth = 'OAuth2';
 var clientSecret = 'bZ0xJXOtTMI5Z_G5aitgvU_j';
 var refreshToken = '1//04b6981HmurdrCgYIARAAGAQSNwF-L9IrPzQ4NCiqZ1eFtasBUvwy0LwL4Quf5OyI7sxJe1TXsKhh8GNwzIDcl709hM8uJd7Q0yA';
 const OAUTH_PLAYGROUND = 'https://developers.google.com/oauthplayground';
+
+
+var sightengine = require('sightengine')('115828723', 'PaXmNEGLkzAkTABXEK7B');
+
 
 const oauth2Client = new OAuth2(
     cliente_id,
@@ -58,6 +66,65 @@ var controller = {
                 return res.status(200).send({
                     status: 'success',
                     message: 'Email de bienvenida enviado a ' + req.params.email
+                });
+            }).catch(err => {
+            console.log(err);
+            return res.status(500).send({
+                status: 'error',
+                message: err
+            });
+        });
+
+    },
+
+
+    sendAyuda: (req, res) => {
+        console.log(req.body);
+
+        oauth2Client.setCredentials({
+            refresh_token: refreshToken,
+        });
+        const accessToken = oauth2Client.getAccessToken();
+        var contenido = '';
+        if (req.body.pregunta){
+            contenido = req.body.pregunta;
+        } else if (req.body.denuncia) {
+            contenido = req.body.denuncia;
+        }
+        var transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 465,
+            secure: true,
+            auth: {
+                type: typeAuth,
+                user: user,
+                clientId: cliente_id,
+                clientSecret: clientSecret,
+                refreshToken: refreshToken,
+                accessToken
+            },
+            tls: {
+                // do not fail on invalid certs
+                rejectUnauthorized: false
+            }
+        });
+        const mailOptions = {
+            
+            from: 'HIPER EFE',
+            to: `hiperefe.ayuda@gmail.com`,
+            subject: `${req.body.status}`,
+            html: ` 
+            <p>${req.body.email}: ${contenido}</p>
+            <br>
+            <img  style="max-width:500px; " src="https://image.freepik.com/vector-gratis/servicio-al-cliente-soporte-tecnico-ayuda-linea_1200-399.jpg" alt="IMAGE">
+
+            `
+        };
+        transporter.sendMail(mailOptions).then(
+            resp => {
+                return res.status(200).send({
+                    status: 'success',
+                    message: 'se envio el email'
                 });
             }).catch(err => {
             console.log(err);
@@ -146,12 +213,12 @@ var controller = {
 
             transporter.use("compile", hbs({
                 viewEngine: {
-                        partialsDir: "./views/",
-                        layoutsDir: "./views/layout",
-                        extname: ".hbs"
-                    },
-                    extName: ".hbs",
-                    viewPath: "./views/"
+                    partialsDir: "./views/",
+                    layoutsDir: "./views/layout",
+                    extname: ".hbs"
+                },
+                extName: ".hbs",
+                viewPath: "./views/"
             }));
 
             const mailOptions = {
@@ -164,9 +231,9 @@ var controller = {
                     reason: req.params.reason,
                     nameRoom: req.params.nameRoom
                 }
-            
+
             };
-            
+
             transporter.sendMail(mailOptions).then(
                 resp => {
                     return res.status(200).send({
@@ -184,6 +251,25 @@ var controller = {
         } catch (error) {
             console.log(error);
         }
+    },
+
+    revImage: (req, res) => {
+
+        console.log(req.body.image);
+
+        sightengine.check(['nudity']).set_url(req.body.image).then(function (result) {
+            // The API response (result)
+            return res.status(200).send({
+                status: 'success',
+                message: result
+            });
+        }).catch(function (err) {
+            // Handle error
+            return res.status(500).send({
+                status: 'error',
+                message: err
+            });
+        });
     }
 }
 

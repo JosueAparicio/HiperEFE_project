@@ -129,6 +129,26 @@ export class ChatsComponent implements OnInit {
     this._chatsService.deleteMsg(event.delete, this.conversation.id);
     //this.inputMessages();
   }
+
+  reportedImg(event){
+    this.procesando = true;
+    //console.log(event.resp);
+    
+    setTimeout(() => {
+      if(event.resp.raw > event.resp.safe && event.resp.raw > event.resp.partial ){
+        this.openSnackBar('Se encontró contenido sexual explícito... Gracias por tu reporte.', 'Ok');
+        this._userService.sendReportedEmail(event.email).subscribe(Response => {
+          //console.log(Response.message);
+        });
+        this._chatsService.deleteReportedMsg(event.id, this.conversation.id);
+      }else{
+        this.openSnackBar('Evaluaremos este mensaje... Gracias por tu reporte.', 'Ok');
+      }
+       this.procesando = false;
+    }, 1800);
+
+  }
+
   reportMsg(event) {
     //console.log(event.reported);
     this.procesando = true;

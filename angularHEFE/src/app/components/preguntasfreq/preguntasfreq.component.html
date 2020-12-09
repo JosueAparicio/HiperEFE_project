@@ -1,0 +1,522 @@
+<div class="login-page">
+
+  <app-header></app-header>
+  <!-- 
+  
+  -->
+  <div class="content-ayuda">
+    <h1>Preguntas frecuentes</h1>
+
+
+  <mat-tab-group mat-align-tabs="center" animationDuration="0ms">
+    <mat-tab label="Generales">
+      <mat-accordion>
+
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Qué es HIPEREFE?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>HPEREFE es una plataforma de enseñanza sobre tecnología, que 
+            fomenta el aprendizaje y la pasión por la tecnología.</p>
+            <img src="../../../assets/images/loge.svg" alt="image">
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+  
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Cuál es nuestro propósito?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Nuestro propósito es que nuestros usuarios se aprendan yse enamoren de la tecnología
+             mediante el maravilloso mundo de la Realidad Virtual.</p>
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Quienes somos?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Somos Team Cilantro, equipo encargado del desarrollo de HIPEREFE.</p>
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Qué encontraras aquí?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>En HIPEREFE, encontrarás una plataforma de aprendizaje sobre temas tecnológicos, orientada
+             a que tu tengas la mayor de las facilidades y 
+            que te enamores de la Realidad Virtual con la que trabajamos. </p>
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+  
+
+    </mat-tab>
+
+    <mat-tab label="Realidad virtual">
+      <mat-accordion>
+
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Que tecnología de VR usamos?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/A-Frame_logo.png" alt="image">
+          <p>Usamos un poderoso Framework emergente llamado A-FRAME.</p>
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+  
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Puedo conectar gafas de VR?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <img src="https://firebasestorage.googleapis.com/v0/b/virtual-city-eb37f.appspot.com/o/images%2Fpublic%2FRecurso%201.svg?alt=media&token=94826fca-0966-458e-8960-45f14f811301" alt="image">
+          <p>Claro que sí, eres libre de usar nuestra plataforma con un casco o gafas de realidad virtual si es que cuentas con el recurso.</p>
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Puedo usar la VR sin las gafas?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Por suuesto, nuestra plataforma busca llegar a aquellos que poseen menos recursos y por ello el uso o no de las gafas de VR depende de tí.</p>
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Influye el uso o no de gafas en la calidad de la experiencia?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Desde HIPEREFE, tratamos de que las gafas sean una opción y no un requisito. Pero la calidad de la experiencia puede variar un poco.</p>
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
+    </mat-tab>
+
+    <mat-tab label="Salas">
+      <mat-accordion>
+
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Cómo puedo crear una sala?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p><b>1.</b> Solo puedes crear una sala nueva si tu cuenta está registrada como docente. </p>
+          <p><b>2.</b> Si tu cuenta está registrada como docente, debes buscar el boton "CREAR SALA",
+          que aperece en la pagina de inicio. </p>
+          <img  class="image-ayuda"  src="https://firebasestorage.googleapis.com/v0/b/virtual-city-eb37f.appspot.com/o/images%2Fpublic%2Frecurso5.jpeg?alt=media&token=b1d16343-4f70-495b-b0c5-84487a1f27a1" alt="image">
+
+
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+  
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Cómo me uno a una sala?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p><b>1.</b> Solo puedes crear una sala nueva si tu cuenta está registrada como estudiante. </p>
+          <p><b>2.</b> Si tu cuenta está registrada como docente, debes buscar el boton "UNIRME A UNA SALA ",
+            que aperece en la pagina de inicio. </p>
+
+            <img  class="image-ayuda"  src="https://firebasestorage.googleapis.com/v0/b/virtual-city-eb37f.appspot.com/o/images%2Fpublic%2Frecurso6.jpeg?alt=media&token=fdb15cde-18b6-4801-8f7f-d4a395e08c0f" alt="image">
+
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Cúales son los requerimientos de una sala?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p><b>1.</b> Un nombre para la sala. </p>
+          <p><b>2.</b> Una descripción para la sala. </p>
+          <p><b>3.</b> Máximo de participantes por sala. </p>
+          <p><b>4.</b> Foto de la sala (opcional). </p>
+          <p><b>5.</b> Temas de la sala (máximo 5 - mínimo 1). </p>
+
+
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Cómo ir a la sala dentro de la VR?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Desde "detalles de la sala", debes buscar el boton MUNDO VIRTUAL</p>
+          <img  class="image-ayuda"  src="https://firebasestorage.googleapis.com/v0/b/virtual-city-eb37f.appspot.com/o/images%2Fpublic%2Frecurso7.jpeg?alt=media&token=ff1fbec0-8f52-4ac7-9e64-49ee12c24dec" alt="image">
+
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
+    </mat-tab>
+
+    <mat-tab label="Perfil">
+      <mat-accordion>
+
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Mi perfil es público?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Efectivamente todos los perfiles son públicos aunque en el futuro seran implementados los perfiles privados.</p>
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+  
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Imagenes sexuales de perfil?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>No puedes subir una foto de perfil con contenido sexual, HIPEREFE puede borrar tu cuenta.</p>
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Estoy obligado a colgar una foto de perfil?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>No, si por X motivos tu no subes una foto de perfil, la plataforma te asigna una por defecto.</p>
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Cómo puedo ver el perfil de alguien más?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Desde el chat puedo acceder a un perfil.</p>
+          <img  class="image-ayuda"  src="https://firebasestorage.googleapis.com/v0/b/virtual-city-eb37f.appspot.com/o/images%2Fpublic%2Frecurso2.jpeg?alt=media&token=a38298d6-1cf9-4f6b-b7ed-df7c0c84ffa4" alt="image">
+          <p style="margin-top: 20px;">Y tambien desde adentro de una sala.</p>
+          <img  class="image-ayuda"  src="https://firebasestorage.googleapis.com/v0/b/virtual-city-eb37f.appspot.com/o/images%2Fpublic%2Frecurso3.jpeg?alt=media&token=2ec2366d-f336-4585-b813-5e19176869ad" alt="image">
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Cómo puedo eliminar una foto de perfil?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Al subir mas de cinco fotos, desde la sexta en delante no se muestran.</p>
+          <p style="margin-top: 20px;">Y tambien puedes eliminarla desde tu perfil así:</p>
+          <img class="image-ayuda"  src="https://firebasestorage.googleapis.com/v0/b/virtual-city-eb37f.appspot.com/o/images%2Fpublic%2Frecurso4.jpeg?alt=media&token=ec855063-523c-4e4e-b7bf-8f2ec6ff2ee7" alt="image">
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Qué datos se muestran en mi perfil?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>En tu perfil se muestran tus ultimas fotos, tu correo electronico, tus salas, tu nombre de usuario y tu descripción.</p>
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Puedo reportar un perfil?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Desde los chats puedes reportar a personas que escriben mensajes fuera de nuestras normas y lineamientos. 
+            El sistema se encargará de bannear a aquellos que han infringido las normas muchas veces. </p>
+            <p>Por favor, ayudanos reportando esta clase de usuarios.</p>
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
+    </mat-tab>
+
+    <mat-tab label="Recursos de terceros">
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿De donde salen las imagenes usadas?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Los vectores usados son totalmente gratis y originarios de <a target="_blank" href="https://www.freepik.es/home">Freepik</a></p>
+
+
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Qué APIS son usadas?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>API de deteccción de imagenes sexuales <a target="_blank" href="https://dashboard.sightengine.com/">Sightengine</a></p>
+
+
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
+      
+    </mat-tab>
+
+    <mat-tab label="Sistema monetario">
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Puedo obtener una cuenta de paga?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Actualmente HIPEREFE no cuenta con cuentas de paga, pero se trabaja en ello. </p>
+
+
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Puede un docente pedir pago por una sala?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Un docente no puede hacer uso de HIPEREFE para su beneficio económico</p>
+
+
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
+      
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Puedo vender productos o servicios en la plataforma?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>HIEREFE no es una plataforma de marketplace y por ende no se puede hacer uso para el comercio electrónico</p>
+
+
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
+    </mat-tab>
+
+    <mat-tab label="Buzón de ayuda">
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Hacer una pregunta
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Escribe tu pregunta</mat-label>
+            <textarea matInput  [formControl]="pregunta" required></textarea>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Ingresa tu email</mat-label>
+            <input matInput placeholder="pat@example.com" [formControl]="email1" required>
+            <mat-error *ngIf="email1.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" [disabled]="pregunta.invalid || email1.invalid" (click) = "sendAyuda('Pregunta')">Enviar</button>
+
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Hacer una denuncia
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Escribe tu denuncia</mat-label>
+            <textarea matInput [formControl]="denuncia" required></textarea>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Ingresa tu email</mat-label>
+            <input matInput placeholder="pat@example.com" [formControl]="email2" required>
+            <mat-error *ngIf="email2.invalid">{{getErrorMessage2()}}</mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" [disabled]="denuncia.invalid || email2.invalid " (click) = "sendAyuda('Denuncia')">Enviar</button>
+
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
+    </mat-tab>
+
+  </mat-tab-group>
+ 
+
+  </div>
+
+
+
+
+</div>
+<df-messenger intent="WELCOME" chat-title="fBoti" agent-id="8cdc73a8-a0a5-4193-b7d6-85335e91b27d" language-code="es">
+</df-messenger>
