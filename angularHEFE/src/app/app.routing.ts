@@ -17,6 +17,7 @@ import { DetailsRoomComponent } from './components/details-room/details-room.com
 import { ChatsComponent } from './components/chats/chats.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SceneMuseumComponent } from './components/vr/museum/scene-museum/scene-museum.component';
+import { PreguntasfreqComponent } from './components/preguntasfreq/preguntasfreq.component';
 
 
 const appRoutes: Routes =[
@@ -33,6 +34,7 @@ const appRoutes: Routes =[
     { path: 'detailsRoom/:creator/:codeRoom', component: DetailsRoomComponent},
     { path: 'rooms/chats', component: ChatsComponent},
     { path: 'user/profile/:uid', component: ProfileComponent},
+    { path: 'preguntas-frecuentes', component: PreguntasfreqComponent},
     { path: '**', component: ErrorComponent}
 
 ];

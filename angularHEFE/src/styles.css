@@ -714,6 +714,7 @@ img {
 
 .mat-tab-label {
   color: #fff !important;
+  opacity: 100 !important;
 }
 
 .mat-tab-body-content {
@@ -902,6 +903,175 @@ mat-grid-list {
   transform: scale(1.05);
 }
 
+.content-ayuda {
+  margin-top: 20px;
+  padding: 10px;
+  max-width: 100% !important;
+  max-height: 540px;
+  min-height: 540px;
+
+  background: url(assets/images/virtual-reality.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.content-ayuda .mat-expansion-panel,
+.ng-tns-c3-2,
+.content-respuestas .mat-expansion-panel {
+  margin: 10px 5px 5px 5px;
+  width: 100%;
+
+}
+
+.content-ayuda .mat-tab-body-content {
+  display: grid;
+  place-items: center;
+  max-height: 410px;
+  overflow-y: scroll;
+  
+
+}
+
+.content-ayuda .mat-accordion {
+  min-width: 700px;
+}
+
+.content-ayuda h1,
+.content-respuestas h1 {
+  color: #fff;
+  font-size: 20px;
+  margin: 20px;
+}
+
+.content-ayuda .mat-tab-group {
+  max-width: 100% !important;
+}
+
+.mat-expansion-panel-header-title {
+  font-weight: bold;
+  text-align: initial;
+}
+
+.content-ayuda .image-ayuda {
+  border: 1px solid black;
+  max-width: 500px;
+}
+
+
+
+.content-ayuda .mat-expansion-panel p {
+  max-width: 600px;
+  height: auto;
+  text-align: justify;
+  font-weight: 500;
+}
+
+
+
+.content-respuestas::-webkit-scrollbar,
+.content-ayuda::-webkit-scrollbar,
+.content-ayuda .mat-tab-body-content::-webkit-scrollbar {
+  width: 8px;
+  /* Tamaño del scroll en vertical */
+  height: 8px;
+  /* Tamaño del scroll en horizontal */
+}
+
+.content-respuestas::-webkit-scrollbar,
+.content-ayuda::-webkit-scrollbar,
+.content-ayuda .mat-tab-body-content::-webkit-scrollbar {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+.content-respuestas::-webkit-scrollbar,
+.content-ayuda::-webkit-scrollbar,
+.content-ayuda .mat-tab-body-content::-webkit-scrollbar {
+  background: #b3b3b3;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Cambiamos el fondo cuando esté en active */
+.content-respuestas::-webkit-scrollbar,
+.content-ayuda::-webkit-scrollbar,
+.content-ayuda .mat-tab-body-content::-webkit-scrollbar {
+  background-color: #999999;
+}
+
+
+@media(max-width: 850px) {
+  .content-ayuda .mat-accordion {
+    min-width: 600px;
+    max-width: 600px;
+
+  }
+
+}
+
+@media(max-width: 650px) {
+  .content-ayuda .mat-accordion {
+    min-width: 500px;
+    max-width: 500px;
+
+  }
+
+  .content-ayuda .image-ayuda {
+    max-width: 400px;
+  }
+
+  .content-ayuda .mat-tab-body-content::-webkit-scrollbar {
+    display: none;
+  }
+
+}
+
+@media(max-width: 550px) {
+  .content-ayuda .mat-accordion {
+    min-width: 400px;
+    max-width: 400px;
+
+  }
+
+  .content-ayuda .image-ayuda {
+    max-width: 350px;
+  }
+
+  .content-ayuda {
+
+
+    background-position: top;
+  }
+
+}
+
+@media(max-width: 450px) {
+  .content-ayuda .mat-accordion {
+    min-width: 380px;
+    max-width: 380px;
+
+  }
+
+  .content-ayuda .image-ayuda {
+    max-width: 340px;
+  }
+
+}
+
+@media(max-width: 400px) {
+  .content-ayuda .mat-accordion {
+    min-width: 325px;
+    max-width: 325px;
+
+  }
+
+  .content-ayuda .image-ayuda {
+    max-width: 290px;
+  }
+
+}
+
 @media(max-width: 760px) {
 
   .room-container .course {
@@ -1071,7 +1241,7 @@ mat-grid-list {
       font-size: 11px !important;
     }
 
-    .body header{
+    .body header {
       margin-top: 45% !important;
 
     }
@@ -1098,7 +1268,7 @@ mat-grid-list {
       margin-left: 25px !important;
     }
 
-    .body header{
+    .body header {
       margin-top: 45% !important;
 
     }
@@ -1248,6 +1418,7 @@ mat-grid-list {
     .mat-chip.mat-standard-chip.mat-chip-selected.mat-accent {
       margin-bottom: 0;
     }
+
     .mat-chip-list-wrapper {
       place-content: center;
     }

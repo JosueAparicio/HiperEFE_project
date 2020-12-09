@@ -6,7 +6,7 @@
 
           <div class="message-text" [matMenuTriggerFor]="menuRep">
             <div id="image-message" align ="center">
-              <img *ngIf="tipe == 'img'" src="{{message.image}}" aria-label="Ver imagen" onError="this.src='assets/images/default.png'" alt="image">
+              <img *ngIf="tipe == 'img'" src="{{message.image}}"  aria-label="Ver imagen" onError="this.src='assets/images/default.png'" alt="image">
             </div>
             {{message.message}}</div>
           <div class="message-time"><strong>{{user.displayName}},  </strong>{{date}}</div>
@@ -36,31 +36,40 @@
       <mat-icon>visibility</mat-icon>
       <span>Ver imagen</span>
     </button>
+
   </mat-menu>
 
 
   <mat-menu #menuRep="matMenu" style="z-index: 5002;">
 
-    <button mat-menu-item (click)="reportMsg(message.message, message.id, user.email)">
-      <mat-icon>report_problem</mat-icon>
-      <span>Reportar mensaje</span>
-    </button>
+
 
     <button *ngIf="tipe == 'img'" mat-menu-item (click)="verImagen(message.image)">
       <mat-icon>visibility</mat-icon>
       <span>Ver imagen</span>
     </button>
 
+
+
     <button mat-menu-item (click)="viewProfile(user.uid)">
       <mat-icon>public</mat-icon>      
       <span *ngIf="user">Perfil de {{user.displayName}}</span>
     </button>
+
+    <button mat-menu-item (click)="reportMsg(message.message, message.id, user.email)">
+      <mat-icon>report_problem</mat-icon>
+      <span>Reportar mensaje</span>
+    </button>
     
+    <button *ngIf="tipe == 'img'" mat-menu-item (click)="repImage(message.image,  message.id, user.email)">
+      <mat-icon>report_problem</mat-icon>
+      <span>Reportar imagen</span>
+    </button>
   </mat-menu>
 
   <ng-template #Principal>
     <div align ="center">
-      <img  id="image-principal-chat" src="assets/images/resource1.svg" alt="">
+      <img  id="image-principal-chat" src="assets/images/resource1.svg" alt="image">
   
     </div>
   </ng-template>
