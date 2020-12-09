@@ -10,6 +10,7 @@ var router = express.Router();
 router.get('/sendWelcomeEmail/:email', controller.sendWelcomeEmail);
 router.get('/sendReportedEmail/:email', controller.sendReportedEmail);
 router.post('/revImage', controller.revImage);
+router.post('/ayuda', controller.sendAyuda);
 
 router.get('/sendDeleteEmail/:email/:teacher/:reason/:nameRoom', controller.sendDeleteEmail);
 

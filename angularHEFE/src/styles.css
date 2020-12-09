@@ -714,6 +714,7 @@ img {
 
 .mat-tab-label {
   color: #fff !important;
+  opacity: 100 !important;
 }
 
 .mat-tab-body-content {
@@ -907,7 +908,12 @@ mat-grid-list {
   padding: 10px;
   max-width: 100% !important;
   max-height: 540px;
+  min-height: 540px;
 
+  background: url(assets/images/virtual-reality.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .content-ayuda .mat-expansion-panel,
@@ -923,6 +929,7 @@ mat-grid-list {
   place-items: center;
   max-height: 410px;
   overflow-y: scroll;
+  
 
 }
 
@@ -1029,6 +1036,12 @@ mat-grid-list {
 
   .content-ayuda .image-ayuda {
     max-width: 350px;
+  }
+
+  .content-ayuda {
+
+
+    background-position: top;
   }
 
 }

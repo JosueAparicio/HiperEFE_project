@@ -155,13 +155,18 @@
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              ¿Que es HIPEREFE?
+              ¿Cómo puedo crear una sala?
             </mat-panel-title>
             <mat-panel-description>
   
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <p>I'm visible because I am open</p>
+          <p><b>1.</b> Solo puedes crear una sala nueva si tu cuenta está registrada como docente. </p>
+          <p><b>2.</b> Si tu cuenta está registrada como docente, debes buscar el boton "CREAR SALA",
+          que aperece en la pagina de inicio. </p>
+          <img  class="image-ayuda"  src="https://firebasestorage.googleapis.com/v0/b/virtual-city-eb37f.appspot.com/o/images%2Fpublic%2Frecurso5.jpeg?alt=media&token=b1d16343-4f70-495b-b0c5-84487a1f27a1" alt="image">
+
+
         </mat-expansion-panel>
   
       </mat-accordion>
@@ -171,13 +176,18 @@
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              ¿Que es HIPEREFE?
+              ¿Cómo me uno a una sala?
             </mat-panel-title>
             <mat-panel-description>
   
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <p>I'm visible because I am open</p>
+          <p><b>1.</b> Solo puedes crear una sala nueva si tu cuenta está registrada como estudiante. </p>
+          <p><b>2.</b> Si tu cuenta está registrada como docente, debes buscar el boton "UNIRME A UNA SALA ",
+            que aperece en la pagina de inicio. </p>
+
+            <img  class="image-ayuda"  src="https://firebasestorage.googleapis.com/v0/b/virtual-city-eb37f.appspot.com/o/images%2Fpublic%2Frecurso6.jpeg?alt=media&token=fdb15cde-18b6-4801-8f7f-d4a395e08c0f" alt="image">
+
         </mat-expansion-panel>
   
       </mat-accordion>
@@ -186,13 +196,37 @@
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              ¿Que es HIPEREFE?
+              ¿Cúales son los requerimientos de una sala?
             </mat-panel-title>
             <mat-panel-description>
   
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <p>I'm visible because I am open</p>
+          <p><b>1.</b> Un nombre para la sala. </p>
+          <p><b>2.</b> Una descripción para la sala. </p>
+          <p><b>3.</b> Máximo de participantes por sala. </p>
+          <p><b>4.</b> Foto de la sala (opcional). </p>
+          <p><b>5.</b> Temas de la sala (máximo 5 - mínimo 1). </p>
+
+
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Cómo ir a la sala dentro de la VR?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Desde "detalles de la sala", debes buscar el boton MUNDO VIRTUAL</p>
+          <img  class="image-ayuda"  src="https://firebasestorage.googleapis.com/v0/b/virtual-city-eb37f.appspot.com/o/images%2Fpublic%2Frecurso7.jpeg?alt=media&token=ff1fbec0-8f52-4ac7-9e64-49ee12c24dec" alt="image">
+
         </mat-expansion-panel>
   
       </mat-accordion>
@@ -319,61 +353,160 @@
     </mat-tab>
 
     <mat-tab label="Recursos de terceros">
-      Content 2
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿De donde salen las imagenes usadas?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Los vectores usados son totalmente gratis y originarios de <a target="_blank" href="https://www.freepik.es/home">Freepik</a></p>
+
+
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Qué APIS son usadas?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>API de deteccción de imagenes sexuales <a target="_blank" href="https://dashboard.sightengine.com/">Sightengine</a></p>
+
+
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
+      
     </mat-tab>
 
-    <mat-tab label="Metodos de paga">
+    <mat-tab label="Sistema monetario">
       <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ¿Puedo obtener una cuenta de paga?
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Actualmente HIPEREFE no cuenta con cuentas de paga, pero se trabaja en ello. </p>
 
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              ¿Que es HIPEREFE?
-            </mat-panel-title>
-            <mat-panel-description>
-  
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <p>I'm visible because I am open</p>
+
         </mat-expansion-panel>
   
       </mat-accordion>
-  
+
       <mat-accordion>
   
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              ¿Que es HIPEREFE?
+              ¿Puede un docente pedir pago por una sala?
             </mat-panel-title>
             <mat-panel-description>
   
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <p>I'm visible because I am open</p>
+          <p>Un docente no puede hacer uso de HIPEREFE para su beneficio económico</p>
+
+
         </mat-expansion-panel>
   
       </mat-accordion>
+
+      
       <mat-accordion>
   
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              ¿Que es HIPEREFE?
+              ¿Puedo vender productos o servicios en la plataforma?
             </mat-panel-title>
             <mat-panel-description>
   
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <p>I'm visible because I am open</p>
+          <p>HIEREFE no es una plataforma de marketplace y por ende no se puede hacer uso para el comercio electrónico</p>
+
+
         </mat-expansion-panel>
   
       </mat-accordion>
 
     </mat-tab>
 
-    <mat-tab label="FeedBack">
-      Content 2
+    <mat-tab label="Buzón de ayuda">
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Hacer una pregunta
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Escribe tu pregunta</mat-label>
+            <textarea matInput  [formControl]="pregunta" required></textarea>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Ingresa tu email</mat-label>
+            <input matInput placeholder="pat@example.com" [formControl]="email1" required>
+            <mat-error *ngIf="email1.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" [disabled]="pregunta.invalid || email1.invalid" (click) = "sendAyuda('Pregunta')">Enviar</button>
+
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
+      <mat-accordion>
+  
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Hacer una denuncia
+            </mat-panel-title>
+            <mat-panel-description>
+  
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Escribe tu denuncia</mat-label>
+            <textarea matInput [formControl]="denuncia" required></textarea>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Ingresa tu email</mat-label>
+            <input matInput placeholder="pat@example.com" [formControl]="email2" required>
+            <mat-error *ngIf="email2.invalid">{{getErrorMessage2()}}</mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" [disabled]="denuncia.invalid || email2.invalid " (click) = "sendAyuda('Denuncia')">Enviar</button>
+
+        </mat-expansion-panel>
+  
+      </mat-accordion>
+
     </mat-tab>
 
   </mat-tab-group>
