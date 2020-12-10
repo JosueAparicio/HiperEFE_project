@@ -1,5 +1,5 @@
 import { Howl } from 'howler';
-export class Soundtrack{
+export class Soundtrack {
     private configSound = {
         src: [],
         autoplay: true,
@@ -8,7 +8,8 @@ export class Soundtrack{
     };
 
     private pathVoice = {
-        welcome: '../../assets/music/voiceMuseum/welcomeMuseum.mp3'
+        welcome: '../../assets/music/voiceMuseum/welcomeMuseum.mp3',
+        uph: '../../assets/music/voiceMuseum/uphxEFE.mp3'
     }
 
     private pathVoiceuph = [
@@ -21,16 +22,16 @@ export class Soundtrack{
         '../../assets/music/voiceMuseum/txiPortatil.mp3',
         '../../assets/music/voiceMuseum/dnsSv.mp3'
     ]
-    private countVoiceUph:number = 0;
+    private countVoiceUph: number = 0;
 
-    private soundTrackAmbient : Howl;
+    private soundTrackAmbient: Howl;
     private soundTrackFocus: Howl;
     private soundTrackSelect: Howl;
     private soundTrackDeSelect: Howl;
     private voice: Howl;
     private voiceUph: Howl;
 
-    constructor(){
+    constructor() {
         this.soundTrackAmbient = new Howl(this.changeSoundSrc('../../assets/music/musicMuseum.mp3'));
         this.changeConfigSound();
         this.soundTrackFocus = new Howl(this.changeSoundSrc('../../assets/music/menu/focus.mp3'));
@@ -38,53 +39,66 @@ export class Soundtrack{
         this.soundTrackDeSelect = new Howl(this.changeSoundSrc('../../assets/music/menu/deselect.mp3'));
     }
 
-    public playSoudTrackAmbient(){
+    public playSoudTrackAmbient() {
         this.soundTrackAmbient.play();
     }
 
-    public stopSoundTrackAmbient(){
+    public stopSoundTrackAmbient() {
         this.soundTrackAmbient.stop();
     }
 
-    public playSoundTrackFocus(){  
+    public playSoundTrackFocus() {
         this.soundTrackFocus.play();
     }
 
-    public playSoundTrackSelect(){ 
+    public playSoundTrackSelect() {
         this.soundTrackSelect.play();
     }
 
-    public playSoundTrackDeSelect(){
+    public playSoundTrackDeSelect() {
         this.soundTrackDeSelect.play();
     }
 
-    private changeConfigSound(){
+    private changeConfigSound() {
         this.configSound.volume = 1;
         this.configSound.loop = false;
         this.configSound.autoplay = false
     }
 
-    private changeSoundSrc(src: string){
+    private changeSoundSrc(src: string) {
         this.configSound.src = [src];
         return this.configSound
     }
 
-    public playVoice(optionSound: string){
-        this.voice = new Howl(this.changeSoundSrc(this.pathVoice[optionSound]));  
+    public playVoice(optionSound: string) {
+        this.voice = new Howl(this.changeSoundSrc(this.pathVoice[optionSound]));
         this.voice.play();
     }
 
-    public stopVoice(){
+    public stopVoice() {
         this.voice.stop();
     }
 
-    public playVoiceUph(){
+    public playVoiceUph() {
         this.voiceUph = new Howl(this.changeSoundSrc(this.pathVoiceuph[this.countVoiceUph]));
         this.voiceUph.play();
         this.countVoiceUph++;
     }
 
-    public stopVoiceUph(){
+    public stopVoiceUph() {
         this.voiceUph.stop();
+    }
+
+    public startVoiceUph() {
+        let voz1 = new Howl({
+            src: [this.pathVoice.uph],
+            autoplay: true,
+            loop: false,
+            volume: 0.5,
+        })
+
+        voz1.on('end',()=>{
+            this.playVoiceUph();
+        })
     }
 }

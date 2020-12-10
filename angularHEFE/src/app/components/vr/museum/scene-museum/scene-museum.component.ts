@@ -87,10 +87,6 @@ export class SceneMuseumComponent implements OnInit {
     this.soundtrack.playSoundTrackFocus();
   }
   
-  selectObject(){
-    
-  }
-  
   deselectObject(){
     this.soundtrack.playSoundTrackDeSelect();
   }
@@ -99,13 +95,14 @@ export class SceneMuseumComponent implements OnInit {
   startTravelUPH(){
     this.positionMove = this.configTour.getPositionUPH('first');
     
-    this.soundtrack.playVoiceUph();
+    
     this.configMoveCamera();
   }
 
   selectUphTravel(){
     this.soundtrack.playSoundTrackSelect();
     this.soundtrack.stopVoice();
+    this.soundtrack.startVoiceUph();
   }
   nextFrame(){
     this.positionMove = this.configTour.next();
