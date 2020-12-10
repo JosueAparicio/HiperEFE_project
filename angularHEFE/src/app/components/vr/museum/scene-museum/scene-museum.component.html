@@ -49,9 +49,9 @@
       <a-image id="boton1" src="#shaderUphxEfe" position="-0.20 0.669 -2.799" material="side: front" geometry="height:1.700; width:2.800;" scale="1.40 0.75 1"
         mixin="scaleDownCard scaleUpCard" (animationcomplete__visible)="startTravelUPH()" (mouseenter)="focusObject()" (click)="selectUphTravel()"
         animation__visible="property: visible; to: false; startEvents: click; easing: easeInOutCubic;
-          autoplay: false; delay: 4500;"
+          autoplay: false; delay: 5500;"
         proxy-event="event: click; to: a-scene, #containerBtnStart, #ligthAmbient, #ligthOff,
-          #focoRobot, #focoMenu, #containerMenu, #boton2, #lightSphereFrame; as: start; captureBubbles: true; bubbles: true;">
+          #focoRobot, #focoMenu, #containerMenu, #boton2, #lightSphereFrame, #ArrowFrame; as: start; captureBubbles: true; bubbles: true;">
         </a-image>
     </a-entity>
 
@@ -120,10 +120,12 @@
     </a-entity>
     
     <a-entity id="containerFrameMuseum" position="0 -0.11 -3.687">
-      <a-image id="ArrowFrame" src="#nextFrame" rotation="0 180 0" position="9.73 1.9 -1" scale="0.8 0.8 1" material=""
+      <a-image id="ArrowFrame" src="#nextFrame" rotation="0 180 0" position="9.73 1.9 1" scale="0.8 0.8 1" material=""
         geometry="height:0.4; width:0.4;" (animationcomplete__hidden)="nextFrame()" mixin="scaleDown scaleUp"
         animation__hidden="property: position; to: 50 1.9 1; startEvents: click;
         dur: 1000; easing: easeInOutCubic; autoplay: false;"
+        animation__active="property: position; to: 9.73 1.9 -1; startEvents: start;
+        dur: 1000; easing: easeInOutCubic; autoplay: false; delay: 20000"
         proxy-event="event: click; to: a-scene, #lightSphereFrame; as: nextFrame; captureBubbles: true; bubbles: true;"
       >
         <a-entity id="lblArrowFrame" text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: Siguiente; align: center; width: 4"
