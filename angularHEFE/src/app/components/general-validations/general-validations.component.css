@@ -1,1 +1,21 @@
+.navbar-recover .navbar {
+  color: white !important;
+  background-color: #191919;
+  box-shadow: 7px 13px 37px #1ff4ff;
+  border-radius: 2px solid #1ff4ff;
+  max-width: 100%;
+  justify-content: space-between !important;
+}
 
+.navbar-recover a {
+  color: #ffffff;
+}
+
+.navbar-recover span {
+  color: #9b0000;
+}
+
+.navbar-recover .navbar img {
+    width: 50px;
+    float: right;
+  }
