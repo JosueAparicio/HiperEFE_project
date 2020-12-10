@@ -176,13 +176,13 @@ export class UserService {
     revImage(data): Observable<any> {// envia la url de la imagen para ser analizada
         let params = JSON.stringify(data);
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this._hhtp.post(this.urlDev + 'revImage',  params, {headers: headers});
+        return this._hhtp.post(this.url + 'revImage',  params, {headers: headers});
     }
 
     sendAyuda(data): Observable<any> {// 
         let params = JSON.stringify(data);
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this._hhtp.post(this.urlDev + 'ayuda', params, {headers: headers});
+        return this._hhtp.post(this.url + 'ayuda', params, {headers: headers});
     }
 
 

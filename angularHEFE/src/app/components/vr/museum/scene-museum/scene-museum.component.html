@@ -3,72 +3,56 @@
       <app-assets-museum></app-assets-museum>
     </a-assets>
 
-    <a-entity camera="" position="0 0.6 0" wasd-controls rotation="-9.969465635276295 1023.3026221036458 0"
+    <a-entity id="cameraUser" camera="" wasd-controls position="0 0.6 0" rotation="-9.969465635276295 1023.3026221036458 0"
       look-controls cursor="rayOrigin: mouse"></a-entity>
 
-    <a-gltf-model id="modelMuseo" src="#museo" rotation="0 -90 0" position="53.5 0 -7.5">
+    <a-gltf-model id="modelMuseo" src="#museo" rotation="0 -90 0" position="53.5 0 -16">
     </a-gltf-model>
     <a-sky id="skyMuseo" color="#0a0d1f"></a-sky>
 
-    <a-entity id="ligthAmbient" light="type: ambient; color: #1c5aab" visible="false"></a-entity>
+    <a-light id="ligthAmbient" type="ambient" color="#3792fb" intensity="0" visible="true" mixin="lightAmbientOn">
+    </a-light>
 
-    <a-entity id="ligthOff" light="type: ambient; color: #0a1524" ></a-entity>
+    <a-light id="ligthOff" type="ambient" color="#16263b" mixin="lightAmbientOff"></a-light>
 
 
     <a-entity id="focoRobot" position="2.355 -1.259 -2.799"
-      light="color: #22f789; intensity: 21.23; type: point; distance: 2.33; decay: 2" visible=""></a-entity>
+      light="color: #22f789; intensity: 21.23; type: point; distance: 2.33; decay: 2" visible=""
+      animation__visible="property: visible; to: false; startEvents: start; easing: easeInOutCubic; autoplay:
+      false; delay: 2500;"></a-entity>
 
     <a-entity id="focoMenu" position="-2 -1.259 -2.799"
       light="color: #22f789; intensity: 21.23; type: point; distance: 2.33; decay: 2" visible=""
-      animation__position="property: position; to: -2.61 -1.24 -5; dur: 1000; autoplay: false; easing:
-      easeInOutCubic; startEvents: startYep;"></a-entity>
+      animation__visible="property: visible; to: false; startEvents: start; easing: easeInOutCubic; autoplay:
+      false; delay: 2500;"></a-entity>
 
-    <a-entity id="lblBanner"
-      text="font: https://cdn.aframe.io/fonts/Monoid.fnt; value: BIENVENIDO AL MUSEO DE HISTORIA; align: center; width: 7"
-      position="0.69354 1.5 -5" rotation=""
-      animation__rotation="property: rotation; to: 0 90 0; dur: 1000; autoplay: false; easing:
-      easeInOutCubic; startEvents: startYep;"
-      animation__position="property: position; to: -3.60 1.5 -5; dur: 1000; autoplay: false; easing:
-      easeInOutCubic; startEvents: startYep;"></a-entity>
+    <a-entity id="contentRobot" position="0.209 0 -2.799">
+      <a-entity id="lblBanner"
+        text="font: https://cdn.aframe.io/fonts/Monoid.fnt; value: BIENVENIDO AL MUSEO DE HIPEREFE; align: center; width: 6"
+        position="-0.34 2.107 0" rotation="" 
+        animation__hidden="property: position; to: 1.3 -3 2; startEvents: visitGuided;
+        dur: 1000; easing: easeInOutCubic; autoplay: false;"
+        animation__visible="property: visible; to: false; startEvents: animationcomplete__hidden; easing:
+        easeInOutCubic;
+        autoplay: false"></a-entity>
 
-    <a-entity id="contentRobot">
-      <a-image src="#robot" width="3" height="1.5" position="2.10472 -0.67227 -2.79854" material="" geometry="">
-      </a-image>
-
-      <a-image src="#ballon" width="3" height="1.5" position="2.80701 0.76 -2.79854" material="side: front" geometry=""
-        scale="0.5 1 1">
-      </a-image>
-
-      <a-entity id="phrasesRobot"
-        text="font: https://cdn.aframe.io/fonts/Monoid.fnt; value: Yepa, que pasa gente; align: center; wrapCount: 9"
-        position="2.77632 0.79231 -2.79" rotation="" scale=""></a-entity>
+      <a-entity id="question"
+        text="font: https://cdn.aframe.io/fonts/Monoid.fnt; value: Que quieres conocer?; width: 4; align: center;"
+        position="-0.34 1.660 0" rotation="" material="opacity:0" 
+        animation__hidden="property: position; to: 0 1.5 0; startEvents: visitGuided;
+                dur: 1000; easing: easeInOutCubic; autoplay: false;"></a-entity>
     </a-entity>
 
-    <a-entity id="containerBtnStart" 
-      animation__rotation="property: rotation; to: 0 90 0; dur: 1000; autoplay: false; easing:
-      easeInOutCubic; startEvents: startYep;"
-      animation__position="property: position; to: -0.77 0 -5; dur: 1000; autoplay: false; easing:
-      easeInOutCubic; startEvents: startYep;">
-      <a-entity id="btnStartTravel" position="-0.79164 0.19721 -2.799" rotation="" (click)="startTravel()"
-        animation__scaledown="property: scale; from: 1.1 1.1 1.1; to: 1 1 1; dur: 100; autoplay: false; easing:
-      easeInOutCubic; startEvents: mouseleave; pauseEvents: mouseenter; resumeEvents: " 
-      animation__scaleup="property: scale; from: 1 1 1; to: 1.1 1.1 1.1; dur: 100; autoplay: false; easing:
-      easeInOutElastic; startEvents: mouseenter; pauseEvents: mouseleave; resumeEvents: "
-        proxy-event="event: click; to: a-scene, #lblBanner, #containerBtnStart, #focoMenu; as: startYep; captureBubbles:
-        true; bubbles: true">
-        <a-image src="#startTravel" position="0 0.31336 0" material="side: front" geometry="" scale="0.5 0.5 1">
+    <a-entity id="containerMenu" position="0 0 0"
+    animation__hidden="property: position; to: -0.20 -1 5; startEvents: start;
+      dur: 1000; easing: easeInOutCubic; autoplay: false;">
+      <a-image id="boton1" src="#shaderUphxEfe" position="-0.20 0.669 -2.799" material="side: front" geometry="height:1.700; width:2.800;" scale="1.40 0.75 1"
+        mixin="scaleDownCard scaleUpCard" (animationcomplete__visible)="startTravelUPH()" (mouseenter)="focusObject()" (click)="selectUphTravel()"
+        animation__visible="property: visible; to: false; startEvents: click; easing: easeInOutCubic;
+          autoplay: false; delay: 5500;"
+        proxy-event="event: click; to: a-scene, #containerBtnStart, #ligthAmbient, #ligthOff,
+          #focoRobot, #focoMenu, #containerMenu, #boton2, #lightSphereFrame, #ArrowFrame; as: start; captureBubbles: true; bubbles: true;">
         </a-image>
-        <a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: Iniciar Paseo; align: center; width: 4"
-          position="0 0.05223 0"></a-entity>
-      </a-entity>
-      <a-entity id="btnExitMuseum" position="-0.85285 -0.75937 -2.799" rotation="" (click)="goToLobby()"
-        animation__scaledown="property: scale; from: 1.1 1.1 1.1; to: 1 1 1; dur: 100; autoplay: false; easing:
-    easeInOutCubic; startEvents: mouseleave; pauseEvents: mouseenter; resumeEvents: " animation__scaleup="property: scale; from: 1 1 1; to: 1.1 1.1 1.1; dur: 100; autoplay: false; easing:
-    easeInOutElastic; startEvents: mouseenter; pauseEvents: mouseleave; resumeEvents: ">
-        <a-image src="#exit" position="0 0.313 0" material="side: front" geometry="" scale="0.5 0.5 1"></a-image>
-        <a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: Lobby; align: center; width: 4"
-          position="0 0.05223 0"></a-entity>
-      </a-entity>
     </a-entity>
 
     <a-entity id="containerLigth" visible="false">
@@ -106,12 +90,159 @@
         light="color: #ffffff; intensity: 2; type: point; distance: 2.5"></a-entity>
     </a-entity>
 
-    <a-entity id="robotMantenice" position="15 0 -5" scale="1 1.2 1" rotation="0 90 0">
-      <a-image src="#robotSad" width="3" height="1.5" position="2 -0.522 -2.799" material="" geometry="">
+    <a-entity id="abtractionComputer" position="0 0 -12">
+      <a-light id="lightSphere" type="spot" decay="3" distance="20" intensity="0" penumbra="0.1"
+        position="-0.01961 1.23176 0" visible="true">
+        <a-entity geometry="primitive: cone; radiusBottom: 0.52; radiusTop: 0.12" id="forma"
+          material="shader: flat; opacity: 0.5" position="-0.04 1.23868 -0.57" rotation="50 0 0"></a-entity>
+      </a-light>
+      <a-gltf-model id="pilar" src="#pilar3D" position="-0.088 -3.48 -5" scale="1 1.3 1">
+        <a-gltf-model id="computer" mixin="rotationObj" src="#laptop"
+          position="0 2.6 0" scale="0.4 0.4 0.4" rotation="0 90 0"></a-gltf-model>
+      </a-gltf-model>
+      <a-gltf-model id="modelTv" position="-1.60 1.5 -6" rotation="0 180 0" src="#tv" scale="3 2.5 1"></a-gltf-model>
+      <a-gltf-model id="modelTv2" position="1.4 1.5 -6" rotation="0 180 0" src="#tv" scale="3 2.5 1"></a-gltf-model>
+    </a-entity>
+
+    <a-entity id="abtractionInternetsv" position="8 0 -12">
+      <a-light id="lightSphere" type="spot" decay="3" distance="20" intensity="0" penumbra="0.1"
+        position="-0.01961 1.23176 0" visible="true">
+        <a-entity geometry="primitive: cone; radiusBottom: 0.52; radiusTop: 0.12" id="forma"
+          material="shader: flat; opacity: 0.5" position="-0.04 1.23868 -0.57" rotation="50 0 0"></a-entity>
+      </a-light>
+      <a-gltf-model id="pilar" src="#pilar3D" scale="1 1.3 1"
+         position="-0.088 -3.48 -5">
+        <a-gltf-model id="computer" mixin="rotationObj" src="#mouse" position="0 2.9 0" scale="0.1 0.1 0.1"
+          rotation="0 90 0"></a-gltf-model>
+      </a-gltf-model>
+      <a-gltf-model id="modelTv" position="-1.60 1.5 -6" rotation="0 180 0" src="#tv" scale="3 2.5 1"></a-gltf-model>
+      <a-gltf-model id="modelTv2" position="1.4 1.5 -6" rotation="0 180 0" src="#tv" scale="3 2.5 1"></a-gltf-model>
+    </a-entity>
+    
+    <a-entity id="containerFrameMuseum" position="0 -0.11 -3.687">
+      <a-image id="ArrowFrame" src="#nextFrame" rotation="0 180 0" position="9.73 1.9 1" scale="0.8 0.8 1" material=""
+        geometry="height:0.4; width:0.4;" (animationcomplete__hidden)="nextFrame()" mixin="scaleDown scaleUp"
+        animation__hidden="property: position; to: 50 1.9 1; startEvents: click;
+        dur: 1000; easing: easeInOutCubic; autoplay: false;"
+        animation__active="property: position; to: 9.73 1.9 -1; startEvents: start;
+        dur: 1000; easing: easeInOutCubic; autoplay: false; delay: 20000"
+        proxy-event="event: click; to: a-scene, #lightSphereFrame; as: nextFrame; captureBubbles: true; bubbles: true;"
+      >
+        <a-entity id="lblArrowFrame" text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: Siguiente; align: center; width: 4"
+          position="0 0.5 0"
+          ></a-entity>
       </a-image>
 
-      <a-entity text="font: https://cdn.aframe.io/fonts/Monoid.fnt; value: Estamos en Mantenimiento, vuelve pronto para
-                tu primer paseo; align: center; wrapCount: 35; width: 5;" position="2 0.850 -2.79" rotation="0 180 0"
-        scale="1.2 1.2 1" rotation="0 180 0"></a-entity>
+      <a-light id="lightSphereFrame" type="spot" decay="3" distance="20" intensity="0" penumbra="0.1"
+          position="8.686 -0.730 1.913" visible="true" mixin="ligthIntesity"
+          animation__intesityon="property: intensity; to: 1.33; startEvents: animationcomplete__intesityoff;
+            dur: 1000; autoplay: false;"
+            animation__intesityoff="property: intensity; to: 0; startEvents: nextFrame;
+            dur: 1000; easing: easeInOutCubic; autoplay: false;">
+        </a-light>
+
+      <a-gltf-model id="modelFrame" position="8.6 0 0" rotation="0 180 0" src="#framePhoto">
+        <a-entity id="titleFrame"
+          text="font: https://cdn.aframe.io/fonts/Monoid.fnt; value: Regulador de Voltaje TO-220; width: 4; align: center;"
+          position="0 1.6 1" rotation=""></a-entity>
+        
+        <a-image src="#to220" width="1.650" height="1.9" position="0 0 0.103" material="" geometry="">
+        </a-image>
+      </a-gltf-model>
+
+      <a-gltf-model id="modelFrame" position="13 0 0" rotation="0 180 0" src="#framePhoto">
+        <a-entity id="titleFrame"
+          text="font: https://cdn.aframe.io/fonts/Monoid.fnt; value: Circuitos Integrados SV; width: 4; align: center;"
+          position="0 1.6 1" rotation=""></a-entity>
+        <a-light id="lightSphere" type="spot" decay="3" distance="20" intensity="0" penumbra="0.1"
+          position="0.086 0.262 2.70" visible="false" mixin="ligthIntesity">
+          <a-entity geometry="primitive: cone; radiusBottom: 0.52; radiusTop: 0.12" id="forma"
+            material="shader: flat; opacity: 0.5" position="-0.04 1.23868 -0.57" rotation="50 0 0"></a-entity>
+        </a-light>
+        <a-image src="#ctsv" width="1.650" height="1.9" position="0 0 0.103" material="" geometry="">
+        </a-image>
+      </a-gltf-model>
+
+      <a-gltf-model id="modelFrame" position="18 0 0" rotation="0 180 0" src="#framePhoto">
+        <a-entity id="titleFrame"
+          text="font: https://cdn.aframe.io/fonts/Monoid.fnt; value: Oblea (Wafer); width: 4; align: center;"
+          position="0 1.6 1" rotation=""></a-entity>
+        <a-light id="lightSphere" type="spot" decay="3" distance="20" intensity="0" penumbra="0.1"
+          position="0.086 0.262 2.70" visible="false" mixin="ligthIntesity">
+          <a-entity geometry="primitive: cone; radiusBottom: 0.52; radiusTop: 0.12" id="forma"
+            material="shader: flat; opacity: 0.5" position="-0.04 1.23868 -0.57" rotation="50 0 0"></a-entity>
+        </a-light>
+        <a-image src="#oblea" width="1.650" height="1.9" position="0 0 0.103" material="" geometry="">
+        </a-image>
+      </a-gltf-model>
+
+      <a-gltf-model id="modelFrame" position="23 0 0" rotation="0 180 0" src="#framePhoto">
+        <a-entity id="titleFrame"
+          text="font: https://cdn.aframe.io/fonts/Monoid.fnt; value: HP Jornada; width: 4; align: center;"
+          position="0 1.6 1" rotation=""></a-entity>
+        <a-light id="lightSphere" type="spot" decay="3" distance="20" intensity="0" penumbra="0.1"
+          position="0.086 0.262 2.70" visible="false" mixin="ligthIntesity">
+          <a-entity geometry="primitive: cone; radiusBottom: 0.52; radiusTop: 0.12" id="forma"
+            material="shader: flat; opacity: 0.5" position="-0.04 1.23868 -0.57" rotation="50 0 0"></a-entity>
+        </a-light>
+        <a-image src="#hpJornada" width="1.650" height="1.9" position="0 0 0.103" material="" geometry="">
+        </a-image>
+      </a-gltf-model>
+
+      <a-gltf-model id="modelFrame" position="28 0 0" rotation="0 180 0" src="#framePhoto">
+        <a-entity id="titleFrame"
+          text="font: https://cdn.aframe.io/fonts/Monoid.fnt; value: Toshiba Libretto 110CT; width: 4; align: center;"
+          position="0 1.6 1" rotation=""></a-entity>
+        <a-light id="lightSphere" type="spot" decay="3" distance="20" intensity="0" penumbra="0.1"
+          position="0.086 0.262 2.70" visible="false" mixin="ligthIntesity">
+          <a-entity geometry="primitive: cone; radiusBottom: 0.52; radiusTop: 0.12" id="forma"
+            material="shader: flat; opacity: 0.5" position="-0.04 1.23868 -0.57" rotation="50 0 0"></a-entity>
+        </a-light>
+        <a-image src="#toshLibretto" width="1.650" height="1.9" position="0 0 0.103" material="" geometry="">
+        </a-image>
+      </a-gltf-model>
+
+      <a-gltf-model id="modelFrame" position="33 0 0" rotation="0 180 0" src="#framePhoto">
+        <a-entity id="titleFrame"
+          text="font: https://cdn.aframe.io/fonts/Monoid.fnt; value: Unidad de Disco 1541; width: 4; align: center;"
+          position="0 1.6 1" rotation=""></a-entity>
+        <a-light id="lightSphere" type="spot" decay="3" distance="20" intensity="0" penumbra="0.1"
+          position="0.086 0.262 2.70" visible="false" mixin="ligthIntesity">
+          <a-entity geometry="primitive: cone; radiusBottom: 0.52; radiusTop: 0.12" id="forma"
+            material="shader: flat; opacity: 0.5" position="-0.04 1.23868 -0.57" rotation="50 0 0"></a-entity>
+        </a-light>
+        <a-image src="#disk1541" width="1.650" height="1.9" position="0 0 0.103" material="" geometry="">
+        </a-image>
+      </a-gltf-model>
+
+      <a-gltf-model id="modelFrame" position="38 0 0" rotation="0 180 0" src="#framePhoto">
+        <a-entity id="titleFrame"
+          text="font: https://cdn.aframe.io/fonts/Monoid.fnt; value:Portatil de Texas Instruments; width: 4; align: center;"
+          position="0 1.6 1" rotation=""></a-entity>
+        <a-light id="lightSphere" type="spot" decay="3" distance="20" intensity="0" penumbra="0.1"
+          position="0.086 0.262 2.70" visible="false" mixin="ligthIntesity">
+          <a-entity geometry="primitive: cone; radiusBottom: 0.52; radiusTop: 0.12" id="forma"
+            material="shader: flat; opacity: 0.5" position="-0.04 1.23868 -0.57" rotation="50 0 0"></a-entity>
+        </a-light>
+        <a-image src="#txPc" width="1.650" height="1.9" position="0 0 0.103" material="" geometry="">
+        </a-image>
+      </a-gltf-model>
+
+      <a-gltf-model id="modelFrame" position="43 0 0" rotation="0 180 0" src="#framePhoto">
+        <a-entity id="titleFrame"
+          text="font: https://cdn.aframe.io/fonts/Monoid.fnt; value:Primer Servidor DNS de El Salvador; width: 4; align: center;"
+          position="0 1.6 1" rotation=""></a-entity>
+        <a-light id="lightSphere" type="spot" decay="3" distance="20" intensity="0" penumbra="0.1"
+          position="0.086 0.262 2.70" visible="false" mixin="ligthIntesity">
+          <a-entity geometry="primitive: cone; radiusBottom: 0.52; radiusTop: 0.12" id="forma"
+            material="shader: flat; opacity: 0.5" position="-0.04 1.23868 -0.57" rotation="50 0 0"></a-entity>
+        </a-light>
+        <a-image src="#dnsSV" width="1.650" height="1.9" position="0 0 0.103" material="" geometry="">
+        </a-image>
+      </a-gltf-model>
     </a-entity>
+
+
+    <!--Parches al museo-->
+    <a-entity id="muro" position="53.50 0 -19.55" geometry="primitive: box" scale="115 9 1" material="shader: standard; color: #153ab6"></a-entity>
 </a-scene>

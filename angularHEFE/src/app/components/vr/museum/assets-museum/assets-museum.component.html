@@ -1,6 +1,62 @@
-<a-asset-item id="museo" src="../../../../../assets/images/museum/modelMuseum.glb"></a-asset-item>
+<a-asset-item id="museo" src="../../../../../assets/images/museum/museum2.glb"></a-asset-item>
+<a-asset-item id="tv" src="../../../../../assets/images/museum/tv.glb"></a-asset-item>
+<a-asset-item id="framePhoto" src="../../../../../assets/images/museum/marcoPhoto.glb"></a-asset-item>
+
 <a-asset id="robot" src="../../../../../assets/images/museum/robot.png"></a-asset>
 <a-asset id="startTravel" src="../../../../../assets/images/museum/enviar.svg"></a-asset>
 <a-asset id="exit" src="../../../../../assets/images/museum/exit.svg"></a-asset>
 <a-asset id="ballon" src="../../../../../assets/images/museum/ballonMessaje.svg"></a-asset>
-<a-asset id="robotSad" src="../../../../../assets/images/museum/robotSad.png"></a-asset>
+<a-asset id="texturaprueba" src="../../../../../assets/images/museum/textura2.png"></a-asset>
+<a-asset id="shaderUphxEfe" src="../../../../../assets/images/museum/uphxEfe.png"></a-asset>
+<a-asset id="shaderGeneracion" src="../../../../../assets/images/museum/generacionPc.png"></a-asset>
+
+<!--IMAGENES DE LOS CUADROS DEL MUSEO UN POCO DE TODO-->
+<a-asset id="to220" src="../../../../../assets/images/museum/abtraction/to-220.jpg"></a-asset>
+<a-asset id="ctsv" src="../../../../../assets/images/museum/abtraction/ct-sv.jpg"></a-asset>
+<a-asset id="oblea" src="../../../../../assets/images/museum/abtraction/oblea.jpg"></a-asset>
+<a-asset id="hpJornada" src="../../../../../assets/images/museum/abtraction/hp-jornada.jpg"></a-asset>
+<a-asset id="toshLibretto" src="../../../../../assets/images/museum/abtraction/toshibaLibretto.jpg"></a-asset>
+<a-asset id="disk1541" src="../../../../../assets/images/museum/abtraction/disco-1541.jpg"></a-asset>
+<a-asset id="txPc" src="../../../../../assets/images/museum/abtraction/txInstrumenPC.jpg"></a-asset>
+<a-asset id="dnsSV" src="../../../../../assets/images/museum/abtraction/dns.jpg"></a-asset>
+<a-asset id="nextFrame" src="../../../../../assets/images/museum/abtraction/next.svg"></a-asset>
+
+
+<a-asset id="object" src="../../../../../assets/images/museum/objectsPrueba.glb"></a-asset>
+<a-asset id="laptop" src="../../../../../assets/images/museum/laptop.glb"></a-asset>
+<a-asset id="mouse" src="../../../../../assets/images/museum/mouse.glb"></a-asset>
+<a-asset id="pilar3D" src="../../../../../assets/images/museum/pilar.glb"></a-asset>
+
+<a-asset id="guided" src="../../../../../assets/images/museum/guided.svg"></a-asset>
+<a-asset id="travelComplete" src="../../../../../assets/images/museum/travelFree.svg"></a-asset>
+<a-asset id="exhibitionMuseum" src="../../../../../assets/images/museum/exhibition.svg"></a-asset>
+<a-asset id="computer" src="../../../../../assets/images/museum/laptop.svg"></a-asset>
+<a-asset id="internetSV" src="../../../../../assets/images/museum/internetSV.svg"></a-asset>
+
+<a-mixin id="scaleDown"
+  animation__scaledown="property: scale; from: 1.1 1.1 1.1; to: 1 1 1; dur: 100; autoplay: false; easing:
+    easeInOutCubic; startEvents: mouseleave; pauseEvents: mouseenter; resumeEvents: "></a-mixin>
+<a-mixin id="scaleUp"
+  animation__scaleup="property: scale; from: 1 1 1; to: 1.1 1.1 1.1; dur: 100; autoplay: false; easing:
+        easeInOutElastic; startEvents: mouseenter; pauseEvents: mouseleave; resumeEvents: "></a-mixin>
+<a-mixin id="hiddenMenu" animation__hiddenmenu="property: position; to: 1.3 -3 2; startEvents: start;
+            dur: 1000; easing: easeInOutCubic; autoplay: false; delay: 500"></a-mixin>
+<a-mixin id="menuInvisible" animation__menuvisible="property: visible; to: false; startEvents: start;
+            dur: 1000; easing: easeInOutCubic; autoplay: false; delay: 500"></a-mixin>
+<a-mixin id="rotationObj" animation__rotate="property: rotation; to: 0 450 0;
+            dur: 3000; easing: easeInOutCubic; autoplay: true; loop: true;"></a-mixin>
+<a-mixin id="ligthIntesity"
+  animation__intesity="property: intensity; to: 1.33; startEvents: start;
+            dur: 1000; easing: easeInOutCubic; autoplay: false; delay: 2000"></a-mixin>
+
+<a-mixin id="lightAmbientOn" animation__intesityon="property: intensity; to: 1.0; startEvents: start;
+            dur: 1000; easing: easeInOutCubic; autoplay: false;"></a-mixin>
+<a-mixin id="lightAmbientOff" animation__intesityoff="property: intensity; to: 0; startEvents: start;
+            dur: 1000; easing: easeInOutCubic; autoplay: false;"></a-mixin>
+
+<a-mixin id="scaleDownCard"
+  animation__scaledown="property: scale; from: 1.50 0.85 1; to: 1.40 0.75 1; dur: 100; autoplay: false; easing:
+    easeInOutCubic; startEvents: mouseleave; pauseEvents: mouseenter; resumeEvents: "></a-mixin>
+<a-mixin id="scaleUpCard"
+  animation__scaleup="property: scale; from: 1.40 0.75 1; to: 1.50 0.85 1; dur: 100; autoplay: false; easing:
+    easeInOutElastic; startEvents: mouseenter; pauseEvents: mouseleave; resumeEvents: "></a-mixin>
